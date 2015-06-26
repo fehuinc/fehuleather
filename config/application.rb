@@ -2,13 +2,13 @@ require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
 require "active_model/railtie"
-require "active_job/railtie"
+# require "active_job/railtie" # Disabled by Ivan
 require "active_record/railtie"
 require "action_controller/railtie"
-require "action_mailer/railtie"
+# require "action_mailer/railtie" # Disabled by Ivan
 require "action_view/railtie"
 require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+# require "rails/test_unit/railtie" # Disabled by --skip-test-unit (I think)
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -30,5 +30,19 @@ module FehuRails
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Custom directories with classes and modules you want to be autoloadable.
+    config.autoload_paths += %W(#{config.root}/app/services)
+  
+    # Include custom fonts directory
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    
+    # Enumerate migrations, don't timestamp them
+    config.active_record.timestamped_migrations = false
+    
+    # Send email with postmark
+    # config.action_mailer.delivery_method = :postmark
+    # config.action_mailer.postmark_settings = { :api_key => ENV['POSTMARK_API_KEY'] }
+
   end
 end
