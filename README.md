@@ -1,0 +1,3 @@
+# Fehu
+
+Stinks. On Rails.
