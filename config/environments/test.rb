@@ -30,6 +30,12 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  
+  # Ivan added:
+  # Specify what domain to use for mailer URLs and assets (like images)
+  config.action_mailer.default_url_options = { host: "rails-fehu.dev" }
+  config.action_mailer.asset_host = "rails-fehu.dev"
+  # NOTE(Ivan): rake rails:update wants me to remove these
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random

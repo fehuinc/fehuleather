@@ -63,7 +63,8 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
-
+  
+  # Ivan added:
   # Specify what domain to use for mailer URLs and assets (like images)
   config.action_mailer.default_url_options = { host: 'www.fehuleather.com' }
   config.action_mailer.asset_host = 'www.fehuleather.com'
