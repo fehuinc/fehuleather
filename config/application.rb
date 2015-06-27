@@ -5,7 +5,7 @@ require "active_model/railtie"
 # require "active_job/railtie" # Disabled by Ivan
 require "active_record/railtie"
 require "action_controller/railtie"
-# require "action_mailer/railtie" # Disabled by Ivan
+require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie" # Disabled by --skip-test-unit (I think)
