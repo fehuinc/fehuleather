@@ -1,0 +1,139 @@
+$D: hsl(167, 28%, 80%);
+$C: hsl( 45, 30%, 84%);
+$B: hsl( 15, 33%, 82%);
+$A: hsl(188, 30%, 80%);
+$row-height: 3.5em;
+$unit: 3rem;
+
+header {
+  position: relative;
+  background: white;
+  margin: 0 auto;
+  
+  @media (max-width: 600px) { font-size: 0.9em; }
+  @media (max-width: 500px) { font-size: 0.8em; }
+  @media (max-width: 400px) { font-size: 0.7em; }
+  
+  .logo {
+    position: absolute;
+    text-align: center;
+    top: $row-height * 1.7;
+    left: 50%;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    
+    a {
+      font-size: 5.5em;
+      font-family: amatic;
+
+      @media (max-width: 400px) {
+        font-size: 4em;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      top: $row-height * .8;
+    }
+  }
+  
+  .bricks {
+    text-align: center;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    
+    @media (max-width: 600px) {
+      letter-spacing: 0;
+    }
+  }
+
+  row {
+    display: flex;
+    margin: 0 auto;
+  }
+  
+  block {
+    display: block;
+    flex: 1 4 auto;
+    height: $row-height;
+    line-height: $row-height;
+    
+    @media (max-width: 600px) {
+      height: $row-height * .8;
+      line-height: $row-height * .8;
+    }
+    
+    &.in {
+      flex: 0 2 auto;
+    }
+    
+    &.glyphs {
+      a {
+        display: inline-block;
+        width: 50%;
+        padding: 0 10%;
+      }
+      
+      img {
+        max-width: 100%;
+        vertical-align: middle;
+      }
+    }
+    
+    a {
+      font-size: 1.1em;
+      color: rgba(#543, 0.7);
+    }
+  }
+  
+  space {
+    flex: 0 5 auto;
+  }
+  
+  .s2 { width: $unit * 2; }
+  .s4 { width: $unit * 4; }
+  .s5 { width: $unit * 5; }
+  .s6 { width: $unit * 6; }
+  .s7 { width: $unit * 7; }
+  .s8 { width: $unit * 8; }
+  .s10 { width: $unit * 10; }
+  
+  .D { max-width: $unit * 30; }
+  .C { max-width: $unit * 28; }
+  .B { max-width: $unit * 26; }
+  .A { max-width: $unit * 24; }
+    
+  .D .out {
+    background-color: darken($D, 7%);
+    border-bottom: 6px solid darken($D, 10%);
+  }
+  
+  .C .in {
+    background-color: $C;
+    border-bottom: 6px solid darken($C, 4%);
+  }
+  
+  .C .out {
+    background-color: darken($C, 7%);
+    border-bottom: 6px solid darken($C, 10%);
+  }
+  
+  .B .in {
+    background-color: $B;
+    border-bottom: 6px solid darken($B, 4%);
+  }
+  
+  .B .out {
+    background-color: darken($B, 7%);
+    border-bottom: 6px solid darken($B, 10%);
+  }
+  
+  .A .in {
+    background-color: $A;
+    border-bottom: 6px solid darken($A, 4%);
+  }
+  
+  .A .out {
+    background-color: darken($A, 7%);
+    border-bottom: 6px solid darken($A, 10%);
+  }
+}

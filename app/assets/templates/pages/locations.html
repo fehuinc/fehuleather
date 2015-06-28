@@ -1,0 +1,29 @@
+<h1>Locations</h1>
+
+<h1>Find Us In Your Neck Of The Woods</h1>
+
+<div>
+	<form>
+		<input type="text" ng-model="search.city" placeholder="City">
+		<select ng-model="searchProvince" ng-options="value for value in searchProvinces"></select>
+	</form>
+	
+	<div ng-show="!(locations | filter:search).length && (searchProvince == allProvinces)">Nobody here :(</div>
+	<div ng-show="!(countries['Canada'][searchProvince] | filter:search).length && (searchProvince != allProvinces)">Nobody here :(</div>
+	
+	<div class="country" ng-repeat="(countryName, provinceObj) in countries">
+		<div class="province" ng-repeat="(provinceName, locationList) in provinceObj" ng-show="showProvince(provinceName)">
+			<h2 class="province-name" ng-show="filteredLocations.length > 0">{{provinceName}}</h2>
+			<div class="location" ng-repeat="location in filteredLocations = (locationList | filter:search)">
+				<h3 class="name">{{location.name}}</h3>
+				<address>
+					<pre>{{location.address}}</pre>
+					<pre>{{location.city}}, {{location.province}}</pre>
+					<pre>{{location.postal}}</pre>
+					<pre ng-show="location.country != 'Canada'">{{location.country}}</pre>
+				</address>
+				<a ng-href="http://{{location.url}}" ng-show="location.url">Website</a>
+			</div>
+		</div>
+	</div>
+</div>

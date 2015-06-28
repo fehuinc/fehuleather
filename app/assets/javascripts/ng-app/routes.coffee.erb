@@ -1,0 +1,20 @@
+angular.module "Routes", []
+
+.config ($routeProvider)->
+  
+  $routeProvider
+    .when "/",
+      controller: "ShopCtrl"
+      templateUrl: "<%= asset_path('pages/shop.html') %>"
+      
+    .when "/locations",
+      controller: "LocationsCtrl"
+      templateUrl: "<%= asset_path('pages/locations.html') %>"
+    .when "/wholesale",
+      controller: "WholesaleCtrl"
+      templateUrl: "<%= asset_path('pages/wholesale.html') %>"
+    
+    .when "/404",
+      templateUrl: "<%= asset_path('pages/404.html') %>"
+    
+    .otherwise "404"

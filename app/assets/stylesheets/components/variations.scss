@@ -1,0 +1,41 @@
+$largest: 90vmin;
+$smallest: 50vw;
+$pad: 2vmin;
+
+variations {
+  display: block;
+  height: $largest;
+  min-height: $smallest;
+  padding-left: 50%;
+  margin-top: $pad;
+  overflow: hidden;
+  
+  horizontal-slider {
+    display: block;
+    width: calc((#{$largest} + 2vmin) * 3);
+    min-width: calc((#{$smallest} + 2vmin) * 3);
+    
+    vertical-slider {
+      display: block;
+      transform: translateX(-50%); // Overridden by getVerticalSliderStyle
+      font-size: 0;
+      transition: transform 1s;
+      
+      variation {
+        display: inline-block;
+        cursor: pointer;
+        width: calc(#{$largest} + 2vmin);
+        height: $largest;
+        min-width: calc(#{$smallest} + 2vmin);
+        min-height: $smallest;
+        
+        &.A, &.C {
+          opacity: 0.2;
+        }
+        
+        &.next { cursor: e-resize; }
+        &.prev { cursor: w-resize; }
+      }
+    }
+  }
+}

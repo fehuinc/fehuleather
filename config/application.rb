@@ -30,12 +30,9 @@ module FehuRails
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-
+    
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{config.root}/app/services)
-  
-    # Include custom fonts directory
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
     
     # Enumerate migrations, don't timestamp them
     config.active_record.timestamped_migrations = false
