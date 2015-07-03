@@ -19,6 +19,7 @@ angular.module "FehuApp", [
    "Products"
    "Routes"
    "StubProducts"
+   "StubLocations"
 ]
 
 .config ($locationProvider)->

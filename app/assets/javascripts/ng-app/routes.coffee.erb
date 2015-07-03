@@ -7,12 +7,15 @@ angular.module "Routes", []
       controller: "ShopCtrl"
       templateUrl: "<%= asset_path('pages/shop.html') %>"
       
+    .when "/about",
+      controller: "AboutCtrl"
+      templateUrl: "<%= asset_path('pages/about.html') %>"
+    .when "/events",
+      controller: "EventsCtrl"
+      templateUrl: "<%= asset_path('pages/events.html') %>"
     .when "/locations",
       controller: "LocationsCtrl"
       templateUrl: "<%= asset_path('pages/locations.html') %>"
-    .when "/wholesale",
-      controller: "WholesaleCtrl"
-      templateUrl: "<%= asset_path('pages/wholesale.html') %>"
     
     .otherwise
       template: ""

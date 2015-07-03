@@ -1,10 +1,9 @@
 $color: rgba(#543, 0.7);
 
-select {
+input {
   padding: .2em .4em;
   border: 1px solid $color;
   border-radius: 3px;
   color: $color;
   background: white;
-  appearance: none;
 }

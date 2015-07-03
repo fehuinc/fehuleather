@@ -1,3 +1,64 @@
 #locations {
+  form {
+    font-size: 1.1em;
+    margin: 1.2em 0 2.5em;
+    text-align: center;
+    
+    select {
+      margin-left: 1em;
+    }
+  }
   
+  .locations {
+    max-width: 30rem;
+    margin: 0 auto;
+  }
+
+  h2 {
+    margin: 1em 0 1.5em;
+    text-align: center;
+    padding: .5em 0 .3em;
+    
+    $D: hsl( 45, 30%, 84%);
+    $C: hsl(167, 28%, 80%);
+    $B: hsl( 15, 33%, 82%);
+    $A: hsl(188, 30%, 80%);
+    $alpha: .4;
+    
+    &.A {
+      $color: darken($A, 4%);
+      background: rgba($A, $alpha);
+      border-bottom: 6px solid rgba($color, $alpha);
+    }
+    
+    &.B {
+      $color: darken($B, 4%);
+      background: rgba($B, $alpha);
+      border-bottom: 6px solid rgba($color, $alpha);
+    }
+
+    &.C {
+      $color: darken($C, 4%);
+      background: rgba($C, $alpha);
+      border-bottom: 6px solid rgba($color, $alpha);
+    }
+
+    &.D {
+      $color: darken($D, 4%);
+      background: rgba($D, $alpha);
+      border-bottom: 6px solid rgba($color, $alpha);
+    }
+  }
+  
+  .location {
+    margin-bottom: 3em;
+    
+    address {
+      margin: .5em 0;
+      
+      pre {
+        margin: 0;
+      }
+    }
+  }
 }
