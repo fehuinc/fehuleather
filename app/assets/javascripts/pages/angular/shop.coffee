@@ -1,6 +1,6 @@
 angular.module "Shop", []
 
-.controller "ShopCtrl", (Products, $scope)->
+.controller "ShopCtrl", new Array "Products", "$scope", (Products, $scope)->
   
   ## LOCALS
   showingProduct =

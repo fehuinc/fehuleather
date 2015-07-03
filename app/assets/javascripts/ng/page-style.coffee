@@ -1,6 +1,6 @@
 angular.module "PageStyle", []
 
-.directive "pageStyle", ($rootScope, $location)->
+.directive "pageStyle", new Array "$rootScope", "$location", ($rootScope, $location)->
    (scope, elm, attrs)->
       scope.$on "$routeChangeSuccess", ()->
          path = $location.path().split("/")[1]

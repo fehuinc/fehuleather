@@ -23,5 +23,5 @@ angular.module "FehuApp", [
    "StubLocations"
 ]
 
-.config ($locationProvider)->
+.config new Array "$locationProvider", ($locationProvider)->
   $locationProvider.html5Mode enabled:true, requireBase:false

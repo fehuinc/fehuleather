@@ -1,6 +1,6 @@
 angular.module "Variations", []
 
-.directive "variations", ($swipe, $timeout)->
+.directive "variations", new Array "$swipe", "$timeout", ($swipe, $timeout)->
   templateUrl: "<%= asset_path('components/variations.html') %>"
   
   link: (scope, element)->

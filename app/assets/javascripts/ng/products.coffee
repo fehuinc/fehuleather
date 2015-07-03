@@ -1,8 +1,8 @@
 angular.module "Products", []
 
-.service "Products", (StubProducts)->
-	return Products =
-		
-		all: ()->
-			return StubProducts
-		
+.service "Products", new Array "StubProducts", (StubProducts)->
+  return Products =
+    
+    all: ()->
+      return StubProducts
+    

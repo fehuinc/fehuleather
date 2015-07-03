@@ -13,10 +13,8 @@
 
 angular.module "bimg", []
 
-.directive "bimg", [
-	()->
-		link: (scope, elm, attrs)->
-			attrs.$observe "bimg", ()->
-				if attrs.bimg? and attrs.bimg.length > 0
-					elm.css({"background-image": "url(#{attrs.bimg})"})
-]
+.directive "bimg", ()->
+  link: (scope, elm, attrs)->
+    attrs.$observe "bimg", ()->
+      if attrs.bimg? and attrs.bimg.length > 0
+        elm.css({"background-image": "url(#{attrs.bimg})"})

@@ -1,6 +1,6 @@
 angular.module "Locations", []
 
-.controller "LocationsCtrl", ($scope, StubLocations)->
+.controller "LocationsCtrl", new Array "$scope", "StubLocations", ($scope, StubLocations)->
   $scope.locations = StubLocations
   $scope.countries = {}
   $scope.allProvinces = "Province"
