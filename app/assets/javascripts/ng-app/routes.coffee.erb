@@ -14,7 +14,8 @@ angular.module "Routes", []
       controller: "WholesaleCtrl"
       templateUrl: "<%= asset_path('pages/wholesale.html') %>"
     
-    .when "/404",
-      templateUrl: "<%= asset_path('pages/404.html') %>"
-    
-    .otherwise "404"
+    .otherwise
+      template: ""
+      controller: ($route, $location, $window)->
+        # Force Rails to handle this route
+        document.location.reload()
