@@ -1,5 +1,3 @@
-$unit: 3rem;
-
 product-info.showingProductInfo {
   opacity: 1;
   overflow: visible;
@@ -51,7 +49,7 @@ product-info {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      max-width: $unit * 12;
+      max-width: 3rem * 12;
       margin: 1em auto 0;
       font-size: 1.4em;
       
@@ -83,7 +81,7 @@ product-info {
     line-info, shop-info {
       display: block;
       display: none;
-      max-width: $unit * 12;
+      max-width: 3rem * 12;
       margin: 0 auto;
       
       h3 {
@@ -95,10 +93,10 @@ product-info {
       }
       
       .tut {
-        width: $unit * 2.25;
+        width: 3rem * 2.25;
         display: inline-block;
         vertical-align: top;
-        margin: 0 $unit/2 0 0;
+        margin: 0 3rem/2 0 0;
         
         img{
           width: 100%;

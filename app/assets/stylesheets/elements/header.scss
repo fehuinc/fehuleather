@@ -3,7 +3,6 @@ $C: hsl( 45, 30%, 84%);
 $B: hsl( 15, 33%, 82%);
 $A: hsl(188, 30%, 80%);
 $row-height: 3.5em;
-$unit: 3rem;
 
 header {
   position: relative;
@@ -89,18 +88,18 @@ header {
     flex: 0 5 auto;
   }
   
-  .s2 { width: $unit * 2; }
-  .s4 { width: $unit * 4; }
-  .s5 { width: $unit * 5; }
-  .s6 { width: $unit * 6; }
-  .s7 { width: $unit * 7; }
-  .s8 { width: $unit * 8; }
-  .s10 { width: $unit * 10; }
+  .s2 { width: 3rem * 2; }
+  .s4 { width: 3rem * 4; }
+  .s5 { width: 3rem * 5; }
+  .s6 { width: 3rem * 6; }
+  .s7 { width: 3rem * 7; }
+  .s8 { width: 3rem * 8; }
+  .s10 { width: 3rem * 10; }
   
-  .D { max-width: $unit * 30; }
-  .C { max-width: $unit * 28; }
-  .B { max-width: $unit * 26; }
-  .A { max-width: $unit * 24; }
+  .D { max-width: 3rem * 30; }
+  .C { max-width: 3rem * 28; }
+  .B { max-width: 3rem * 26; }
+  .A { max-width: 3rem * 24; }
     
   .D .out {
     background-color: darken($D, 7%);

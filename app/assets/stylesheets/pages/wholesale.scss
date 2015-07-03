@@ -1,5 +1,3 @@
-$unit: 3rem;
-
 #wholesale {
     
   h2 {
@@ -16,7 +14,7 @@ $unit: 3rem;
     display: block;
     text-align:center;
     font-size: 1.5em;
-    padding: $unit;
+    padding: 3rem;
   
     div{
       display: inline-block;
@@ -28,12 +26,12 @@ $unit: 3rem;
     
     img {
       display: inline-block;
-      width: $unit * 3;
+      width: 3rem * 3;
     }
     
     .variation {
       display: inline-block;
-      padding: $unit/3;
+      padding: 3rem/3;
     }
     
     .quantity {
@@ -44,13 +42,13 @@ $unit: 3rem;
 
     .button, .value {
       display: inline-block;
-      width: $unit;
+      width: 3rem;
     }
     
     .button {
       background: #FAFAFA;
-      height: $unit;
-      line-height: $unit;
+      height: 3rem;
+      line-height: 3rem;
     }
   }
   
@@ -60,10 +58,10 @@ $unit: 3rem;
     .button {
       display:inline-block;
       background: #FAFAFA;
-      height: $unit;
-      line-height: $unit;
-      padding: 0 $unit/2;
-      margin: $unit;
+      height: 3rem;
+      line-height: 3rem;
+      padding: 0 3rem/2;
+      margin: 3rem;
     }
   }
 }
