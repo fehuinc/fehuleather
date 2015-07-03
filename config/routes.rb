@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  root 'static#index'
   
   # Angular Pages
-  get 'about' => 'static#index'
-  get 'events' => 'static#index'
-  get 'locations' => 'static#index'
+  root 'angular#index'
+  get 'about' => 'angular#index'
+  get 'events' => 'angular#index'
+  get 'locations' => 'angular#index'
   
   # Rails Pages
   get 'wholesale' => 'wholesale#landing'
+  get '*slug' => 'static#err', format: false
   
-  get   '*slug' => 'static#err', format: false
 end

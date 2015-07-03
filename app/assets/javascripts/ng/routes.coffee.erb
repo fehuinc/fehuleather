@@ -3,10 +3,6 @@ angular.module "Routes", []
 .config ($routeProvider)->
   
   $routeProvider
-    .when "/",
-      controller: "ShopCtrl"
-      templateUrl: "<%= asset_path('pages/shop.html') %>"
-      
     .when "/about",
       controller: "AboutCtrl"
       templateUrl: "<%= asset_path('pages/about.html') %>"
@@ -16,6 +12,9 @@ angular.module "Routes", []
     .when "/locations",
       controller: "LocationsCtrl"
       templateUrl: "<%= asset_path('pages/locations.html') %>"
+    .when "/",
+      controller: "ShopCtrl"
+      templateUrl: "<%= asset_path('pages/shop.html') %>"
     
     .otherwise
       template: ""

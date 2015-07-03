@@ -13,6 +13,10 @@ header {
   @media (max-width: 500px) { font-size: 0.8em; }
   @media (max-width: 400px) { font-size: 0.7em; }
   
+  a {
+    text-decoration: none;
+  }
+  
   .logo {
     position: absolute;
     text-align: center;
@@ -24,7 +28,7 @@ header {
     a {
       font-size: 5.5em;
       font-family: amatic;
-
+      
       @media (max-width: 400px) {
         font-size: 4em;
       }

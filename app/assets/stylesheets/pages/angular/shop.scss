@@ -1,5 +1,10 @@
 #shop {
-  ng-view {
+  main {
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+  main {
     max-width: none;
     padding-bottom: 2vmin;
   }

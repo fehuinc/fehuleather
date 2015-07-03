@@ -9,9 +9,10 @@ angular.module "FehuApp", [
    "Variations"
    
    # Pages
+   "About"
+   "Events"
    "Locations"
    "Shop"
-   "Wholesale"
    
    # Scripts
    "bimg"
