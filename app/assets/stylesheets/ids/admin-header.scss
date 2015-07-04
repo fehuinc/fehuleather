@@ -1,8 +1,9 @@
 #admin-header {
-  text-align: left;
   padding: .5em;
+  text-align: left;
   font-size: 1.2em;
   background: hsla(40, 50%, 80%, 0.5);
+  overflow: hidden;
   
   a {
     display: inline-block;
