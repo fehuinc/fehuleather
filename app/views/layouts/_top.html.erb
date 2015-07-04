@@ -13,5 +13,6 @@
 </head>
 
 <body class="<%=controller_name.parameterize%>" id="<%=action_name.parameterize%>">
+  <%= if admin? then render "partials/admin_header" end %>
   <%= render "partials/flash" %>
   <%= render "partials/header" %>

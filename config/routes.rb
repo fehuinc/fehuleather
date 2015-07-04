@@ -8,6 +8,21 @@ Rails.application.routes.draw do
   
   # Rails Pages
   get 'wholesale' => 'wholesale#landing'
-  get '*slug' => 'static#err', format: false
+  
+  get 'stink' => 'stink#stink'
+  post 'stinkin' => 'stink#stinkin'
+
+  scope constraints: lambda { |request| request.session[:stinker] == ENV["STINKNAME"] } do
+    namespace :admin do
+      resources :events
+      resources :locations
+      resources :orders
+      resources :products
+    end
+    get 'stinkout' => 'stink#stinkout'
+  end
+  
+  get 'err' => 'static#err'
+  get '*slug' => 'static#err', format: false, as: "fake_err"
   
 end

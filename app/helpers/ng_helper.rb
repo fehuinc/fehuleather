@@ -1,5 +1,3 @@
-
-
 module NgHelper
   def ng_helper
     if controller_name == "angular"
