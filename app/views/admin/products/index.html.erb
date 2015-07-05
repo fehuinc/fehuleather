@@ -1,1 +1,27 @@
-<h1>Admin::Products</h1>
+<h1>Stinky Products</h1>
+
+<div>
+  <h3>Need a new <%= link_to "Genus", new_genus_path %> or <%= link_to "Species", new_species_path %></h3>
+  We also have <%= link_to "Kingdoms", :admin_kingdoms %> & <%= link_to "Families", :admin_families %>!
+</div>
+
+<table>
+  <thead>
+    <td><a>Kingdom</a></td>
+    <td><a>Family</a></td>
+    <td><a>Genus</a></td>
+    <td><a>Species</a></td>
+    <td><a>Stock</a></td>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.kingdom %></td>
+        <td><%= product.family %></td>
+        <td><%= product.genus %></td>
+        <td><%= product.species %></td>
+        <td><%= product.stock %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
