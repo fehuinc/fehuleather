@@ -13,18 +13,15 @@ Rails.application.routes.draw do
   
   # Angular API endpoints
   namespace :api do
-    resources :events,    only: [:index]
-    resources :locations, only: [:index]
-    resources :products,  only: [:index]
-    resources :kingdoms,  only: [:index]
-    resources :families,  only: [:index]
-    resources :genuses,   only: [:index]
-    resources :species,   only: [:index]
+    resources :events
+    resources :kingdoms
+    resources :locations
+    resources :products
   end
   
   scope constraints: lambda { |request| request.session[:user].present? } do
     namespace :wholesale do
-      resources :orders,    only: [:index]
+      resources :orders
     end
   end
   
@@ -33,20 +30,16 @@ Rails.application.routes.draw do
   
   scope constraints: lambda { |request| request.session[:stinker] == ENV["STINKNAME"] } do
     namespace :admin do
-      resources :events,    only: [:index, :update, :destroy]
-      resources :locations, only: [:index, :update, :destroy]
-      resources :orders,    only: [:index, :update, :destroy]
-      resources :products,  only: [:index, :update, :destroy]
-      resources :kingdoms,  only: [:index, :update, :destroy]
-      resources :families,  only: [:index, :update, :destroy]
-      resources :genuses,   only: [:index, :update, :destroy]
-      resources :species,   only: [:index, :update, :destroy]
+      resources :events
+      resources :kingdoms
+      resources :locations
+      resources :orders
+      resources :products
     end
     get 'stinkout' => 'stink#stinkout'
   end
   
   get 'err' => 'static#err'
   get '*slug' => 'static#err', format: false, as: "fake_err"
-
   
 end

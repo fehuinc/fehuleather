@@ -1,5 +1,11 @@
 class Admin::ProductsController < ApplicationController
   def index
-    @products = Genus.all
+    @products = Product.all
+  end
+  
+  def new
+  end
+  
+  def edit
   end
 end

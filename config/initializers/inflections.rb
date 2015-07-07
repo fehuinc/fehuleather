@@ -8,5 +8,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   
   inflect.plural /^(genus)$/i, '\1es'
   inflect.singular /^(genus)es/i, '\1'
-  inflect.uncountable %w( species )
+  inflect.plural /^(species)$/i, '\1es'
+  inflect.singular /^(species)es/i, '\1'
+
 end

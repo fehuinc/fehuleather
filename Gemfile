@@ -16,6 +16,7 @@ gem 'rack-zippy'
 gem 'uglifier'
 gem 'sass-rails'
 gem 'coffee-rails'
+gem 'jquery-rails'
 gem 'autoprefixer-rails'
 
 # SERVICE INTEGRATIONS
