@@ -1,8 +1,13 @@
 #locations {
   form {
+    max-width: none;
     font-size: 1.1em;
     margin: 1.2em 0 2.5em;
     text-align: center;
+    
+    input {
+      width: auto;
+    }
     
     select {
       margin-left: 1em;

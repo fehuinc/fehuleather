@@ -1,10 +1,9 @@
-<div id="flash">
-  <% if flash.present? %>
+<% if flash.present? %>
+  <div id="flash">
     <% flash.each do |key, msg| %>
       <% if msg.length > 0 # Ignore messages we've disabled in the localization file %>
         <%= content_tag :div, msg, class: [key, "message"] %>
-        <br>
       <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>

@@ -28,14 +28,34 @@ Rails.application.routes.draw do
   get 'stink' => 'stink#stink'
   post 'stinkin' => 'stink#stinkin'
   
+  #
+  # I would like :create to POST to /resource/new, not /resource
+  # That way, if there's a form error, we're still on the right page
+  #
+  
   scope constraints: lambda { |request| request.session[:stinker] == ENV["STINKNAME"] } do
     namespace :admin do
+      root 'products#index'
+
       resources :events
-      resources :kingdoms
       resources :locations
       resources :orders
-      resources :products
+
+      resources :kingdoms, except: [:show] do
+        resources :products, only: [:new, :create]
+      end
+      resources :products, only: [:index, :edit, :update, :destroy] do
+        resources :infos, only: [:new, :create]
+        resources :variations, only: [:new, :create]
+      end
+      resources :infos, only: [:index, :edit, :update, :destroy]
+      resources :variations, only: [:index, :edit, :update, :destroy] do
+        resources :variants, only: [:new, :create]
+      end
+      resources :variants, only: [:index, :edit, :update, :destroy]
+      
     end
+    
     get 'stinkout' => 'stink#stinkout'
   end
   

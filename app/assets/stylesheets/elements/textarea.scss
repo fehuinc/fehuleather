@@ -1,6 +1,6 @@
 $color: rgba(#543, 0.7);
 
-input {
+textarea {
   width: 100%;
   padding: .2em .4em;
   border: 1px solid $color;
@@ -8,9 +8,4 @@ input {
   vertical-align: middle;
   color: $color;
   background: white;
-}
-
-input[type="checkbox"] {
-  width: auto;
-  vertical-align: .05em;
 }

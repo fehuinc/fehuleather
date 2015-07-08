@@ -1,0 +1,12 @@
+@import 'inherit.scss';
+
+label {
+  @extend .unselectable;
+  margin-bottom: .2em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+label + label {
+  margin-left: 1em;
+}

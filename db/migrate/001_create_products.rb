@@ -21,6 +21,12 @@ class CreateProducts < ActiveRecord::Migration
       t.index :name,              unique: true
     end
     
+    create_table :infos do |t| # eg: sizing, gifting, uniqueness, tips
+      t.belongs_to :product,      required: true, index: true
+      t.text :content,            null: false
+      t.text :name,               null: false
+    end
+    
     create_table :variations do |t| # eg: color, hardware, size, leaf pattern
       # has many :variants
       t.belongs_to :product,      required: true, index: true
@@ -52,12 +58,6 @@ class CreateProducts < ActiveRecord::Migration
       # has many :variant_stock_joins
       t.belongs_to :product,      required: true
       t.integer :quantity,        null: false, default: 0
-    end
-    
-    create_table :infos do |t| # eg: sizing, gifting, uniqueness, tips
-      t.belongs_to :product,      required: true, index: true
-      t.text :content,            null: false
-      t.text :name,               null: false
     end
   end
 end

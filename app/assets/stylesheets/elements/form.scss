@@ -1,0 +1,26 @@
+form {
+  max-width: 30em;
+  margin: 0 auto;
+  
+  & > div {
+    margin: 1em 0;
+  }
+  
+  div.field_with_errors {
+    margin: 0;
+    input, textarea {
+      border-color: red;
+      background: #FFE;
+    }
+  }
+  
+  .row {
+    display: flex;
+    div {
+      flex: 1 1 auto;
+    }
+    div + div {
+      margin-left: 1em;
+    }
+  }
+}
