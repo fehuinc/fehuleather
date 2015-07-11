@@ -1,5 +1,6 @@
 class Stock < ActiveRecord::Base
   has_many :variant_stock_joins
+  has_many :variants, through: :variant_stock_joins
   belongs_to :product
   
   validates :product, presence: true

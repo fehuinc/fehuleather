@@ -13,8 +13,8 @@ class CreateProducts < ActiveRecord::Migration
       t.belongs_to :kingdom,      required: true, index: true
       t.text :description,        null: false
       t.text :name,               null: false
-      t.decimal :price_retail,    null: false, default: 0, precision: 7, scale: 2
-      t.decimal :price_wholesale, null: false, default: 0, precision: 7, scale: 2
+      t.decimal :price_retail,    null: false, default: 0
+      t.decimal :price_wholesale, null: false, default: 0
       t.boolean :published,       null: false, default: false
       t.boolean :show_retail,     null: false, default: false
       t.boolean :show_wholesale,  null: false, default: false
@@ -35,15 +35,15 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :level,           null: false, default: 0
       t.text :name,               null: false
     end
-        
+    
     create_table :variants do |t| # eg: red, brass, small, stripes
       # has many :variant_stock_joins
       t.belongs_to :variation,    required: true, index: true
       t.boolean :default,         null: false, default: false
       t.text :description,        default: nil
       t.text :name,               null: false
-      t.decimal :price_retail,    null: false, default: 0, precision: 7, scale: 2
-      t.decimal :price_wholesale, null: false, default: 0, precision: 7, scale: 2
+      t.decimal :price_retail,    null: false, default: 0
+      t.decimal :price_wholesale, null: false, default: 0
       t.boolean :published,       null: false, default: false
       t.boolean :show_retail,     null: false, default: false
       t.boolean :show_wholesale,  null: false, default: false

@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
-  has_many :infos
-  has_many :stocks
-  has_many :variations
+  has_many :infos, dependent: :delete_all
+  has_many :stocks, dependent: :delete_all
+  has_many :variations, dependent: :delete_all
   belongs_to :kingdom
   
   validates :description, :kingdom, :name, presence: true

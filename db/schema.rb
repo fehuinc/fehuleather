@@ -29,13 +29,13 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "products", force: :cascade do |t|
     t.integer "kingdom_id"
-    t.text    "description",                                             null: false
-    t.text    "name",                                                    null: false
-    t.decimal "price_retail",    precision: 7, scale: 2, default: 0.0,   null: false
-    t.decimal "price_wholesale", precision: 7, scale: 2, default: 0.0,   null: false
-    t.boolean "published",                               default: false, null: false
-    t.boolean "show_retail",                             default: false, null: false
-    t.boolean "show_wholesale",                          default: false, null: false
+    t.text    "description",                     null: false
+    t.text    "name",                            null: false
+    t.decimal "price_retail",    default: 0.0,   null: false
+    t.decimal "price_wholesale", default: 0.0,   null: false
+    t.boolean "published",       default: false, null: false
+    t.boolean "show_retail",     default: false, null: false
+    t.boolean "show_wholesale",  default: false, null: false
   end
 
   add_index "products", ["kingdom_id"], name: "index_products_on_kingdom_id"
@@ -53,14 +53,14 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "variants", force: :cascade do |t|
     t.integer "variation_id"
-    t.boolean "default",                                 default: false, null: false
+    t.boolean "default",         default: false, null: false
     t.text    "description"
-    t.text    "name",                                                    null: false
-    t.decimal "price_retail",    precision: 7, scale: 2, default: 0.0,   null: false
-    t.decimal "price_wholesale", precision: 7, scale: 2, default: 0.0,   null: false
-    t.boolean "published",                               default: false, null: false
-    t.boolean "show_retail",                             default: false, null: false
-    t.boolean "show_wholesale",                          default: false, null: false
+    t.text    "name",                            null: false
+    t.decimal "price_retail",    default: 0.0,   null: false
+    t.decimal "price_wholesale", default: 0.0,   null: false
+    t.boolean "published",       default: false, null: false
+    t.boolean "show_retail",     default: false, null: false
+    t.boolean "show_wholesale",  default: false, null: false
   end
 
   add_index "variants", ["variation_id"], name: "index_variants_on_variation_id"

@@ -1,40 +1,60 @@
 <h1>Stinky Products</h1>
 
+<h3 class="new-kingdom">
+  <%= link_to "New Kingdom", new_admin_kingdom_path %>
+</h3>
+
 <% @kingdoms.each do |kingdom| %>
   <div class="kingdom">
     <h2><%= kingdom.name.pluralize %> (<%= link_to "Edit", edit_admin_kingdom_path(kingdom) %>)</h3></h2>
+    
+    <h4 class="new-product">
+      <%= link_to "New #{kingdom.name.singularize}", new_admin_kingdom_product_path(kingdom) %>
+    </h4>
     
     <% kingdom.products.each do |product| %>
       <div class="product">
         <h3><%= product.name %> (<%= link_to "Edit", edit_admin_product_path(product) %>)</h3>
         
+        <div class="new-variation">
+          <%= link_to "New Variation", new_admin_product_variation_path(product) %>
+        </div>
         <% product.variations.each do |variation| %>
           <div class="variation">
             <h4><%= variation.name %> (<%= link_to "Edit", edit_admin_variation_path(variation) %>)</h4>
             
-            <% variations.variants.each do |variant| %>
+            <div class="new-variant">
+              <%= link_to "New Variant", new_admin_variation_variant_path(variation) %>
+            </div>
+            <% variation.variants.each do |variant| %>
               <div class="variant">
                 <%= variant.name %> (<%= link_to "Edit", edit_admin_variant_path(variant) %>)
                 
               </div>
             <% end %>
-            <%= link_to "New Variant", new_admin_variation_variant_path(variation), class: "new-variant" %>
             
           </div>
         <% end %>
-        <%= link_to "New Variation", new_admin_product_variation_path(product), class: "new-variation" %>
         
+        <h4>Info</h4>
+        <div class="new-info">
+          <%= link_to "New Info", new_admin_product_info_path(product) %>
+        </div>
         <% product.infos.each do |info| %>
           <div class="info">
             <%= info.name %> (<%= link_to "Edit", edit_admin_info_path(info) %>)</h3>
           </div>
         <% end %>
-        <%= link_to "New Info", new_admin_product_info_path(product), class: "new-info" %>
+        
+        <h4>Stocks</h4>
+        <% product.stocks.each do |stock| %>
+          <div class="stock">
+            <%= stock.quantity %> » <%= stock.variants.map(&:name).join ", " %>
+          </div>
+        <% end %>
         
       </div>
     <% end %>
-    <%= link_to "New #{kingdom.name.singularize}", new_admin_kingdom_product_path(kingdom), class: "new-product" %>
     
   </div>
 <% end %>
-<h3 class="new-kingdom"><%= link_to "New Kingdom", new_admin_kingdom_path %></h3>

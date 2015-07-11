@@ -2,5 +2,9 @@
   form {
     margin-top: 1em;
     text-align: center;
+    max-width: none;
+    input {
+      width: auto;
+    }
   }
 }

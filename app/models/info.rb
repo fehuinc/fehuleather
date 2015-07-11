@@ -1,5 +1,5 @@
 class Info < ActiveRecord::Base
-  belongs_to :family
+  belongs_to :product
 
-  validates :content, :family, :name, presence: true
+  validates :content, :product, :name, presence: true
 end
