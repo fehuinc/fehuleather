@@ -1,0 +1,22 @@
+@import 'inherit.scss';
+
+deleter {
+  @extend .unselectable;
+  display: block;
+  margin: 1em 0 0;
+  
+  .button {
+    display: inline-block;
+    padding: .5em 1em;
+    border-radius: 2px;
+    color: white;
+    background: hsl( 15, 100%, 75%);
+    cursor: pointer;
+    transition: 2s opacity;
+    -webkit-font-smoothing: subpixel-antialiased;
+    
+    &:active {
+      opacity: 0;
+    }
+  }
+}

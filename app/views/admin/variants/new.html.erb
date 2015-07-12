@@ -1,0 +1,45 @@
+<h1><%= "New #{@variation.name.titlecase} for #{@product.name.titlecase}" %></h1>
+
+<%= form_for [:admin, @variation, @variant] do |f| %>
+  <%= render 'partials/form_errors', model: @variant %>
+
+  <div>
+    <%= f.label :name, "Name (eg: Small, Red, Stripes)" %>
+    <%= f.text_field :name, autofocus:true %>
+  </div>
+  <div>
+    <%= f.label :default do %>
+      <%= f.check_box :default %> Is this the default <%= @variation.name.downcase %> of <%= @product.name.titlecase %>?
+    <% end %>
+  </div>
+  <div>
+    <%= f.label :description, "Description (Optional)" %>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :show_retail do %>
+      <%= f.check_box :show_retail, { "ng-model" => "show_retail", "ng-init" => "show_retail = #{@variant.show_retail}" } %> Retail
+    <% end %>
+    <%= f.label :show_wholesale do %>
+      <%= f.check_box :show_wholesale, { "ng-model" => "show_wholesale", "ng-init" => "show_wholesale = #{@variant.show_wholesale}" } %> Wholesale
+    <% end %>
+  </div>
+  <div class="row">
+    <div ng-if="show_retail">
+      <%= f.label :price_retail, "Retail Price" %>
+      <%= f.text_field :price_retail %>
+    </div>
+    <div ng-if="show_wholesale">
+      <%= f.label :price_wholesale, "Wholesale Price" %>
+      <%= f.text_field :price_wholesale %>
+    </div>
+  </div>
+  <div>
+    <%= f.label :published do %>
+      <%= f.check_box :published %> Published
+    <% end %>
+  </div>
+  
+  <%= f.submit "Save", class: "save" %>
+  
+<% end %>

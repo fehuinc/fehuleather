@@ -7,16 +7,16 @@ class StinkController < ApplicationController
     end
   end
   
-  def stinkin
+  def stink_in
     if Access.is_admin_password(params[:password])
       Access.become_admin!(session)
       redirect_to :admin_root
     else
-      redirect_to :stink
+      render :stink
     end
   end
   
-  def stinkout
+  def stink_out
     Access.unbecome_admin!(session)
     redirect_to :root
   end

@@ -5,7 +5,7 @@ module NgHelper
       "ng-app=FehuApp page-style"
     else
       # Still include angular, because we might use it on forms and such
-      "ng-app"
+      "ng-app=Core"
     end
   end
 end

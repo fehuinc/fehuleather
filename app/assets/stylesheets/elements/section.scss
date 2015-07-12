@@ -1,0 +1,9 @@
+section {
+  max-width: 32em;
+  margin: 2em auto;
+}
+
+section + section {
+  padding: 2em 0 0;
+  border-top: 2px solid hsla(40, 50%, 80%, 0.5);
+}

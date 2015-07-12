@@ -1,5 +1,5 @@
 class Variant < ActiveRecord::Base
-  has_many :variant_stock_joins, dependent: :delete_all
+  has_many :variant_stock_joins, dependent: :destroy_all
   has_many :stocks, through: :variant_stock_joins
   belongs_to :variation
   

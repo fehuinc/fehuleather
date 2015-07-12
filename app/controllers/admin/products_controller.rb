@@ -1,8 +1,4 @@
 class Admin::ProductsController < ApplicationController
-  def index
-    @kingdoms = Kingdom.all
-  end
-  
   def new
     @kingdom = Kingdom.find params[:kingdom_id]
     @product = @kingdom.products.new
@@ -13,20 +9,39 @@ class Admin::ProductsController < ApplicationController
     @product = @kingdom.products.new standard_params
     
     if @product.valid?
-      @product = @kingdom.products.create! standard_params
+      @kingdom.products.create! standard_params
       flash[:notice] = "Saved"
-      redirect_to admin_products_path
+      redirect_to admin_kingdoms_path
     else
       render :new
     end
   
   rescue
     flash.now[:error] = "Something bad happened! Tell Ivan!"
-    @kingdom = Kingdom.find params[:kingdom_id]
-    @product = @kingdom.products.new standard_params
     render :new
   end
-
+  
+  def edit
+    @product = Product.find params[:id]
+  end
+  
+  def update
+    @product = Product.find params[:id]
+    if @product.update! standard_params
+      flash[:notice] = "Saved"
+      redirect_to edit_admin_product_path @product
+    else
+      flash.now[:error] = "Your hard effort was rejected! Poor hoo!"
+      render :edit
+    end
+  end
+  
+  def destroy
+    product = Product.find params[:id]
+    success = product.destroy!
+    render json: success
+  end
+  
 private
   
   def standard_params

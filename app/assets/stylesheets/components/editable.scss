@@ -1,0 +1,16 @@
+editable {
+  display: block;
+  
+  & > div {
+    display: inline-block;
+    margin-right: .5em;
+  }
+  
+  a {
+    display: none;
+  }
+  
+  &:hover a {
+    display: inline-block;
+  }
+}

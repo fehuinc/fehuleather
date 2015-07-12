@@ -13,10 +13,10 @@
   </div>
   <div>
     <%= f.label :show_retail do %>
-      <%= f.check_box :show_retail, { "ng-model" => "show_retail" } %> Retail
+      <%= f.check_box :show_retail, { "ng-model" => "show_retail", "ng-init" => "show_retail = #{@product.show_retail}" } %> Retail
     <% end %>
     <%= f.label :show_wholesale do %>
-      <%= f.check_box :show_wholesale, { "ng-model" => "show_wholesale" } %> Wholesale
+      <%= f.check_box :show_wholesale, { "ng-model" => "show_wholesale", "ng-init" => "show_wholesale = #{@product.show_wholesale}" } %> Wholesale
     <% end %>
   </div>
   <div class="row">

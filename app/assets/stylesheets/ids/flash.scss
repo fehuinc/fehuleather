@@ -7,7 +7,8 @@
   padding: .5em;
   font-size: 2em;
   text-align: center;
-  background: rgba(#FFE, 0.9);
+  opacity: .95;
   z-index: 3;
   cursor: pointer;
+  animation: rainbow-background 8s linear infinite;
 }

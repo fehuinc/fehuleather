@@ -1,0 +1,26 @@
+<h1>New <%= @product.name.titlecase.singularize %> Variation</h1>
+
+<%= form_for [:admin, @product, @variation] do |f| %>
+  <%= render 'partials/form_errors', model: @variation %>
+
+  <div>
+    <%= f.label :name, "Name (eg: Size, Color, Pattern)" %>
+    <%= f.text_field :name, autofocus:true %>
+  </div>
+  <div>
+    <%= f.label :description, "Description (Optional)" %>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :level, "Level" %>
+    <%= f.number_field :level %>
+  </div>
+  <div>
+    <%= f.label :has_image do %>
+      <%= f.check_box :has_image %> Has Image?
+    <% end %>
+  </div>
+  
+  <%= f.submit "Save", class: "save" %>
+  
+<% end %>

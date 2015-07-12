@@ -12,51 +12,44 @@ Rails.application.routes.draw do
   get 'wholesale' => 'wholesale#landing'
   
   # Angular API endpoints
-  namespace :api do
-    resources :events
-    resources :kingdoms
-    resources :locations
-    resources :products
-  end
+  # namespace :api do
+  #   resources :events
+  #   resources :kingdoms
+  #   resources :locations
+  #   resources :products
+  # end
   
-  scope constraints: lambda { |request| request.session[:user].present? } do
-    namespace :wholesale do
-      resources :orders
-    end
-  end
+  # scope constraints: lambda { |request| request.session[:user].present? } do
+  #   namespace :wholesale do
+  #     resources :orders
+  #   end
+  # end
   
   get 'stink' => 'stink#stink'
-  post 'stinkin' => 'stink#stinkin'
-  
-  #
-  # I would like :create to POST to /resource/new, not /resource
-  # That way, if there's a form error, we're still on the right page
-  #
+  post 'stink' => 'stink#stink_in'
+  delete 'stink' => 'stink#stink_out'
   
   scope constraints: lambda { |request| request.session[:stinker] == ENV["STINKNAME"] } do
     namespace :admin do
-      root 'products#index'
-
-      resources :events
-      resources :locations
-      resources :orders
-
+      root 'kingdoms#index'
+      
       resources :kingdoms, except: [:show] do
         resources :products, only: [:new, :create]
       end
-      resources :products, only: [:index, :edit, :update, :destroy] do
+      resources :products, only: [:edit, :update, :destroy] do
         resources :infos, only: [:new, :create]
         resources :variations, only: [:new, :create]
       end
-      resources :infos, only: [:index, :edit, :update, :destroy]
-      resources :variations, only: [:index, :edit, :update, :destroy] do
+      resources :infos, only: [:edit, :update, :destroy]
+      resources :variations, only: [:edit, :update, :destroy] do
         resources :variants, only: [:new, :create]
       end
-      resources :variants, only: [:index, :edit, :update, :destroy]
-      
+      resources :variants, only: [:edit, :update, :destroy]
+
+      resources :events, only: [:index]
+      resources :locations, only: [:index]
+      resources :orders, only: [:index]
     end
-    
-    get 'stinkout' => 'stink#stinkout'
   end
   
   get 'err' => 'static#err'
