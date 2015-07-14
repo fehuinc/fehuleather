@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.boolean "published",       default: false, null: false
     t.boolean "show_retail",     default: false, null: false
     t.boolean "show_wholesale",  default: false, null: false
+    t.integer "totem_levels",    default: 1,     null: false
   end
 
   add_index "products", ["kingdom_id"], name: "index_products_on_kingdom_id"

@@ -111,6 +111,10 @@
           <%= f.check_box :published %> Published
         <% end %>
       </div>
+      <div class="totem-levels">
+        <%= f.number_field :totem_levels %>
+        <%= f.label :totem_levels, "Levels to show in Totem" %>
+      </div>
       <deleter path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
         Hold To Delete
       </deleter>
