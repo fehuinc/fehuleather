@@ -24,17 +24,33 @@ class Admin::VariationsController < ApplicationController
   def edit
     @variation = Variation.find params[:id]
     @product = @variation.product
+    variations = @product.variations.order(:level)
+    index = variations.index(@variation)
+    @next = variations[(index+1)%variations.length]
+    @prev = variations[(index-1+variations.length)%variations.length]
   end
   
   def update
-    @variation = Variation.find(params[:id])
-    success = @variation.update!(standard_params)
-    render json: success
+    @variation = Variation.find params[:id]
+    @product = @variation.product
+    variations = @product.variations.order(:level)
+    index = variations.index(@variation)
+    @next = variations[(index+1)%variations.length]
+    @prev = variations[(index-1+variations.length)%variations.length]
+    
+    if @variation.update! standard_params
+      flash[:notice] = "Saved"
+      redirect_to edit_admin_product_path @product
+    else
+      flash.now[:error] = "Your hard effort was rejected! Poor hoo!"
+      render :edit
+    end
   end
 
   def destroy
     variation = Variation.find params[:id]
     success = variation.destroy!
+    flash[:notice] = "Goodbye, #{variation.name.titlecase}"
     render json: success
   end
   

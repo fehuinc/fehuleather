@@ -53,6 +53,7 @@ class Admin::VariantsController < ApplicationController
   def destroy
     variant = Variant.find params[:id]
     success = variant.destroy!
+    flash[:notice] = "Goodbye, #{variant.name.titlecase}"
     render json: success
   end
   

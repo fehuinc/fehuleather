@@ -40,7 +40,12 @@ class Admin::ProductsController < ApplicationController
   def destroy
     product = Product.find params[:id]
     success = product.destroy!
+    flash[:notice] = "Goodbye, #{product.name.titlecase}"
     render json: success
+  end
+  
+  def preview_images
+    @product = Product.find params[:id]
   end
   
 private

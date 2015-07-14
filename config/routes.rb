@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     namespace :admin do
       root 'kingdoms#index'
       
+      get 'preview-images/:id' => 'products#preview_images', as: "preview_images"
+      
       resources :kingdoms, except: [:show] do
         resources :products, only: [:new, :create]
       end

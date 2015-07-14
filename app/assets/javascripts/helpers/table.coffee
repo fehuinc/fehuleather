@@ -51,8 +51,13 @@ $ ()->
             0
     
     doSort = (header)->
+      lastHeaderClicked.classList.remove("active") if lastHeaderClicked?
+      lastHeaderClicked.classList.remove("reversed") if lastHeaderClicked?
+      header.classList.add("active")
+      
       # Flip the sort order if the same colum is clicked twice in a row
       sortOrder = if lastHeaderClicked is header then -sortOrder else 1
+      header.classList.add("reversed") if sortOrder < 0
       
       # Some columns want to be sorted in reverse
       reverse = if header.hasAttribute("sort-reverse") then -1 else 1

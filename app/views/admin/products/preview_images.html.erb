@@ -1,0 +1,30 @@
+<h1><%= @product.name %> Images</h1>
+
+<div class="back">
+  <%= link_to "Take Me Back", edit_admin_product_path(@product) %>
+</div>
+
+<section class="failed-previews">
+  <h2>Failed To Load</h2>
+  <div></div>
+</section>
+
+<section>
+  <h2>Hero</h2>
+  <% @product.stocks.map { |s| s.image('hero') }.uniq.each do |image| %>
+    <div class="image">
+      <img src="<%= image %>" onerror="imagePreviewFailed('<%= image.remove(ENV["IMAGEPATH"]) %>')">
+      <span><%= image.remove(ENV["IMAGEPATH"]) %></span>
+    </div>
+  <% end %>
+</section>
+
+<section>
+  <h2>White</h2>
+  <% @product.stocks.map { |s| s.image('white') }.uniq.each do |image| %>
+    <div class="image">
+      <img src="<%= image %>" onerror="imagePreviewFailed('<%= image.remove(ENV["IMAGEPATH"]) %>')">
+      <span><%= image.remove(ENV["IMAGEPATH"]) %></span>
+    </div>
+  <% end %>
+</section>
