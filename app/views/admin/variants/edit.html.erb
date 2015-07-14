@@ -60,9 +60,9 @@
   </div>
   
   <div class="row spread">
-    <%= link_to "Last #{@variation.name.titlecase}", edit_admin_variant_path(@prev) %>
+    <%= link_to @prev.name.titlecase, edit_admin_variant_path(@prev) %>
     <%= link_to "Er... cancel please!", edit_admin_product_path(@product) %>
-    <%= link_to "Next #{@variation.name.titlecase}", edit_admin_variant_path(@next) %>
+    <%= link_to @next.name.titlecase, edit_admin_variant_path(@next) %>
   </div>
   
 <% end %>

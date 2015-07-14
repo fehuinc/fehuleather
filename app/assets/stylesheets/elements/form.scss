@@ -28,6 +28,7 @@ form {
     
     & > * { margin-right: 2em; }
     & > *:last-child { margin-right: 0; }
+    & > .right { margin-left: auto; }
   }
   
   .inline {

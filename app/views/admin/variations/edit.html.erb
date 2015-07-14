@@ -13,7 +13,7 @@
     <%= f.text_area :description %>
   </div>
   <hr>
-  <div class="row spread">
+  <div class="row">
     <div>
       <%= f.label :level, "Level" %>
       <%= f.number_field :level %>
@@ -24,11 +24,11 @@
       <% end %>
     </div>
     <% if @variation.variants.count <= 1 %>
-      <deleter path="<%= admin_variation_path(@variation) %>" redirect="<%= edit_admin_product_path(@product) %>">
+      <deleter class="right" path="<%= admin_variation_path(@variation) %>" redirect="<%= edit_admin_product_path(@product) %>">
         Hold To Delete
       </deleter>
     <% else %>
-      <span>
+      <span class="right">
         Can't Delete — Still Has Variants
       </span>
     <% end %>

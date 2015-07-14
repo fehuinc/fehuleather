@@ -1,4 +1,6 @@
-<h1><%= "New #{@variation.name.titlecase} for #{@product.name.titlecase}" %></h1>
+<h1>New <%= @variation.name.titlecase %></h1>
+<h4 class="center"><%= "For the #{@product.name.titlecase}" %></h4>
+
 
 <%= form_for [:admin, @variation, @variant] do |f| %>
   <%= render 'partials/form_errors', model: @variant %>
@@ -8,14 +10,10 @@
     <%= f.text_field :name, autofocus:true %>
   </div>
   <div>
-    <%= f.label :default do %>
-      <%= f.check_box :default %> Is this the default <%= @variation.name.downcase %> of <%= @product.name.titlecase %>?
-    <% end %>
-  </div>
-  <div>
     <%= f.label :description, "Description (Optional)" %>
     <%= f.text_area :description %>
   </div>
+  <hr>
   <div>
     <%= f.label :show_retail do %>
       <%= f.check_box :show_retail, { "ng-model" => "show_retail", "ng-init" => "show_retail = #{@variant.show_retail}" } %> Retail
@@ -34,20 +32,31 @@
       <%= f.number_field :price_wholesale %>
     </div>
   </div>
+  <hr>
   <div class="row">
-    <div>
-      <%= f.label :published do %>
-        <%= f.check_box :published %> Published
-      <% end %>
-    </div>
     <div class="inline">
       <%= f.label :sort_order, "Sort Order" %>
       <%= f.number_field :sort_order %>
     </div>
+    <div>
+      <%= f.label :default do %>
+        <%= f.check_box :default %> Is this the default <%= @variation.name.downcase %>?
+      <% end %>
+    </div>
   </div>
-  
+  <hr>
+  <div>
+    <%= f.label :published do %>
+      <%= f.check_box :published %> Published
+    <% end %>
+  </div>
+  <hr>
   <div class="perspective">
     <%= f.submit "Save", class: "save" %>
+  </div>
+
+  <div class="center">
+    <%= link_to "Er... cancel please!", edit_admin_product_path(@product) %>
   </div>
   
 <% end %>

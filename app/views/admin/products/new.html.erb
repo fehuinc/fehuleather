@@ -11,6 +11,7 @@
     <%= f.label :description, "Description" %>
     <%= f.text_area :description %>
   </div>
+  <hr>
   <div>
     <%= f.label :show_retail do %>
       <%= f.check_box :show_retail, { "ng-model" => "show_retail", "ng-init" => "show_retail = #{@product.show_retail}" } %> Retail
@@ -29,12 +30,13 @@
       <%= f.number_field :price_wholesale %>
     </div>
   </div>
+  <hr>
   <div>
     <%= f.label :published do %>
       <%= f.check_box :published %> Published
     <% end %>
   </div>
-  
+  <hr>
   <div class="perspective">
     <%= f.submit "Save", class: "save" %>
   </div>
