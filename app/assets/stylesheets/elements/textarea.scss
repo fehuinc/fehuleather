@@ -1,11 +1,9 @@
-$color: rgba(#543, 0.7);
-
 textarea {
   width: 100%;
   padding: .2em .4em;
-  border: 1px solid $color;
+  border: 1px solid rgba(#653, .4);
   border-radius: 3px;
   vertical-align: middle;
-  color: $color;
+  color: rgba(#653, 0.7);
   background: white;
 }

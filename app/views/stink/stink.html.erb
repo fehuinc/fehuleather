@@ -1,10 +1,15 @@
 <h1>Are you stinky? Prove it!</h1>
 
+
 <%= form_tag("/stink", method: :post) do %>
   
   <%= label_tag :password, "Enter the code!" %>
   <%= password_field_tag :password, "", autofocus: true, autocomplete: "stinker" %>
   
-  <%= submit_tag "It's Meeee" %>
+  <div class="perspective">
+    <%= submit_tag "It's Meeee" %>
+  </div>
   
 <% end %>
+
+<section class="center"><%= @stink_status || "" %></section>

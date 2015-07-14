@@ -1,16 +1,51 @@
 class Variant < ActiveRecord::Base
-  has_many :variant_stock_joins, dependent: :destroy_all
+  has_many :variant_stock_joins # Destroyed by ensure_safe_destroy
   has_many :stocks, through: :variant_stock_joins
   belongs_to :variation
   
   validates :name, :variation, presence: true
-  validates :price_retail, :price_wholesale, numericality: true
+  validates :cents_retail, :cents_wholesale, :sort_order, numericality: { only_integer: true }
   
-  # If the new variant is the first variant in a new variation, we extend all existing stocks
-  # to include the new variant. Otherwise, we create a new set of stocks based on the intersection of all paths.
   after_create :generate_stocks
+  before_destroy :ensure_safe_destroy
+  
+  def price_retail
+    cents_retail.to_d / 100
+  end
+  
+  def price_retail=(price)
+    self.cents_retail = (price.to_d * 100).to_i if price.present?
+  end
+  
+  def price_wholesale
+    cents_wholesale.to_d / 100
+  end
+
+  def price_wholesale=(price)
+    self.cents_wholesale = (price.to_d * 100).to_i if price.present?
+  end
+  
+  def ensure_safe_destroy
+    # If the new variant is the last variant in a variation, we modify all existing stocks
+    # to not include the dying variant. Otherwise, we destroy the stocks.
+    
+    variation = self.variation
+    product = variation.product
+    
+    # If there's just 1 variant, carefully detach it from existing stocks, but leave the stocks alive
+    if variation.variants.length == 1
+      variant_stock_joins.delete_all
+    else
+      variant_stock_joins.destroy_all
+    end
+    
+    return true
+  end
   
   def generate_stocks
+    # If the new variant is the first variant in a new variation, we modify all existing stocks
+    # to include the new variant. Otherwise, we create a new set of stocks based on the intersection of all paths.
+
     variation = self.variation
     product = variation.product
     
@@ -25,6 +60,7 @@ class Variant < ActiveRecord::Base
     # There's multiple variations, and multiple variants in this variation
     else
       create_new_stocks_with_variant product
+      
     end
   end
   

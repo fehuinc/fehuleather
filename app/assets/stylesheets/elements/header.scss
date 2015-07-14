@@ -2,7 +2,7 @@ $D: hsl(167, 28%, 80%);
 $C: hsl( 45, 30%, 84%);
 $B: hsl( 15, 33%, 82%);
 $A: hsl(188, 30%, 80%);
-$row-height: 3.5em;
+$row-height: 3.3em;
 
 header {
   position: relative;
@@ -24,19 +24,19 @@ header {
     left: 50%;
     z-index: 0;
     transform: translate(-50%, -50%);
+    transition: transform .1s cubic-bezier(.5,.5,0,1);
     
+    &:hover { transform: translate(-50%, -55%) scale(1.1); }
+
     a {
       font-size: 5.5em;
       font-family: amatic;
-      
-      @media (max-width: 400px) {
-        font-size: 4em;
-      }
+            
+      @media (max-width: 600px) { font-size: 4em; }
     }
     
-    @media (max-width: 600px) {
-      top: $row-height * .8;
-    }
+    @media (max-width: 700px) { top: $row-height * 1.1; }
+    @media (max-width: 600px) { top: $row-height * 1; }
   }
   
   .bricks {
@@ -44,9 +44,7 @@ header {
     letter-spacing: .15em;
     text-transform: uppercase;
     
-    @media (max-width: 600px) {
-      letter-spacing: 0;
-    }
+    @media (max-width: 600px) { letter-spacing: 0; }
   }
 
   row {
@@ -74,6 +72,7 @@ header {
         display: inline-block;
         width: 50%;
         padding: 0 10%;
+        &:hover { padding: 0 8%; }
       }
       
       img {
@@ -83,8 +82,12 @@ header {
     }
     
     a {
-      font-size: 1.1em;
+      font-size: 1.05em;
       color: rgba(#543, 0.7);
+      
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
   

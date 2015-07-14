@@ -2,11 +2,29 @@
 
 <section>
   <h2>Stocks</h2>
-  <% @product.stocks.each do |stock| %>
-    <div class="stock">
-      <%= stock.quantity %> » <%= stock.variants.map(&:name).join ", " %>
-    </div>
-  <% end %>
+  <table class="stock">
+    <thead>
+      <td><a>Quantity</a></td>
+      <% @product.variations.order(:level).each_with_index do |variation, index| %>
+        <td <%= "default=true" if index == 0 %>><a><%= variation.name %></a></td>
+      <% end %>
+    </thead>
+    <tbody>
+      <% @stocks.each do |stock| %>
+        <tr class=<%= 'un' unless stock.variants.all?(&:published) %>>
+          <td>
+            <input type="number" value="<%= stock.quantity %>" class="quantity">
+          </td>
+          <% stock.variants.joins(:variation).order("variations.level").each do |variant| %>
+            <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'
+                class=<%= 'un' unless variant.published %>>
+              <%= variant.name %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </body>
+  </table>
 </section>
 
 <section>
@@ -16,8 +34,12 @@
     <div class="variation">
       <h3 class="hide-edit"><%= variation.name %> <%= link_to "Edit", edit_admin_variation_path(variation), class: "edit" %></h3>
       
-      <% variation.variants.each do |variant| %>
+      <% variation.variants.order(:sort_order, :name).each do |variant| %>
         <div class="variant hide-edit">
+          <div class="status <%= 'un' if !variant.published %>">P</div>
+          <div class="status <%= 'un' if !variant.show_retail %>">R</div>
+          <div class="status <%= 'un' if !variant.show_wholesale %>">W</div>
+          
           <%= variant.name %> <%= link_to "Edit", edit_admin_variant_path(variant), class: "edit" %>
         </div>
       <% end %>
@@ -69,27 +91,27 @@
     <div class="row">
       <div ng-if="show_retail">
         <%= f.label :price_retail, "Retail Price" %>
-        <%= f.text_field :price_retail %>
+        <%= f.number_field :price_retail %>
       </div>
       <div ng-if="show_wholesale">
         <%= f.label :price_wholesale, "Wholesale Price" %>
-        <%= f.text_field :price_wholesale %>
+        <%= f.number_field :price_wholesale %>
       </div>
     </div>
-    <div>
-      <%= f.label :published do %>
-        <%= f.check_box :published %> Published
-      <% end %>
+    <div class="row">
+      <div>
+        <%= f.label :published do %>
+          <%= f.check_box :published %> Published
+        <% end %>
+      </div>
+      <deleter path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
+        Hold To Delete
+      </deleter>
     </div>
     
-    <%= f.submit "Save", class: "save" %>
+    <div class="perspective">
+      <%= f.submit "Save", class: "save" %>
+    </div>
     
   <% end %>
-</section>
-
-<section>
-  <h2>Danger Zone</h2>
-  <deleter path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
-    Hold To Delete
-  </deleter>
 </section>

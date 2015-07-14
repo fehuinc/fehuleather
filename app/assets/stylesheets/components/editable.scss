@@ -7,10 +7,11 @@ editable {
   }
   
   a {
-    display: none;
+    display: inline-block;
+    visibility: hidden;
   }
   
   &:hover a {
-    display: inline-block;
+    visibility: visible;
   }
 }

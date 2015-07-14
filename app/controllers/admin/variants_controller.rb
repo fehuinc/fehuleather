@@ -26,13 +26,24 @@ class Admin::VariantsController < ApplicationController
     @variant = Variant.find params[:id]
     @variation = @variant.variation
     @product = @variation.product
+    variants = @variation.variants.order(:sort_order, :name)
+    index = variants.index(@variant)
+    @next = variants[(index+1)%variants.length]
+    @prev = variants[(index-1+variants.length)%variants.length]
   end
   
   def update
     @variant = Variant.find params[:id]
+    @variation = @variant.variation
+    @product = @variation.product
+    variants = @variation.variants.order(:sort_order, :name)
+    index = variants.index(@variant)
+    @next = variants[(index+1)%variants.length]
+    @prev = variants[(index-1+variants.length)%variants.length]
+    
     if @variant.update! standard_params
       flash[:notice] = "Saved"
-      redirect_to edit_admin_product_path @variant.variation.product
+      redirect_to edit_admin_product_path @product
     else
       flash.now[:error] = "Your hard effort was rejected! Poor hoo!"
       render :edit
@@ -48,6 +59,6 @@ class Admin::VariantsController < ApplicationController
 private
   
   def standard_params
-    params.require(:variant).permit :default, :description, :name, :price_retail, :price_wholesale, :published, :show_retail, :show_wholesale
+    params.require(:variant).permit :default, :description, :name, :price_retail, :price_wholesale, :published, :show_retail, :show_wholesale, :sort_order
   end
 end

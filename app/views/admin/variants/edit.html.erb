@@ -2,8 +2,6 @@
 <h4 class="center"><%= "A #{@variation.name.titlecase} for the #{@product.name.titlecase}" %></h4>
 
 <section>
-  <h2>Basics</h2>
-
   <%= form_for [:admin, @variant] do |f| %>
     <%= render 'partials/form_errors', model: @variant %>
 
@@ -12,14 +10,10 @@
       <%= f.text_field :name, autofocus:true %>
     </div>
     <div>
-      <%= f.label :default do %>
-        <%= f.check_box :default %> Is this the default <%= @variation.name.downcase %> of <%= @product.name.titlecase %>?
-      <% end %>
-    </div>
-    <div>
       <%= f.label :description, "Description (Optional)" %>
       <%= f.text_area :description %>
     </div>
+    <hr>
     <div>
       <%= f.label :show_retail do %>
         <%= f.check_box :show_retail, { "ng-model" => "show_retail", "ng-init" => "show_retail = #{@variant.show_retail}" } %> Retail
@@ -31,33 +25,46 @@
     <div class="row">
       <div ng-if="show_retail">
         <%= f.label :price_retail, "Retail Price" %>
-        <%= f.text_field :price_retail %>
+        <%= f.number_field :price_retail %>
       </div>
       <div ng-if="show_wholesale">
         <%= f.label :price_wholesale, "Wholesale Price" %>
-        <%= f.text_field :price_wholesale %>
+        <%= f.number_field :price_wholesale %>
       </div>
     </div>
-    <div>
-      <%= f.label :published do %>
-        <%= f.check_box :published %> Published
-      <% end %>
+    <hr>
+    <div class="row">
+      <div>
+        <%= f.label :default do %>
+          <%= f.check_box :default %> Is this the default <%= @variation.name.downcase %>?
+        <% end %>
+      </div>
+      <div class="inline">
+        <%= f.label :sort_order, "Sort Order" %>
+        <%= f.number_field :sort_order %>
+      </div>
+    </div>
+    <hr>
+    <div class="row spread">
+      <div>
+        <%= f.label :published do %>
+          <%= f.check_box :published %> Published
+        <% end %>
+      </div>
+      <deleter path="<%= admin_variant_path(@variant) %>" redirect="<%= edit_admin_product_path(@product) %>">
+        Hold To Delete
+      </deleter>
+    </div>
+    <hr>
+    <div class="perspective">
+      <%= f.submit "Save", class: "save" %>
     </div>
     
-    <%= f.submit "Save", class: "save" %>
+    <div class="row spread">
+      <%= link_to "Previous #{@variation.name.titlecase}", edit_admin_variant_path(@prev) %>
+      <%= link_to "Er... cancel please!", edit_admin_product_path(@product) %>
+      <%= link_to "Next #{@variation.name.titlecase}", edit_admin_variant_path(@next) %>
+    </div>
     
   <% end %>
-</section>
-
-<section>
-  <h2>Danger Zone</h2>
-  <deleter path="<%= admin_variant_path(@variant) %>" redirect="<%= edit_admin_product_path(@product) %>">
-    Hold To Delete
-  </deleter>
-</section>
-
-<section>
-  <h4 class="cancel">
-    <%= link_to "Er... cancel please!", edit_admin_product_path(@product) %>
-  </h4>
 </section>

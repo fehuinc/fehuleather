@@ -21,9 +21,20 @@ class Admin::VariationsController < ApplicationController
     render :new
   end
   
+  def edit
+    @variation = Variation.find params[:id]
+    @product = @variation.product
+  end
+  
   def update
     @variation = Variation.find(params[:id])
     success = @variation.update!(standard_params)
+    render json: success
+  end
+
+  def destroy
+    variation = Variation.find params[:id]
+    success = variation.destroy!
     render json: success
   end
   

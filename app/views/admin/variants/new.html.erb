@@ -27,19 +27,27 @@
   <div class="row">
     <div ng-if="show_retail">
       <%= f.label :price_retail, "Retail Price" %>
-      <%= f.text_field :price_retail %>
+      <%= f.number_field :price_retail %>
     </div>
     <div ng-if="show_wholesale">
       <%= f.label :price_wholesale, "Wholesale Price" %>
-      <%= f.text_field :price_wholesale %>
+      <%= f.number_field :price_wholesale %>
     </div>
   </div>
-  <div>
-    <%= f.label :published do %>
-      <%= f.check_box :published %> Published
-    <% end %>
+  <div class="row">
+    <div>
+      <%= f.label :published do %>
+        <%= f.check_box :published %> Published
+      <% end %>
+    </div>
+    <div class="inline">
+      <%= f.label :sort_order, "Sort Order" %>
+      <%= f.number_field :sort_order %>
+    </div>
   </div>
   
-  <%= f.submit "Save", class: "save" %>
+  <div class="perspective">
+    <%= f.submit "Save", class: "save" %>
+  </div>
   
 <% end %>

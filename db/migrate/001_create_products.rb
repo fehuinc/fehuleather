@@ -13,8 +13,8 @@ class CreateProducts < ActiveRecord::Migration
       t.belongs_to :kingdom,      required: true, index: true
       t.text :description,        null: false
       t.text :name,               null: false
-      t.decimal :price_retail,    null: false, default: 0
-      t.decimal :price_wholesale, null: false, default: 0
+      t.integer :cents_retail,    null: false, default: 0
+      t.integer :cents_wholesale, null: false, default: 0
       t.boolean :published,       null: false, default: false
       t.boolean :show_retail,     null: false, default: false
       t.boolean :show_wholesale,  null: false, default: false
@@ -42,11 +42,12 @@ class CreateProducts < ActiveRecord::Migration
       t.boolean :default,         null: false, default: false
       t.text :description,        default: nil
       t.text :name,               null: false
-      t.decimal :price_retail,    null: false, default: 0
-      t.decimal :price_wholesale, null: false, default: 0
+      t.integer :cents_retail,    null: false, default: 0
+      t.integer :cents_wholesale, null: false, default: 0
       t.boolean :published,       null: false, default: false
       t.boolean :show_retail,     null: false, default: false
       t.boolean :show_wholesale,  null: false, default: false
+      t.integer :sort_order,      null: false, default: 0
     end
     
     create_table :variant_stock_joins do |t|

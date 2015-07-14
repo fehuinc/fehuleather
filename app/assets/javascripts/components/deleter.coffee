@@ -23,15 +23,18 @@ angular.module "Deleter", []
         alert "Delete failed.. sorry hoo!"
         button.css "visibility", "visible"
     
-    down = ()->
-      if not isDown
+    down = (e)->
+      console.log e.button
+      if not isDown and e.button is 0
         isDown = true
+        button[0].classList.add("deleting")
         to = $timeout(2000)
         to.then kill # Do not combine with previous line, or $timeout.cancel won't work
     
     up = ()->
       if isDown
         isDown = false
+        button[0].classList.remove("deleting")
         $timeout.cancel(to)
     
     # EVENT HANDLING

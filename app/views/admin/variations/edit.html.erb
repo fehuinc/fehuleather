@@ -1,0 +1,45 @@
+<h1><%= "Editing: #{@variation.name.titlecase}" %></h1>
+<h4 class="center"><%= "A variation for the #{@product.name.titlecase}" %></h4>
+
+<%= form_for [:admin, @variation] do |f| %>
+  <%= render 'partials/form_errors', model: @variation %>
+
+  <div>
+    <%= f.label :name, "Name (eg: Size, Color, Pattern)" %>
+    <%= f.text_field :name, autofocus:true %>
+  </div>
+  <div>
+    <%= f.label :description, "Description (Optional)" %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="row">
+    <div>
+      <%= f.label :level, "Level" %>
+      <%= f.number_field :level %>
+    </div>
+    <div>
+      <%= f.label :has_image do %>
+        <%= f.check_box :has_image %> Has Image?
+      <% end %>
+    </div>
+    
+    <% if @variation.variants.count <= 1 %>
+      <deleter path="<%= admin_variation_path(@variation) %>" redirect="<%= edit_admin_product_path(@product) %>">
+        Hold To Delete
+      </deleter>
+    <% else %>
+      <span>
+        Can't Delete — Still Has Variants!
+      </span>
+    <% end %>
+  </div>
+  
+  <div class="perspective">
+    <%= f.submit "Save", class: "save" %>
+  </div>
+  
+<% end %>
+
+<h4 class="cancel">
+  <%= link_to "Er... cancel please!", edit_admin_product_path(@product) %>
+</h4>

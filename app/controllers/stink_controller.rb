@@ -12,6 +12,7 @@ class StinkController < ApplicationController
       Access.become_admin!(session)
       redirect_to :admin_root
     else
+      @stink_status = "You're not very stinky."
       render :stink
     end
   end

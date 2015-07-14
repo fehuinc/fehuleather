@@ -1,0 +1,19 @@
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+thead {
+  color: orange;
+}
+
+tbody {
+}
+
+td {
+  padding: .4rem;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #FCFCFC;
+}

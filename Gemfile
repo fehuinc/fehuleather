@@ -26,6 +26,7 @@ gem 'angular_rails_csrf'
 group :development do
   gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'web-console', '~> 2.0' # Access an IRB console on exception pages or by using <%= console %> in views
+  gem "table_print"
 end
 
 group :development, :test do

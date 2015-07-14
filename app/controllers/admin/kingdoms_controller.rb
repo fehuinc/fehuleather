@@ -1,6 +1,6 @@
 class Admin::KingdomsController < ApplicationController
   def index
-    @kingdoms = Kingdom.all
+    @kingdoms = Kingdom.all.order(:name)
   end
   
   def new
@@ -13,7 +13,7 @@ class Admin::KingdomsController < ApplicationController
     if @kingdom.valid?
       Kingdom.create! standard_params
       flash[:notice] = "Saved"
-      redirect_to :kingdom_index
+      redirect_to :admin_kingdoms
     else
       render :new
     end

@@ -1,7 +1,20 @@
 .kingdoms#index {
   
+  main {
+    max-width: none;
+    text-align: center;
+  }
+  
+  section {
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+    margin: 2em 3em;
+    border-top: 2px solid hsla(40, 50%, 80%, 0.5);
+    padding: 2em 0 0;
+  }
+  
   .kingdom {
-    margin: 0 0 2em;
     
     .product {
       margin: .5em 1em;

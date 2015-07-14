@@ -1,10 +1,50 @@
 .products#edit {
   
+  main {
+    max-width: none;
+    text-align: center;
+  }
+  
+  section {
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+    margin: 2em 3em;
+    border-top: 2px solid hsla(40, 50%, 80%, 0.5);
+    padding: 2em 0 0;
+  }
+  
+  table {
+    margin: 0;
+    
+    tr.un {
+      background-color: rgba(red, 0.2);
+    }
+    
+    td.un {
+      color: red;
+    }
+  }
+  
+  .quantity {
+    width: 4em;
+  }
+  
   .variation {
     margin: 1em;
     
     .variant {
       margin: .2em 1em;
+      
+      .status {
+        display: inline-block;
+        padding: 0 .1em;
+        color: green;
+        
+        &.un {
+          color: red;
+        }
+      }
     }
     
     .new-variant {

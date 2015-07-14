@@ -22,11 +22,11 @@
   <div class="row">
     <div ng-if="show_retail">
       <%= f.label :price_retail, "Retail Price" %>
-      <%= f.text_field :price_retail %>
+      <%= f.number_field :price_retail %>
     </div>
     <div ng-if="show_wholesale">
       <%= f.label :price_wholesale, "Wholesale Price" %>
-      <%= f.text_field :price_wholesale %>
+      <%= f.number_field :price_wholesale %>
     </div>
   </div>
   <div>
@@ -35,6 +35,8 @@
     <% end %>
   </div>
   
-  <%= f.submit "Save", class: "save" %>
+  <div class="perspective">
+    <%= f.submit "Save", class: "save" %>
+  </div>
   
 <% end %>

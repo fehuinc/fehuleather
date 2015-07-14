@@ -1,12 +1,12 @@
 <h1>All My Stinky Products</h1>
 
 <% @kingdoms.each do |kingdom| %>
-  <div class="kingdom">
+  <section class="kingdom">
     <editable field="name" path="<%=admin_kingdom_path(kingdom)%>">
       <h2><%= kingdom.name %></h2>
     </editable>
     
-    <% kingdom.products.order("name").each do |product| %>
+    <% kingdom.products.order(:name).each do |product| %>
       <div class="product">
         <h3><%= link_to product.name, edit_admin_product_path(product) %></h3>
       </div>
@@ -16,7 +16,7 @@
       <%= link_to "New #{kingdom.name.singularize}", new_admin_kingdom_product_path(kingdom) %>
     </h4>
     
-  </div>
+  </section>
 <% end %>
 
 <h3 class="new-kingdom">

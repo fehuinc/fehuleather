@@ -1,16 +1,49 @@
-$color: rgba(#543, 0.7);
-
 input {
   width: 100%;
   padding: .2em .4em;
-  border: 1px solid $color;
+  border: 1px solid rgba(#653, .4);
   border-radius: 3px;
   vertical-align: middle;
-  color: $color;
+  color: rgba(#653, 0.7);
   background: white;
+}
+
+input, textarea {
+  &:focus, &:active, &:hover {
+    border: 1px solid hsl(185, 35%, 50%);
+    box-shadow: 0 0 2px 1px hsla(185, 35%, 50%, .3);
+  }
 }
 
 input[type="checkbox"] {
   width: auto;
   vertical-align: .05em;
+}
+
+input[type="number"] {
+  width: 5em;
+}
+
+input[type="submit"] {
+  display: inline-block;
+  padding: .5em 1em;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: hsl(145, 40%, 75%);
+  box-shadow: 0 0px 8px rgba(black, 0);
+  cursor: pointer;
+  transition: transform .3s cubic-bezier(0.5, 2, 0.5, 2), background-color .2s;
+  -webkit-font-smoothing: subpixel-antialiased;
+  
+  &:hover, &:focus {
+    background-color: hsl(155, 50%, 70%);
+    transform: rotateX(-3deg) scaleY(1.08);
+  }
+  
+  &:active {
+    // background-color: hsl(180, 100%, 50%);
+    transition: transform .25s cubic-bezier(0.3, -1, 0.7, 2), background-color .2s;
+    transform: rotateX(30deg) scale(.8, 1.1);
+  }
 }
