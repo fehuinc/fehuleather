@@ -24,7 +24,6 @@ gem 'angular_rails_csrf'
 # gem 'postmark-rails'
 
 group :development do
-  gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'web-console', '~> 2.0' # Access an IRB console on exception pages or by using <%= console %> in views
   gem "table_print"
 end
@@ -32,6 +31,11 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'dotenv-rails'
+  gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+end
+
+group :test do
+  gem 'rspec-rails'
 end
 
 group :production do

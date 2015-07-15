@@ -11,22 +11,17 @@ class Variation < ActiveRecord::Base
   
   def ensure_safe_destroy
     # It's only safe to delete a variation when it contains 0 or 1 variants
-    if self.variants.count > 1
-      raise VariationNotEmpty
+    raise VariationNotEmpty if self.variants.count > 1
     
-    # If we have 0 variants, we're done
-    elsif self.variants.count == 0
-      return true
-    
-    # We have 1 variant, and must first clean it up
-    else
-      variant = self.variants.first
+    # If we have a variant, we need to mess with its stocks a bit before we die
+    if variant = self.variants.first
       
       # If this is the last variation, we need to delete all stocks
       if product.variations.count == 1
         self.product.stocks.delete_all
       
       # This is not the last variation — delete all variants
+      # That will take care of extracting the variant from stocks
       else
         self.variants.destroy_all
       end
