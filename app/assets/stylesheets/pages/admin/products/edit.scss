@@ -21,6 +21,10 @@
   table {
     margin: 0;
     
+    tbody {
+      font-size: 0.85em;
+    }
+    
     tr.un {
       background-color: rgba(red, 0.2);
     }

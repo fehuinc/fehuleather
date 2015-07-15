@@ -14,7 +14,7 @@ tbody {
 }
 
 td {
-  padding: .4rem;
+  padding: .1rem .4rem;
   &.active a { color: hsl(40, 100%, 50%); }
   &.active.reversed a { color: hsl(50, 100%, 50%); }
 }
