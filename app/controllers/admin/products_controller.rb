@@ -37,6 +37,13 @@ class Admin::ProductsController < ApplicationController
     end
   end
   
+  def update_stock
+    stock = Stock.find params[:id]
+    stock.quantity = params[:quantity]
+    success = stock.save!
+    render json: success
+  end
+  
   def destroy
     product = Product.find params[:id]
     success = product.destroy!

@@ -6,6 +6,7 @@ angular.module "Core", [
   # Components
   "Deleter"
   "Editable"
+  "StockQuantity"
   
   # Scripts
   "bimg"

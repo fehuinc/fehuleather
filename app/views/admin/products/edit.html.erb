@@ -16,8 +16,9 @@
     <tbody>
       <% @stocks.each do |stock| %>
         <tr class=<%= 'un' unless stock.variants.all?(&:published) %>>
-          <td>
+          <td stock-quantity path="<%= admin_update_stock_path(stock) %>">
             <input type="number" value="<%= stock.quantity %>" class="quantity">
+            <input type="submit" value="💩" class="save">
           </td>
           <% stock.variants.joins(:variation).order("variations.level").each do |variant| %>
             <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'

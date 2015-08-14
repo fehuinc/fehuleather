@@ -24,5 +24,3 @@ class Stockhausen
     return variant_sets + [variant_stack]
   end
 end
-
-# Stockhausen.generate(Product.first)

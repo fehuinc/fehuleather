@@ -24,7 +24,7 @@ RSpec.describe Stockhausen do
           expect(Stock.count).to eq(0)
         end
       end
-      context "1 variant," do
+      context "1 variant,", focus: true do
         it "generates 1 stock" do
           variation.variants.create! name: "Variant"
           Stockhausen.generate(product)
@@ -40,7 +40,7 @@ RSpec.describe Stockhausen do
         end
       end
     end
-
+    
     context "2 variations," do
       let(:kingdom) { Kingdom.create! name: "Kingdom" }
       let(:product) { kingdom.products.create! name: "Product", description: "Me" }
