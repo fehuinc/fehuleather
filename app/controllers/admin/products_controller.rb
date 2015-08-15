@@ -35,19 +35,22 @@ class Admin::ProductsController < ApplicationController
       flash.now[:error] = "Your hard effort was rejected! Poor hoo!"
       render :edit
     end
+  rescue
+    flash.now[:error] = "Something bad happened! Tell Ivan!"
+    render :edit
   end
   
   def update_stock
     stock = Stock.find params[:id]
     stock.quantity = params[:quantity]
-    success = stock.save!
+    success = stock.save
     render json: success
   end
   
   def destroy
     product = Product.find params[:id]
-    success = product.destroy!
-    flash[:notice] = "Goodbye, #{product.name.titlecase}"
+    success = product.destroy
+    flash[:notice] = "Goodbye, #{product.name.titlecase}" if success
     render json: success
   end
   
