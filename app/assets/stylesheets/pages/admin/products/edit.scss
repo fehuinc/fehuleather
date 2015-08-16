@@ -50,24 +50,22 @@
   }
   
   .variation {
-    margin: 1em;
+    margin: 1em 0;
     
     .variant {
       margin: .2em 1em;
-      
-      .status {
-        display: inline-block;
-        padding: 0 .1em;
-        color: green;
-        
-        &.un {
-          color: red;
-        }
-      }
+      margin-right: 0;
     }
     
     .new-variant {
       margin: .5em 1em;
+    }
+    
+    .status {
+      display: inline-block;
+      color: green;
+      font-size: 0.6em;
+      &.un { color: red; }
     }
   }
 
@@ -75,12 +73,8 @@
     margin: 1em;
   }
   
-  .info {
-    margin: 1em;
-  }
-
-  .new-info {
-    margin: 1em;
+  .info, .new-info {
+    margin: .5em 0;
   }
   
   .totem-levels input {

@@ -10,18 +10,18 @@ angular.module "Product", []
     
     
     ## SCOPE LOCALS
-    $scope.variation = $scope.product.variations[0]
+    $scope.variation = $scope.product.specimens[0]
     
     
     ## HELPERS
     getVariation = (variationIndex)->
-      variations = $scope.product.variations
-      return variations[(variationIndex + variations.length) % variations.length]
+      specimens = $scope.product.specimens
+      return specimens[(variationIndex + specimens.length) % specimens.length]
     
     
     ## SCOPE
     $scope.variationsCount = ()->
-      return $scope.product.variations.length
+      return $scope.product.specimens.length
     
     $scope.getHero = (variationIndex)->
       return getVariation(variationIndex)?.hero

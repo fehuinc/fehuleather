@@ -14,9 +14,8 @@ Rails.application.routes.draw do
     # Angular API endpoints
     namespace :api do
     #   resources :events
-    #   resources :kingdoms
     #   resources :locations
-      resources :products
+      get 'totem' => 'totem#index'
     end
     
     # scope constraints: lambda { |request| request.session[:user].present? } do

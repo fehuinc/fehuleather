@@ -2,7 +2,7 @@
 rings = Kingdom.create! name: "Ring"
 
 # Raw Ring ######################################
-raw_ring = rings.products.create! name: "Raw Ring", description: "Raw Ring Description", show_retail: true, show_wholesale: true, published: true, price_retail: 100, price_wholesale: 50
+raw_ring = rings.products.create! name: "Raw Ring", description: "Raw Ring Description", show_retail: true, show_wholesale: true, published: true, price_retail: 100, price_wholesale: 50, totem_levels: 1, ypos: 23
 
 raw_ring.infos.create! name: "Tips", content: "Tips Content"
 raw_ring.infos.create! name: "Sizing", content: "Sizing Content"
@@ -23,7 +23,7 @@ raw_ring_size.variants.create! name: "Large", show_retail: true, show_wholesale:
 bracelets = Kingdom.create! name: "Bracelet"
 
 # C&C Bracelet ##################################
-cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet", description: "C&C Bracelet Description", show_retail: true, show_wholesale: true, published: true, price_retail: 100, price_wholesale: 50
+cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet", description: "C&C Bracelet Description", show_retail: true, show_wholesale: true, published: true, price_retail: 100, price_wholesale: 50, totem_levels: 1, ypos: 18
 
 cc_bracelet.infos.create! name: "Tips", content: "Tips Content"
 cc_bracelet.infos.create! name: "Sizing", content: "Sizing Content"
@@ -50,7 +50,7 @@ cc_bracelet_size.variants.create! name: "Small", show_retail: true, show_wholesa
 cc_bracelet_size.variants.create! name: "Normal", show_retail: true, show_wholesale: true, published: true
 
 # Wrap Cuff #####################################
-wrap_cuff = bracelets.products.create! name: "Wrap Cuff", description: "Wrap Cuff Description", show_retail: true, show_wholesale: true, published: true, price_retail: 100, price_wholesale: 50
+wrap_cuff = bracelets.products.create! name: "Wrap Cuff", description: "Wrap Cuff Description", show_retail: true, show_wholesale: true, published: true, price_retail: 100, price_wholesale: 50, totem_levels: 1, ypos: 25
 
 wrap_cuff.infos.create! name: "Tips", content: "Tips Content"
 wrap_cuff.infos.create! name: "Sizing", content: "Sizing Content"
@@ -72,7 +72,7 @@ wrap_cuff_size.variants.create! name: "Small", show_retail: true, show_wholesale
 wrap_cuff_size.variants.create! name: "Normal", show_retail: true, show_wholesale: true, published: true
 
 # Fuzzy Cuff ####################################
-fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff", description: "Fuzzy Cuff Description", show_retail: true, show_wholesale: true, published: true, price_retail: 100, price_wholesale: 50
+fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff", description: "Fuzzy Cuff Description", show_retail: true, show_wholesale: true, published: true, price_retail: 100, price_wholesale: 50, totem_levels: 1, ypos: 33
 
 fuzzy_cuff.infos.create! name: "Tips", content: "Tips Content"
 fuzzy_cuff.infos.create! name: "Sizing", content: "Sizing Content"

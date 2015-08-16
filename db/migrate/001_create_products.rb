@@ -19,6 +19,7 @@ class CreateProducts < ActiveRecord::Migration
       t.boolean :show_retail,     null: false, default: false
       t.boolean :show_wholesale,  null: false, default: false
       t.integer :totem_levels,    null: false, default: 1
+      t.integer :ypos,            null: false, default: 0
       t.index :name,              unique: true
     end
     

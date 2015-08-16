@@ -37,13 +37,20 @@
   
   <% @product.variations.each do |variation| %>
     <div class="variation">
-      <h3 class="hide-edit"><%= variation.name %> <%= link_to "Edit", edit_admin_variation_path(variation), class: "edit" %></h3>
+      <h3 class="hide-edit">
+        <%= variation.name %>
+        <div class="status"><%= variation.level %></div>
+        <div class="status"><%= '🗻' if variation.has_image %></div>
+        <%= link_to "Edit", edit_admin_variation_path(variation), class: "edit" %>
+      </h3>
       
       <% variation.variants.order(:sort_order, :name).each do |variant| %>
         <div class="variant hide-edit">
           <div class="status <%= 'un' if !variant.published %>">P</div><!--
       ---><div class="status <%= 'un' if !variant.show_retail %>">R</div><!--
-      ---><div class="status <%= 'un' if !variant.show_wholesale %>">W</div>
+      ---><div class="status <%= 'un' if !variant.show_wholesale %>">W</div><!--
+      ---><div class="status <%= 'un' if !variant.description %>">D</div><!--
+      ---><div class="status <%= 'un' if !(variant.price_retail > 0 or variant.price_wholesale > 0) %>">$</div>
           
           <%= variant.name %> <%= link_to "Edit", edit_admin_variant_path(variant), class: "edit" %>
         </div>

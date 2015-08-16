@@ -29,12 +29,11 @@ angular.module "FehuApp", [
   
   # Scripts
   "PageStyle"
-  "Products"
   "StubProducts"
   "StubLocations"
 ]
 
-.config new Array "$locationProvider, $routeProvider", ($locationProvider, $routeProvider)->
+.config new Array "$locationProvider", "$routeProvider", ($locationProvider, $routeProvider)->
   $locationProvider.html5Mode enabled:true, requireBase:false
   
   $routeProvider

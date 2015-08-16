@@ -1,6 +1,6 @@
 angular.module "Shop", []
 
-.controller "ShopCtrl", new Array "Products", "$scope", (Products, $scope)->
+.controller "ShopCtrl", new Array "$http", "$scope", ($http, $scope)->
   
   ## LOCALS
   showingProduct =
@@ -9,8 +9,27 @@ angular.module "Shop", []
   
   
   ## SCOPE LOCALS
-  $scope.products = Products.all()
-  
+  $http.get("/api/totem").then (response)->
+    console.log $scope.products = response.data
+    
+    for product in $scope.products
+      product.specimens = []
+      variation = product.variations.sort("level")[0]
+      
+      for variant in variation.variants
+        file = product.name
+        
+        if variation.has_image
+          file += " " + variant.name
+        
+        file = file.toLowerCase()
+            .replace('&', 'and')
+            .replace(/[^0-9a-z\-]/g, ' ')
+            .replace(/\s+/g, '-')
+        
+        product.specimens.push
+          name: variant.name
+          hero: "/images/content/hero/#{file}.jpg"
   
   ## SCOPE FUNCTIONS
   
