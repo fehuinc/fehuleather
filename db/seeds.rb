@@ -50,7 +50,7 @@ cc_bracelet_size.variants.create! name: "Small", show_retail: true, show_wholesa
 cc_bracelet_size.variants.create! name: "Normal", show_retail: true, show_wholesale: true, published: true
 
 # Wrap Cuff #####################################
-wrap_cuff = bracelets.products.create! name: "Wrap Cuff", description: "Wrap Cuff Description", show_retail: true, show_wholesale: true, published: true, price_retail: 100, price_wholesale: 50, totem_levels: 1, ypos: 25
+wrap_cuff = bracelets.products.create! name: "Wrap Cuff", description: "Wrap Cuff Description", show_retail: true, show_wholesale: true, published: true, price_retail: 100, price_wholesale: 50, totem_levels: 1, ypos: 18
 
 wrap_cuff.infos.create! name: "Tips", content: "Tips Content"
 wrap_cuff.infos.create! name: "Sizing", content: "Sizing Content"
