@@ -35,7 +35,7 @@
 <section>
   <h2>Variations</h2>
   
-  <% @product.variations.each do |variation| %>
+  <% @product.variations.order(:level).each_with_index do |variation, index| %>
     <div class="variation">
       <h3 class="hide-edit">
         <%= variation.name %>
@@ -49,8 +49,10 @@
           <div class="status <%= 'un' if !variant.published %>">P</div><!--
       ---><div class="status <%= 'un' if !variant.show_retail %>">R</div><!--
       ---><div class="status <%= 'un' if !variant.show_wholesale %>">W</div><!--
-      ---><div class="status <%= 'un' if !variant.description %>">D</div><!--
-      ---><div class="status <%= 'un' if !(variant.price_retail > 0 or variant.price_wholesale > 0) %>">$</div>
+          <% if index == 0 %>
+        ---><div class="status <%= 'un' if !variant.description %>">D</div><!--
+          <% end %>
+      ---><div class="status <%= 'un' if (variant.price_retail > 0 or variant.price_wholesale > 0) %>">$</div>
           
           <%= variant.name %> <%= link_to "Edit", edit_admin_variant_path(variant), class: "edit" %>
         </div>
@@ -89,10 +91,6 @@
       <%= f.label :name, "Name" %>
       <%= f.text_field :name %>
     </div>
-    <div>
-      <%= f.label :description, "Description" %>
-      <%= f.text_area :description %>
-    </div>
     <hr>
     <div>
       <%= f.label :show_retail do %>
@@ -115,13 +113,8 @@
     <hr>
     <div class="row spread">
       <div>
-        <%= f.label :published do %>
-          <%= f.check_box :published %> Published
-        <% end %>
-      </div>
-      <div class="totem-levels">
-        <%= f.number_field :totem_levels %>
-        <%= f.label :totem_levels, "Levels to show in Totem" %>
+        <%= f.label :ypos, "Photo Y Position" %>
+        <%= f.number_field :ypos %>
       </div>
       <deleter path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
         Hold To Delete

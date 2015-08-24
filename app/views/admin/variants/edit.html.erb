@@ -9,7 +9,7 @@
     <%= f.text_field :name, autofocus:true %>
   </div>
   <div>
-    <%= f.label :description, "Description (Optional)" %>
+    <%= f.label :description, "Description (First Level Only)" %>
     <%= f.text_area :description %>
   </div>
   <hr>
@@ -45,11 +45,7 @@
   </div>
   <hr>
   <div class="row spread">
-    <div>
-      <%= f.label :published do %>
-        <%= f.check_box :published %> Published
-      <% end %>
-    </div>
+    <div></div>
     <deleter path="<%= admin_variant_path(@variant) %>" redirect="<%= edit_admin_product_path(@product) %>">
       Hold To Delete
     </deleter>

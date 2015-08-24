@@ -11,14 +11,11 @@ class CreateProducts < ActiveRecord::Migration
       # has many :stocks
       # has many :variations
       t.belongs_to :kingdom,      required: true, index: true
-      t.text :description,        null: false
       t.text :name,               null: false
       t.integer :cents_retail,    null: false, default: 0
       t.integer :cents_wholesale, null: false, default: 0
-      t.boolean :published,       null: false, default: false
       t.boolean :show_retail,     null: false, default: false
       t.boolean :show_wholesale,  null: false, default: false
-      t.integer :totem_levels,    null: false, default: 1
       t.integer :ypos,            null: false, default: 0
       t.index :name,              unique: true
     end
@@ -32,7 +29,6 @@ class CreateProducts < ActiveRecord::Migration
     create_table :variations do |t| # eg: color, hardware, size, leaf pattern
       # has many :variants
       t.belongs_to :product,      required: true, index: true
-      t.text :description,        default: nil
       t.boolean :has_image,       null: false, default: false
       t.integer :level,           null: false, default: 0
       t.text :name,               null: false
@@ -46,7 +42,6 @@ class CreateProducts < ActiveRecord::Migration
       t.text :name,               null: false
       t.integer :cents_retail,    null: false, default: 0
       t.integer :cents_wholesale, null: false, default: 0
-      t.boolean :published,       null: false, default: false
       t.boolean :show_retail,     null: false, default: false
       t.boolean :show_wholesale,  null: false, default: false
       t.integer :sort_order,      null: false, default: 0

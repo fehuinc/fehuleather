@@ -10,7 +10,7 @@ angular.module "Shop", []
   
   ## SCOPE LOCALS
   $http.get("/api/totem").then (response)->
-    console.log $scope.products = response.data
+    $scope.products = response.data
     
     for product in $scope.products
       product.specimens = []
@@ -30,6 +30,7 @@ angular.module "Shop", []
         product.specimens.push
           name: variant.name
           hero: "/images/content/hero/#{file}.jpg"
+          description: variant.description
   
   ## SCOPE FUNCTIONS
   

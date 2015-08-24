@@ -5,6 +5,4 @@
 /tmp
 .env
 .sass-cache/
-
-public/images/content
-public/assets
+public/products/
