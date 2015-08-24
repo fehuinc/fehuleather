@@ -4,9 +4,7 @@
     <h2>{{product.name}}</h2>
   </identity-info>
 
-  <descriptive-info>
-    {{variation.description}}
-  </descriptive-info>
+  <descriptive-info ng-bind-html="variation.description"></descriptive-info>
 
   <purchasing-info>
     <div class="price">$34.00</div>
