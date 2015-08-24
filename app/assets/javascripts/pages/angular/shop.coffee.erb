@@ -35,13 +35,13 @@ angular.module "Shop", []
           
       
       for variant in firstVariation.variants
-        file = "<%= ENV['IMAGEPATH'] %>#{product.name}/totem/"
+        file = "#{product.name}/totem/"
         file += [variant.name].concat(namesOfDefaultVariantsWithImages).join("-")
         file = file.toLowerCase()
             .replace('&', 'and')
             .replace(/[^0-9a-z\-\/]/g, ' ')
             .replace(/\s+/g, '-')
-        file += ".jpg"
+        file = <%= ENV['IMAGEPATH'] %> + file + ".jpg"
         
         product.specimens.push
           name: variant.name
