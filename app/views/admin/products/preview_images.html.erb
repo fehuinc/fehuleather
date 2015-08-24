@@ -10,8 +10,8 @@
 </section>
 
 <section>
-  <h2>Hero</h2>
-  <% @product.stocks.map { |s| s.image('hero') }.uniq.each do |image| %>
+  <h2>Totem</h2>
+  <% @product.stocks.map { |s| s.image('totem') }.uniq.each do |image| %>
     <div class="image">
       <img src="<%= image %>" onerror="imagePreviewFailed('<%= image.remove(ENV["IMAGEPATH"]) %>')">
       <span><%= image.remove(ENV["IMAGEPATH"]) %></span>
@@ -20,8 +20,8 @@
 </section>
 
 <section>
-  <h2>White</h2>
-  <% @product.stocks.map { |s| s.image('white') }.uniq.each do |image| %>
+  <h2>Wholesale</h2>
+  <% @product.stocks.map { |s| s.image('wholesale') }.uniq.each do |image| %>
     <div class="image">
       <img src="<%= image %>" onerror="imagePreviewFailed('<%= image.remove(ENV["IMAGEPATH"]) %>')">
       <span><%= image.remove(ENV["IMAGEPATH"]) %></span>

@@ -12,13 +12,13 @@ class Stock < ActiveRecord::Base
       variant.name if variant.variation.has_image
     end.compact
        .join("-")
+       .prepend("#{type}/")
        .prepend("#{product.name}/")
        .downcase
        .gsub('&', 'and')
-       .gsub(/[^0-9a-z\-]/, ' ')
+       .gsub(/[^0-9a-z\-\/]/, ' ')
        .gsub(/\s+/, '-')
        .concat(".jpg")
-       .prepend("#{type}/")
        .prepend(ENV["IMAGEPATH"])
   end
 end

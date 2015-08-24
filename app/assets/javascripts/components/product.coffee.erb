@@ -23,8 +23,8 @@ angular.module "Product", []
     $scope.variationsCount = ()->
       return $scope.product.specimens.length
     
-    $scope.getHero = (variationIndex)->
-      return getVariation(variationIndex)?.hero
+    $scope.getTotemImage = (variationIndex)->
+      return getVariation(variationIndex)?.totem
     
     $scope.getVerticalPositionStyle = ()->
       ypos = if $scope.infoIsOpen(productIndex) then $scope.product.ypos else 0

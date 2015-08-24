@@ -14,22 +14,38 @@ angular.module "Shop", []
     
     for product in $scope.products
       product.specimens = []
-      variation = product.variations.sort("level")[0]
+      variations = product.variations.sort("level")
       
-      for variant in variation.variants
-        file = product.name
+      # The first variation is what we use for the totem
+      firstVariation = variations[0]
+      
+      # We also want the default variant of all variations that have an image
+      # Skip the first variation, because we're already using it for the totem
+      namesOfDefaultVariantsWithImages = []
+      for variation, i in variations when i > 0 and variation.has_image
+        has_default = false
         
-        if variation.has_image
-          file += " " + variant.name
+        for variant in variation.variants when variant.default
+          has_default = true
+          namesOfDefaultVariantsWithImages.push variant.name
         
+        # If there's no default, we'll just use the first result
+        unless has_default
+          namesOfDefaultVariantsWithImages.push variation.variants[0].name
+          
+      
+      for variant in firstVariation.variants
+        file = "<%= ENV['IMAGEPATH'] %>#{product.name}/totem/"
+        file += [variant.name].concat(namesOfDefaultVariantsWithImages).join("-")
         file = file.toLowerCase()
             .replace('&', 'and')
-            .replace(/[^0-9a-z\-]/g, ' ')
+            .replace(/[^0-9a-z\-\/]/g, ' ')
             .replace(/\s+/g, '-')
+        file += ".jpg"
         
         product.specimens.push
           name: variant.name
-          hero: "/images/content/hero/#{file}.jpg"
+          totem: file
           description: variant.description
   
   ## SCOPE FUNCTIONS
