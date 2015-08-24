@@ -12,7 +12,7 @@ class Stock < ActiveRecord::Base
       variant.name if variant.variation.has_image
     end.compact
        .join("-")
-       .prepend("#{product.name}-")
+       .prepend("#{product.name}/")
        .downcase
        .gsub('&', 'and')
        .gsub(/[^0-9a-z\-]/, ' ')
