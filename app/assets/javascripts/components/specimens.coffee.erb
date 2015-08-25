@@ -26,6 +26,7 @@ angular.module "Specimens", []
     
     slider = element[0].querySelector "horizontal-slider"
     sliderNG = angular.element slider
+    closer = angular.element element[0].querySelector ".closer"
     
     A = slider.querySelector ".A"
     B = slider.querySelector ".B"
@@ -136,3 +137,7 @@ angular.module "Specimens", []
       
       # This might be problematic if they are swiping while the resize occurs
       resetSliderPosition()
+    
+    
+    scope.close = ()->
+      scope.toggleProductInfo(productIndex, scope)

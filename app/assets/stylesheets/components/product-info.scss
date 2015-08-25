@@ -10,8 +10,10 @@ product-info {
   display: block;
   top: 55%;
   left: 50%;
+  text-align: center;
   transform: translate(-50%);
   transition: opacity 1s, transform 1s, height 1s;
+  -webkit-font-smoothing: subpixel-antialiased;
   opacity: 0;
   z-index: 100;
   pointer-events: none;
@@ -20,30 +22,40 @@ product-info {
     width: 50em;
     max-width: 99vw;
     margin: 0 auto;
-    padding: 2vw;
+    padding: .5em 2vw;
     border: 1px solid rgba(black, .1);
-    background: rgba(white,.9);
-    box-shadow: 0 4px 8px -4px rgba(0, 0, 30, .05);
+    background: rgba(white,1);
+    box-shadow: 0 8px 8px -4px rgba(0, 0, 30, .3);
     -webkit-font-smoothing: subpixel-antialiased;
     
     identity-info {
       display: block;
-      text-align: center;
       font-size: 2em;
+    }
+
+    descriptive-info {
+      display: block;
+      margin: .5em 2em 1em;
+      div {
+        display: inline-block;
+        text-align: left;
+      }
     }
     
     purchasing-info {
       display: block;
-      text-align: center;
+      border-top: 1px solid rgba(black, .06);
+      border-bottom: 1px solid rgba(black, .04);
+      background: #F9F9F9;
+      margin: 1em -2vw;
       
       & > div {
+        display: inline-block;
         vertical-align: middle;
         margin: .5em 1em;
       }
       
       .variations {
-        display: inline-block;
-        
         label {
           text-align: right;
           font-size: 1.1em;
@@ -58,11 +70,10 @@ product-info {
       
       .acceptance {
         font-size: 1.2em;
-        display: inline-block;
         
         div {
           display: inline-block;
-          margin: .5em;
+          margin: 0 .5em;
         }
         
         .add-to-cart {
@@ -72,14 +83,9 @@ product-info {
         }
       }
     }
-
-    descriptive-info {
-      display: block;
-    }
     
     bottom-info {
       display: block;
-      text-align: center;
       margin: .5em 0 0;
             
       custom-info, shop-info {
@@ -93,6 +99,16 @@ product-info {
           cursor: pointer;
         }
       }
+    }
+    
+    .closer {
+      display: inline-block;
+      margin-top: .5em;
+      padding: .5em;
+      text-transform: lowercase;
+      font-variant: small-caps;
+      text-decoration: none;
+      &:hover { text-decoration: underline; }
     }
   }
 }

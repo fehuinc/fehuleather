@@ -2,9 +2,13 @@
   <identity-info>
     {{product.name}}
   </identity-info>
+
+  <descriptive-info>
+    <div ng-bind-html="specimen.description"></div>
+  </descriptive-info>
   
   <purchasing-info>
-    <div class="variations">
+    <div class="specimens">
       <label ng-repeat="variation in product.variations">
         {{variation.name}}
         <select ng-model="variation.choice" ng-change="checkChange($index)" ng-options="variant.name for variant in variation.variants"></select>
@@ -15,8 +19,6 @@
       <div class="add-to-cart">Add to Cart</div>
     </div>
   </purchasing-info>
-
-  <descriptive-info ng-bind-html="variation.description"></descriptive-info>
   
   <bottom-info>
     <custom-info>
@@ -32,4 +34,6 @@
       <div>Questions</div>
     </shop-info>
   </bottom-info>
+  
+  <a class="closer" ng-click="close()">Close</a>
 </div>
