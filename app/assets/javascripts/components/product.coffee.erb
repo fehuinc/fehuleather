@@ -11,12 +11,16 @@ angular.module "Product", []
     
     ## SCOPE LOCALS
     $scope.variation = $scope.product.specimens[0]
+    $scope.product.variations[0].choice = $scope.product.variations[0].variants[0]
     
     
     ## HELPERS
-    getVariation = (variationIndex)->
+    getVariationIndex = (rawIndex)->
       specimens = $scope.product.specimens
-      return specimens[(variationIndex + specimens.length) % specimens.length]
+      return (rawIndex + specimens.length) % specimens.length
+    
+    getVariation = (variationIndex)->
+      return $scope.product.specimens[getVariationIndex(variationIndex)]
     
     
     ## SCOPE
@@ -35,3 +39,4 @@ angular.module "Product", []
     
     $scope.changeVariation = (variationIndex)->
       $scope.variation = getVariation(variationIndex)
+      $scope.product.variations[0].choice = $scope.product.variations[0].variants[getVariationIndex(variationIndex)]

@@ -24,10 +24,7 @@ header {
     left: 50%;
     z-index: 0;
     transform: translate(-50%, -50%);
-    transition: transform .1s cubic-bezier(.5,.5,0,1);
     
-    &:hover { transform: translate(-50%, -55%) scale(1.1); }
-
     a {
       font-size: 5.5em;
       font-family: amatic;

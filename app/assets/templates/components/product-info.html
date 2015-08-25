@@ -1,121 +1,35 @@
 <div class="wrapper">
   <identity-info>
-    <h1>{{variation.name}}</h1>
-    <h2>{{product.name}}</h2>
+    {{product.name}}
   </identity-info>
-
-  <descriptive-info ng-bind-html="variation.description"></descriptive-info>
-
+  
   <purchasing-info>
-    <div class="price">$34.00</div>
-    <!-- TODO: selecting an option will cause main-image to slide to the appropriate variation -->
-    <select class="variation">
-      <option>Spruce</option>
-      <option>Caribou</option>
-      <option>Beach House</option>
-      <option>UV</option>
-    </select>
-    <div class="size">8.5"</div>
-    <div class="add-to-cart">Add to Cart</div>
+    <div class="variations">
+      <label ng-repeat="variation in product.variations">
+        {{variation.name}}
+        <select ng-model="variation.choice" ng-options="variant.name for variant in variation.variants"></select>
+      </label>
+    </div>
+    <div class="acceptance">
+      <div class="price">$34.00</div>
+      <div class="add-to-cart">Add to Cart</div>
+    </div>
   </purchasing-info>
 
-  <stub-info>
-    <div>
-      <h3>Sizing</h3>
-      <h3>Gifting</h3>
-      <h3>Uniqueness</h3>
-      <h3>Tips</h3>
-    </div>
-    <div>
-      <h3>Payment</h3>
-      <h3>Shipping</h3>
-      <h3>Returns</h3>
-      <h3>Questions</h3>
-    </div>
-  </stub-info>
+  <descriptive-info ng-bind-html="variation.description"></descriptive-info>
+  
+  <bottom-info>
+    <custom-info>
+      <div>Sizing</div>
+      <div>Gifting</div>
+      <div>Uniqueness</div>
+      <div>Tips</div>
+    </custom-info>
+    <shop-info>
+      <div>Payment</div>
+      <div>Shipping</div>
+      <div>Returns</div>
+      <div>Questions</div>
+    </shop-info>
   </bottom-info>
-
-
-  <line-info>
-    <h3>Sizing</h3>
-    <p>
-      Wrap cuffs may be adjusted to fit most wrists with a circumference under 8.5 inches, and can be worn snugly-tight or slacked off.
-    </p>
-
-    <h3>Gifting</h3>
-    <p>
-      the "product name" will fit most women and men with the expeion of those with very large wrists.
-    </p>
-
-    <h3>Uniqueness</h3>
-    <p>
-      Every wrap cuff is individually hand cut, hand dyed, and hand sealed. Your wrap cuff will be one of a kind, similar to but distinguishable from the cuff photos featured up above.
-    </p>
-    
-    <h2>Tips</h2>
-    
-    <h3>Putting on a Wrap Cuff</h3>
-    <div class="tut">
-      <img src="images/tut/wrap-cuff-tut-1.png" />
-      <p>Loosen the cuff. Slide it onto your wrist.</p>
-    </div>
-    <div class="tut">
-      <img src="images/tut/wrap-cuff-tut-2.png" />
-      <p>Pull the tail to tighten.</p>
-    </div>
-    <div class="tut">
-      <img src="images/tut/wrap-cuff-tut-3.png" />
-      <p>Squeeze the sides. The slot will pop open.</p>
-    </div>
-    <div class="tut">
-      <img src="images/tut/wrap-cuff-tut-4.png" />
-      <p>Slip the tail back through the slot.</p>
-    </div>
-    
-    <h3>Extra tail? Tuck it in!</h3>
-    
-    <div class="tut">
-      <img src="images/tut/wrap-cuff-tut-5.png" />
-      <p>Pull the tail up...</p>
-    </div>
-    <div class="tut">
-      <img src="images/tut/wrap-cuff-tut-6.png" />
-      <p>...around...</p>
-    </div>
-    <div class="tut">
-      <img src="images/tut/wrap-cuff-tut-7.png" />
-      <p>....and down!</p>
-    </div>
-    
-    <h3>Life with a Wrap Cuff</h3>
-    <p>
-      Our wrap cuffs are made from the same type of leather as saddles. They take about a week to break in, gradually moulding to the wrist and becoming buttery soft. The bumps around the slits become more pronounced with wear, making them even easier to put on. They are double-sealed with resin, and then massaged with beeswax and oil.
-    </p>
-  </line-info>
-
-
-  <shop-info>
-    
-    <h3>Payment</h3>
-    <p>Payment methods include Paypal, Visa, Mastercard, American Express, and Discover. Credit card purchases can be processed through Paypal (you don't need a Paypal account for this) or through our direct checkout feature.
-      </br>
-      If you have any questions or problems completing your payment please do not hesitate to <a href="<!-- TODO: add a link so that when clicked it will scroll to the quick question form on the page -->">contact us</a>.
-    </p>
-    
-    <h3>Shipping</h3>
-    <p>
-      $5 Flat rate shipping within the US and Canada $10 to everywhere else. Please note that taxes, duties, VAT and customs fees associated with international shipping are the responsibility of the buyer.
-    </p>
-    
-    <h3>
-      Gifts
-    </h3>
-    <p>Gifts you will be able to ship your order as a gift. Just be sure to check to the "ship as a gift" box before you checkout.</p>
-    
-    <h3>Returns</h3>
-    <p>If for any reason your product does not meet your expectaions you have 60 days from date of purchase to return your purchase</p>
-    
-    <h3>Questions</h3>
-    <p>Have a question about the "product name" shoot us a quick note we would love to hear from you.</p>
-  </shop-info>
 </div>
