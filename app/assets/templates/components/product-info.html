@@ -7,7 +7,7 @@
     <div class="variations">
       <label ng-repeat="variation in product.variations">
         {{variation.name}}
-        <select ng-model="variation.choice" ng-options="variant.name for variant in variation.variants"></select>
+        <select ng-model="variation.choice" ng-change="checkChange($index)" ng-options="variant.name for variant in variation.variants"></select>
       </label>
     </div>
     <div class="acceptance">

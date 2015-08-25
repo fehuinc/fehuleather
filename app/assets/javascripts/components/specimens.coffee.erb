@@ -1,7 +1,7 @@
-angular.module "Variations", []
+angular.module "Specimens", []
 
-.directive "variations", new Array "$swipe", "$timeout", ($swipe, $timeout)->
-  templateUrl: "<%= asset_path('components/variations.html') %>"
+.directive "specimens", new Array "$swipe", "$timeout", ($swipe, $timeout)->
+  templateUrl: "<%= asset_path('components/specimens.html') %>"
   
   link: (scope, element)->
     
@@ -22,7 +22,7 @@ angular.module "Variations", []
     
     ## REFERENCES
     productIndex = scope.$index
-    nVariations = scope.variationsCount()
+    nSpecimens = scope.specimensCount()
     
     slider = element[0].querySelector "horizontal-slider"
     sliderNG = angular.element slider
@@ -34,10 +34,10 @@ angular.module "Variations", []
     
     ## HELPERS
     
-    setVariation = (variation, prop, value)->
-      variation.style["-webkit-"+prop] = value
-      variation.style["-ms-"+prop] = value
-      variation.style[prop] = value
+    setSpecimen = (specimen, prop, value)->
+      specimen.style["-webkit-"+prop] = value
+      specimen.style["-ms-"+prop] = value
+      specimen.style[prop] = value
     
     setSlider = (prop, value, addPrefixToValue = false)->
       slider.style["-webkit-"+prop] = (if addPrefixToValue then "-webkit-"+value else value)
@@ -53,11 +53,11 @@ angular.module "Variations", []
     adjustOffsets = (delta)->
       scope.offset += delta
       if not wrapping
-        scope.offset = clip scope.offset, -nVariations+1, 0
+        scope.offset = clip scope.offset, -nSpecimens+1, 0
       scope.offsetA = Math.floor((-scope.offset+2)/3)*3
       scope.offsetB = Math.floor((-scope.offset+1)/3)*3
       scope.offsetC = Math.floor((-scope.offset+0)/3)*3
-      scope.changeVariation -scope.offset
+      scope.changeSpecimen -scope.offset
     
     enableTransition = (enable = true)->
       setSlider "transition", (if enable then "transform" + animString else null), true
@@ -68,9 +68,9 @@ angular.module "Variations", []
     applyTranslate = (x)->
       x += scope.offset * A.offsetWidth
       setSlider "transform", "translateX(#{x}px)"
-      setVariation A, "transform", "translateX(#{scope.offsetA * A.offsetWidth}px)"
-      setVariation B, "transform", "translateX(#{scope.offsetB * A.offsetWidth}px)"
-      setVariation C, "transform", "translateX(#{scope.offsetC * A.offsetWidth}px)"
+      setSpecimen A, "transform", "translateX(#{scope.offsetA * A.offsetWidth}px)"
+      setSpecimen B, "transform", "translateX(#{scope.offsetB * A.offsetWidth}px)"
+      setSpecimen C, "transform", "translateX(#{scope.offsetC * A.offsetWidth}px)"
     
     applyOpacity = (v)->
       v += scope.offset

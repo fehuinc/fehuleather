@@ -1,8 +1,8 @@
-$largest: 90vmin;
+$largest: 80vmin;
 $smallest: 50vw;
 $pad: 2vmin;
 
-variations {
+specimens {
   display: block;
   height: $largest;
   min-height: $smallest;
@@ -21,7 +21,7 @@ variations {
       font-size: 0;
       transition: transform 1s;
       
-      variation {
+      specimen {
         display: inline-block;
         cursor: pointer;
         width: calc(#{$largest} + 2vmin);
