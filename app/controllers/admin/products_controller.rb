@@ -61,7 +61,7 @@ class Admin::ProductsController < ApplicationController
 private
   
   def standard_params
-    params.require(:product).permit :description, :name, :price_retail, :price_wholesale, :published, :show_retail, :show_wholesale
+    params.require(:product).permit :description, :name, :price_retail, :price_wholesale, :show_retail, :show_wholesale
   end
 
 end

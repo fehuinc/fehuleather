@@ -15,14 +15,13 @@
     </thead>
     <tbody>
       <% @stocks.each do |stock| %>
-        <tr class=<%= 'un' unless stock.variants.all?(&:published) %>>
+        <tr>
           <td stock-quantity path="<%= admin_update_stock_path(stock) %>">
             <input type="number" value="<%= stock.quantity %>" class="quantity">
             <input type="submit" value="💩" class="save">
           </td>
           <% stock.variants.joins(:variation).order("variations.level").each do |variant| %>
-            <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'
-                class=<%= 'un' unless variant.published %>>
+            <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'>
               <%= variant.name %>
             </td>
           <% end %>
@@ -46,13 +45,16 @@
       
       <% variation.variants.order(:sort_order, :name).each do |variant| %>
         <div class="variant hide-edit">
-          <div class="status <%= 'un' if !variant.published %>">P</div><!--
-      ---><div class="status <%= 'un' if !variant.show_retail %>">R</div><!--
+          <div class="status <%= 'un' if !variant.show_retail %>">R</div><!--
       ---><div class="status <%= 'un' if !variant.show_wholesale %>">W</div><!--
           <% if index == 0 %>
         ---><div class="status <%= 'un' if !variant.description %>">D</div><!--
           <% end %>
-      ---><div class="status <%= 'un' if (variant.price_retail > 0 or variant.price_wholesale > 0) %>">$</div>
+          <% if variant.price_retail > 0 or variant.price_wholesale > 0 %>
+        ---><div class="status un">$</div>
+          <% end %>
+          
+          <!-- This comment closes stray comments above -->
           
           <%= variant.name %> <%= link_to "Edit", edit_admin_variant_path(variant), class: "edit" %>
         </div>
