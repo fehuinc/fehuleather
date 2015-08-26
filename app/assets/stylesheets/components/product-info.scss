@@ -55,12 +55,13 @@ product-info {
         margin: .5em 1em;
       }
       
-      .variations {
+      .specimens {
+        text-align: right;
+        
         label {
-          text-align: right;
-          font-size: 1.1em;
           display: block;
-          margin: .5em 1em;
+          font-size: 1.1em;
+          margin: 0;
           
           select {
             margin-left: .5em;
