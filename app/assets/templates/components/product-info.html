@@ -8,7 +8,7 @@
   </descriptive-info>
   
   <purchasing-info>
-    <div class="specimens">
+    <div class="variations">
       <label ng-repeat="variation in product.variations">
         {{variation.name}}
         <select ng-model="variation.choiceIndex" ng-change="checkChange($index)" ng-options="index*1 as variant.name for (index, variant) in variation.variants"></select>
