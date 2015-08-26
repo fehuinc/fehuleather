@@ -22,7 +22,7 @@ product-info {
     width: 50em;
     max-width: 99vw;
     margin: 0 auto;
-    padding: .5em 2vw;
+    padding: 0 2vw .5em;
     border: 1px solid rgba(black, .1);
     background: rgba(white,1);
     box-shadow: 0 8px 8px -4px rgba(0, 0, 30, .3);
@@ -30,12 +30,13 @@ product-info {
     
     identity-info {
       display: block;
-      font-size: 2em;
+      font-size: 1.8em;
+      margin: .5em 0 .3em;
     }
 
     descriptive-info {
       display: block;
-      margin: .5em 2em 1em;
+      margin: 0 2em 1em;
       div {
         display: inline-block;
         text-align: left;
@@ -60,7 +61,6 @@ product-info {
         
         label {
           display: block;
-          font-size: 1.1em;
           margin: 0;
           
           select {
@@ -70,8 +70,6 @@ product-info {
       }
       
       .acceptance {
-        font-size: 1.2em;
-        
         div {
           display: inline-block;
           margin: 0 .5em;
@@ -80,7 +78,7 @@ product-info {
         .add-to-cart {
           border: 1px solid #706F6D;
           padding: .2em .4em;
-          border-radius: 3px;
+          border-radius: 5px;;
         }
       }
     }
