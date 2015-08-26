@@ -43,9 +43,9 @@ product-info {
     
     purchasing-info {
       display: block;
-      border-top: 1px solid rgba(black, .06);
-      border-bottom: 1px solid rgba(black, .04);
-      background: #F9F9F9;
+      border-top: 1px solid rgba(#0FF, .1);
+      border-bottom: 1px solid rgba(#0FF, .1);
+      background: #FBF9F7;
       margin: 1em -2vw;
       
       & > div {
@@ -71,12 +71,6 @@ product-info {
         div {
           display: inline-block;
           margin: 0 .5em;
-        }
-        
-        .add-to-cart {
-          border: 1px solid #706F6D;
-          padding: .2em .4em;
-          border-radius: 5px;;
         }
       }
     }

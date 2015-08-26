@@ -1,18 +1,15 @@
 $size: 80vmin;
-$pad: .5vmin;
-
-product:first-child specimens {
-  margin-top: $pad;
-}
+$pad: 1vmin;
 
 specimens {
   display: block;
+  margin: $pad*2 0;
   padding-left: 50%;
   overflow: hidden;
   
   horizontal-slider {
     display: block;
-    width: $size * 3;
+    width: ($size + $pad*2) * 3;
     
     vertical-slider {
       display: block;
@@ -22,13 +19,13 @@ specimens {
       specimen {
         display: inline-block;
         cursor: pointer;
-        padding: $pad;
+        padding: 0 $pad;
         vertical-align: middle;
         
         div {
           display: block;
-          width: $size - $pad*2;
-          height: $size - $pad*2;
+          width: $size;
+          height: $size;
         }
         
         &.A, &.C {
