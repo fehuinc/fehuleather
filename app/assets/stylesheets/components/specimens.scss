@@ -1,33 +1,39 @@
-$largest: 80vmin;
-$smallest: 50vw;
-$pad: 2vmin;
+// $largest: 80vmin;
+// $smallest: 50vw;
+// $pad: 2vmin;
+
+$size: 80vmin;
+$pad: .5vmin;
+
+product:first-child specimens {
+  margin-top: $pad;
+}
 
 specimens {
   display: block;
-  height: $largest;
-  min-height: $smallest;
   padding-left: 50%;
-  margin-top: $pad;
   overflow: hidden;
   
   horizontal-slider {
     display: block;
-    width: calc((#{$largest} + 2vmin) * 3);
-    min-width: calc((#{$smallest} + 2vmin) * 3);
+    width: $size * 3;
     
     vertical-slider {
       display: block;
       transform: translateX(-50%); // Overridden by getVerticalSliderStyle
-      font-size: 0;
       transition: transform 1s;
       
       specimen {
         display: inline-block;
         cursor: pointer;
-        width: calc(#{$largest} + 2vmin);
-        height: $largest;
-        min-width: calc(#{$smallest} + 2vmin);
-        min-height: $smallest;
+        padding: $pad;
+        vertical-align: middle;
+        
+        div {
+          display: block;
+          width: $size - $pad*2;
+          height: $size - $pad*2;
+        }
         
         &.A, &.C {
           opacity: 0.2;
