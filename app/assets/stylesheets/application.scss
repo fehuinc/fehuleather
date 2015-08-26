@@ -3,10 +3,3 @@
  *= require_tree .
  *= require_self
  */
-
-@keyframes rainbow-background {
-  0%   { background-color: hsl(   0, 60%, 80%); }
-  33%  { background-color: hsl( 120, 60%, 80%); }
-  66%  { background-color: hsl( 240, 60%, 80%); }
-  100% { background-color: hsl( 360, 60%, 80%); }
-}

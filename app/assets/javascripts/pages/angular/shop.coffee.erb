@@ -9,6 +9,16 @@ angular.module "Shop", []
   
   
   ## SCOPE LOCALS
+  $scope.shopInfos = [
+    {name: "Payment", content: "You can pay with your own blood!"}
+    {name: "Shipping", content: "We don't actually use ships."}
+    {name: "Returns", content: "The return statement lets you get data back out of a function."}
+    {name: "Questions", content: "Answers"}
+  ]
+  
+  
+  ## LOAD PRODUCT DATA
+  
   $http.get("/api/totem").then (response)->
     $scope.products = response.data
     
@@ -57,6 +67,7 @@ angular.module "Shop", []
           name: variant.name
           totem: file
           description: variant.description
+  
   
   ## SCOPE FUNCTIONS
   

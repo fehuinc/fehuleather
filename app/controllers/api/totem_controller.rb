@@ -1,8 +1,8 @@
 class Api::TotemController < ApplicationController
   
   def index
-    products = Product.all().includes(:stocks, variations: [:variants])
-    json = products.to_json include: [:stocks, variations: {include: [:variants]}]
+    products = Product.all().includes(:stocks, :infos, variations: [:variants])
+    json = products.to_json include: [:stocks, :infos, variations: {include: [:variants]}]
     render json: json
   end
   

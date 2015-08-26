@@ -1,10 +1,6 @@
 <div class="wrapper">
   <h1>{{product.name}}</h1>
 
-  <descriptive-info>
-    <div ng-bind-html="specimen.description"></div>
-  </descriptive-info>
-  
   <purchasing-info>
     <div class="variations">
       <label ng-repeat="variation in product.variations">
@@ -17,19 +13,18 @@
       <button class="add-to-cart">Yes please!</button>
     </div>
   </purchasing-info>
+
+  <descriptive-info>
+    <div ng-bind-html="specimen.description"></div>
+  </descriptive-info>
+  
   
   <bottom-info>
     <custom-info>
-      <div>Sizing</div>
-      <div>Gifting</div>
-      <div>Uniqueness</div>
-      <div>Tips</div>
+      <div ng-repeat="info in product.infos" ng-click="showInfo(info)">{{info.name}}</div>
     </custom-info>
     <shop-info>
-      <div>Payment</div>
-      <div>Shipping</div>
-      <div>Returns</div>
-      <div>Questions</div>
+      <div ng-repeat="info in shopInfos" ng-click="showInfo(info)">{{info.name}}</div>
     </shop-info>
   </bottom-info>
   

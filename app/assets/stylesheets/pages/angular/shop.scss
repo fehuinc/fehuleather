@@ -1,11 +1,11 @@
 #shop {
   main {
-    margin: 0 auto;
+    max-width: none;
     padding: 0;
   }
   
-  main {
-    max-width: none;
-    padding-bottom: 2vmin;
+  .loading {
+    margin: 2em 0;
+    animation: fade-in 1s .5s both;
   }
 }
