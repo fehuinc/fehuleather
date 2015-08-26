@@ -11,7 +11,7 @@
     <div class="specimens">
       <label ng-repeat="variation in product.variations">
         {{variation.name}}
-        <select ng-model="variation.choice" ng-change="checkChange($index)" ng-options="variant.name for variant in variation.variants"></select>
+        <select ng-model="variation.choiceIndex" ng-change="checkChange($index)" ng-options="index*1 as variant.name for (index, variant) in variation.variants"></select>
       </label>
     </div>
     <div class="acceptance">

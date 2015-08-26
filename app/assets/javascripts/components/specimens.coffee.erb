@@ -3,6 +3,10 @@ angular.module "Specimens", []
 .directive "specimens", new Array "$swipe", "$timeout", ($swipe, $timeout)->
   templateUrl: "<%= asset_path('components/specimens.html') %>"
   
+  controller: ($scope)->
+    $scope.$parent.requestSpecimen = (index)->
+      $scope.requestSpecimen(index)
+  
   link: (scope, element)->
     
     ## CONFIG
@@ -107,6 +111,12 @@ angular.module "Specimens", []
     
     
     ## SCOPE FUNCTIONS
+    
+    scope.requestSpecimen = (index)->
+      enableTransition()
+      scope.offset = -index
+      adjustOffsets 0
+      resetSliderPosition()
     
     scope.clickAction = (shift)->
       if shift > 0

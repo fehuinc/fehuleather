@@ -26,15 +26,19 @@ angular.module "Shop", []
       # We're going to loop through all variations and do some setup
       for variation, i in variations
         defaultVariant = null
+        defaultVariantIndex = null
         
-        for variant in variation.variants when variant.default
+        for variant, vi in variation.variants when variant.default
           defaultVariant = variant
+          defaultVariantIndex = vi
         
         # If there's no default, we'll just use the first result
         unless defaultVariant?
           defaultVariant = variation.variants[0]
+          defaultVariantIndex = 0
         
-        variation.choice = variant
+        variation.choice = defaultVariant
+        variation.choiceIndex = defaultVariantIndex
         
         if i > 0 and variation.has_image
           namesOfDefaultVariantsWithImages.push defaultVariant.name

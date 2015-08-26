@@ -9,26 +9,21 @@ angular.module "Product", []
     productIndex = $scope.$index
     
     
-    ## SCOPE LOCALS
-    $scope.specimen = $scope.product.specimens[0]
-    $scope.product.variations[0].choice = $scope.product.variations[0].variants[0]
-    
-    
     ## HELPERS
     getSpecimenIndex = (rawIndex)->
       specimens = $scope.product.specimens
       return (rawIndex + specimens.length) % specimens.length
     
     getSpecimen = (specimenIndex)->
-      return $scope.product.specimens[getSpecimenIndex(specimenIndex)]
+      return $scope.product.specimens[specimenIndex]
     
     
     ## SCOPE
     $scope.specimensCount = ()->
       return $scope.product.specimens.length
     
-    $scope.getTotemImage = (specimenIndex)->
-      return getSpecimen(specimenIndex)?.totem
+    $scope.getTotemImage = (rawIndex)->
+      return getSpecimen(getSpecimenIndex(rawIndex))?.totem
     
     $scope.getVerticalPositionStyle = ()->
       ypos = if $scope.infoIsOpen(productIndex) then $scope.product.ypos else 0
@@ -37,13 +32,14 @@ angular.module "Product", []
         transform: translate
         "-webkit-transform": translate
     
-    $scope.changeSpecimen = (specimenIndex)->
+    $scope.changeSpecimen = (rawIndex)->
+      specimenIndex = getSpecimenIndex(rawIndex)
       $scope.specimen = getSpecimen(specimenIndex)
-      $scope.product.variations[0].choice = $scope.product.variations[0].variants[getSpecimenIndex(specimenIndex)]
+      variation = $scope.product.variations[0]
+      variation.choiceIndex = specimenIndex
+      variation.choice = variation.variants[specimenIndex]
     
     $scope.checkChange = (variationIndex)->
       if variationIndex is 0
-        ""
-        # We need to change to the right specimen for the selected variant
-        # $scope.changeSpecimen(variationIndex)
-      
+        # $scope.changeSpecimen($scope.product.variations[0].choiceIndex)
+        $scope.requestSpecimen($scope.product.variations[0].choiceIndex)
