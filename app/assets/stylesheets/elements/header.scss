@@ -63,19 +63,16 @@ header {
     }
     
     &.glyphs {
+      display: flex;
+      justify-content: space-around;
+      
       a {
-        display: inline-block;
-        width: 50%;
-        padding: 0 .5em;
+        flex: 0 1 1.6em;
         &:hover { transform: scale(1.1); }
         
         img {
           margin-top: -.4em;
           max-width: 100%;
-        }
-
-        @media (max-width: 600px) {
-          width: 42%;
         }
       }
     }
