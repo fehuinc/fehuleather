@@ -21,11 +21,18 @@
   
   <bottom-info>
     <custom-info>
-      <div ng-repeat="info in product.infos" ng-click="showInfo(info)">{{info.name}}</div>
+      <div ng-repeat="info in product.infos"
+           ng-click="showInfo(info)"
+           ng-class="{active:(info == showingInfo)}">{{info.name}}</div>
     </custom-info>
     <shop-info>
-      <div ng-repeat="info in shopInfos" ng-click="showInfo(info)">{{info.name}}</div>
+      <div ng-repeat="info in shopInfos"
+           ng-click="showInfo(info)"
+           ng-class="{active:(info == showingInfo)}">{{info.name}}</div>
     </shop-info>
+    <info-display ng-show="showingInfo">
+      <div>{{showingInfo.content}}</div>
+    </info-display>
   </bottom-info>
   
   <a class="closer" ng-click="close()">Close</a>

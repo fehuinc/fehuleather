@@ -1,3 +1,6 @@
+$blue: hsl(200, 50%, 95%);
+$yellow: hsl(30, 30%, 98%);
+
 product-info.showingProductInfo {
   opacity: 1;
   overflow: visible;
@@ -23,9 +26,9 @@ product-info {
     max-width: 99vw;
     margin: 0 auto;
     padding: 0 2vw .5em;
-    border: 1px solid rgba(black, .1);
-    background: rgba(white,1);
-    box-shadow: 0 8px 8px -4px rgba(0, 0, 30, .3);
+    border: 1px solid $blue;
+    background: white;
+    box-shadow: 0 8px 8px -6px hsl(200, 20%, 80%);
     -webkit-font-smoothing: subpixel-antialiased;
     
     h1 {
@@ -43,9 +46,9 @@ product-info {
     
     purchasing-info {
       display: block;
-      border-top: 1px solid rgba(#0FF, .1);
-      border-bottom: 1px solid rgba(#0FF, .1);
-      background: #FBF9F7;
+      border-top: 1px solid $blue;
+      border-bottom: 1px solid $blue;
+      background: $yellow;
       margin: 1em -2vw;
       
       & > div {
@@ -84,10 +87,26 @@ product-info {
         
         div {
           display: inline-block;
-          padding: .1em .25em;
-          margin: .4em .25em;
+          margin: .25em 0;
+          padding: .25em .5em;
+          border: 1px solid transparent;
           font-weight: bold;
           cursor: pointer;
+          
+          &.active {
+            border: 1px solid $blue;
+            background: $yellow;
+          }
+        }
+      }
+      
+      info-display {
+        display: block;
+        margin: .5em;
+        
+        div {
+          display: inline-block;
+          text-align: left;
         }
       }
     }

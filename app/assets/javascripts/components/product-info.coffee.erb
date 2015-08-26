@@ -2,4 +2,11 @@ angular.module "ProductInfo", []
 
 .directive "productInfo", ()->
   templateUrl: "<%= asset_path('components/product-info.html') %>"
+  link: (scope)->
     
+    scope.showInfo = (info)->
+      if info != scope.showingInfo
+        scope.showingInfo = info
+      else
+        scope.showingInfo = null
+      
