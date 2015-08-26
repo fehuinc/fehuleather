@@ -20,8 +20,3 @@ angular.module "Locations", []
       when $scope.allProvinces then true
       when input then true
       else false
-  
-  colorArr = ["A","B","C","D"]
-  $scope.colorClass = (index)->
-    return colorArr[index%4]
-      

@@ -2,34 +2,44 @@ footer {
   padding: 3em 0 2em;
   text-align: center;
   
-  .nav > * {
-    display: inline-block;
-    width: calc(24% - 2.4em);
-    max-width: 8em;
-    margin: .4em;
-    padding: .4em .8em;
+  .nav {
+    a {
+      display: inline-block;
+      margin: 1em .5vw;
+    }
   }
   
-  .about, .contact {
-    display: inline-block;
-    width: 49%;
-    padding: .5em 1em;
-  }
-  
-  .about {
-    text-align: right;
-  }
-  
-  .contact {
-    text-align: left;
-  }
-  
-  .rune {
-    padding: .5em 1em;
+  .social {
+    background: currentColor;
+    
+    a {
+      display: inline-block;
+      width: 1.5em;
+      margin: .6em;
+      &:hover { transform: scale(1.1); }
+      
+      img {
+        max-width: 100%;
+      }
+    }
   }
 
-  .rune:hover {
-    -webkit-transform: rotate(360deg);
-    -webkit-transition: -webkit-transform .8s ease;
+  .about {
+    margin: 1.2em 0 .4em;
+    
+    img {
+      vertical-align: -.2em;
+      max-width: 1.2em;
+      
+      &:hover {
+        cursor: none;
+        transform: rotate(360deg);
+        transition: transform .8s cubic-bezier(0.3, -.4, 0.5, 1);
+      }
+    }
+  }
+    
+  .logo {
+    font-size: 3em;
   }
 }

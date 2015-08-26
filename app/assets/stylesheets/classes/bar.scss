@@ -1,0 +1,35 @@
+.bar {
+  margin: 1em 0 1.5em;
+  text-align: center;
+  padding: .5em 0 .3em;
+
+  $D: hsl( 45, 30%, 84%);
+  $C: hsl(167, 28%, 80%);
+  $B: hsl( 15, 33%, 82%);
+  $A: hsl(188, 30%, 80%);
+  $alpha: .4;
+
+  &.A {
+    $color: darken($A, 4%);
+    background: rgba($A, $alpha);
+    border-bottom: 6px solid rgba($color, $alpha);
+  }
+
+  &.B {
+    $color: darken($B, 4%);
+    background: rgba($B, $alpha);
+    border-bottom: 6px solid rgba($color, $alpha);
+  }
+
+  &.C {
+    $color: darken($C, 4%);
+    background: rgba($C, $alpha);
+    border-bottom: 6px solid rgba($color, $alpha);
+  }
+
+  &.D {
+    $color: darken($D, 4%);
+    background: rgba($D, $alpha);
+    border-bottom: 6px solid rgba($color, $alpha);
+  }
+}

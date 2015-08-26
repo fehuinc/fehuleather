@@ -68,12 +68,11 @@ header {
         display: inline-block;
         width: 50%;
         padding: 0 10%;
-        &:hover { padding: 0 8%; }
+        &:hover { transform: scale(1.1); }
       }
       
       img {
         max-width: 100%;
-        vertical-align: middle;
       }
     }
     
