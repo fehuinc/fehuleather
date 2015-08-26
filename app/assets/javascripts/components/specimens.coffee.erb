@@ -3,7 +3,7 @@ angular.module "Specimens", []
 .directive "specimens", new Array "$swipe", "$timeout", ($swipe, $timeout)->
   templateUrl: "<%= asset_path('components/specimens.html') %>"
   
-  controller: ($scope)->
+  controller: new Array "$scope", ($scope)->
     $scope.$parent.requestSpecimen = (index)->
       $scope.requestSpecimen(index)
   
