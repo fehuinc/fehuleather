@@ -1,0 +1,35 @@
+footer {
+  padding: 3em 0 2em;
+  text-align: center;
+  
+  .nav > * {
+    display: inline-block;
+    width: calc(24% - 2.4em);
+    max-width: 8em;
+    margin: .4em;
+    padding: .4em .8em;
+  }
+  
+  .about, .contact {
+    display: inline-block;
+    width: 49%;
+    padding: .5em 1em;
+  }
+  
+  .about {
+    text-align: right;
+  }
+  
+  .contact {
+    text-align: left;
+  }
+  
+  .rune {
+    padding: .5em 1em;
+  }
+
+  .rune:hover {
+    -webkit-transform: rotate(360deg);
+    -webkit-transition: -webkit-transform .8s ease;
+  }
+}
