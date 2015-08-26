@@ -6,6 +6,29 @@ specimens {
   margin: $pad*2 0;
   padding-left: 50%;
   overflow: hidden;
+  position: relative; // contain absolutes
+  
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: $size/2;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+  }
+  
+  &::before {
+    left: 50%;
+    margin-left: -($size*1.5 + $pad*2);
+    background: linear-gradient(to right, white, rgba(white, 0));
+  }
+  
+  &::after {
+    left: 50%;
+    margin-left: $size + $pad * 2;
+    background: linear-gradient(to left, white, rgba(white, 0));
+  }
   
   horizontal-slider {
     display: block;
