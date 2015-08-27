@@ -41,9 +41,11 @@ angular.module "Product", []
     
     $scope.checkChange = (variationIndex)->
       if variationIndex is 0
-        # $scope.changeSpecimen($scope.product.variations[0].choiceIndex)
         $scope.requestSpecimen($scope.product.variations[0].choiceIndex)
-    
+      else
+        variation = $scope.product.variations[variationIndex]
+        variation.choice = variation.variants[variation.choiceIndex]
+
     
     # SETUP
     

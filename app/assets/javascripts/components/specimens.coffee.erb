@@ -1,6 +1,6 @@
 angular.module "Specimens", []
 
-.directive "specimens", new Array "$swipe", "$timeout", ($swipe, $timeout)->
+.directive "specimens", new Array "$swipe", ($swipe)->
   templateUrl: "<%= asset_path('components/specimens.html') %>"
   
   controller: new Array "$scope", ($scope)->
@@ -144,10 +144,8 @@ angular.module "Specimens", []
     $swipe.bind sliderNG, handlers, ["touch"]
     
     window.addEventListener "resize", (e)->
-      
       # This might be problematic if they are swiping while the resize occurs
       resetSliderPosition()
-    
     
     scope.close = ()->
       scope.toggleProductInfo(productIndex, scope)

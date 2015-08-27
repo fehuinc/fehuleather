@@ -1,0 +1,7 @@
+angular.module "ShoppingCart", []
+
+.directive "shoppingCart", new Array "Cart", (Cart)->
+  templateUrl: "<%= asset_path('components/shopping-cart.html') %>"
+  link: (scope)->
+    scope.remove = (item)->
+      Cart.remove(item)

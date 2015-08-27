@@ -1,0 +1,10 @@
+<div class="inner" ng-hide="cartEmpty">
+  <h3>Shopping Bag:</h3>
+  <div class="items">
+    <div ng-repeat="(key, item) in cartItems">
+      {{item.name}}
+      <a class="remove" ng-click="remove(item)">x</a>
+    </div>
+  </div>
+  <button>It's Checkout Time</button>
+</div>

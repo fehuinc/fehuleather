@@ -1,8 +1,11 @@
 angular.module "ProductInfo", []
 
-.directive "productInfo", ()->
+.directive "productInfo", new Array "Cart", (Cart)->
   templateUrl: "<%= asset_path('components/product-info.html') %>"
   link: (scope)->
+    
+    scope.addToCart = (product)->
+      Cart.add(product)
     
     scope.showInfo = (info)->
       if info != scope.showingInfo

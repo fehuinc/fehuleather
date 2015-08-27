@@ -75,6 +75,9 @@ product-info {
           display: inline-block;
           margin: 0 .5em;
         }
+        button {
+          -webkit-font-smoothing: subpixel-antialiased;
+        }
       }
     }
     

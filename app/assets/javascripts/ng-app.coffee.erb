@@ -8,9 +8,17 @@ angular.module "Core", [
   "Deleter"
   "Editable"
   "StockQuantity"
-  
-  # Scripts
+  "ShoppingCart"
+
+  # Directives
   "bimg"
+  
+  # Filters
+  "reverse"
+  
+  # Services
+  "Cart"
+  "Storage"
 ]
 
 angular.module "FehuApp", [
@@ -22,14 +30,16 @@ angular.module "FehuApp", [
   "ProductInfo"
   "Specimens"
   
+  # Directives
+  "PageStyle"
+  
   # Pages
   "About"
   "Events"
   "Locations"
   "Shop"
   
-  # Scripts
-  "PageStyle"
+  # Services
   "StubProducts"
   "StubLocations"
 ]
