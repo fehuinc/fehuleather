@@ -13,6 +13,7 @@ angular.module "Cart", []
       cartProduct =
         name: product.name
         image: product.totem
+        cents: product.cents_retail
         choices: []
       
       for variation in product.variations
@@ -22,6 +23,7 @@ angular.module "Cart", []
           name: choice.name
           id: choice.id
         }
+        cartProduct.cents += choice.cents_retail
         cartProduct.name = choice.name + " " + cartProduct.name
       
       unless $rootScope.cartItems[cartProduct.name]?

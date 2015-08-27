@@ -2,8 +2,8 @@
   <h3>Shopping Bag:</h3>
   <div class="items">
     <div ng-repeat="(key, item) in cartItems">
-      {{item.name}}
-      <a class="remove" ng-click="remove(item)">x</a>
+      {{item.name}} &middot; ${{item.cents / 100}}
+      <div class="remove" ng-click="remove(item)">x</div>
     </div>
   </div>
   <button>It's Checkout Time</button>
