@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     # ANGULAR ###################################################
     root 'angular#index'
     get 'about' => 'angular#index'
+    get 'checkout' => 'angular#index'
     get 'events' => 'angular#index'
     get 'locations' => 'angular#index'
     

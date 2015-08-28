@@ -1,8 +1,9 @@
-button {
+button, .button {
   display: inline-block;
   padding: .5em 1em;
   border: none;
   border-radius: 5px;
+  text-decoration: none;
   color: white;
   background-color: hsl(145, 40%, 75%);
   box-shadow: 0 0px 8px rgba(black, 0);
