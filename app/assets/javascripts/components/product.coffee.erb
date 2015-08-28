@@ -45,7 +45,15 @@ angular.module "Product", []
       else
         variation = $scope.product.variations[variationIndex]
         variation.choice = variation.variants[variation.choiceIndex]
-
+    
+    $scope.choicePrice = ()->
+      price = $scope.product.cents_retail
+      
+      for variation in $scope.product.variations
+        price += variation.choice.cents_retail
+      
+      return $scope.product.quantity * price / 100
+    
     
     # SETUP
     

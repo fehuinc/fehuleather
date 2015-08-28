@@ -12,6 +12,7 @@ angular.module "Cart", []
     add: (product)->
       cartProduct =
         name: product.name
+        quantity: product.quantity
         image: product.totem
         cents: product.cents_retail
         choices: []

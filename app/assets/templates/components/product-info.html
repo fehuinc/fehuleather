@@ -3,14 +3,21 @@
 
   <purchasing-info>
     <div class="variations">
-      <label ng-repeat="variation in product.variations">
-        {{variation.name}}
+      <div class="variation" ng-repeat="variation in product.variations">
+        <label>
+          {{variation.name}}
+        </label>
         <select ng-model="variation.choiceIndex" ng-change="checkChange($index)" ng-options="index*1 as variant.name for (index, variant) in variation.variants"></select>
-      </label>
+      </div>
     </div>
     <div class="acceptance">
-      <div class="price">$34.00</div>
-      <button ng-click="addToCart(product)">Yes please!</button>
+      <input class="quantity" type="number" step="1" ng-model="product.quantity"></input>
+      for
+      <div class="price">${{choicePrice()}}</div>
+      —
+      <div class="perspective">
+        <button ng-click="addToCart(product)">Yes Please!</button>
+      </div>
     </div>
   </purchasing-info>
 

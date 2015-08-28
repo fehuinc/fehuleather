@@ -1,0 +1,55 @@
+angular.module "Totem", []
+
+.service "Totem", new Array "$http", ($http)->
+  
+  generateTotemImagePath = (variant, product)->
+    file = "#{product.name}/totem/"
+    file += [variant.name].concat(product.namesOfDefaultVariantsWithImages).join("-")
+    file = file.toLowerCase()
+        .replace('&', 'and')
+        .replace(/[^0-9a-z\-\/]/g, ' ')
+        .replace(/\s+/g, '-')
+    file = "<%= ENV['IMAGEPATH'] %>#{file}.jpg"
+  
+  
+  return Totem =
+    load: ()->
+      $http.get("/api/totem").then (response)->
+        products = response.data
+        
+        for product in products
+          product.quantity = 1
+          product.variations = product.variations.sort("level")
+          
+          # We want the default variant of all variations that have an image
+          product.namesOfDefaultVariantsWithImages = []
+          
+          # We're going to loop through all variations and do some setup
+          for variation, i in product.variations
+            defaultVariant = null
+            defaultVariantIndex = null
+            
+            for variant, vi in variation.variants when variant.default
+              defaultVariant = variant
+              defaultVariantIndex = vi
+            
+            # If there's no default, we'll just use the first result
+            unless defaultVariant?
+              defaultVariant = variation.variants[0]
+              defaultVariantIndex = 0
+            
+            variation.choice = defaultVariant
+            variation.choiceIndex = defaultVariantIndex
+            
+            # Skip the first variation, because we're already using it for the totem
+            if i > 0 and variation.has_image
+              product.namesOfDefaultVariantsWithImages.push defaultVariant.name
+          
+          # Now, generate specimens
+          product.specimens = for variant in product.variations[0].variants
+            name: variant.name
+            totem: generateTotemImagePath(variant, product)
+            description: variant.description
+
+        
+        return products

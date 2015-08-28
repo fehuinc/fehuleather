@@ -1,10 +1,22 @@
 button {
-  background: white;
-  border: 1px solid #706F6D;
-  padding: .3em .5em .2em;
+  display: inline-block;
+  padding: .5em 1em;
+  border: none;
   border-radius: 5px;
+  color: white;
+  background-color: hsl(145, 40%, 75%);
+  box-shadow: 0 0px 8px rgba(black, 0);
+  cursor: pointer;
+  transition: transform .3s cubic-bezier(0.5, 2, 0.5, 2), background-color .2s;
+  -webkit-font-smoothing: subpixel-antialiased;
   
-  &:active {
-    background: #EEE;
+  &:hover, &:focus {
+    background-color: hsl(155, 50%, 70%);
+    transform: rotateX(-20deg) scaleY(1.15) translate3d(0, -3px, 5px);
+  }
+  
+  &:active, &.active {
+    transition: transform .25s cubic-bezier(0.3, -1, 0.7, 2), background-color .2s;
+    transform: rotateX(30deg) scale(.95, 1.1);
   }
 }
