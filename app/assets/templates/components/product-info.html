@@ -10,14 +10,13 @@
         <select ng-model="variation.choiceIndex" ng-change="checkChange($index)" ng-options="index*1 as variant.name for (index, variant) in variation.variants"></select>
       </div>
     </div>
-    <div class="acceptance">
+    <div class="subtotal">
       <input class="quantity" type="number" step="1" ng-model="product.quantity">
       for
       <div class="price">${{choicePrice()}}</div>
-      —
-      <div class="perspective">
-        <button ng-click="addToCart(product)">Yes Please!</button>
-      </div>
+    </div>
+    <div class="perspective submit">
+      <button ng-click="addToCart(product)">Yes Please!</button>
     </div>
   </purchasing-info>
 

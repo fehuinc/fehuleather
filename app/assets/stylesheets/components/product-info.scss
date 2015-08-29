@@ -45,7 +45,7 @@ product-info {
       & > div {
         display: inline-block;
         vertical-align: middle;
-        margin: 1em;
+        margin: .5em 1em;
       }
       
       .variations {
@@ -68,23 +68,19 @@ product-info {
         }
       }
       
-      .acceptance {
+      .subtotal {
         & > * {
           display: inline-block;
-          // margin: 0 .3em;
           vertical-align: baseline;
         }
         
         .quantity {
           width: 3em;
         }
-        
-        .price {
-          // font-size: 1.25em;
-        }
-        
-        .perspective {
-        }
+      }
+      
+      .submit {
+        margin-left: .5em;
       }
     }
 
