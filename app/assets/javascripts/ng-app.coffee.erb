@@ -38,6 +38,7 @@ angular.module "FehuApp", [
   "Checkout"
   "Events"
   "Locations"
+  "Payment"
   "Shop"
   
   # Services
@@ -65,6 +66,9 @@ angular.module "FehuApp", [
     .when "/locations",
       controller: "LocationsCtrl"
       templateUrl: "<%= asset_path('pages/locations.html') %>"
+    .when "/payment",
+      controller: "PaymentCtrl"
+      templateUrl: "<%= asset_path('pages/payment.html') %>"
     .otherwise
       template: ""
       controller: ($route, $location, $window)->

@@ -1,0 +1,49 @@
+<h1>Ready to Rock?</h1>
+
+<div>
+  <p>Name: {{shippingAddress.name}}</p>
+  
+  <label>
+    Email (Optional)
+    <input type="email" ng-model="shippingAddress.email">
+  </label>
+</div>
+
+<div>
+  <label>
+    Address
+    <input type="text" ng-model="shippingAddress.address1">
+    <input type="text" ng-model="shippingAddress.address2">
+  </label>
+  
+  <label>
+    City
+    <input type="text" ng-model="shippingAddress.city">
+  </label>
+</div>
+
+<div>
+  <label>
+    Country
+    <select ng-model="shippingAddress.country"></select>
+  </label>
+  
+  <label>
+    State/Province
+    <select ng-model="shippingAddress.province"></select>
+  </label>
+  
+  <label>
+    Zip/Postal Code
+    <input type="text" ng-model="shippingAddress.postal">
+  </label>
+</div>
+
+<label>
+  <input type="checkbox" ng-model="saveShippingAddress">
+  Save my shipping address for next time.
+</label>
+
+<div class="perspective">
+  <input type="submit" ng-click="submit()">Continue</a>
+</div>

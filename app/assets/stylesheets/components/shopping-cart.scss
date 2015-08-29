@@ -17,15 +17,21 @@ shopping-cart {
     
     h3 {
       text-align: center;
-      margin-bottom: .4em;
+      margin-bottom: .5em;
+      padding-left: 1.2em;
+      
+      img {
+        margin: 0 .2em 0;
+        vertical-align: -.3em;
+      }
     }
     
     .items {
-      text-align: right;
+      text-align: center;
       
       & > div {
         padding: 0 0.5em;
-
+        
         .remove {
           display: inline-block;
           text-align: center;

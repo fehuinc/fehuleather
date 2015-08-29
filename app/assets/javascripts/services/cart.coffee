@@ -1,13 +1,29 @@
 angular.module "Cart", []
 
 .service "Cart", new Array "$rootScope", "LocalStorage", ($rootScope, LocalStorage)->
-  LocalStorage.bind($rootScope, "cartItems", {})
   
-  do checkCartEmpty = ()->
-    $rootScope.cartEmpty = true
+  # HELPERS
+  setCartEmpty = (enabled = true)->
+    $rootScope.cartEmpty = enabled
+  
+  updateCartEmpty = ()->
+    setCartEmpty()
     for item of $rootScope.cartItems
-      return $rootScope.cartEmpty = false
+      return setCartEmpty(false)
   
+  resetCart = ()->
+    $rootScope.cartItems = {}
+    setCartEmpty()
+  
+  
+  # SETUP
+  
+  # If the cart has stuff in it, load that stuff into $rootScope. Otherwise, init to {}
+  LocalStorage.bind($rootScope, "cartItems", {})
+  updateCartEmpty()
+  
+  
+  # API
   return Cart =
     add: (product)->
       cartProduct =
@@ -18,7 +34,6 @@ angular.module "Cart", []
         choices: []
       
       for variation in product.variations
-        console.log variation.choiceIndex
         choice = variation.choice
         cartProduct.choices.push {
           name: choice.name
@@ -27,11 +42,16 @@ angular.module "Cart", []
         cartProduct.cents += choice.cents_retail
         cartProduct.name = choice.name + " " + cartProduct.name
       
-      unless $rootScope.cartItems[cartProduct.name]?
-        $rootScope.cartItems[cartProduct.name] = cartProduct
+      $rootScope.cartItems[cartProduct.name] = cartProduct
       
-      $rootScope.cartEmpty = false
+      setCartEmpty(false)
       
     remove: (product)->
       delete $rootScope.cartItems[product.name]
-      checkCartEmpty()
+      updateCartEmpty()
+    
+    all: ()->
+      return $rootScope.cartItems
+    
+    reset: ()->
+      resetCart()

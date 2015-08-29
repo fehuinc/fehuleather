@@ -1,0 +1,10 @@
+<div class="inner" ng-hide="cartEmpty">
+  <h3>It's In <%= image_tag "bag.svg" %> The Bag</h3>
+  <div class="items">
+    <div ng-repeat="(key, item) in cartItems | orderBy:'item.name.length' ">
+      <b>{{item.name}}</b> &nbsp; x{{item.quantity}} &nbsp; ${{item.quantity * item.cents / 100}}
+      <div class="remove" ng-click="remove(item)">x</div>
+    </div>
+  </div>
+  <a class="button" href="/checkout">Checkout Time</a>
+</div>

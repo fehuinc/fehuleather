@@ -1,50 +1,57 @@
 <h1>Check Me Out</h1>
 
 
-<form>
+<form novalidate>
   <h2>Shipping Address</h2>
   
   <div>
     <label>
       Name
-      <input type="text">
+      <input type="text" ng-model="shippingAddress.name">
     </label>
     
     <label>
       Email (Optional)
-      <input type="text">
+      <input type="email" ng-model="shippingAddress.email">
     </label>
   </div>
   
   <div>
     <label>
       Address
-      <input type="text">
-      <input type="text">
+      <input type="text" ng-model="shippingAddress.address1">
+      <input type="text" ng-model="shippingAddress.address2">
     </label>
     
     <label>
       City
-      <input type="text">
+      <input type="text" ng-model="shippingAddress.city">
     </label>
   </div>
   
   <div>
     <label>
       Country
-      <select></select>
+      <select ng-model="shippingAddress.country"></select>
     </label>
     
     <label>
       State/Province
-      <select></select>
+      <select ng-model="shippingAddress.province"></select>
     </label>
     
     <label>
       Zip/Postal Code
-      <input type="text">
+      <input type="text" ng-model="shippingAddress.postal">
     </label>
   </div>
   
-  <a class="button" href="/payment">Continue</a>
+  <label>
+    <input type="checkbox" ng-model="saveShippingAddress">
+    Save my shipping address for next time.
+  </label>
   
+  <div class="perspective">
+    <input type="submit" ng-click="submit()">Continue</a>
+  </div>
+</form>
