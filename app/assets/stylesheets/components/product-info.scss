@@ -4,18 +4,19 @@ $yellow: hsl(30, 30%, 98%);
 product-info.showingProductInfo {
   opacity: 1;
   overflow: visible;
-  transition: opacity 1s, transform 1s, height 1s;
+  transform: translate(-50%, 0);
+  transition: opacity 1s ease-out, transform 1s;
   pointer-events: auto;
 }
 
 product-info {
   position: absolute;
   display: block;
-  top: 55%;
+  top: 65%;
   left: 50%;
   text-align: center;
-  transform: translate(-50%);
-  transition: opacity 1s, transform 1s, height 1s;
+  transform: translate(-50%, 20px);
+  transition: opacity 1s ease-in, transform 1s;
   -webkit-font-smoothing: subpixel-antialiased;
   opacity: 0;
   z-index: 100;
@@ -28,7 +29,7 @@ product-info {
     padding: 0 0 .5em;
     border: 1px solid $blue;
     background: white;
-    box-shadow: 0 8px 8px -6px hsl(200, 20%, 80%);
+    box-shadow: 0 8px 8px -6px hsl(200, 20%, 80%), 0 50px 100px white;
     -webkit-font-smoothing: subpixel-antialiased;
     
     h1 {
