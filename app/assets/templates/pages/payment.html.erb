@@ -1,49 +1,50 @@
 <h1>Ready to Rock?</h1>
-
-<div>
-  <p>Name: {{shippingAddress.name}}</p>
-  
-  <label>
-    Email (Optional)
-    <input type="email" ng-model="shippingAddress.email">
-  </label>
+<div class="center-block">
+  <span>Make sure that everything looks good.<br>If you see a mistake, go <a href="/checkout">back</a> to fix it.</span>
 </div>
 
-<div>
-  <label>
-    Address
-    <input type="text" ng-model="shippingAddress.address1">
-    <input type="text" ng-model="shippingAddress.address2">
-  </label>
+<h3>Shipping Address</h3>
+
+<div class="address">
   
-  <label>
-    City
-    <input type="text" ng-model="shippingAddress.city">
-  </label>
+  <div class="field">
+    <div class="fieldname">Name</div>
+    <div class="fieldvalue">{{shippingAddress.name}}</div>
+  </div>
+  
+  <div class="field">
+    <div class="fieldname">Email</div>
+    <div class="fieldvalue">{{shippingAddress.email}}</div>
+  </div>
+  
+  <div class="field">
+    <div class="fieldname">Address</div>
+    <div class="fieldvalue">{{shippingAddress.address1}}</div>
+    <div class="fieldvalue">{{shippingAddress.address2}}</div>
+  </div>
+  
+  <div class="field">
+    <div class="fieldname">City</div>
+    <div class="fieldvalue">{{shippingAddress.city}}</div>
+  </div>
+  
+  <div class="field">
+    <div class="fieldname">Province/State</div>
+    <div class="fieldvalue">{{shippingAddress.provinceState}}</div>
+  </div>
+  
+  <div class="field">
+    <div class="fieldname">Zip/Postal Code</div>
+    <div class="fieldvalue">{{shippingAddress.postal}}</div>
+  </div>
+
+  <div class="field">
+    <div class="fieldname">Country</div>
+    <div class="fieldvalue">{{shippingAddress.country}}</div>
+  </div>
+  
 </div>
 
-<div>
-  <label>
-    Country
-    <select ng-model="shippingAddress.country"></select>
-  </label>
-  
-  <label>
-    State/Province
-    <select ng-model="shippingAddress.province"></select>
-  </label>
-  
-  <label>
-    Zip/Postal Code
-    <input type="text" ng-model="shippingAddress.postal">
-  </label>
-</div>
-
-<label>
-  <input type="checkbox" ng-model="saveShippingAddress">
-  Save my shipping address for next time.
-</label>
-
-<div class="perspective">
-  <input type="submit" ng-click="submit()">Continue</a>
+<div class="stripe">
+  <button>Pay with Card</button>
 </div>

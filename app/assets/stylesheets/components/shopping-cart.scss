@@ -1,4 +1,3 @@
-$pad: 1vmin;
 $blue: hsl(200, 50%, 95%);
 $yellow: hsl(30, 50%, 95%);
 
@@ -9,10 +8,10 @@ shopping-cart {
   .inner {
     display: inline-block;
     max-width: 66em;
-    margin: $pad*2 auto 0;
+    margin: .8rem auto 0;
     padding: .6em 2.4em;
-    border-top: $pad solid $blue;
-    border-bottom: $pad solid $blue;
+    border-top: .4rem solid $blue;
+    border-bottom: .4rem solid $blue;
     // background: $yellow;
     
     h3 {

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     
     
     # RAILS #####################################################
-    get 'wholesale' => 'wholesale#landing'
+    get 'wholesale' => 'wholesale#placeholder'
     
     # Angular API endpoints
     namespace :api do

@@ -1,0 +1,40 @@
+#payment main {
+  
+  h1 {
+    margin: 0;
+  }
+  
+  h3 {
+    margin: 1em 0 .5em;
+    text-align: center;
+  }
+  
+  .address {
+    display: table;
+    border-collapse: separate;
+    margin: 0 auto;
+    
+    .field {
+      display: table-row;
+      
+      .fieldname {
+        display: table-cell;
+        width: 50%;
+        font-weight: bold;
+        text-align: right;
+      }
+      
+      .fieldvalue {
+        display: table-cell;
+        width: 50%;
+        text-align: left;
+        padding: .2em 1em;
+      }
+    }
+  }
+  
+  .stripe {
+    margin: 3em 0 0;
+    text-align: center;
+  }
+}

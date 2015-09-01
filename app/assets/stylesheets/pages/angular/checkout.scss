@@ -1,3 +1,30 @@
 #checkout {
-  
+  form {
+    .row {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      
+      label {
+        flex: 0 1 100%;
+      }
+      
+      &.two label {
+        flex: 0 1 48%;
+      }
+      
+      &.three label {
+        flex: 0 1 32%;
+      }
+    }
+    
+    label {
+      margin: 0;
+      
+      input {
+        margin: .1em 0;
+      }
+    }
+  }
 }

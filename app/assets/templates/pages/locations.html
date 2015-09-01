@@ -1,4 +1,4 @@
-<h1>Find Us In Your Neck Of The Woods</h1>
+<h1 class="page-title">Find Us In Your Neck Of The Woods</h1>
 
 <div>
   <form>
@@ -11,8 +11,14 @@
   
   <div class="locations">
     <div class="country" ng-repeat="(countryName, provinceObj) in countries">
-      <div class="province" ng-repeat="(provinceName, locationList) in provinceObj" ng-show="showProvince(provinceName)">
-        <h2 class="province-name bar" ng-show="filteredLocations.length > 0" ng-class="['A','B','C','D'][$index]">{{provinceName}}</h2>
+      <div class="province"
+           ng-repeat="(provinceName, locationList) in provinceObj"
+           ng-show="showProvince(provinceName)">
+        <h2 class="province-name bar"
+            ng-show="filteredLocations.length > 0"
+            ng-class="['A','B','C','D'][$index%4]">
+          {{provinceName}}
+        </h2>
         <div class="location" ng-repeat="location in filteredLocations = (locationList | filter:search)">
           <h3 class="name">{{location.name}}</h3>
           <address>

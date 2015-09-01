@@ -1,16 +1,18 @@
-#events {
-  section {
+#events main {
+  max-width: 100%;
+  text-align: center;
+  
+  div {
+    display: inline-block;
     max-width: 30rem;
-    margin: 0 auto 3em;
-    text-align: center;
+    margin: 0 2em;
   }
   
-  h2 {
+  h3 {
     margin: 0;
   }
   
   p {
-    text-align: left;
     display: inline-block;
     margin: .5em;
   }

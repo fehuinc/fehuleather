@@ -1,4 +1,6 @@
-#locations {
+#locations main {
+  max-width: 100%;
+  
   form {
     max-width: none;
     font-size: 1.1em;
@@ -14,11 +16,18 @@
     }
   }
   
-  .locations {
-    max-width: 30rem;
-    margin: 0 auto;
+  .country {
+    text-align: center;
   }
-
+  
+  .province {
+    display: inline-block;
+    max-width: 30rem;
+    margin: 2em;
+    vertical-align: top;
+    text-align: left;
+  }
+  
   .location {
     margin-bottom: 3em;
     
