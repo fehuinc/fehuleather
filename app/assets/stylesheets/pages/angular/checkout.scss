@@ -1,30 +1,46 @@
-#checkout {
-  form {
-    .row {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
-      align-items: flex-start;
+#checkout main {
+  .row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+    & > * {
+      flex: 1 1 auto;
+      padding-right: .5em;
       
-      label {
-        flex: 0 1 100%;
-      }
-      
-      &.two label {
-        flex: 0 1 48%;
-      }
-      
-      &.three label {
-        flex: 0 1 32%;
+      &:last-child {
+        padding-right: 0;
       }
     }
     
-    label {
-      margin: 0;
-      
-      input {
-        margin: .1em 0;
-      }
+    &.two > * {
     }
+    
+    &.three > * {
+    }
+    
+    & > .shrink {
+    }
+  }
+  
+  .set > label {
+    width: 100%;
+  }
+  
+  label, .set {
+    margin: 0;
+  }
+  
+  input, select {
+    display: block;
+  }
+  
+  input {
+    margin: .1em 0;
+  }
+  
+  select {
+    margin: .4em 0 .1em;
   }
 }

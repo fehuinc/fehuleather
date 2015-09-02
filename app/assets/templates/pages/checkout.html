@@ -2,7 +2,7 @@
 
 
 <form novalidate>
-  <h2>Shipping Address</h2>
+  <h3>Shipping Address</h3>
   
   <div class="row two">
     <label>
@@ -18,43 +18,40 @@
   
   <hr>
   
-  <div class="row">
-    <label>
-      Address
-      <input type="text" ng-model="shippingAddress.address1" placeholder="Line 1">
-    </label>
-    <input type="text" ng-model="shippingAddress.address2" placeholder="Line 2">
-  </div>
-  
-  <div class="row three">
+  <div class="row two">
+    <div class="set">
+      <label>
+        Address
+        <input type="text" ng-model="shippingAddress.address1" placeholder="Line 1">
+      </label>
+      <input type="text" ng-model="shippingAddress.address2" placeholder="Line 2">
+    </div>
+    
     <label>
       City
       <input type="text" ng-model="shippingAddress.city">
     </label>
-    
+  </div>
+  
+  <div class="row three">
+    <label class="shrink">
+      Country
+      <select ng-model="shippingAddress.country"
+              ng-options="country for country in countries"></select>
+    </label>
+
     <label>
-      Province/State
+      {{shippingAddress.country == "United States" ? "State" : "Province"}}
       <input type="text" ng-model="shippingAddress.provinceState">
     </label>
     
     <label>
-      Zip/Postal Code
+      {{shippingAddress.country == "United States" ? "ZIP" : "Postal"}} Code
       <input type="text" ng-model="shippingAddress.postal">
     </label>
   </div>
-
-  <label>
-    Country
-    <select ng-model="shippingAddress.country"
-            ng-options="country for country in countries"></select>
-  </label>
   
   <hr>
-  
-  <label>
-    <input type="checkbox" ng-model="saveShippingAddress">
-    Save my shipping address on this computer.
-  </label>
   
   <div class="perspective">
     <input type="submit" ng-click="submit()" value="Continue">
