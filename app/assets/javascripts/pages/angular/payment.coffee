@@ -12,7 +12,7 @@ angular.module "Payment", []
   $scope.submitToRails = ()->
     data =
       address: $rootScope.shippingAddress
-      cart: Cart.all()
+      cart: Cart.hash()
     $http.post("/api/checkout", data).then(success, failure)
       
     

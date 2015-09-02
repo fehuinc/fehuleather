@@ -1,8 +1,10 @@
 angular.module "ProductInfo", []
 
-.directive "productInfo", new Array "Cart", (Cart)->
+.directive "productInfo", new Array "Cart", "$rootScope", "$timeout", (Cart, $rootScope, $timeout)->
   templateUrl: "<%= asset_path('components/product-info.html') %>"
   link: (scope)->
+    scope.isInCart = Cart.has
+    scope.getQuantity = Cart.quantity
     
     scope.addToCart = (product)->
       Cart.add(product)
@@ -12,4 +14,8 @@ angular.module "ProductInfo", []
         scope.showingInfo = info
       else
         scope.showingInfo = null
+    
+    scope.showCart = ()->
+      document.body.scrollTop = 0
       
+      $timeout (()-> $rootScope.cartShowing = true), 200

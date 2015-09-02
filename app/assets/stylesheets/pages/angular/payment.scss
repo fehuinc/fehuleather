@@ -1,3 +1,5 @@
+$yellow: hsl(30, 50%, 95%);
+
 #payment main {
   
   h1 {
@@ -5,8 +7,37 @@
   }
   
   h3 {
-    margin: 1em 0 .5em;
+    margin: 0 0 .5em;
     text-align: center;
+  }
+  
+  .items {
+    display: table;
+    border-collapse: separate;
+    margin: 0 auto;
+    
+    .item {
+      display: table-row;
+      
+      & > div {
+        display: table-cell;
+        padding: .2em .3em;
+      }
+      
+      .remove {
+        text-align: center;
+        margin-left: .4em;
+        width: 1.3em;
+        height: 1.3em;
+        line-height: 1.1em;
+        border-radius: 1.3em;
+        font-size: .8em;
+        vertical-align: .2em;
+        background: $yellow;
+        color: rgba(#F00, 0.3);
+        cursor: pointer;
+      }
+    }
   }
   
   .address {
@@ -34,7 +65,6 @@
   }
   
   .stripe {
-    margin: 3em 0 0;
     text-align: center;
   }
 }

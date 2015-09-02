@@ -1,12 +1,19 @@
-<div class="inner" ng-hide="cartEmpty">
-  <h3>It's In <%= image_tag "bag.svg" %> The Bag</h3>
+<div class="icon" ng-click="cartShowing = !cartShowing"><%= image_tag "bag.svg" %></div>
+
+<div class="contents" ng-class="{showing:cartShowing}">
+  <h3>In The Bag</h3>
   <div class="items">
-    <div ng-repeat="(key, item) in cartItems | orderBy:'item.name.length' ">
-      <b>{{item.name}}</b> &nbsp; x{{item.quantity}} &nbsp; ${{item.quantity * item.cents / 100}}
+    <div ng-repeat="item in cartItemsArray | orderBy:item.choiceName.length">
+      <b>{{item.choiceName}}</b> &nbsp; x{{item.quantity}} &nbsp; ${{item.quantity * item.cents / 100}}
       <div class="remove" ng-click="remove(item)">x</div>
     </div>
   </div>
-  <div class="perspective">
-    <a class="button" href="/checkout">Checkout Time</a>
+  <div ng-hide="cartItemsArray.length">
+    Nothing... Yet ;)
+    <br>
   </div>
+  <div class="perspective" ng-show="cartItemsArray.length">
+    <a class="button" href="/checkout" ng-click="cartShowing = false">Checkout Time</a>
+  </div>
+  <!-- <div ng-click="reset()">reset</div> -->
 </div>

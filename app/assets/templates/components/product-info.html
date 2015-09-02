@@ -11,12 +11,21 @@
       </div>
     </div>
     <div class="subtotal">
-      <input class="quantity" type="number" step="1" ng-model="product.quantity">
+      <input class="quantity" type="number" step="1" min="0" max="99" ng-model="product.quantity">
       for
       <div class="price">${{choicePrice()}}</div>
     </div>
-    <div class="perspective submit">
+    
+    <div class="perspective submit" ng-hide="isInCart(product)">
       <button ng-click="addToCart(product)">Yes Please!</button>
+    </div>
+    
+    <div class="perspective submit" ng-show="isInCart(product) && (product.quantity != getQuantity(product))">
+      <button ng-click="addToCart(product)">Update Quantity</button>
+    </div>
+    
+    <div class="cart" ng-show="isInCart(product) && (product.quantity == getQuantity(product))">
+      <div>{{product.quantity == 1 ? "It's" : "They're" }} In <a ng-click="showCart()">The Bag</a></div>
     </div>
   </purchasing-info>
 
