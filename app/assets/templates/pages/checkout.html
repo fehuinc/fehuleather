@@ -1,5 +1,9 @@
 <h1>Check Me Out</h1>
 
+<div class="info-popup" ng-show="showEmailPopup">
+  We'll send you an email to confirm your order — and that's all. No spam, no nonsense.
+  <div class="close" ng-click="showEmailPopup = false">Close</div>
+</div>
 
 <form novalidate>
   <h3>Shipping Address</h3>
@@ -11,7 +15,7 @@
     </label>
     
     <label>
-      Email
+      Email <div class="info-prompt" ng-click="showEmailPopup = !showEmailPopup">?</div>
       <input type="email" ng-model="shippingAddress.email">
     </label>
   </div>

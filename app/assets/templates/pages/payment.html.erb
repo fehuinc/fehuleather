@@ -1,9 +1,5 @@
-<h1>Ready to Rock?</h1>
-
-<section>
-  <div class="center-block">
-    <span>Make sure that everything looks good.<br>If you see a mistake, go <a href="/checkout">back</a> to fix it.</span>
-  </div>
+<section class="first">
+  <h1>Ready to Rock?</h1>
 </section>
 
 <section>
@@ -11,12 +7,20 @@
 
   <div class="items">
     <div class="item" ng-repeat="item in cartItemsArray | orderBy:item.choiceName.length">
-      <div><b>{{item.choiceName}}</b></div>
-      <div>x{{item.quantity}}</div>
-      <div>${{item.quantity * item.cents / 100}}</div>
-      <div><div class="remove" ng-click="remove(item)">x</div></div>
+      <div class="name">{{item.choiceName}}</div>
+      <div class="quantity"><input type="number" min="0" max="99" ng-model="item.quantity"></div>
+      <div class="price">${{item.quantity * item.cents / 100}}</div>
+      <div class="remove"><div ng-click="remove(item)">x</div></div>
+    </div>
+    
+    <div class="item subtotal">
+      <div class="name">Total</div>
+      <div class="quantity">{{totalQuantity(cartItemsArray)}} items</div>
+      <div class="price">${{totalPrice(cartItemsArray)}}</div>
+      <div></div>
     </div>
   </div>
+
 </section>
 
 <section>
@@ -37,6 +41,10 @@
     <div class="field">
       <div class="fieldname">Address</div>
       <div class="fieldvalue">{{shippingAddress.address1}}</div>
+    </div>
+    
+    <div class="field" ng-show="shippingAddress.address2">
+      <div class="fieldname"> </div>
       <div class="fieldvalue">{{shippingAddress.address2}}</div>
     </div>
     
@@ -46,12 +54,12 @@
     </div>
     
     <div class="field">
-      <div class="fieldname">Province/State</div>
+      <div class="fieldname">{{shippingAddress.country == "United States" ? "State" : "Province"}}</div>
       <div class="fieldvalue">{{shippingAddress.provinceState}}</div>
     </div>
     
     <div class="field">
-      <div class="fieldname">Zip/Postal Code</div>
+      <div class="fieldname">{{shippingAddress.country == "United States" ? "ZIP" : "Postal"}} Code</div>
       <div class="fieldvalue">{{shippingAddress.postal}}</div>
     </div>
 
@@ -59,8 +67,12 @@
       <div class="fieldname">Country</div>
       <div class="fieldvalue">{{shippingAddress.country}}</div>
     </div>
+
     
   </div>
+  
+  <div class="confirmation">See a mistake? <a href="/checkout">Fix It</a></div>
+
 </section>
 
 <section>

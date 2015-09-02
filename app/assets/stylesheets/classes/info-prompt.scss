@@ -1,0 +1,32 @@
+.info-prompt {
+  background: hsl(210, 50%, 95%);
+  border-radius: 100%;
+  padding: 0 .5em;
+  font-size: .9em;
+  vertical-align: top;
+  cursor: pointer;
+  
+  &:hover {
+    transition: transform 5s cubic-bezier(0, 1, 0, 1);
+    transform: scale(1.5);
+  }
+}
+
+.info-popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  width: 24em;
+  margin-left: -12em;
+  padding: 1em;
+  border: .4em solid hsl(210, 50%, 95%);
+  background: white;
+  box-shadow: 0 0 1em white, 0 0 2em white;
+  z-index: 1000;
+  
+  .close {
+    margin-top: .5em;
+    text-align: center;
+    cursor: pointer;
+  }
+}

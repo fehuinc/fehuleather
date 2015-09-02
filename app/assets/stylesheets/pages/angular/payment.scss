@@ -2,9 +2,8 @@ $yellow: hsl(30, 50%, 95%);
 
 #payment main {
   
-  h1 {
-    margin: 0;
-  }
+  section.first { margin-top: 0; }
+  h1 { margin: 0; }
   
   h3 {
     margin: 0 0 .5em;
@@ -14,6 +13,7 @@ $yellow: hsl(30, 50%, 95%);
   .items {
     display: table;
     border-collapse: separate;
+    text-align: right;
     margin: 0 auto;
     
     .item {
@@ -21,22 +21,40 @@ $yellow: hsl(30, 50%, 95%);
       
       & > div {
         display: table-cell;
-        padding: .2em .3em;
+        padding: .2rem .5rem;
       }
       
-      .remove {
-        text-align: center;
-        margin-left: .4em;
-        width: 1.3em;
-        height: 1.3em;
-        line-height: 1.1em;
-        border-radius: 1.3em;
-        font-size: .8em;
-        vertical-align: .2em;
-        background: $yellow;
-        color: rgba(#F00, 0.3);
-        cursor: pointer;
+      .quantity input {
+        width: 3em;
       }
+      
+      .price {
+        min-width: 3.5em;
+      }
+            
+      .remove {
+        padding: 0;
+
+        div {
+          position: relative;
+          top: -.1em;
+          width: 1.3em;
+          height: 1.3em;
+          margin-left: .4em;
+          line-height: 1.1em;
+          border-radius: 1.3em;
+          text-align: center;
+          background: $yellow;
+          color: rgba(#F00, 0.3);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  
+  .subtotal.item {
+    .name {
+      font-size: 1.2em;
     }
   }
   
@@ -53,17 +71,23 @@ $yellow: hsl(30, 50%, 95%);
         width: 50%;
         font-weight: bold;
         text-align: right;
+        padding: .2em .5em;
       }
       
       .fieldvalue {
         display: table-cell;
         width: 50%;
         text-align: left;
-        padding: .2em 1em;
+        padding: .2em .5em;
       }
     }
   }
   
+  .confirmation {
+    margin-top: 1em;
+    font-size: 0.9em;
+    text-align: center;
+  }
   .stripe {
     text-align: center;
   }

@@ -1,11 +1,15 @@
-<div class="icon" ng-click="cartShowing = !cartShowing"><%= image_tag "bag.svg" %></div>
+<div class="icon"
+     ng-class="{showing:cartShowing}"
+     ng-click="cartShowing = !cartShowing"><%= image_tag "bag.svg" %></div>
 
 <div class="contents" ng-class="{showing:cartShowing}">
   <h3>In The Bag</h3>
   <div class="items">
-    <div ng-repeat="item in cartItemsArray | orderBy:item.choiceName.length">
-      <b>{{item.choiceName}}</b> &nbsp; x{{item.quantity}} &nbsp; ${{item.quantity * item.cents / 100}}
-      <div class="remove" ng-click="remove(item)">x</div>
+    <div class="item" ng-repeat="item in cartItemsArray | orderBy:item.choiceName.length">
+      <div class="name">{{item.choiceName}}</div>
+      <div class="quantity"><input type="number" min="0" max="99" ng-model="item.quantity"></div>
+      <div class="price">${{item.quantity * item.cents / 100}}</div>
+      <div class="remove"><div ng-click="remove(item)">x</div></div>
     </div>
   </div>
   <div ng-hide="cartItemsArray.length">
