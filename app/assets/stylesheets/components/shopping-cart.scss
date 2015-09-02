@@ -31,16 +31,19 @@ shopping-cart {
     left: 50%;
     display: block;
     margin: -1em auto 0;
-    padding: 3.5em 1em 1em;
-    border-top: .4rem solid $blue;
-    border-bottom: .4rem solid $blue;
+    padding: 4em 2em 1em;
+    border: .4rem solid $blue;
     background: white;
+    box-shadow: 0 0 2em white;
     transform: translate(-50%);
     transition: opacity .2s ease-out;
     opacity: 0;
+    -webkit-font-smoothing: subpixel-antialiased;
+    pointer-events: none;
     
     &.showing {
       opacity: 1;
+      pointer-events: auto;
     }
     
     h3 {
