@@ -1,43 +1,57 @@
 Rails.application.routes.draw do
   scope format: false do
     
-    
     # ANGULAR ###################################################
-    root 'angular#index'
-    get 'about' => 'angular#index'
-    get 'checkout' => 'angular#index'
-    get 'events' => 'angular#index'
-    get 'locations' => 'angular#index'
-    get 'payment' => 'angular#index'
+    root "angular#index"
+    get "about" => "angular#index"
+    get "checkout" => "angular#index"
+    get "events" => "angular#index"
+    get "locations" => "angular#index"
+    get "payment" => "angular#index"
     
     
     # RAILS #####################################################
-    get 'wholesale' => 'wholesale#placeholder'
     
     # Angular API endpoints
     namespace :api do
-    #   resources :events
-    #   resources :locations
-      get 'totem' => 'totem#index'
+      get "totem" => "totem#index"
     end
     
-    # scope constraints: lambda { |request| request.session[:user].present? } do
-    #   namespace :wholesale do
-    #     resources :orders
-    #   end
-    # end
+    # Wholesale — either logged in or not
+    get "logout" => "merchants#logout", as: "logout_merchant"
     
-    get 'stink' => 'stink#stink'
-    post 'stink' => 'stink#stink_in'
-    delete 'stink' => 'stink#stink_out'
+    # Wholesale — not logged in
+    scope constraints: lambda { |request| request.session[:merchant_id].nil? } do
+      get "wholesale" => "wholesale#login"
+      post "wholesale" => "wholesale#login"
+      get "merchant" => "merchants#new", as: "new_merchant"
+      post "merchant" => "merchants#create"
+    end
+    
+    # Wholesale — logged in
+    scope constraints: lambda { |request| request.session[:merchant_id].present? } do
+      get "wholesale" => "wholesale#index"
+      post "wholesale" => "wholesale#index"
+      get "merchant" => "merchants#edit", as: "edit_merchant"
+      patch "merchant" => "merchants#update"
+      namespace :wholesale do
+        resource :order, only: [:edit, :update]
+      end
+    end
+    
+    
+    # Admin
+    get "stink" => "stink#stink"
+    post "stink" => "stink#stink_in"
+    delete "stink" => "stink#stink_out"
     
     scope constraints: lambda { |request| request.session[:stinker] == ENV["STINKNAME"] } do
       namespace :admin do
-        root 'kingdoms#index'
+        root "kingdoms#index"
         
-        get 'preview-images/:id' => 'products#preview_images', as: "preview_images"
+        get "preview-images/:id" => "products#preview_images", as: "preview_images"
         
-        put 'stock/:id' => 'products#update_stock', as: "update_stock"
+        put "stock/:id" => "products#update_stock", as: "update_stock"
         
         resources :kingdoms, except: [:show] do
           resources :products, only: [:new, :create]
@@ -58,8 +72,9 @@ Rails.application.routes.draw do
       end
     end
     
-    get 'err' => 'static#err'
-    get '*slug' => 'static#err', format: false, as: "fake_err"
+    # Errors
+    get "err" => "static#err"
+    get "*slug" => "static#err", format: false, as: "fake_err"
     
   end
 end

@@ -12,7 +12,8 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body class="<%=controller_name.parameterize%>" id="<%=action_name.parameterize%>">
+<body class="<%=style_controller%>" id="<%=style_action%>">
   <%= if admin? then render "partials/admin_header" end %>
   <%= render "partials/flash" %>
   <%= render "partials/header" %>
+  <%= if merchant? then render "partials/merchant_header" end %>

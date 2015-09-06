@@ -1,0 +1,22 @@
+<h1 class="page-title">Bring Some Fehu Into Your Store</h1>
+
+<p>In a few moments, you'll be able to browse our product listing and put together a purchase order. But first, we need to know a bit about you.</p>
+
+<%= form_for @merchant, url: wholesale_path, method: "post" do |f| %>
+  <div>
+    <label>
+      Please enter your primary email address.
+      <div class="info-prompt" ng-click="showPopup = !showPopup">?</div>
+      <%= f.text_field :email, autofocus: true, placeholder: "eg: secret-identity@example.com" %>
+    </label>
+  </div>
+  <%= render 'partials/form_errors', model: @merchant %>
+  <div class="perspective">
+    <%= f.submit "Continue" %>
+  </div>
+<% end %>
+
+<div class="info-popup" ng-show="showPopup">
+  We'll store your account info under this email address. We'll also use it as the main contact address for your account.
+  <div class="close" ng-click="showPopup = false">Close</div>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 1) do
+ActiveRecord::Schema.define(version: 2) do
 
   create_table "infos", force: :cascade do |t|
     t.integer "product_id"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 1) do
   end
 
   add_index "kingdoms", ["name"], name: "index_kingdoms_on_name", unique: true
+
+  create_table "merchants", force: :cascade do |t|
+    t.text "phone_number", null: false
+    t.text "email",        null: false
+    t.text "your_name",    null: false
+    t.text "store_name",   null: false
+  end
+
+  add_index "merchants", ["email"], name: "index_merchants_on_email", unique: true
 
   create_table "products", force: :cascade do |t|
     t.integer "kingdom_id"

@@ -1,11 +1,8 @@
 $ ()->
-  
-  # ASSUMES 1 table per page!
-  
-  if $("table").length # Only run on pages with tables
-    
+
+  setup = (table)->
     # Saved references to JQuery elements
-    tableBody = $("tbody")
+    tableBody = table.children("tbody")
     tableRows = tableBody.children("tr")
     
     # State
@@ -79,3 +76,6 @@ $ ()->
     defHeader = $("td[default=true]")
     if defHeader.length
       doSort(defHeader[0])
+
+
+  setup(table) for table in $("table") # Only run on pages with tables

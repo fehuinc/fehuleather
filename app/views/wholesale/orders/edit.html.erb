@@ -1,0 +1,23 @@
+<div class="products">
+  
+  <% @kingdoms.each do |kingdom| %>
+    <section class="kingdom">
+      <h2><%= kingdom.name.pluralize %></h2>
+      
+      <% kingdom.products.order(:name).each do |product| %>
+        <div class="product">
+          <h3><%= product.name.pluralize %></h3>
+        </div>
+      <% end %>
+  
+    </section>
+  <% end %>
+  
+</div>
+
+<p>Preffered delivery date<input type="text"></input>.</p>
+
+<div class="button">Pay now</div>
+<div class="button">Pay later</div>
+
+</div>
