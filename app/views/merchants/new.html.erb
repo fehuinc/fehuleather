@@ -1,16 +1,15 @@
 <h1 class="page-title">Create Your Account</h1>
 
 <%= form_for @merchant, url: merchant_path do |f| %>
-  <%= f.hidden_field(:email) %>
   
-  <p>It looks like this is your first time ordering from our wholesale site. Welcome!</p>
-
+  <p>It looks like this is your first time ordering from our wholesale site.</p>
+  
   <p><i>If you've ordered from our site before, you probably used a different email address, or made a typo. Easy fix — just <a href="/wholesale">try again</a>.</i></p>
   
   <hr>
-
+  
   <h3><%= @merchant.email %></h3>
-  <p>Double-check that you typed this address correctly. Need to make a fix? <a href="/wholesale">Go back</a> and give it another shot.</p>
+  <p>Double-check that you typed this address correctly.<br>Need to make a fix? <a href="/wholesale">Go back</a> and give it another shot.</p>
   
   <hr>
   
@@ -43,6 +42,8 @@
   </div>
   
   <hr>
+  
+  <%= f.hidden_field(:email) %>
     
   <div class="perspective">
     <%= f.submit "Continue" %>

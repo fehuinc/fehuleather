@@ -1,13 +1,11 @@
 <div class="order-preview">
   <h2>In Your Order</h2>
-  <%= "Nothing yet..." if @merchant.current_order.items.count == 0 %>
-  <%  %>
-  <%  %>
+  <%= "Nothing yet..." if @merchant.current_order.stocks.count == 0 %>
 </div>
 
 <div class="order-builder">
   <a href="/wholesale/order/edit">&lt; Other Products</a>
-
+  
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="20 35 160 150">
     <defs>
       <path id="svg-circle" d="M25, 100 a75,75 0 1,0 150,0 a75,75 0 1,0 -150,0"/>
@@ -36,8 +34,10 @@
           <td sort-value=''>
             <div class="quantity perspective">
               <input type="number" min="0" max="<%= stock.quantity %>" value="0" class="quantity">
-              <div class="plus button">-</div>
-              <div class="minus button">+</div>
+              <div class="button">-10</div>
+              <div class="button">-</div>
+              <div class="button">+</div>
+              <div class="button">+10</div>
             </div>
           </td>
           <% stock.variants.joins(:variation).order("variations.level").each do |variant| %>

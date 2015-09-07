@@ -34,15 +34,6 @@ ActiveRecord::Schema.define(version: 2) do
 
   add_index "infos", ["product_id"], name: "index_infos_on_product_id"
 
-  create_table "items", force: :cascade do |t|
-    t.integer "order_id"
-    t.text    "name",                 null: false
-    t.integer "quantity", default: 0, null: false
-    t.integer "cents",    default: 0, null: false
-  end
-
-  add_index "items", ["order_id"], name: "index_items_on_order_id"
-
   create_table "kingdoms", force: :cascade do |t|
     t.text "name", null: false
   end
@@ -59,14 +50,6 @@ ActiveRecord::Schema.define(version: 2) do
   end
 
   add_index "merchants", ["email"], name: "index_merchants_on_email", unique: true
-
-  create_table "orders", force: :cascade do |t|
-    t.integer  "merchant_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "orders", ["merchant_id"], name: "index_orders_on_merchant_id"
 
   create_table "products", force: :cascade do |t|
     t.integer "kingdom_id"
@@ -113,5 +96,22 @@ ActiveRecord::Schema.define(version: 2) do
   end
 
   add_index "variations", ["product_id"], name: "index_variations_on_product_id"
+
+  create_table "wholesale_order_items", force: :cascade do |t|
+    t.integer "wholesale_order_id"
+    t.text    "name",                           null: false
+    t.integer "quantity",           default: 0, null: false
+    t.integer "cents",              default: 0, null: false
+  end
+
+  add_index "wholesale_order_items", ["wholesale_order_id"], name: "index_wholesale_order_items_on_wholesale_order_id"
+
+  create_table "wholesale_orders", force: :cascade do |t|
+    t.integer  "merchant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "wholesale_orders", ["merchant_id"], name: "index_wholesale_orders_on_merchant_id"
 
 end

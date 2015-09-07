@@ -26,10 +26,15 @@ header {
     transform: translate(-50%, -50%);
     
     a {
-      // No modular scale because we're using a custom font
+      display: inline-block;
       font-size: 5.5em;
       @media (max-width: 600px) { font-size: 4em; }
-      // @media (max-width: 500px) { font-size: 3em; }
+      transition: transform .5s;
+
+      &:hover {
+        transition: transform 5s cubic-bezier(0, 1, 0, 1);
+        transform: scale(1.1);
+      }
     }
     
     @media (max-width: 650px) { top: $row-height * 1.2; }

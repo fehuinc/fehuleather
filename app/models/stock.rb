@@ -1,4 +1,6 @@
 class Stock < ActiveRecord::Base
+  has_many :current_order_stock_joins
+  has_many :current_orders, through: :current_order_stock_joins
   has_many :variant_stock_joins
   has_many :variants, through: :variant_stock_joins
   has_many :variations, through: :variants

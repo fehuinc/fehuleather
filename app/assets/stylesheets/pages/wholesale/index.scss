@@ -20,4 +20,26 @@ $blue: hsl(200, 50%, 95%);
       }
     }
   }
+  
+  form {
+    .fields {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      
+      .field {
+        flex: 0 1 48%;
+        margin: .5em 0;
+        
+        label {
+          width: 100%;
+        }
+      }
+    }
+    
+    .perspective {
+      max-width: 8em;
+      margin: 0 auto;
+    }
+  }
 }

@@ -11,14 +11,14 @@ class CreateMerchants < ActiveRecord::Migration
       t.timestamps
     end
     
-    create_table :orders do |t|
+    create_table :wholesale_orders do |t|
       # has many :items
       t.belongs_to :merchant,      required: true, index: true
       t.timestamps
     end
     
-    create_table :items do |t|
-      t.belongs_to :order,         required: true, index: true
+    create_table :wholesale_order_items do |t|
+      t.belongs_to :wholesale_order,         required: true, index: true
       t.text :name,                null: false
       t.integer :quantity,         null: false, default: 0
       t.integer :cents,            null: false, default: 0

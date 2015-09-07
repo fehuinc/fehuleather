@@ -2,6 +2,19 @@ footer {
   padding: 3em 0 2em;
   text-align: center;
   
+  .logo {
+    a {
+      display: inline-block;
+      text-decoration: none;
+      transition: transform .5s;
+
+      &:hover {
+        transition: transform 5s cubic-bezier(0, 1, 0, 1);
+        transform: scale(1.1);
+      }
+    }
+  }
+  
   .nav {
     a {
       display: inline-block;

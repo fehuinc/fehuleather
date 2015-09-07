@@ -8,46 +8,50 @@
 
 <section>
   <%= form_for @merchant, url: merchant_path do |f| %>
-    <p>Need to update your contact info? Go for it! Hit "Continue" when everything's good.</p>
-      
+    <p>Need to update your contact info?</p>
+    
     <%= render 'partials/form_errors', model: @merchant %>
     
-    <div>
-      <label>
-        Your Name
-        <div class="info-prompt" ng-click="showOwnerNamePopup = !showOwnerNamePopup">?</div>
-        <%= f.text_field :your_name, placeholder: "eg: Tyr Annosaurus" %>
-      </label>
-    </div>
+    <div class="fields">
     
-    <div>
-      <label>
-        Store Name
-        <div class="info-prompt" ng-click="showStoreNamePopup = !showStoreNamePopup">?</div>
-        <%= f.text_field :store_name, placeholder: "eg: Tiny Arms Apparel" %>
-      </label>
-    </div>
+      <div class="field">
+        <label>
+          Your Name
+          <div class="info-prompt" ng-click="showOwnerNamePopup = !showOwnerNamePopup">?</div>
+          <%= f.text_field :your_name, placeholder: "eg: Tyr Annosaurus" %>
+        </label>
+      </div>
+      
+      <div class="field">
+        <label>
+          Store Name
+          <div class="info-prompt" ng-click="showStoreNamePopup = !showStoreNamePopup">?</div>
+          <%= f.text_field :store_name, placeholder: "eg: Tiny Arms Apparel" %>
+        </label>
+      </div>
 
-    <div>
-      <label>
-        Email Address
-        <div class="info-prompt" ng-click="showEmailPopup = !showEmailPopup">?</div>
-        <%= f.text_field :email, placeholder: "eg: its-me@example.com" %>
-      </label>
-    </div>
+      <div class="field">
+        <label>
+          Email Address
+          <div class="info-prompt" ng-click="showEmailPopup = !showEmailPopup">?</div>
+          <%= f.text_field :email, placeholder: "eg: its-me@example.com" %>
+        </label>
+      </div>
+        
+      <div class="field">
+        <label>
+          Phone Number
+          <div class="info-prompt" ng-click="showOwnerPhonePopup = !showOwnerPhonePopup">?</div>
+          <%= f.text_field :phone_number, placeholder: "eg: (006) 500-0000" %>
+        </label>
+      </div>
       
-    <div>
-      <label>
-        Phone Number
-        <div class="info-prompt" ng-click="showOwnerPhonePopup = !showOwnerPhonePopup">?</div>
-        <%= f.text_field :phone_number, placeholder: "eg: (006) 500-0000" %>
-      </label>
     </div>
-      
+        
     <hr>
       
     <div class="perspective">
-      <%= f.submit "Continue" %>
+      <%= f.submit "Save" %>
     </div>
 
   <% end %>

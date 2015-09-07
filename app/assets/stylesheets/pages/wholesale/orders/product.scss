@@ -32,7 +32,7 @@ $yellow: hsl(30, 30%, 98%);
     }
     
     .preview {
-      width: 8em;
+      width: 5em;
       // border-radius: 100%;
     }
     
@@ -54,6 +54,13 @@ $yellow: hsl(30, 30%, 98%);
           -webkit-appearance: none;
           margin: 0;
         }
+      }
+      
+      .button {
+        width: 2.5em;
+        padding: .3em 0;
+        font-size: 0.8em;
+        text-align: center;
       }
     }
   }
