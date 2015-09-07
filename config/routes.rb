@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       patch "merchant" => "merchants#update"
       namespace :wholesale do
         resource :order, only: [:edit, :update]
+        get "order/product/:id" => "orders#product"
       end
     end
     

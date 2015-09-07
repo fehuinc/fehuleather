@@ -1,3 +1,4 @@
+$dark: #456;
 $yellow: hsl(30, 30%, 98%);
 $blue: hsl(200, 50%, 95%);
 
@@ -11,6 +12,12 @@ $blue: hsl(200, 50%, 95%);
       padding: 1em;
       border: 1px solid $blue;
       background: $yellow;
+      text-decoration: none;
+      
+      &:hover {
+        color: $dark;
+        text-decoration: underline;
+      }
     }
   }
 }

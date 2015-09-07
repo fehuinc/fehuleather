@@ -9,6 +9,10 @@ class Variation < ActiveRecord::Base
   
   before_destroy :ensure_safe_destroy
   
+  def default_variant
+    variants.where(default: true).first || variants.first
+  end
+  
   def ensure_safe_destroy
     # It's only safe to delete a variation when it contains 0 or 1 variants
     raise VariationNotEmpty if self.variants.count > 1

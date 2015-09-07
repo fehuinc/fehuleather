@@ -8,17 +8,9 @@ class Stock < ActiveRecord::Base
   validates :quantity, numericality: { only_integer: true }
   
   def image(type)
-    variants.map do |variant|
+    variantNames = variants.map do |variant|
       variant.name if variant.variation.has_image
     end.compact
-       .join("-")
-       .prepend("#{type}/")
-       .prepend("#{product.name}/")
-       .downcase
-       .gsub('&', 'and')
-       .gsub(/[^0-9a-z\-\/]/, ' ')
-       .gsub(/\s+/, '-')
-       .concat(".jpg")
-       .prepend(ENV["IMAGEPATH"])
+    return Images.build_path(product.name, variantNames, type)
   end
 end

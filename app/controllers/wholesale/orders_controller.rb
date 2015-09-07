@@ -5,4 +5,9 @@ class Wholesale::OrdersController < ApplicationController
     @kingdoms = Kingdom.all.order(:name)
   end
   
+  def product
+    @merchant = Merchant.find(session[:merchant_id])
+    @product = Product.find(params[:id])
+  end
+  
 end

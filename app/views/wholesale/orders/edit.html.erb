@@ -1,23 +1,26 @@
-<div class="products">
-  
-  <% @kingdoms.each do |kingdom| %>
-    <section class="kingdom">
-      <h2><%= kingdom.name.pluralize %></h2>
-      
-      <% kingdom.products.order(:name).each do |product| %>
-        <div class="product">
-          <h3><%= product.name.pluralize %></h3>
-        </div>
-      <% end %>
-  
-    </section>
-  <% end %>
-  
+<div class="order-preview">
+  <h2>Your Order</h2>
+  <div>Nothing Yet</div>
 </div>
 
-<p>Preffered delivery date<input type="text"></input>.</p>
+<div class="order-builder">
+  <h1>Add a Product to Your Order</h1>
 
-<div class="button">Pay now</div>
-<div class="button">Pay later</div>
-
+  <div class="products">
+    
+    <% @kingdoms.each do |kingdom| %>
+      <div class="kingdom">
+        <h2><%= kingdom.name.pluralize %></h2>
+        
+        <% kingdom.products.order(:name).each do |product| %>
+          <a class="product" href="/wholesale/order/product/<%= product.id %>">
+            <img src="<%=product.image('wholesale')%>">
+            <span><%= product.name.pluralize %></span>
+          </a>
+        <% end %>
+    
+      </div>
+    <% end %>
+    
+  </div>
 </div>

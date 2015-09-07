@@ -1,0 +1,60 @@
+$dark: #456;
+$blue: hsl(200, 50%, 95%);
+$yellow: hsl(30, 30%, 98%);
+
+.orders#product {
+  main {
+    // width: 60rem; // Overriden by various pages
+    max-width: none;
+    text-align: center;
+  }
+  
+  .order-preview {
+    display: inline-block;
+    min-width: 15em;
+    margin-right: 1em;
+    vertical-align: top;
+    text-align: left;
+  }
+  
+  .order-builder {
+    display: inline-block;
+    padding-left: 2em;
+    vertical-align: top;
+    text-align: left;
+    border-left: .4em solid $yellow;
+    
+    svg {
+      display: block;
+      width: 100%;
+      max-width: 26em;
+      margin: 0 auto 1em;
+    }
+    
+    .preview {
+      width: 8em;
+      // border-radius: 100%;
+    }
+    
+    table {
+      margin: 0;
+    }
+    
+    tbody tr:nth-child(odd) {
+      background-color: transparent;
+    }
+    
+    .quantity {
+      input {
+        display: block;
+        width: 100%;
+        margin: 0 0 .2em;
+        
+        &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

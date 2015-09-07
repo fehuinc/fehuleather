@@ -13,6 +13,19 @@
 
 ActiveRecord::Schema.define(version: 2) do
 
+  create_table "current_order_stock_joins", force: :cascade do |t|
+    t.integer "current_order_id"
+    t.integer "stock_id"
+  end
+
+  create_table "current_orders", force: :cascade do |t|
+    t.integer  "merchant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "current_orders", ["merchant_id"], name: "index_current_orders_on_merchant_id"
+
   create_table "infos", force: :cascade do |t|
     t.integer "product_id"
     t.text    "content",    null: false
@@ -21,6 +34,15 @@ ActiveRecord::Schema.define(version: 2) do
 
   add_index "infos", ["product_id"], name: "index_infos_on_product_id"
 
+  create_table "items", force: :cascade do |t|
+    t.integer "order_id"
+    t.text    "name",                 null: false
+    t.integer "quantity", default: 0, null: false
+    t.integer "cents",    default: 0, null: false
+  end
+
+  add_index "items", ["order_id"], name: "index_items_on_order_id"
+
   create_table "kingdoms", force: :cascade do |t|
     t.text "name", null: false
   end
@@ -28,13 +50,23 @@ ActiveRecord::Schema.define(version: 2) do
   add_index "kingdoms", ["name"], name: "index_kingdoms_on_name", unique: true
 
   create_table "merchants", force: :cascade do |t|
-    t.text "phone_number", null: false
-    t.text "email",        null: false
-    t.text "your_name",    null: false
-    t.text "store_name",   null: false
+    t.text     "phone_number", null: false
+    t.text     "email",        null: false
+    t.text     "your_name",    null: false
+    t.text     "store_name",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "merchants", ["email"], name: "index_merchants_on_email", unique: true
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "merchant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["merchant_id"], name: "index_orders_on_merchant_id"
 
   create_table "products", force: :cascade do |t|
     t.integer "kingdom_id"

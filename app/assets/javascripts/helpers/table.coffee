@@ -70,7 +70,7 @@ $ ()->
       tableRows.detach().appendTo(tableBody)
     
     # Respond to clicks on the table column headers
-    $("thead td").click (e)-> doSort(e.currentTarget)
+    $("thead td a").click (e)-> doSort(e.currentTarget.parentNode)
     
     # If there's a default sort, do it!
     defHeader = $("td[default=true]")
@@ -78,4 +78,4 @@ $ ()->
       doSort(defHeader[0])
 
 
-  setup(table) for table in $("table") # Only run on pages with tables
+  setup($(table)) for table in $("table") # Only run on pages with tables

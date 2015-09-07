@@ -6,7 +6,6 @@ table {
 }
 
 thead {
-  color: orange;
   a { @extend .unselectable; cursor: pointer; }
 }
 

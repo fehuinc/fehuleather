@@ -39,10 +39,6 @@ class MerchantsController < ApplicationController
   # session[:merchant_email] is set
   # session[:merchant_id] is set
   
-  def edit
-    @merchant = Merchant.find(session[:merchant_id])
-  end
-  
   def update
     @merchant = Merchant.find(session[:merchant_id])
     

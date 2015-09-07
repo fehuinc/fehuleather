@@ -26,6 +26,11 @@ class Product < ActiveRecord::Base
     self.cents_wholesale = (price.to_d * 100).to_i if price.present?
   end
   
+  def image(type)
+    variantNames = variations.where(has_image: true).order(:level).map(&:default_variant).map(&:name)
+    return Images.build_path(name, variantNames, type)
+  end
+  
   def ensure_safe_destroy
     # Variations need to have 0 or 1 variants before they can be destroyed, so we gotta kill 'um manually.
     

@@ -1,5 +1,9 @@
 class WholesaleController < ApplicationController
   
+  def index
+    @merchant = Merchant.find(session[:merchant_id])
+  end
+  
   def login
     # The only way we arrive at this action is if session[:merchant_id] is nil
     # Otherwise, we'd have hit the 'main' action
@@ -16,7 +20,7 @@ class WholesaleController < ApplicationController
       reset_session # For security
       session[:merchant_id] = existing_merchant.id
       session[:merchant_email] = existing_merchant.email
-      redirect_to edit_merchant_path(existing_merchant) # Exit: redirect
+      redirect_to wholesale_path # Exit: redirect
     
     else
       @merchant = Merchant.new(login_params)
