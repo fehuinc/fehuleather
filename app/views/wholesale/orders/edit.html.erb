@@ -1,6 +1,6 @@
-<div class="order-preview">
-  <h2>Your Order</h2>
-  <div>Nothing Yet</div>
+<div class="order-preview" sticky="10">
+  <h2>In Your Order</h2>
+  <%= "Nothing yet..." if @merchant.current_order.stocks.count == 0 %>
 </div>
 
 <div class="order-builder">

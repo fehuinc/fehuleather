@@ -1,10 +1,12 @@
-<div class="order-preview">
+<div class="order-preview" sticky="10">
   <h2>In Your Order</h2>
   <%= "Nothing yet..." if @merchant.current_order.stocks.count == 0 %>
 </div>
 
 <div class="order-builder">
-  <a href="/wholesale/order/edit">&lt; Other Products</a>
+  <div class="back" sticky="-1">
+    <a href="/wholesale/order/edit">&lt; Other Products</a>
+  </div>
   
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="20 35 160 150">
     <defs>
@@ -51,6 +53,4 @@
       <% end %>
     </tbody>
   </table>
-
-  <a href="/wholesale/order/edit">&lt; Other Products</a>
 </border>
