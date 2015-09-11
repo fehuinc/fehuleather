@@ -32,12 +32,14 @@
             <img class="preview" src="<%=stock.image('wholesale')%>">
           </td>
           <td sort-value=''>
-            <div class="quantity perspective">
+            <div class="quantity">
               <input type="number" min="0" max="<%= stock.quantity %>" value="0" class="quantity">
-              <div class="button">-10</div>
-              <div class="button">-</div>
-              <div class="button">+</div>
-              <div class="button">+10</div>
+              <div class="button-row">
+                <div class="button">-10</div><!--
+            ---><div class="button">-</div><!--
+            ---><div class="button">+</div><!--
+            ---><div class="button">+10</div>
+              </div>
             </div>
           </td>
           <% stock.variants.joins(:variation).order("variations.level").each do |variant| %>
