@@ -1,4 +1,4 @@
-angular.module "Core", [
+angular.module "CoreApp", [
   # Libs
   "ngRoute"
   "ngSanitize"
@@ -21,12 +21,24 @@ angular.module "Core", [
   "Cart"
   "CartProduct"
   "cdStorage"
+  "FeatureDetect"
   "ShippingAddress"
 ]
 
-angular.module "FehuApp", [
-  # Also include Core
-  "Core"
+angular.module "WholesaleApp", [
+  # Also include CoreApp
+  "CoreApp"
+  
+  # Components
+  "WholesaleItemEditor"
+  
+  # Services
+  "CurrentOrder"
+]
+
+angular.module "PublicApp", [
+  # Also include CoreApp
+  "CoreApp"
   
   # Components
   "Product"
@@ -45,7 +57,6 @@ angular.module "FehuApp", [
   "Shop"
   
   # Services
-  "StubProducts"
   "StubLocations"
   "Totem"
 ]

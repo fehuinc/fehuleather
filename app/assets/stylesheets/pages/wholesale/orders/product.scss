@@ -4,7 +4,6 @@ $yellow: hsl(30, 30%, 98%);
 
 .orders#product {
   main {
-    // width: 60rem; // Overriden by various pages
     max-width: none;
     text-align: center;
   }
@@ -19,15 +18,16 @@ $yellow: hsl(30, 30%, 98%);
   
   .order-builder {
     display: inline-block;
-    padding-left: 2em;
+    margin-top: -2em;
+    padding: 2em 0 0 2em;
+    border-left: .4em solid $yellow;
     vertical-align: top;
     text-align: left;
-    border-left: .4em solid $yellow;
     
     .back {
-      margin: -.7em 0;
-      padding: .7em 0 1em;
-      background: white;
+      margin: -1em -2em .5em;
+      padding: 1em 2em 1em;
+      background: rgba(white, 0.95);
     }
     
     svg {
@@ -39,7 +39,6 @@ $yellow: hsl(30, 30%, 98%);
     
     .preview {
       width: 5em;
-      // border-radius: 100%;
     }
     
     table {
@@ -59,28 +58,6 @@ $yellow: hsl(30, 30%, 98%);
         &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
           -webkit-appearance: none;
           margin: 0;
-        }
-      }
-      .button-row {
-        
-        .button {
-          width: 2.5em;
-          margin: 0 1px 0 0;
-          padding: .3em 0;
-          font-size: 0.8em;
-          text-align: center;
-          border-radius: 0;
-          
-          
-          &:first-child {
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-          }
-
-          &:last-child {
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
-          }
         }
       }
     }

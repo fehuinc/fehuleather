@@ -1,27 +1,19 @@
 angular.module "Sticky", []
 
-.directive "sticky", ()->
+.directive "sticky", new Array "FeatureDetect", (FeatureDetect)->
   link: (scope, aelm, attrs)->
     
     elm = aelm[0]
     top = parseInt(attrs.sticky)
     
-    # Feature Detect for native implementation
-    prop = 'position:'
-    value = 'sticky'
-    detect = document.createElement("feature-detect")
-    prefixes = ' -webkit- -moz- -o- -ms- '.split(' ')
-    mStyle = detect.style
-    mStyle.cssText = prop + prefixes.join(value + ';' + prop).slice(0, -prop.length)
-    
-    if mStyle.position.indexOf(value) isnt -1
-      console.log "NATIVE"
+    if FeatureDetect("position", "sticky")
+      # console.log "NATIVE"
       elm.classList.add("sticky")
       elm.style.top = top + "px"
     
     # Fallback
     else
-      console.log "FALLBACK"
+      # console.log "FALLBACK"
       originalPosition = elm.getBoundingClientRect()
       placeholder = document.createElement("sticky-placeholder")
       placeholder.style.width = originalPosition.width + "px"

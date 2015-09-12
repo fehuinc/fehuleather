@@ -1,0 +1,17 @@
+@supports (backdrop-filter:blur(10px)) { .orders#product main .order-builder .back {
+  backdrop-filter: blur(10px) saturate(300%);
+  background: rgba(255,255,255,0.88);
+}}
+@supports (-webkit-backdrop-filter:blur(10px)) { .orders#product main .order-builder .back {
+  -webkit-backdrop-filter: blur(10px) saturate(300%);
+  background: rgba(255,255,255,0.88);
+}}
+
+@supports (backdrop-filter:blur(10px)) { product-info .wrapper {
+  backdrop-filter: blur(10px) saturate(300%);
+  background: rgba(255,255,255,0.88);
+}}
+@supports (-webkit-backdrop-filter:blur(10px)) { product-info .wrapper {
+  -webkit-backdrop-filter: blur(10px) saturate(300%);
+  background: rgba(255,255,255,0.88);
+}}

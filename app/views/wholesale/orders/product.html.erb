@@ -1,6 +1,11 @@
 <div class="order-preview" sticky="10">
   <h2>In Your Order</h2>
   <%= "Nothing yet..." if @merchant.current_order.stocks.count == 0 %>
+  
+  <div ng-repeat="(id, item) in currentOrder">
+    {{id}} - {{item.quantity}}
+  </div>
+  
 </div>
 
 <div class="order-builder">
@@ -14,8 +19,8 @@
       <clipPath id="clip-path"><path d="M40, 100 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"/></clipPath>
     </defs>
     <image x="40" y="40" width="120" height="120" xlink:href="<%=@product.image('totem')%>" clip-path='url(#clip-path)'/>
-    <text x="0" y="0" fill="#456" fill-opacity="1" transform="rotate(<%=-90 + @product.name.length*3.1%>, 100, 100)">
-      <textPath xlink:href="#svg-circle"><%= @product.name %></textPath>
+    <text x="0" y="0" fill="#456" fill-opacity="1" transform="rotate(<%=-90 + @product.name.length*3%>, 100, 100)">
+      <textPath xlink:href="#svg-circle"><%= @product.name.pluralize %></textPath>
     </text>
   </svg>
 
@@ -34,13 +39,13 @@
             <img class="preview" src="<%=stock.image('wholesale')%>">
           </td>
           <td sort-value=''>
-            <div class="quantity">
-              <input type="number" min="0" max="<%= stock.quantity %>" value="0" class="quantity">
+            <div class="quantity" ng-init="item.id=<%=stock.id%>" wholesale-item-editor>
+              <input type="number" ng-model="item.displayQuantity" ng-change="updateQuantity()" class="quantity">
               <div class="button-row">
-                <div class="button">-10</div><!--
-            ---><div class="button">-</div><!--
-            ---><div class="button">+</div><!--
-            ---><div class="button">+10</div>
+                <div class="button" ng-click="changeQuantity(-10)">-10</div><!--
+            ---><div class="button" ng-click="changeQuantity(-1)">-</div><!--
+            ---><div class="button" ng-click="changeQuantity(1)">+</div><!--
+            ---><div class="button" ng-click="changeQuantity(10)">+10</div>
               </div>
             </div>
           </td>
