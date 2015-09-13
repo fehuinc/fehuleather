@@ -19,6 +19,9 @@ footer {
     a {
       display: inline-block;
       margin: 1em .5vw;
+      text-decoration: none;
+      
+      &:hover { text-decoration: underline; }
     }
   }
   

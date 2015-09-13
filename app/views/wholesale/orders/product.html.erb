@@ -38,9 +38,9 @@
           <td>
             <img class="preview" src="<%=stock.image('wholesale')%>">
           </td>
-          <td sort-value=''>
+          <td>
             <div class="quantity" ng-init="item.id=<%=stock.id%>" wholesale-item-editor>
-              <input type="number" ng-model="item.displayQuantity" ng-change="updateQuantity()" class="quantity">
+              <input type="number" ng-model="item.displayQuantity" ng-change="updateQuantity()" class="quantity input-no-spinner">
               <div class="button-row">
                 <div class="button" ng-click="changeQuantity(-10)">-10</div><!--
             ---><div class="button" ng-click="changeQuantity(-1)">-</div><!--
