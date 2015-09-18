@@ -1,5 +1,8 @@
 class Kingdom < ActiveRecord::Base
-  has_many :products, dependent: :destroy
+  # ASSUMPTIONS
+  ## Kingdoms are never deleted
   
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  has_many :products
+  
+  validates :name, { presence: true, uniqueness: { case_sensitive: false } }
 end

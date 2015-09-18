@@ -1,12 +1,15 @@
 class VariationNotEmpty < Exception; end
 
 class Variation < ActiveRecord::Base
-  has_many :variants
   belongs_to :product
+  has_many :variants # TODO: Destroy in Stockhausen
+  has_many :configuration_parts # TODO: Destroy in Stockhausen
+  has_many :configurations, through: :configuration_parts # TODO: Destroy in Stockhausen
   
-  validates :name, :product, presence: true
-  validates :level, numericality: { only_integer: true }
+  validates :name, :product, { presence: true }
+  validates :level, { numericality: { only_integer: true } }
   
+  # TODO: Check:
   before_destroy :ensure_safe_destroy
   
   def default_variant

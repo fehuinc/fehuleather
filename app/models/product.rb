@@ -1,13 +1,14 @@
 class Product < ActiveRecord::Base
-  has_many :infos, dependent: :delete_all
-  has_many :stocks, dependent: :delete_all
-  has_many :variations # Destroyed by ensure_safe_destroy
   belongs_to :kingdom
+  has_many :infos, dependent: :delete_all
+  has_many :variations # TODO: Destroy in Stockhausen
+  has_many :configurations # TODO: Create/Destroy in Stockhausen
   
-  validates :kingdom, :name, presence: true
-  validates :cents_retail, :cents_wholesale, :ypos, numericality: { only_integer: true }
-  validates :name, uniqueness: { case_sensitive: false }
+  validates :kingdom, :name, { presence: true }
+  validates :cents_retail, :cents_wholesale, :totem_order, :ypos, { numericality: { only_integer: true } }
+  validates :name, { uniqueness: { case_sensitive: false } }
   
+  # TODO: Check:
   before_destroy :ensure_safe_destroy
   
   def price_retail

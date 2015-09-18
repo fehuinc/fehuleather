@@ -1,11 +1,12 @@
 class Variant < ActiveRecord::Base
-  has_many :variant_stock_joins # Destroyed by ensure_safe_destroy
-  has_many :stocks, through: :variant_stock_joins
   belongs_to :variation
+  has_many :configuration_parts # TODO: Create/Destroy in Stockhausen
+  has_many :configurations, through: :configuration_parts # TODO: Create/Destroy in Stockhausen
   
-  validates :name, :variation, presence: true
-  validates :cents_retail, :cents_wholesale, :sort_order, numericality: { only_integer: true }
+  validates :name, :variation, { presence: true }
+  validates :cents_retail, :cents_wholesale, :sort_order, { numericality: { only_integer: true } }
   
+  # TODO: Check these:
   after_create :generate_stocks
   before_destroy :ensure_safe_destroy
   
