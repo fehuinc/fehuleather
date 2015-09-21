@@ -1,13 +1,14 @@
 class Variant < ActiveRecord::Base
   belongs_to :variation
-  has_many :configuration_parts # TODO: Create/Destroy in Stockhausen
-  has_many :configurations, through: :configuration_parts # TODO: Create/Destroy in Stockhausen
+  
+  has_many :parts, class_name: ConfigurationPart # TODO: Create/Destroy in Stockhausen
+  has_many :configurations, through: :parts # TODO: Create/Destroy in Stockhausen
   
   validates :name, :variation, { presence: true }
   validates :cents_retail, :cents_wholesale, :sort_order, { numericality: { only_integer: true } }
   
   # TODO: Check these:
-  after_create :generate_stocks
+  after_create :generate_configurations
   before_destroy :ensure_safe_destroy
   
   def price_retail
@@ -27,84 +28,84 @@ class Variant < ActiveRecord::Base
   end
   
   def ensure_safe_destroy
-    # If the new variant is the last variant in a variation, we modify all existing stocks
-    # to not include the dying variant. Otherwise, we destroy the stocks.
+    # If the new variant is the last variant in a variation, we modify all existing configurations
+    # to not include the dying variant. Otherwise, we destroy the configurations.
     
     variation = self.variation
     product = variation.product
     
-    # If there's just 1 variant, carefully detach it from existing stocks, but leave the stocks alive
+    # If there's just 1 variant, carefully detach it from existing configurations, but leave the configurations alive
     if variation.variants.length == 1
-      variant_stock_joins.delete_all
+      variant_configuration_joins.delete_all
     else
-      variant_stock_joins.destroy_all
+      variant_configuration_joins.destroy_all
     end
 
     return true
   end
   
-  def generate_stocks
+  def generate_configurations
     
     # TEMPORARY HACK
-    self.variation.product.stocks.each do |s|
-      s.variant_stock_joins.delete_all
+    variation.product.configurations.each do |configuration|
+      configuration.parts.delete_all
     end
-    self.variation.product.stocks.delete_all
+    variation.product.configurations.delete_all
     
-    Stockhausen.generate(self.variation.product)
+    Stockhausen.generate(variation.product)
   end
   
 #
-#   def generate_stocks
-#     # If the new variant is the first variant in a new variation, we modify all existing stocks
-#     # to include the new variant. Otherwise, we create a new set of stocks based on the intersection of all paths.
+#   def generate_configurations
+#     # If the new variant is the first variant in a new variation, we modify all existing configurations
+#     # to include the new variant. Otherwise, we create a new set of configurations based on the intersection of all paths.
 #
 #     variation = self.variation
 #     product = variation.product
 #
-#     # There's only 1 variation — just create a new stock
+#     # There's only 1 variation — just create a new configuration
 #     if product.variations.length == 1
-#       create_new_stock [self], product
+#       create_new_configuration [self], product
 #
 #     # There's more than 1 variation, but this is the first variant in a new variation
 #     elsif variation.variants.length == 1
-#       add_variant_to_existing_stocks product
+#       add_variant_to_existing_configurations product
 #
 #     # There's multiple variations, and multiple variants in this variation
 #     else
-#       create_new_stocks_with_variant product
+#       create_new_configurations_with_variant product
 #
 #     end
 #   end
 #
 # private
 #
-#   def add_variant_to_existing_stocks(product)
-#     # Add this new variant to every existing stock
-#     product.stocks.each do |stock|
-#       stock.variants << self
+#   def add_variant_to_existing_configurations(product)
+#     # Add this new variant to every existing configuration
+#     product.configurations.each do |configuration|
+#       configuration.variants << self
 #     end
 #   end
 #
-#   def create_new_stocks_with_variant(product)
+#   def create_new_configurations_with_variant(product)
 #     variation_stack = product.variations.select { |v| v != self.variation }
 #     variant_set = [self]
-#     recursively_create_stocks variation_stack, variant_set, product
+#     recursively_create_configurations variation_stack, variant_set, product
 #   end
 #
-#   def recursively_create_stocks(variation_stack, variant_set, product)
+#   def recursively_create_configurations(variation_stack, variant_set, product)
 #     if variation_stack.length > 0
 #       variation_stack.first.variants.each do |variant|
-#         recursively_create_stocks variation_stack.drop(1), variant_set + [variant], product
+#         recursively_create_configurations variation_stack.drop(1), variant_set + [variant], product
 #       end
 #     else
-#       create_new_stock variant_set, product
+#       create_new_configuration variant_set, product
 #     end
 #   end
 #
-#   def create_new_stock(variant_set, product)
-#     stock = product.stocks.create!
-#     stock.variants = variant_set
-#     stock.save!
+#   def create_new_configuration(variant_set, product)
+#     configuration = product.configurations.create!
+#     configuration.variants = variant_set
+#     configuration.save!
 #   end
 end

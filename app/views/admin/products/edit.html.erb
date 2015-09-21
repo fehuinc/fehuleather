@@ -5,7 +5,7 @@
 </div>
 
 <section>
-  <h2>Stocks</h2>
+  <h2>Stock</h2>
   <table class="stock">
     <thead>
       <td><a>Quantity</a></td>
@@ -14,13 +14,13 @@
       <% end %>
     </thead>
     <tbody>
-      <% @stocks.each do |stock| %>
+      <% @configurations.each do |configuration| %>
         <tr>
-          <td stock-quantity path="<%= admin_update_stock_path(stock) %>">
-            <input type="number" value="<%= stock.quantity %>" class="quantity">
+          <td stock-quantity path="<%= admin_update_configuration_path(configuration) %>">
+            <input type="number" value="<%= configuration.stock %>" class="quantity">
             <input type="submit" value="💩" class="save">
           </td>
-          <% stock.variants.joins(:variation).order("variations.level").each do |variant| %>
+          <% configuration.variants.joins(:variation).order("variations.level").each do |variant| %>
             <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'>
               <%= variant.name %>
             </td>

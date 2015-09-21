@@ -3,9 +3,9 @@ class Configuration < ActiveRecord::Base
   ## Created/Destroyed by Stockhausen
 
   belongs_to :product
-  has_many :configuration_parts # TODO: Create/Destroy in Stockhausen
-  has_many :variants, through: :configuration_parts
-  has_many :variations, through: :configuration_parts
+  has_many :parts, class_name: ConfigurationPart # TODO: Create/Destroy in Stockhausen
+  has_many :variants, through: :parts
+  has_many :variations, through: :parts
   
   # TODO: Stockhausen should set each OrderItem's configuration to null when deleting
   # Then, on checkout, we check all OrderItems to make sure their configuration still exists.

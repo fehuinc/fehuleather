@@ -4,9 +4,11 @@ class Stockhausen
     variant_sets = generate_variant_sets(variations)
     if variant_sets.first.any?
       variant_sets.each do |variant_set|
-        stock = product.stocks.create!
-        stock.variants = variant_set
-        stock.save!
+        configuration = product.configurations.create!
+        variant_set.each do |variant|
+          configuration.parts.create! variant: variant, variation: variant.variation
+        end
+        configuration.save!
       end
     end
   end

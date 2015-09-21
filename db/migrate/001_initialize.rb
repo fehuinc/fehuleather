@@ -50,7 +50,7 @@ class Initialize < ActiveRecord::Migration
       t.integer :stock,            null: false, default: 0
     end
     
-    create_table :configuration_part do |t|
+    create_table :configuration_parts do |t|
       t.references :configuration, required: true, index: true
       t.references :variant,       required: true, index: true
       t.references :variation,     required: true, index: true

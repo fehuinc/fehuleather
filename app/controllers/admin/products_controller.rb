@@ -23,7 +23,7 @@ class Admin::ProductsController < ApplicationController
   
   def edit
     @product = Product.find params[:id]
-    @stocks = @product.stocks
+    @configurations = @product.configurations
   end
   
   def update
@@ -41,9 +41,9 @@ class Admin::ProductsController < ApplicationController
   end
   
   def update_stock
-    stock = Stock.find params[:id]
-    stock.quantity = params[:quantity]
-    success = stock.save
+    configuration = Configuration.find params[:id]
+    configuration.stock = params[:quantity]
+    success = configuration.save
     render json: success
   end
   

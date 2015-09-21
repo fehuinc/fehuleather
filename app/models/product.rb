@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :kingdom
-  has_many :infos, dependent: :delete_all
+  has_many :infos, class_name: ProductInfo, dependent: :delete_all
   has_many :variations # TODO: Destroy in Stockhausen
   has_many :configurations # TODO: Create/Destroy in Stockhausen
   
@@ -10,6 +10,8 @@ class Product < ActiveRecord::Base
   
   # TODO: Check:
   before_destroy :ensure_safe_destroy
+  
+  scope :totem_products, -> { includes :configurations, :infos, variations: [:variants] }
   
   def price_retail
     cents_retail.to_d / 100
@@ -35,11 +37,11 @@ class Product < ActiveRecord::Base
   def ensure_safe_destroy
     # Variations need to have 0 or 1 variants before they can be destroyed, so we gotta kill 'um manually.
     
-    # Kill all variations, variants, and variant_stock_joins
+    # Kill all variations, variants, and parts
     self.variations.each do |variation|
       # variation.variants.destroy_all
       variation.variants.each do |variant|
-        variant.variant_stock_joins.delete_all
+        variant.parts.delete_all
       end
       variation.variants.delete_all
     end

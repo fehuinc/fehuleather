@@ -13,15 +13,15 @@
 
 ActiveRecord::Schema.define(version: 1) do
 
-  create_table "configuration_part", force: :cascade do |t|
+  create_table "configuration_parts", force: :cascade do |t|
     t.integer "configuration_id"
     t.integer "variant_id"
     t.integer "variation_id"
   end
 
-  add_index "configuration_part", ["configuration_id"], name: "index_configuration_part_on_configuration_id"
-  add_index "configuration_part", ["variant_id"], name: "index_configuration_part_on_variant_id"
-  add_index "configuration_part", ["variation_id"], name: "index_configuration_part_on_variation_id"
+  add_index "configuration_parts", ["configuration_id"], name: "index_configuration_parts_on_configuration_id"
+  add_index "configuration_parts", ["variant_id"], name: "index_configuration_parts_on_variant_id"
+  add_index "configuration_parts", ["variation_id"], name: "index_configuration_parts_on_variation_id"
 
   create_table "configurations", force: :cascade do |t|
     t.integer "product_id"

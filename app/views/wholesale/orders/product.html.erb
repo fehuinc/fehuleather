@@ -1,6 +1,6 @@
 <div class="order-preview" sticky="10">
   <h2>In Your Order</h2>
-  <%= "Nothing yet..." if @merchant.current_order.stocks.count == 0 %>
+  <%= "Nothing yet..." if @merchant.current_order.configurations.count == 0 %>
   
   <div ng-repeat="(id, item) in currentOrder">
     {{id}} - {{item.quantity}}
@@ -33,13 +33,13 @@
       <% end %>
     </thead>
     <tbody>
-      <% @product.stocks.each do |stock| %>
+      <% @product.configurations.each do |configuration| %>
         <tr>
           <td>
-            <img class="preview" src="<%=stock.image('wholesale')%>">
+            <img class="preview" src="<%=configuration.image('wholesale')%>">
           </td>
           <td>
-            <div class="quantity" ng-init="item.id=<%=stock.id%>" wholesale-item-editor>
+            <div class="quantity" ng-init="item.id=<%=configuration.id%>" wholesale-item-editor>
               <input type="number" ng-model="item.displayQuantity" ng-change="updateQuantity()" class="quantity input-no-spinner">
               <div class="button-row">
                 <div class="button" ng-click="changeQuantity(-10)">-10</div><!--
@@ -49,7 +49,7 @@
               </div>
             </div>
           </td>
-          <% stock.variants.joins(:variation).order("variations.level").each do |variant| %>
+          <% configuration.variants.joins(:variation).order("variations.level").each do |variant| %>
             <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'>
               <%= variant.name %>
             </td>
