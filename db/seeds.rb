@@ -1,6 +1,24 @@
 # RINGS ###########################################################################################
 rings = Kingdom.create! name: "Ring"
 
+# Gold Ring ######################################
+gold_ring = rings.products.create! name: "Gold Ring", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
+
+gold_ring.infos.create! name: "Tips", content: "Gold Ring Tips Content"
+gold_ring.infos.create! name: "Sizing", content: "Gold Ring Sizing Content"
+gold_ring.infos.create! name: "Gifting", content: "Gold Ring Gifting Content"
+gold_ring.infos.create! name: "Uniqueness", content: "Gold Ring Uniqueness Content"
+
+gold_ring_leather_color = gold_ring.variations.create! name: "Leather Color", level: 0
+gold_ring_leather_color.variants.create! name: "Black", show_retail: true, show_wholesale: true, description: "Black like the night."
+
+gold_ring_size = gold_ring.variations.create! name: "Size", level: 1
+gold_ring_size.variants.create! name: "Tiny", show_retail: true, show_wholesale: true
+gold_ring_size.variants.create! name: "Small", show_retail: true, show_wholesale: true
+gold_ring_size.variants.create! name: "Medium", show_retail: true, show_wholesale: true
+gold_ring_size.variants.create! name: "Large", show_retail: true, show_wholesale: true
+
+
 # Raw Ring ######################################
 raw_ring = rings.products.create! name: "Raw Ring", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
 
@@ -62,6 +80,9 @@ wrap_cuff_color.variants.create! name: "Natural1", show_retail: true, show_whole
 wrap_cuff_color.variants.create! name: "Natural2", show_retail: true, show_wholesale: true, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
 wrap_cuff_color.variants.create! name: "Natural3", show_retail: true, show_wholesale: true, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
 wrap_cuff_color.variants.create! name: "Natural4", show_retail: true, show_wholesale: true, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
+wrap_cuff_color.variants.create! name: "Natural5", show_retail: true, show_wholesale: true, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
+wrap_cuff_color.variants.create! name: "Natural6", show_retail: true, show_wholesale: true, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
+wrap_cuff_color.variants.create! name: "Natural7", show_retail: true, show_wholesale: true, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
 
 wrap_cuff_size = wrap_cuff.variations.create! name: "Size", level: 1, has_image: false
 wrap_cuff_size.variants.create! name: "Small", show_retail: true, show_wholesale: true
