@@ -34,7 +34,7 @@ angular.module "WholesaleItemEditor", []
     $scope.updateQuantity = ()->
       $scope.item.quantity = Math.max(0, $scope.item.quantity)
       animate()
-      CurrentOrder.setQuantity($scope.item.id, $scope.item.quantity)
+      CurrentOrder.updateItem($scope.item)
     
     $scope.changeQuantity = (delta)->
       $scope.item.quantity += delta

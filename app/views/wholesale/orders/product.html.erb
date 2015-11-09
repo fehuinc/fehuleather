@@ -3,6 +3,7 @@
   <%= "Nothing yet..." if @merchant.current_order.order_items.count == 0 %>
   
   <div ng-repeat="(id, item) in currentOrder">
+    <img class="preview-img" ng-src="{{item.img}}">
     {{id}} - {{item.quantity}}
   </div>
   
@@ -36,16 +37,20 @@
       <% @product.configurations.each do |configuration| %>
         <tr>
           <td>
-            <img class="preview" src="<%=configuration.image('wholesale')%>">
+            <img class="preview-img" src="<%=configuration.image('wholesale')%>">
           </td>
           <td>
-            <div class="quantity" ng-init="item.id=<%=configuration.id%>" wholesale-item-editor>
-              <input type="number" ng-model="item.displayQuantity" ng-change="updateQuantity()" class="quantity input-no-spinner">
+            <div class="quantity" wholesale-item-editor>
+              <span ng-init="item.id=<%=configuration.id%>"></span>
+              <span ng-init="item.img='<%=configuration.image('wholesale')%>'"></span>
               <div class="button-row">
                 <div class="button" ng-click="changeQuantity(-10)">-10</div><!--
             ---><div class="button" ng-click="changeQuantity(-1)">-</div><!--
             ---><div class="button" ng-click="changeQuantity(1)">+</div><!--
             ---><div class="button" ng-click="changeQuantity(10)">+10</div>
+              </div>
+              <div class="input-row">
+                <input type="number" ng-model="item.displayQuantity" ng-change="updateQuantity()" class="quantity input-no-spinner">
               </div>
             </div>
           </td>

@@ -4,6 +4,5 @@ angular.module "CurrentOrder", []
   $rootScope.currentOrder = {}
   
   CurrentOrder =
-    setQuantity: (id, quantity)->
-      $rootScope.currentOrder[id] =
-        quantity: quantity
+    updateItem: (item)->
+      $rootScope.currentOrder[item.id] = item
