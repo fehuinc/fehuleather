@@ -9,7 +9,7 @@ gold_ring.infos.create! name: "Sizing", content: "Gold Ring Sizing Content"
 gold_ring.infos.create! name: "Gifting", content: "Gold Ring Gifting Content"
 gold_ring.infos.create! name: "Uniqueness", content: "Gold Ring Uniqueness Content"
 
-gold_ring_leather_color = gold_ring.variations.create! name: "Leather Color", level: 0
+gold_ring_leather_color = gold_ring.variations.create! name: "Leather Color", level: 0, has_image: true
 gold_ring_leather_color.variants.create! name: "Gold Stripes", show_retail: true, show_wholesale: true, description: "Black like the night."
 gold_ring_leather_color.variants.create! name: "Gold Spots", show_retail: true, show_wholesale: true, description: "Black like the night."
 gold_ring_leather_color.variants.create! name: "Silver Spots", show_retail: true, show_wholesale: true, description: "Black like the night."
