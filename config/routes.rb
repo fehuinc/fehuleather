@@ -52,7 +52,7 @@ Rails.application.routes.draw do
         
         get "preview-images/:id" => "products#preview_images", as: "preview_images"
         
-        put "stock/:id" => "products#update_stock", as: "update_stock"
+        put "configuration/:id" => "products#update_configuration", as: "update_configuration"
         
         resources :kingdoms, except: [:show] do
           resources :products, only: [:new, :create]
