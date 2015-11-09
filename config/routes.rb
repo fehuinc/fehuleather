@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get "logout" => "merchants#logout", as: "logout_merchant"
     
     # Wholesale — not logged in
-    scope constraints: lambda { |request| request.session[:merchant_id].nil? } do
+    scope constraints: lambda { |request| request.session[:merchant_id].nil? || Merchant.find_by_id(request.session[:merchant_id]).nil? } do
       get "wholesale" => "wholesale#login"
       post "wholesale" => "wholesale#login"
       get "merchant" => "merchants#new", as: "new_merchant"
@@ -29,13 +29,13 @@ Rails.application.routes.draw do
     end
     
     # Wholesale — logged in
-    scope constraints: lambda { |request| request.session[:merchant_id].present? } do
+    scope constraints: lambda { |request| !request.session[:merchant_id].nil? && !Merchant.find_by_id(request.session[:merchant_id]).nil? } do
       get "wholesale" => "wholesale#index"
       post "wholesale" => "wholesale#index"
       get "merchant" => "merchants#edit", as: "edit_merchant"
       patch "merchant" => "merchants#update"
       namespace :wholesale do
-        resource :order, only: [:edit, :update]
+        resource :order, only: [:new, :edit, :update]
         get "order/product/:id" => "orders#product"
       end
     end

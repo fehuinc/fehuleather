@@ -52,9 +52,9 @@ class Initialize < ActiveRecord::Migration
       t.references :variant,         required: true, index: true
       t.references :variation,       required: true, index: true
     end
-        
+    
     create_table :merchants do |t|
-      # TODO: Add a foreign key for the current order
+      t.integer :current_order_id
       t.text :email,	               null: false
       t.text :phone_number,          null: false
       t.text :store_name,            null: false

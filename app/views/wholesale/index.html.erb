@@ -1,7 +1,11 @@
 <h1 class="page-title">Wholesale</h1>
 
 <section class="actions">
-  <a href="/wholesale/order/edit">Design a Wholesale Order</a>
+  <% if @merchant.current_order.nil? %>
+    <a href="/wholesale/order/new">New Order</a>
+  <% else %>
+    <a href="/wholesale/order/edit">Edit Current Order</a>
+  <% end %>
   <a href="/wholesale/order/repeat">Quick Re-Order</a>
   <a href="/wholesale/orders">View Past Orders</a>
 </section>

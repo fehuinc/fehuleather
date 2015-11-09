@@ -9,4 +9,5 @@ class Order < ActiveRecord::Base
   
   # TODO: What do I do to validate the enum?? Something like.... (?)
   # validates :status, { presence: true, numericality: { only_integer: true } }
+  
 end
