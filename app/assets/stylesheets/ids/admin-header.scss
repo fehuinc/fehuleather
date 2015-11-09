@@ -9,7 +9,6 @@ $row-height: 3.3em;
   margin: 0 auto;
   padding: 0 1em;
   letter-spacing: .15em;
-  text-transform: uppercase;
   background: $color;
   border-bottom: 6px solid darken($color, 4%);
   
@@ -23,7 +22,7 @@ $row-height: 3.3em;
   a {
     display: inline-block;
     padding: 0 1em;
-    font-size: 1.05em;
+    font-size: 1.1em;
     text-decoration: none;
     
     &:hover { text-decoration: underline; }

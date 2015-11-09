@@ -44,7 +44,6 @@ header {
   .bricks {
     text-align: center;
     letter-spacing: .15em;
-    text-transform: uppercase;
   }
 
   row {
@@ -83,14 +82,10 @@ header {
     }
     
     a {
-      font-size: 1.05em;
+      font-size: 1.1em;
       color: rgba(#543, 0.7);
-      
-      &:hover {
-        text-decoration: underline;
-      }
-      
-      @media (max-width: 400px) { font-size: 1em; }
+      &:hover { text-decoration: underline; }
+      @media (max-width: 500px) { font-size: 1em; }
     }
   }
   
