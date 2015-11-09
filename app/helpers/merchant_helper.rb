@@ -1,6 +1,6 @@
 module MerchantHelper
   def merchant?
-    session[:merchant_id].present?
+    session[:merchant_id].present? and Merchant.find_by_id(session[:merchant_id]).present?
   end
   
   def merchant_name

@@ -1,7 +1,8 @@
 class WholesaleController < ApplicationController
   
   def index
-    @merchant = Merchant.find(session[:merchant_id])
+    @merchant = Merchant.find_by_id(session[:merchant_id])
+    redirect_to logout_merchant_path if @merchant.nil?
   end
   
   def login

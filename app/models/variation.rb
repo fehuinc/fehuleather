@@ -13,7 +13,11 @@ class Variation < ActiveRecord::Base
   before_destroy :ensure_safe_destroy
   
   def default_variant
-    variants.where(default: true).first || variants.first
+    if default_variant_id.present?
+      variants.find(default_variant_id) || variants.first
+    else
+      variants.first
+    end
   end
   
   def ensure_safe_destroy

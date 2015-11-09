@@ -11,6 +11,18 @@ class Variant < ActiveRecord::Base
   after_create :generate_configurations
   before_destroy :ensure_safe_destroy
   
+  def default
+    variation.product.default_variant_id == self.id
+  end
+  
+  def default=(isDefault)
+    if isDefault
+      variation.product.default_variant_id = self.id
+    elsif self.default
+      variation.product.default_variant_id = nil
+    end
+  end
+  
   def price_retail
     cents_retail.to_d / 100
   end

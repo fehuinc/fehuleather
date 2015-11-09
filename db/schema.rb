@@ -95,7 +95,6 @@ ActiveRecord::Schema.define(version: 1) do
     t.integer "variation_id"
     t.text    "name",                            null: false
     t.text    "description"
-    t.boolean "default",         default: false, null: false
     t.boolean "show_retail",     default: false, null: false
     t.boolean "show_wholesale",  default: false, null: false
     t.integer "cents_retail",    default: 0,     null: false
@@ -107,9 +106,10 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "variations", force: :cascade do |t|
     t.integer "product_id"
-    t.text    "name",                       null: false
-    t.boolean "has_image",  default: false, null: false
-    t.integer "level",      default: 0,     null: false
+    t.integer "default_variant_id"
+    t.text    "name",                               null: false
+    t.boolean "has_image",          default: false, null: false
+    t.integer "level",              default: 0,     null: false
   end
 
   add_index "variations", ["product_id"], name: "index_variations_on_product_id"
