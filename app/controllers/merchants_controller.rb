@@ -2,11 +2,9 @@ class MerchantsController < ApplicationController
   
   def logout
     merchant = Merchant.find_by_id(session[:merchant_id])
-    if merchant.present?
-      session[:merchant_email] = merchant.email # Make future login easier
-      session[:merchant_id] = nil
-    end
-    redirect_to :root
+    session[:merchant_email] = merchant.email if merchant.present? # Make future login easier
+    session[:merchant_id] = nil
+    redirect_to :wholesale
   end
   
 

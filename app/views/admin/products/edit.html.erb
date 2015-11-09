@@ -47,16 +47,17 @@
         <div class="variant hide-edit">
           <div class="status <%= 'un' if !variant.show_retail %>">R</div><!--
       ---><div class="status <%= 'un' if !variant.show_wholesale %>">W</div><!--
-          <% if index == 0 %>
+      ---><% if index == 0 %><!--
         ---><div class="status <%= 'un' if !variant.description %>">D</div><!--
-          <% end %>
-          <% if variant.price_retail > 0 or variant.price_wholesale > 0 %>
-        ---><div class="status un">$</div>
-          <% end %>
+      ---><% end %><!---
+      ---><% if variant.price_retail > 0 or variant.price_wholesale > 0 %><!--
+        ---><div class="status un">$</div><!--
+      ---><% end %>
           
           <!-- This comment closes stray comments above -->
-          
-          <%= variant.name %> <%= link_to "Edit", edit_admin_variant_path(variant), class: "edit" %>
+          <span class="<%= 'default' if variant.default %>">
+            <%= variant.name %> <%= link_to "Edit", edit_admin_variant_path(variant), class: "edit" %>
+          </span>
         </div>
       <% end %>
       <div class="new-variant">

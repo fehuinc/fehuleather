@@ -12,14 +12,20 @@ class Variant < ActiveRecord::Base
   before_destroy :ensure_safe_destroy
   
   def default
-    variation.product.default_variant_id == self.id
+    if variation.default_variant_id.present?
+      variation.default_variant_id == self.id
+    else
+      variation.variants.first.id == self.id
+    end
   end
   
   def default=(isDefault)
     if isDefault
-      variation.product.default_variant_id = self.id
+      variation.default_variant_id = self.id
+      variation.save!
     elsif self.default
-      variation.product.default_variant_id = nil
+      variation.default_variant_id = nil
+      variation.save!
     end
   end
   
