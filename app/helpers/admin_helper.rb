@@ -1,4 +1,4 @@
-module AccessHelper
+module AdminHelper
   def admin?
     Access.admin?(session)
   end
