@@ -1,0 +1,7 @@
+[toggler-target] {
+  visibility: hidden;
+  
+  &[toggler-ready] {
+    visibility: visible;
+  }
+}

@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
   scope format: false do
     
-    # ANGULAR ###################################################
-    root "angular#index"
-    get "about" => "angular#index"
-    get "checkout" => "angular#index"
-    get "events" => "angular#index"
-    get "locations" => "angular#index"
-    get "payment" => "angular#index"
+    # Need to reimplement these
+    # get "checkout" => "angular#index"
+    # get "payment" => "angular#index"
     
-    
-    # RAILS #####################################################
+    # Static
+    root "static#home"
+    get "about" => "static#about"
+    get "events" => "static#events"
+    get "locations" => "static#locations"
     
     # Angular API endpoints
     namespace :api do
@@ -37,7 +36,7 @@ Rails.application.routes.draw do
       namespace :wholesale do
         resource :order, only: [:new, :edit, :update] do
           get "product/:id" => "orders#edit_product", as: "product"
-          patch "product/:id" => "orders#update_product", format: false
+          patch "product/:id" => "orders#update_product"
           get "checkout" => "orders#checkout"
         end
       end
@@ -78,7 +77,7 @@ Rails.application.routes.draw do
     
     # Errors
     get "err" => "static#err"
-    get "*slug" => "static#err", format: false, as: "fake_err"
+    get "*slug" => "static#err", as: "fake_err"
     
   end
 end

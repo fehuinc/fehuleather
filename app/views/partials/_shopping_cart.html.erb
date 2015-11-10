@@ -1,0 +1,20 @@
+<div class="icon" shopping-cart-icon><%= image_tag "bag.svg" %></div>
+
+<div class="contents" hidden>
+  <h3>In The Bag</h3>
+  <div class="items" shopping-cart-items>
+    <div class="item">
+      <div class="name">{{item.choiceName}}</div>
+      <div class="quantity"><input type="number" min="0" max="99"></div>
+      <div class="price">${{item.quantity * item.cents / 100}}</div>
+      <div class="remove"><div>x</div></div>
+    </div>
+  </div>
+  <div>
+    Nothing... Yet ;)
+    <br>
+  </div>
+  <div class="perspective">
+    <a class="button" href="/checkout">Checkout Time</a>
+  </div>
+</div>

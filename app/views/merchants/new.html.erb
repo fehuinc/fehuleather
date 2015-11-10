@@ -46,7 +46,7 @@
   <%= f.hidden_field(:email) %>
     
   <div class="perspective">
-    <%= f.submit "Continue" %>
+    <%= f.submit "Continue", data: { disable_with: 'Submitting...' } %>
   </div>
 
 <% end %>
