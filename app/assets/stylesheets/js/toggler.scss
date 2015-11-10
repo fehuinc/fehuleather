@@ -1,3 +1,6 @@
+// We use visibility here, so that we don't cobble the display value.
+// JQuery is smart enough to capture the current display and restore it.
+
 [toggler-target] {
   visibility: hidden;
   
