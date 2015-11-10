@@ -5,7 +5,6 @@ gem 'rails', '~> 4.2.4'
 
 # SERVER
 gem 'unicorn'
-gem 'rack-zippy'
 # gem 'jbuilder', '~> 2.0' # JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 
 # AUTH
