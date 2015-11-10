@@ -44,6 +44,7 @@ specimens {
         cursor: pointer;
         padding: 0 $pad;
         vertical-align: middle;
+        -webkit-tap-highlight-color: transparent;
         
         div {
           display: block;
