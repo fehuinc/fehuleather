@@ -1,0 +1,24 @@
+body.orders {
+  .order-preview, sticky-placeholder {
+    display: inline-block;
+    min-width: 15em;
+    margin-right: 1em;
+    vertical-align: top;
+    text-align: left;
+  }
+
+  .order-preview {
+    .name {
+      font-weight: bold;
+    }
+    
+    .details {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  
+  .preview-img {
+    width: 5em;
+  }
+}

@@ -35,8 +35,10 @@ Rails.application.routes.draw do
       get "merchant" => "merchants#edit", as: "edit_merchant"
       patch "merchant" => "merchants#update"
       namespace :wholesale do
-        resource :order, only: [:new, :edit, :update]
-        get "order/product/:id" => "orders#product"
+        resource :order, only: [:new, :edit, :update] do
+          get "product/:id" => "orders#edit_product", as: "product"
+          patch "product/:id" => "orders#update_product", format: false
+        end
       end
     end
     

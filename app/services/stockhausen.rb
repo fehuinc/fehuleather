@@ -13,6 +13,8 @@ class Stockhausen
     end
   end
   
+private
+  
   def self.generate_variant_sets(variations, variant_stack = [], variant_sets = [])
     if variations.count > 0
       if variations.first.variants.count > 0

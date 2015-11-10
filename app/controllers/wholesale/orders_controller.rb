@@ -14,9 +14,25 @@ class Wholesale::OrdersController < ApplicationController
     @kingdoms = Kingdom.all.order(:name)
   end
   
-  def product
+  def edit_product
     @merchant = Merchant.find(session[:merchant_id])
     @product = Product.find(params[:id])
+    @order = @merchant.current_order
   end
   
+  def update_product
+    merchant = Merchant.find(session[:merchant_id])
+    order = merchant.current_order
+    configurations = params[:configurations]
+    result = order.update_items configurations
+    render json: result
+  end
+  
+  
+private
+  
+  def product_params
+    params.require(:order)
+  end
+
 end

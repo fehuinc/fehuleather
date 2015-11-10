@@ -1,0 +1,55 @@
+<div class="back" sticky="-1">
+  <a href="/wholesale/order/edit">&lt; Other Products</a>
+</div>
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="20 35 160 150">
+  <defs>
+    <path id="svg-circle" d="M25, 100 a75,75 0 1,0 150,0 a75,75 0 1,0 -150,0"/>
+    <clipPath id="clip-path"><path d="M40, 100 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"/></clipPath>
+  </defs>
+  <image x="40" y="40" width="120" height="120" xlink:href="<%=@product.image('totem')%>" clip-path='url(#clip-path)'/>
+  <text x="0" y="0" fill="#456" fill-opacity="1" transform="rotate(<%=-90 + @product.name.length*3%>, 100, 100)">
+    <textPath xlink:href="#svg-circle"><%= @product.name.pluralize %></textPath>
+  </text>
+</svg>
+
+<%= render "wholesale/orders/order_preview" %>
+
+<div class="order-builder" product-id="<%=@product.id%>">
+  <table>
+    <thead>
+      <td>Preview</td>
+      <td><a>Quantity</a></td>
+      <% @product.variations.order(:level).each_with_index do |variation, index| %>
+        <td <%= "default=true" if index == 0 %>><a><%= variation.name %></a></td>
+      <% end %>
+    </thead>
+    <tbody>
+      <% @product.configurations.each do |configuration| %>
+        <tr>
+          <td>
+            <img class="preview-img" src="<%=configuration.image('wholesale')%>">
+          </td>
+          <td>
+            <div class="quantity">
+              <div class="button-row">
+                <div class="button" delta="-10">-10</div><!--
+            ---><div class="button" delta="-1">-</div><!--
+            ---><div class="button" delta="1">+</div><!--
+            ---><div class="button" delta="10">+10</div>
+              </div>
+              <div class="input-row">
+                <input type="number" class="quantity input-no-spinner" value="0" cid="<%=configuration.id%>">
+              </div>
+            </div>
+          </td>
+          <% configuration.variants.joins(:variation).order("variations.level").each do |variant| %>
+            <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'>
+              <%= variant.name %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

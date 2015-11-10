@@ -66,11 +66,11 @@ class Variant < ActiveRecord::Base
     
     # TEMPORARY HACK
     variation.product.configurations.each do |configuration|
-      configuration.parts.delete_all
+      configuration.parts.delete_all # This seems to leave garbage
     end
-    variation.product.configurations.delete_all
+    variation.product.configurations.delete_all # This seems to leave garbage
     
-    Stockhausen.generate(variation.product)
+    Stockhausen.generate variation.product
   end
   
 #

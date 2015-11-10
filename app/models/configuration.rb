@@ -15,10 +15,26 @@ class Configuration < ActiveRecord::Base
   validates :product, { presence: true }
   validates :stock, { numericality: { only_integer: true } }
   
+  def name
+    variants.map { |variant| variant.name }.reverse.append(product.name).join(" ")
+  end
+  
   def image(type)
     variantNames = variants.map do |variant|
       variant.name if variant.variation.has_image
     end.compact
     return Images.build_path(product.name, variantNames, type)
+  end
+  
+  def price (wholesale = false)
+    if wholesale
+      price = product.price_wholesale
+      variants.all.each { |variant| price += variant.price_wholesale }
+      price.to_i
+    else
+      price = product.price_retail
+      variants.all.each { |variant| price += variant.price_retail }
+      price.to_i
+    end
   end
 end
