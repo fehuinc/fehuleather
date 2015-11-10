@@ -2,12 +2,20 @@ body.orders {
   .order-preview, sticky-placeholder {
     display: inline-block;
     min-width: 15em;
-    margin-right: 1em;
+    margin-left: 1em;
     vertical-align: top;
     text-align: left;
   }
-
+  
   .order-preview {
+    h1 {
+      text-align: left;
+    }
+    
+    .right {
+      float: right;
+    }
+    
     .name {
       font-weight: bold;
     }

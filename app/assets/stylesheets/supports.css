@@ -1,9 +1,9 @@
 @supports (backdrop-filter:blur(10px)) { .orders#product main .order-builder .back {
-  backdrop-filter: blur(10px) saturate(300%);
+  backdrop-filter: brightness(2) saturate(300%) blur(10px);
   background: rgba(255,255,255,0.88);
 }}
 @supports (-webkit-backdrop-filter:blur(10px)) { .orders#product main .order-builder .back {
-  -webkit-backdrop-filter: blur(10px) saturate(300%);
+  -webkit-backdrop-filter: brightness(2) saturate(300%) blur(10px);
   background: rgba(255,255,255,0.88);
 }}
 
@@ -17,10 +17,10 @@
 }}
 
 @supports (backdrop-filter:blur(10px)) { shopping-cart .contents {
-  backdrop-filter: blur(10px) saturate(300%);
-  background: rgba(255,255,255,0.75);
+  backdrop-filter: brightness(2) saturate(300%) blur(10px);
+  background: rgba(255,255,255,0.85);
 }}
 @supports (-webkit-backdrop-filter:blur(10px)) { shopping-cart .contents {
-  -webkit-backdrop-filter: blur(10px) saturate(300%);
-  background: rgba(255,255,255,0.75);
+  -webkit-backdrop-filter: brightness(2) saturate(300%) blur(10px);
+  background: rgba(255,255,255,0.85);
 }}

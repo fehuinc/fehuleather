@@ -1,5 +1,9 @@
 <div id="merchant-header">
-  <span>Logged in as: <%= link_to merchant_name, :wholesale %></span>
+  <div class="nav">
+    <span><%= link_to merchant_name, :wholesale %></span>
+    <%= link_to "Current Order: #{merchant.current_order.order_items.count} Product".pluralize(merchant.current_order.order_items.count), edit_wholesale_order_path %>
+    <a href="/wholesale/order/edit"></a>
+  </div>
   
   <%= link_to "Log Out", logout_merchant_path, class: "right" %>
 </div>

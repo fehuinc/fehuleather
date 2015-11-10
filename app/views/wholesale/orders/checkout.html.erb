@@ -1,0 +1,74 @@
+<h1>It's Checkout Time</h1>
+
+<div class="info-popup" ng-show="showEmailPopup">
+  We'll send you an email to confirm your order — and that's all. No spam, no nonsense.
+  <div class="close" ng-click="showEmailPopup = false">Close</div>
+</div>
+
+<section>
+  <h3>You're about to order <%= link_to "#{merchant.current_order.order_items.count} Product".pluralize(merchant.current_order.order_items.count), edit_wholesale_order_path %>.</h3>
+</section>
+
+<section>
+  <label>
+    Preferred delivery date (optional)
+    <input type="text"></input>
+  </label>
+</section>
+
+<section>
+  <form novalidate>
+    <h3>Shipping Address</h3>
+    
+    <div class="row two">
+      <label>
+        Name
+        <input type="text">
+      </label>
+      
+      <label>
+        Email <div class="info-prompt">?</div>
+        <input type="email">
+      </label>
+    </div>
+    
+    <hr>
+    
+    <div class="row two">
+      <div class="set">
+        <label>
+          Address
+          <input type="text" placeholder="Line 1">
+        </label>
+        <input type="text" placeholder="Line 2">
+      </div>
+      
+      <label>
+        City
+        <input type="text">
+      </label>
+    </div>
+    
+    <div class="row three">
+      <label class="shrink">
+        Country
+        <select></select>
+      </label>
+
+      <label>
+        State/Province
+        <input type="text" ng-model="shippingAddress.provinceState">
+      </label>
+      
+      <label>
+        ZIP/Postal Code
+        <input type="text" ng-model="shippingAddress.postal">
+      </label>
+    </div>
+  </form>
+</section>
+
+<section>
+  <div class="button">Pay now</div>
+  <div class="button">Pay later</div>
+</section>

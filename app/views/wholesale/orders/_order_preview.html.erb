@@ -1,4 +1,5 @@
 <div class="order-preview" sticky="10">
+  <%= link_to "Checkout >", checkout_wholesale_order_path, class: "right button" %>
   <h1>In Your Order</h1>
   <% if @merchant.current_order.order_items.count == 0 %>
     <div>Nothing yet...</div>
@@ -9,7 +10,7 @@
         <div class="details">
           <div class="name"><%= item.name %></div>
           <div class="price">
-            <%= item.quantity %> @ <%= item.price.to_s %> = <%= item.quantity * item.price %>
+            <%= item.quantity %> x <%= number_to_currency(item.price) %> = <%= number_to_currency(item.quantity * item.price) %>
           </div>
           <div class="actions">
             <%= link_to "Edit", product_wholesale_order_path(item.product) %>

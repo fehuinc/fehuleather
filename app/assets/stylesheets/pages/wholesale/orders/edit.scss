@@ -1,6 +1,6 @@
 $dark: #456;
 $blue: hsl(200, 50%, 95%);
-$yellow: hsl(30, 30%, 98%);
+$yellow: hsl(30, 50%, 90%);
 $dkyellow: hsla(40, 50%, 80%, 0.5);
 
 .orders#edit {
@@ -20,11 +20,15 @@ $dkyellow: hsla(40, 50%, 80%, 0.5);
   
   .order-builder {
     display: inline-block;
-    padding-left: 2em;
+    padding-right: 2em;
     vertical-align: top;
     text-align: left;
-    border-left: .4em solid $yellow;
-
+    border-right: .4em solid $blue;
+    
+    h1 {
+      text-align: left;
+    }
+    
     .kingdom {
       margin-top: 2em;
 

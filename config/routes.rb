@@ -38,6 +38,7 @@ Rails.application.routes.draw do
         resource :order, only: [:new, :edit, :update] do
           get "product/:id" => "orders#edit_product", as: "product"
           patch "product/:id" => "orders#update_product", format: false
+          get "checkout" => "orders#checkout"
         end
       end
     end

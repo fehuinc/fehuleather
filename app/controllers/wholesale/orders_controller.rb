@@ -28,7 +28,10 @@ class Wholesale::OrdersController < ApplicationController
     render json: result
   end
   
-  
+  def checkout
+    
+  end
+
 private
   
   def product_params
