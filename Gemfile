@@ -18,7 +18,6 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'autoprefixer-rails'
-gem 'angular_rails_csrf'
 
 # SERVICE INTEGRATIONS
 # gem 'postmark-rails'
@@ -31,7 +30,7 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'dotenv-rails'
-  gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
 end
 
 group :test do
