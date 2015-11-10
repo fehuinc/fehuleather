@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     # get "payment" => "angular#index"
     
     # Static
-    root "static#home"
+    root "static#totem"
     get "about" => "static#about"
     get "events" => "static#events"
     get "locations" => "static#locations"
