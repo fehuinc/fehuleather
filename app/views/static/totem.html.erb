@@ -1,22 +1,20 @@
+<script>
+  TOTEM_IMAGES = {}
+</script>
+
 <% @products.each do |product| %>
-  <product>
-    <specimens ng-class="{showingProductInfo:showingProductInfo}">
-      <horizontal-slider>
-        <vertical-slider ng-style="getVerticalPositionStyle()"><!--
-          ---><specimen class="A" ng-class="getClass(offset+offsetA-1)" ng-click="clickAction(offset+offsetA-1)">
-                <div bimg="{{getTotemImage(offsetA-1)}}"></div>
-              </specimen><!--
-          ---><specimen class="B" ng-class="getClass(offset+offsetB)" ng-click="clickAction(offset+offsetB)">
-                <div bimg="{{getTotemImage(offsetB)}}"></div>
-              </specimen><!--
-          ---><specimen class="C" ng-class="getClass(offset+offsetC+1)" ng-click="clickAction(offset+offsetC+1)">
-                <div bimg="{{getTotemImage(offsetC+1)}}"></div>
-              </specimen><!--
-        ---></vertical-slider>
-      </horizontal-slider>
-    </specimens>
+  <script>
+    TOTEM_IMAGES["<%=raw product.name%>"] = [
+      "<%= raw product.variations.first.variants.map(&:totem_image).join('","') %>"
+    ]
+  </script>
+  
+  <div class="product">
+    <div class="container">
+      <div class="slider" product-name="<%=raw product.name%>"></div>
+    </div>
     
-    <product-info ng-class="{showingProductInfo:showingProductInfo}">
+    <div class="product-info">
       <div class="wrapper">
         <h1>{{product.name}}</h1>
 
@@ -71,6 +69,6 @@
         
         <a class="closer" ng-click="close()">Close</a>
       </div>
-    </product-info>
-  </product>
+    </div>
+  </div>
 <% end %>

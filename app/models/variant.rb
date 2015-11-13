@@ -11,6 +11,22 @@ class Variant < ActiveRecord::Base
   after_create :generate_configurations
   before_destroy :ensure_safe_destroy
   
+  # WE SHOULD PROBABLY PRE-GENERATE THESE AND CACHE THEM IN THE DB
+  def totem_image
+    totem_variant_names = variation.product.variations.drop(1).map(&:default_variant).select(&:has_image).map(&:name).join("-")
+    
+    path = "#{variation.product.name}/totem/#{name} #{totem_variant_names}".strip
+    path = path.downcase()
+               .gsub('&', 'and')
+               .gsub(/[^0-9a-z\-\/]/, ' ')
+               .gsub(/\s+/, '-')
+    "#{ENV['IMAGEPATH']}#{path}.jpg"
+  end
+
+  def has_image
+    variation.has_image
+  end
+    
   def default
     if variation.default_variant_id.present?
       variation.default_variant_id == self.id

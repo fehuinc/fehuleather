@@ -9,6 +9,8 @@ class Variation < ActiveRecord::Base
   validates :name, :product, { presence: true }
   validates :level, { numericality: { only_integer: true } }
   
+  default_scope { order('level ASC') }
+  
   # TODO: Check:
   before_destroy :ensure_safe_destroy
   
