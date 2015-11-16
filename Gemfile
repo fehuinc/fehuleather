@@ -17,6 +17,7 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'autoprefixer-rails'
+gem 'angular_rails_csrf'
 
 # SERVICE INTEGRATIONS
 # gem 'postmark-rails'
