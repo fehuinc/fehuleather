@@ -13,10 +13,6 @@ class Product < ActiveRecord::Base
   
   scope :totem_products, -> { includes :configurations, :infos, variations: [:variants] }
   
-  def totem_images
-    variations.first.variants.map(&:totem_image)
-  end
-  
   def price_retail
     cents_retail.to_d / 100
   end

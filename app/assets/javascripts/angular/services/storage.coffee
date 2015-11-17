@@ -1,41 +1,41 @@
-# cdStorage
+# storage
 # Key/Value storage that persists on the local machine.
 # Provides both localStorage and sessionStorage
 # Both keys and values may be any data type
 # Supports ONE WAY binding a scope model, with optional initial value and custom key
 # Note: If loaded from a 3rd party (like S3), and you have 3rd party data access turned off, it will error
 
-angular.module 'cdStorage', []
+angular.module 'Storage', []
 
 
 
 .service 'LocalStorage', [
   "$window"
-  "cdStorageMaker"
-  ($window, cdStorageMaker)->
+  "StorageMaker"
+  ($window, StorageMaker)->
     try
-      return cdStorageMaker $window.localStorage
+      return StorageMaker $window.localStorage
     catch error
-      console.log "cdStorage: window.localStorage unavailable"
+      console.log "storage: window.localStorage unavailable"
       console.log error
-      return cdStorageMaker {}
+      return StorageMaker {}
 ]
 
 
 .service 'SessionStorage', [
   "$window"
-  "cdStorageMaker"
-  ($window, cdStorageMaker)->
+  "StorageMaker"
+  ($window, StorageMaker)->
     try
-      return cdStorageMaker $window.sessionStorage
+      return StorageMaker $window.sessionStorage
     catch error
-      console.log "cdStorage: window.sessionStorage unavailable"
+      console.log "storage: window.sessionStorage unavailable"
       console.log error
-      return cdStorageMaker {}
+      return StorageMaker {}
 ]
 
 
-.service 'cdStorageMaker', [
+.service 'StorageMaker', [
   ()->
     _encode = (v)->
       return angular.toJson { value: v }
@@ -43,7 +43,7 @@ angular.module 'cdStorage', []
     _decode = (v)->
       return angular.fromJson(v).value if v?
     
-    return cdStorageMaker = (storage)->
+    return StorageMaker = (storage)->
       return storageAPI =
         
         has: (key)->

@@ -2,10 +2,7 @@ angular.module "FehuApp", [
   # Components
   "Deleter"
   "Editable"
-  "Product"
-  "ProductInfo"
   "ShoppingCart"
-  "Specimens"
   "Sticky"
   "StockQuantity"
   "WholesaleItemEditor"
@@ -21,16 +18,15 @@ angular.module "FehuApp", [
   "ngTouch"
   
   # Pages
+  "Checkout"
   "Locations"
-  
-  # Run
-  "ShopInfo"
+  "Payment"
+  "Totem"
   
   # Services
-  "Cart"
   "CartProduct"
-  "cdStorage"
+  "Cart"
   "FeatureDetect"
+  "Storage"
   "ShippingAddress"
-  "Totem"
 ]
