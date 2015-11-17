@@ -1,20 +1,14 @@
 <script>
-  TOTEM_IMAGES = {}
+  FEHU.totemImages = <%= raw @totem_images.to_json %>
 </script>
 
 <% @products.each do |product| %>
-  <script>
-    TOTEM_IMAGES["<%=raw product.name%>"] = [
-      "<%= raw product.variations.first.variants.map(&:totem_image).join('","') %>"
-    ]
-  </script>
-  
   <div class="product">
     <div class="container">
       <div class="slider" product-name="<%=raw product.name%>"></div>
     </div>
     
-    <div class="product-info">
+    <div class="product-info" product-info>
       <div class="wrapper">
         <h1>{{product.name}}</h1>
 

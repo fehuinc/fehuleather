@@ -1,0 +1,7 @@
+@import 'common/locations';
+
+.static#locations main {
+  max-width: none;
+  
+  @extend .locations;
+}

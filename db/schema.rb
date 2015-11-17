@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 1) do
 
   add_index "kingdoms", ["name"], name: "index_kingdoms_on_name", unique: true
 
+  create_table "locations", force: :cascade do |t|
+    t.text "name",     null: false
+    t.text "url"
+    t.text "phone"
+    t.text "address"
+    t.text "city"
+    t.text "province"
+    t.text "postal"
+    t.text "country"
+  end
+
   create_table "merchants", force: :cascade do |t|
     t.integer  "current_order_id"
     t.text     "email",            null: false

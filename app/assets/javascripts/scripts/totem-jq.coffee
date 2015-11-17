@@ -27,7 +27,7 @@ $ ()->
   
   getImage = (elm, productName)->
     currentPosition = getPosition elm
-    images = TOTEM_IMAGES[productName]
+    images = FEHU.totemImages[productName]
     i = currentPosition % images.length
     i += images.length while i < 0
     imageUrl = images[i]
@@ -65,7 +65,7 @@ $ ()->
   $(".slider").each (_, _slider)->
     slider = $ _slider
     productName = slider.attr "product-name"
-    images = TOTEM_IMAGES[productName]
+    images = FEHU.totemImages[productName]
     
     if images.length is 1
       generateSingleSpecimen slider, images[0]

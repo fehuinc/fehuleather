@@ -1,8 +1,6 @@
 angular.module "Specimens", []
 
 .directive "specimens", new Array "$swipe", ($swipe)->
-  templateUrl: "<%= asset_path('components/specimens.html') %>"
-  
   controller: new Array "$scope", ($scope)->
     $scope.$parent.requestSpecimen = (index)->
       $scope.requestSpecimen(index)

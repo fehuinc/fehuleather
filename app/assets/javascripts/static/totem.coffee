@@ -9,7 +9,7 @@ angular.module "Totem", []
         .replace('&', 'and')
         .replace(/[^0-9a-z\-\/]/g, ' ')
         .replace(/\s+/g, '-')
-    file = "<%= ENV['IMAGEPATH'] %>#{file}.jpg"
+    file = "#{FEHU.imagePath}#{file}.jpg"
   
   
   return Totem =

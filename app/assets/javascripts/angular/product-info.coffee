@@ -1,7 +1,6 @@
 angular.module "ProductInfo", []
 
 .directive "productInfo", new Array "Cart", "$rootScope", "$timeout", (Cart, $rootScope, $timeout)->
-  templateUrl: "<%= asset_path('components/product-info.html') %>"
   link: (scope)->
     scope.isInCart = Cart.has
     scope.getQuantity = Cart.quantity

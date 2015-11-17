@@ -1,8 +1,6 @@
 angular.module "Product", []
 
 .directive "product", ()->
-  templateUrl: "<%= asset_path('components/product.html') %>"
-  
   controller: new Array "$scope", ($scope)->
     
     ## LOCALS

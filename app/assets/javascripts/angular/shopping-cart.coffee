@@ -1,12 +1,14 @@
 angular.module "ShoppingCart", []
 
 .directive "shoppingCart", new Array "Cart", "$rootScope", (Cart, $rootScope)->
-  templateUrl: "<%= asset_path('components/shopping-cart.html') %>"
-  link: (scope)->
+  controller: ($scope)->
     $rootScope.cartShowing = false
     
-    scope.reset = ()->
+    $scope.toggle = ()->
+      $rootScope.cartShowing = !$rootScope.cartShowing
+    
+    $scope.reset = ()->
       Cart.reset()
     
-    scope.remove = (item)->
+    $scope.remove = (item)->
       Cart.remove(item)

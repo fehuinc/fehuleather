@@ -7,22 +7,6 @@ angular.module "Shop", []
     index: null
     scope: null
   
-  
-  ## SCOPE LOCALS
-  $scope.shopInfos = [
-    {name: "Payment", content: "You can pay with your own blood!"}
-    {name: "Shipping", content: "We don't actually use ships."}
-    {name: "Returns", content: "The return statement lets you get data back out of a function."}
-    {name: "Questions", content: "Answers"}
-  ]
-  
-  
-  ## LOAD PRODUCT DATA
-  
-  Totem.load().then (products)->
-    $scope.products = products
-  
-  
   ## SCOPE FUNCTIONS
   
   $scope.infoIsOpen = (productIndex)->

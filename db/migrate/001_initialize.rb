@@ -83,5 +83,16 @@ class Initialize < ActiveRecord::Migration
       t.integer :quantity,           null: false, default: 0
       t.timestamps
     end
+    
+    create_table :locations do |t|
+      t.text :name,	                 null: false
+      t.text :url
+      t.text :phone
+      t.text :address
+      t.text :city
+      t.text :province
+      t.text :postal
+      t.text :country
+    end
   end
 end

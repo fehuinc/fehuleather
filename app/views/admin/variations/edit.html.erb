@@ -20,7 +20,7 @@
       <% end %>
     </div>
     <% if @variation.variants.count <= 1 %>
-      <deleter class="right" path="<%= admin_variation_path(@variation) %>" redirect="<%= edit_admin_product_path(@product) %>">
+      <deleter class="button" class="right" path="<%= admin_variation_path(@variation) %>" redirect="<%= edit_admin_product_path(@product) %>">
         Hold To Delete
       </deleter>
     <% else %>

@@ -1,9 +1,9 @@
 angular.module "Locations", []
 
-.controller "LocationsCtrl", new Array "$scope", "StubLocations", ($scope, StubLocations)->
-  $scope.locations = StubLocations
+.controller "LocationsCtrl", new Array "$scope", ($scope)->
+  $scope.locations = FEHU.locations
   $scope.countries = {}
-  $scope.allProvinces = "Province"
+  $scope.allProvinces = "Canada"
   $scope.searchProvince = $scope.allProvinces
   
   for location in $scope.locations

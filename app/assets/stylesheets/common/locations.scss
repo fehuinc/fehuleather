@@ -1,18 +1,21 @@
-#locations main {
-  max-width: 100%;
-  
+.locations {
   form {
     max-width: none;
     font-size: 1.1em;
     margin: 1.2em 0 2.5em;
     text-align: center;
     
+    label {
+      display: inline-block;
+    }
+    
     input {
+      margin-left: .2em;
       width: auto;
     }
     
     select {
-      margin-left: 1em;
+      margin-left: 1.5em;
     }
   }
   

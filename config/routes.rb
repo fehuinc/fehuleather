@@ -1,33 +1,27 @@
 Rails.application.routes.draw do
   scope format: false do
     
-    # Need to reimplement these
-    # get "checkout" => "angular#index"
-    # get "payment" => "angular#index"
-    
     # Static
     root "static#totem"
     get "about" => "static#about"
     get "events" => "static#events"
     get "locations" => "static#locations"
+    get "checkout" => "static#checkout"
     
-    # Angular API endpoints
-    namespace :api do
-      get "totem" => "totem#index"
-    end
     
-    # Wholesale — either logged in or not
+    # Wholesale
     get "logout" => "merchants#logout", as: "logout_merchant"
     
-    # Wholesale — not logged in
+    # Wholesale — public
     scope constraints: lambda { |request| request.session[:merchant_id].nil? || Merchant.find_by_id(request.session[:merchant_id]).nil? } do
       get "wholesale" => "wholesale#login"
       post "wholesale" => "wholesale#login"
       get "merchant" => "merchants#new", as: "new_merchant"
       post "merchant" => "merchants#create"
+      get "wholesale/*ignore" => "wholesale#login"
     end
     
-    # Wholesale — logged in
+    # Wholesale — private
     scope constraints: lambda { |request| !request.session[:merchant_id].nil? && !Merchant.find_by_id(request.session[:merchant_id]).nil? } do
       get "wholesale" => "wholesale#index"
       post "wholesale" => "wholesale#index"
@@ -51,9 +45,7 @@ Rails.application.routes.draw do
     scope constraints: lambda { |request| request.session[:stinker] == ENV["STINKNAME"] } do
       namespace :admin do
         root "kingdoms#index"
-        
         get "preview-images/:id" => "products#preview_images", as: "preview_images"
-        
         put "configuration/:id" => "products#update_configuration", as: "update_configuration"
         
         resources :kingdoms, except: [:show] do
@@ -68,10 +60,9 @@ Rails.application.routes.draw do
           resources :variants, only: [:new, :create]
         end
         resources :variants, only: [:edit, :update, :destroy]
-
-        resources :events, only: [:index]
-        resources :locations, only: [:index]
-        resources :orders, only: [:index]
+        resources :events, except: [:show]
+        resources :locations, except: [:show]
+        resources :orders, except: [:show]
       end
     end
     

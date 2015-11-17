@@ -1,8 +1,15 @@
+<script>
+  FEHU.locations = <%= raw @locations.to_json %>
+</script>
+
 <h1 class="page-title">Find Us In Your Neck Of The Woods</h1>
 
-<div>
+<div ng-controller="LocationsCtrl">
   <form>
-    <input type="text" ng-model="search.city" placeholder="City">
+    <label>
+      <span>City</span>
+      <input type="text" ng-model="search.city">
+    </label>
     <select ng-model="searchProvince" ng-options="value for value in searchProvinces"></select>
   </form>
   

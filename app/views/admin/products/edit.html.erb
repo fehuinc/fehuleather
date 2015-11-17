@@ -119,7 +119,7 @@
         <%= f.label :ypos, "Photo Y Position" %>
         <%= f.number_field :ypos %>
       </div>
-      <deleter path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
+      <deleter class="button" path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
         Hold To Delete
       </deleter>
     </div>

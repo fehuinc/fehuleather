@@ -1,0 +1,7 @@
+@import 'common/locations';
+
+.locations#index main {
+  max-width: none;
+  
+  @extend .locations;
+}

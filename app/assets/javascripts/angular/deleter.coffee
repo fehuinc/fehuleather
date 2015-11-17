@@ -1,10 +1,6 @@
 angular.module "Deleter", []
 
 .directive "deleter", new Array "$http", "$timeout", ($http, $timeout)->
-  transclude: true
-  template: '
-    <ng-transclude class="button"></ng-transclude>
-    '
   link: (scope, elm, attrs)->
     
     # LOCALS
