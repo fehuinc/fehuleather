@@ -2,13 +2,16 @@
   FEHU.totemProducts = <%= raw @totem_products.to_json(include: [{ variations: { include: :variants } }, :configurations, :infos]) %>
 </script>
 
-<div ng-controller="TotemCtrl">
-  <div class="product" ng-repeat="product in products">
+<h1 ng-hide="true">Loading</h1>
+
+<div ng-cloak ng-controller="TotemCtrl">
+  
+  <totem-product ng-repeat="product in products">
     <div class="container">
       <div class="slider"></div>
     </div>
     
-    <div class="product-info">
+    <product-info>
       <div class="wrapper">
         <h1>{{product.name}}</h1>
 
@@ -63,6 +66,6 @@
         
         <a class="closer" ng-click="close()">Close</a>
       </div>
-    </div>
-  </div>
+    </product-info>
+  </totem-product>
 </div>
