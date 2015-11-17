@@ -94,5 +94,12 @@ class Initialize < ActiveRecord::Migration
       t.text :postal
       t.text :country
     end
+
+    create_table :events do |t|
+      t.text :name,	                 null: false
+      t.text :date,	                 null: false
+      t.text :location,	             null: false
+      t.text :description,	         null: false
+    end
   end
 end

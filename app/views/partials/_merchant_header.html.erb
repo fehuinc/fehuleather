@@ -1,7 +1,9 @@
 <div id="merchant-header">
   <div class="nav">
     <span><%= link_to merchant_name, :wholesale %></span>
-    <%= link_to "Current Order: #{merchant.current_order.order_items.count} Product".pluralize(merchant.current_order.order_items.count), edit_wholesale_order_path %>
+    <% if merchant.current_order.present? %>
+      <%= link_to "Current Order: #{merchant.current_order.order_items.count} Product".pluralize(merchant.current_order.order_items.count), edit_wholesale_order_path %>
+    <% end %>
     <a href="/wholesale/order/edit"></a>
   </div>
   

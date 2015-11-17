@@ -3,5 +3,5 @@
 .locations#index main {
   max-width: none;
   
-  @extend .locations;
+  @extend .common-locations;
 }

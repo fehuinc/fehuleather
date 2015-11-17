@@ -1,15 +1,20 @@
 <h1 class="page-title">We Are Coming At You Live</h1>
 
-<div>
-  <h3 class="bar A">American Made!</h3>
-  <p>January XX-XX, 2015</p>
-  <p>Washington, D.C</p>
-  <p>Booth #12345</p>
-</div>
+<section>
+  <% if @events.length %>
+    <% @events.each do |event| %>
+      <div>
+        <h3 class="bar <%= bar_color %>"><%=event.name%></h3>
+        <p><%=event.date%></p>
+        <p><%=event.location%></p>
+        <p><%=event.description%></p>
+      </div>
+    <% end %>
+  <% else %>
+    No upcoming events.
+  <% end %>
+</section>
 
-<div>
-  <h3 class="bar B">Toronto Wholesale Show</h3>
-  <p>January XX-XX, 2015</p>
-  <p>Toronto, Ontario</p>
-  <p>Booth #12345</p>
-</div>
+<section>
+  <p>Want to book us for an event? Get in touch: <em>freyja@fehuleather.com</em></p>
+</section>

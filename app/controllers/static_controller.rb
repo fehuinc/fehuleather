@@ -13,6 +13,10 @@ class StaticController < ApplicationController
     @locations = Location.all
   end
   
+  def events
+    @events = Event.all
+  end
+  
   def err
   end
 end

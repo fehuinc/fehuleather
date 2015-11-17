@@ -1,0 +1,25 @@
+.static#about {
+  .who {
+    overflow: hidden;
+    
+    .person {
+      display: inline-block;
+      float: left;
+      max-width: 48%;
+      
+      img {
+        width: 100%;
+        border-radius: 100%;
+        margin-bottom: 1em;
+      }
+      
+      p, h3 {
+        text-align: center;
+      }
+    }
+    
+    .person + .person {
+      float: right;
+    }
+  }
+}

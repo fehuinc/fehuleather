@@ -277,3 +277,8 @@ Location.create!(
       postal: "S4S 6X6",
       country: "Canada"
       )
+
+## EVENTS #########################################################################################
+
+Event.create! name: "American Made!", date: "January XX-XX, 2015", location: "Washington, D.C", description: "Booth #12345"
+Event.create! name: "Toronto Wholesale Show", date: "January XX-XX, 2015", location: "Toronto, Ontario", description: "Booth #12345"

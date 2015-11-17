@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 1) do
 
   add_index "configurations", ["product_id"], name: "index_configurations_on_product_id"
 
+  create_table "events", force: :cascade do |t|
+    t.text "name",        null: false
+    t.text "date",        null: false
+    t.text "location",    null: false
+    t.text "description", null: false
+  end
+
   create_table "kingdoms", force: :cascade do |t|
     t.text "name", null: false
   end
