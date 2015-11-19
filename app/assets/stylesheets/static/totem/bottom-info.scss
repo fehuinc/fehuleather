@@ -1,0 +1,37 @@
+$dark: #456;
+$blue: hsl(200, 50%, 95%);
+$yellow: hsl(30, 30%, 98%);
+
+bottom-info {
+  display: block;
+  margin: .5em 0 0;
+        
+  custom-info, shop-info {
+    display: inline-block;
+    
+    div {
+      display: inline-block;
+      margin: .25em 0;
+      padding: .25em .5em;
+      border: 1px solid transparent;
+      font-weight: bold;
+      cursor: pointer;
+      
+      &.active {
+        border: 1px solid $blue;
+        background: $yellow;
+        color: $dark;
+      }
+    }
+  }
+  
+  info-display {
+    display: block;
+    margin: .5em;
+    
+    div {
+      display: inline-block;
+      text-align: left;
+    }
+  }
+}

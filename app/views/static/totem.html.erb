@@ -1,15 +1,21 @@
 <script>
-  FEHU.totemProducts = <%= raw @totem_products.to_json(include: [{ variations: { include: :variants } }, :configurations, :infos]) %>
+  FEHU.totemProducts = <%= @totem_products.html_safe %>
+  FEHU.shopInfo = <%= @shop_info.html_safe %>
 </script>
 
 <h1 ng-hide="true">Loading</h1>
 
 <div ng-cloak ng-controller="TotemCtrl">
-  
-  <totem-product ng-repeat="product in products">
-    <div class="container">
-      <div class="slider"></div>
-    </div>
+  <totem-product ng-repeat="product in products"
+                 ng-class="{showingProductInfo:isProductOpen(product)}">
+    
+    <product-specimens ng-click="toggleProduct(product)"
+                       ng-style="getVerticalPositionStyle()">
+      <div class="specimen"
+           ng-repeat="specimen in product.specimens"
+           bimg="{{specimen.totem}}">
+      </div>
+    </product-specimens>
     
     <product-info>
       <div class="wrapper">
@@ -27,7 +33,7 @@
           <div class="subtotal">
             <input class="quantity" type="number" step="1" min="0" max="99" ng-model="product.quantity">
             for
-            <div class="price">${{choicePrice()}}</div>
+            <div class="price">${{choicePrice(product)}}</div>
           </div>
           
           <div class="perspective submit" ng-hide="isInCart(product)">
@@ -51,13 +57,13 @@
         <bottom-info>
           <custom-info>
             <div ng-repeat="info in product.infos"
-                 ng-click="showInfo(info)"
-                 ng-class="{active:(info == showingInfo)}">{{info.name}}</div>
+                 ng-click="toggleInfo(info)"
+                 ng-class="{active:isInfoOpen(info)}">{{info.name}}</div>
           </custom-info>
           <shop-info>
-            <div ng-repeat="info in shopInfos"
-                 ng-click="showInfo(info)"
-                 ng-class="{active:(info == showingInfo)}">{{info.name}}</div>
+            <div ng-repeat="info in shopInfo"
+                 ng-click="toggleInfo(info)"
+                 ng-class="{active:isInfoOpen(info)}">{{info.name}}</div>
           </shop-info>
           <info-display ng-show="showingInfo">
             <div>{{showingInfo.content}}</div>

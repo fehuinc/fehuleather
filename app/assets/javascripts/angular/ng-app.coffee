@@ -21,7 +21,13 @@ angular.module "FehuApp", [
   "Checkout"
   "Locations"
   "Payment"
-  "Totem"
+  
+  # Totem
+  "GenerateProductSpecimens"
+  "ProductInfo"
+  "ProductSpecimens"
+  "TotemCtrl"
+  "TotemProduct"
   
   # Services
   "CartProduct"
