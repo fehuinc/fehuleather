@@ -24,10 +24,12 @@ angular.module "FehuApp", [
   
   # Totem
   "GenerateProductSpecimens"
-  "ProductInfo"
-  "ProductSpecimens"
+  "PanelManager"
   "TotemCtrl"
   "TotemProduct"
+  "TotemProductPanel"
+  "TotemSpecimen"
+  "TotemSpecimensList"
   
   # Services
   "CartProduct"

@@ -1,0 +1,9 @@
+@import 'static/totem/vars';
+
+totem-specimens-list {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: $size;
+  margin: 0 auto;
+}

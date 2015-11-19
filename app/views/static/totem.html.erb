@@ -7,17 +7,16 @@
 
 <div ng-cloak ng-controller="TotemCtrl">
   <totem-product ng-repeat="product in products"
-                 ng-class="{showingProductInfo:isProductOpen(product)}">
+                 ng-class="{showingPanel:isPanelOpen(product)}">
     
-    <product-specimens ng-click="toggleProduct(product)"
-                       ng-style="getVerticalPositionStyle()">
-      <div class="specimen"
-           ng-repeat="specimen in product.specimens"
-           bimg="{{specimen.totem}}">
-      </div>
-    </product-specimens>
+    <totem-specimens-list ng-style="getVerticalPositionStyle()">
+      <totem-specimen ng-repeat="specimen in product.specimens"
+                      ng-click="clickSpecimen(product, specimen)"
+                      bimg="{{specimen.totem}}">
+      </totem-specimen>
+    </totem-specimens-list>
     
-    <product-info>
+    <totem-product-panel>
       <div class="wrapper">
         <h1>{{product.name}}</h1>
 
@@ -70,8 +69,8 @@
           </info-display>
         </bottom-info>
         
-        <a class="closer" ng-click="close()">Close</a>
+        <a class="closer" ng-click="closePanel()">Close</a>
       </div>
-    </product-info>
+    </totem-product-panel>
   </totem-product>
 </div>

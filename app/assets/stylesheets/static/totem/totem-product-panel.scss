@@ -1,8 +1,6 @@
-$dark: #456;
-$blue: hsl(200, 50%, 95%);
-$yellow: hsl(30, 30%, 98%);
+@import 'static/totem/vars';
 
-.showingProductInfo product-info {
+.showingPanel totem-product-panel {
   opacity: 1;
   overflow: visible;
   transform: translate(-50%, 0);
@@ -10,7 +8,7 @@ $yellow: hsl(30, 30%, 98%);
   pointer-events: auto;
 }
 
-product-info {
+totem-product-panel {
   position: absolute;
   display: block;
   top: 65%;

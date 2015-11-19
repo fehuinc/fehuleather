@@ -1,7 +1,21 @@
-angular.module "ProductSpecimens", []
+# STATE SHARED BY ALL SPECIMENS WITHIN ONE PRODUCT
 
-# .directive "productSpecimens", new Array "$swipe", ($swipe)->
-#   controller: new Array "$scope", ($scope)->
+angular.module "TotemSpecimensList", []
+
+.directive "totemSpecimensList", new Array "$swipe", ($swipe)->
+  controller: new Array "$scope", ($scope)->
+    
+    
+    
+    $scope.getVerticalPositionStyle = ()->
+      ypos = if $scope.isPanelOpen(productIndex) then $scope.product.ypos else 0
+      translate = "translateY(-#{ypos}%)"
+      return style =
+        transform: translate
+        "-webkit-transform": translate
+
+
+
 #     $scope.$parent.requestSpecimen = (index)->
 #       $scope.requestSpecimen(index)
 #
@@ -145,5 +159,3 @@ angular.module "ProductSpecimens", []
 #       # This might be problematic if they are swiping while the resize occurs
 #       resetSliderPosition()
 #
-#     scope.close = ()->
-#       scope.toggleProductInfo(productIndex, scope)
