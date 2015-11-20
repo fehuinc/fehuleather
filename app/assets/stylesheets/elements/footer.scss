@@ -2,15 +2,21 @@ footer {
   padding: 3em 0 2em;
   text-align: center;
   
-  .logo {
+  .rune {
     a {
       display: inline-block;
-      text-decoration: none;
+      transform: scale(0.909);
       transition: transform .5s;
-
+      
       &:hover {
         transition: transform 5s cubic-bezier(0, 1, 0, 1);
-        transform: scale(1.1);
+        transform: scale(1);
+      }
+      
+      object {
+        display: block;
+        width: 1.3rem;
+        margin: 0 auto;
       }
     }
   }

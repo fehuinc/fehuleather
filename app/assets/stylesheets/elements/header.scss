@@ -20,20 +20,25 @@ header {
   .logo {
     position: absolute;
     text-align: center;
-    top: $row-height * 1.7;
+    top: $row-height * 1.9;
     left: 50%;
     z-index: 0;
     transform: translate(-50%, -50%);
     
     a {
       display: inline-block;
-      font-size: 5.5em;
-      @media (max-width: 600px) { font-size: 4em; }
+      transform: scale(0.909);
       transition: transform .5s;
-
+      
       &:hover {
         transition: transform 5s cubic-bezier(0, 1, 0, 1);
-        transform: scale(1.1);
+        transform: scale(1);
+      }
+      
+      object {
+        display: block;
+        width: 7rem;
+        margin: 0 auto;
       }
     }
     
