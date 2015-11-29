@@ -7,6 +7,10 @@ footer {
       display: inline-block;
       transform: scale(0.909);
       transition: transform .5s;
+      background: #F7F7F7;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 10em;
       
       &:hover {
         transition: transform 5s cubic-bezier(0, 1, 0, 1);
@@ -15,8 +19,8 @@ footer {
       
       object {
         display: block;
-        width: 1.3rem;
-        margin: 0 auto;
+        height: 3rem;
+        margin: .5rem 1.7rem;
       }
     }
   }
