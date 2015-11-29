@@ -1,4 +1,9 @@
+@import 'static/totem/vars';
+
 totem-product {
   display: block;
   position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: $pad;
 }

@@ -4,16 +4,13 @@ angular.module "TotemSpecimensList", []
 
 .directive "totemSpecimensList", new Array "$swipe", ($swipe)->
   controller: new Array "$scope", ($scope)->
-    
-    
-    
-    $scope.getVerticalPositionStyle = ()->
-      ypos = if $scope.isPanelOpen(productIndex) then $scope.product.ypos else 0
+
+    $scope.getListPositionStyle = ()->
+      ypos = if $scope.isPanelOpen($scope.product) then $scope.product.ypos else 0
       translate = "translateY(-#{ypos}%)"
       return style =
         transform: translate
         "-webkit-transform": translate
-
 
 
 #     $scope.$parent.requestSpecimen = (index)->

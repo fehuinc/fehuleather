@@ -5,7 +5,7 @@ angular.module "PanelManager", []
 .service "PanelManager", ()->
   showingPanelForProduct = null
   
-  return PanelManager
+  return PanelManager =
     closePanel: ()->
       showingPanelForProduct = null
     

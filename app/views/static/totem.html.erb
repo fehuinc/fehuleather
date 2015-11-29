@@ -9,10 +9,11 @@
   <totem-product ng-repeat="product in products"
                  ng-class="{showingPanel:isPanelOpen(product)}">
     
-    <totem-specimens-list ng-style="getVerticalPositionStyle()">
+    <totem-specimens-list ng-style="getListPositionStyle()">
       <totem-specimen ng-repeat="specimen in product.specimens"
-                      ng-click="clickSpecimen(product, specimen)"
-                      bimg="{{specimen.totem}}">
+                      ng-style="getSpecimenStyle()"
+                      ng-click="clickSpecimen(product, $index)">
+        <div bimg="{{specimen.totem}}"></div>
       </totem-specimen>
     </totem-specimens-list>
     

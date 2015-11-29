@@ -4,9 +4,14 @@ totem-specimen {
   display: inline-block;
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  margin-left: -$size/2;
+  width: $size;
   height: $size;
-  opacity: .5;
   cursor: pointer;
+  
+  div {
+    width: $size;
+    height: $size;
+  }
 }
