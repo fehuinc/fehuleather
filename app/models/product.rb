@@ -2,7 +2,7 @@ class Product < ActiveRecord::Base
   belongs_to :kingdom
   has_many :infos, class_name: ProductInfo, dependent: :delete_all
   has_many :variations # TODO: Destroy in Stockhausen
-  has_many :configurations # TODO: Create/Destroy in Stockhausen
+  has_many :builds # TODO: Create/Destroy in Stockhausen
   
   validates :kingdom, :name, { presence: true }
   validates :cents_retail, :cents_wholesale, :totem_order, :ypos, { numericality: { only_integer: true } }
@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
   # TODO: Check:
   before_destroy :ensure_safe_destroy
   
-  scope :totem_products, -> { includes :configurations, :infos, variations: [:variants] }
+  scope :totem_products, -> { includes :builds, :infos, variations: [:variants] }
   
   def price_retail
     cents_retail.to_d / 100

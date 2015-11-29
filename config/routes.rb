@@ -46,7 +46,7 @@ Rails.application.routes.draw do
       namespace :admin do
         root "kingdoms#index"
         get "preview-images/:id" => "products#preview_images", as: "preview_images"
-        put "configuration/:id" => "products#update_configuration", as: "update_configuration"
+        put "build/:id" => "products#update_build", as: "update_build"
         
         resources :kingdoms, except: [:show] do
           resources :products, only: [:new, :create]

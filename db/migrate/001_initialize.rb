@@ -42,13 +42,13 @@ class Initialize < ActiveRecord::Migration
       t.text :content,               null: false
     end
     
-    create_table :configurations do |t|
+    create_table :builds do |t|
       t.belongs_to :product,         required: true, index: true
       t.integer :stock,              null: false, default: 0
     end
     
-    create_table :configuration_parts do |t|
-      t.references :configuration,   required: true, index: true
+    create_table :build_parts do |t|
+      t.references :build,   required: true, index: true
       t.references :variant,         required: true, index: true
       t.references :variation,       required: true, index: true
     end
@@ -74,9 +74,9 @@ class Initialize < ActiveRecord::Migration
       
       # This is useful while the order is being created.
       # After the order has been submitted, we probably won't need it.
-      t.references :configuration,   required: false, index: true
+      t.references :build,   required: false, index: true
       
-      # These will remain correct, even if the configuration is changed/deleted
+      # These will remain correct, even if the build is changed/deleted
       t.text :name,                  null: false
       t.integer :cents,              null: false, default: 0
       

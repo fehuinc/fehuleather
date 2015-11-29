@@ -13,22 +13,22 @@
 
 ActiveRecord::Schema.define(version: 1) do
 
-  create_table "configuration_parts", force: :cascade do |t|
-    t.integer "configuration_id"
+  create_table "build_parts", force: :cascade do |t|
+    t.integer "build_id"
     t.integer "variant_id"
     t.integer "variation_id"
   end
 
-  add_index "configuration_parts", ["configuration_id"], name: "index_configuration_parts_on_configuration_id"
-  add_index "configuration_parts", ["variant_id"], name: "index_configuration_parts_on_variant_id"
-  add_index "configuration_parts", ["variation_id"], name: "index_configuration_parts_on_variation_id"
+  add_index "build_parts", ["build_id"], name: "index_build_parts_on_build_id"
+  add_index "build_parts", ["variant_id"], name: "index_build_parts_on_variant_id"
+  add_index "build_parts", ["variation_id"], name: "index_build_parts_on_variation_id"
 
-  create_table "configurations", force: :cascade do |t|
+  create_table "builds", force: :cascade do |t|
     t.integer "product_id"
     t.integer "stock",      default: 0, null: false
   end
 
-  add_index "configurations", ["product_id"], name: "index_configurations_on_product_id"
+  add_index "builds", ["product_id"], name: "index_builds_on_product_id"
 
   create_table "events", force: :cascade do |t|
     t.text "name",        null: false
@@ -68,15 +68,15 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
-    t.integer  "configuration_id"
-    t.text     "name",                         null: false
-    t.integer  "cents",            default: 0, null: false
-    t.integer  "quantity",         default: 0, null: false
+    t.integer  "build_id"
+    t.text     "name",                   null: false
+    t.integer  "cents",      default: 0, null: false
+    t.integer  "quantity",   default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "order_items", ["configuration_id"], name: "index_order_items_on_configuration_id"
+  add_index "order_items", ["build_id"], name: "index_order_items_on_build_id"
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
 
   create_table "orders", force: :cascade do |t|

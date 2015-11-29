@@ -24,10 +24,10 @@
       <% end %>
     </thead>
     <tbody>
-      <% @product.configurations.each do |configuration| %>
+      <% @product.builds.each do |build| %>
         <tr>
           <td>
-            <img class="preview-img" src="<%=configuration.image('wholesale')%>">
+            <img class="preview-img" src="<%=build.image('wholesale')%>">
           </td>
           <td>
             <div class="quantity">
@@ -38,11 +38,11 @@
             ---><div class="button" delta="10">+10</div>
               </div>
               <div class="input-row">
-                <input type="number" class="quantity input-no-spinner" value="0" cid="<%=configuration.id%>">
+                <input type="number" class="quantity input-no-spinner" value="0" cid="<%=build.id%>">
               </div>
             </div>
           </td>
-          <% configuration.variants.joins(:variation).order("variations.level").each do |variant| %>
+          <% build.variants.joins(:variation).order("variations.level").each do |variant| %>
             <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'>
               <%= variant.name %>
             </td>

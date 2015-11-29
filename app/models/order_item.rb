@@ -1,16 +1,16 @@
 class OrderItem < ActiveRecord::Base
   # ASSUMPTIONS
-  ## When an order is open, we use the associated Configuration
+  ## When an order is open, we use the associated build
   ## After an order is submitted, we only used the stored name and price
   
   belongs_to :order
-  belongs_to :configuration
+  belongs_to :build
   
   validates :name, :order, { presence: true }
   validates :cents, :quantity, { numericality: { only_integer: true } }
   
   def image(type)
-    configuration.image(type)
+    build.image(type)
   end
   
   def price
@@ -18,6 +18,6 @@ class OrderItem < ActiveRecord::Base
   end
   
   def product
-    configuration.product if configuration
+    build.product if build
   end
 end

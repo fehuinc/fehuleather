@@ -14,13 +14,13 @@
       <% end %>
     </thead>
     <tbody>
-      <% @configurations.each do |configuration| %>
+      <% @builds.each do |build| %>
         <tr>
-          <td stock-quantity path="<%= admin_update_configuration_path(configuration) %>">
-            <input type="number" value="<%= configuration.stock %>" class="quantity">
+          <td stock-quantity path="<%= admin_update_build_path(build) %>">
+            <input type="number" value="<%= build.stock %>" class="quantity">
             <input type="submit" value="💩" class="save">
           </td>
-          <% configuration.variants.joins(:variation).order("variations.level").each do |variant| %>
+          <% build.variants.joins(:variation).order("variations.level").each do |variant| %>
             <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'>
               <%= variant.name %>
             </td>

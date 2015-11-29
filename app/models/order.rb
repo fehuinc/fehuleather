@@ -13,13 +13,13 @@ class Order < ActiveRecord::Base
   def update_items(configHash, wholesale = false)
     result = {}
     configHash.each do |k,v| # This is a hack to map over a hash
-      configuration_id = v[:id]
+      build_id = v[:id]
       quantity = v[:quantity].to_i
       
-      order_item = order_items.where(configuration_id: configuration_id).first
+      order_item = order_items.where(build_id: build_id).first
       
       if quantity > 0
-        order_item = add_item(configuration_id, wholesale) if order_item.nil?
+        order_item = add_item(build_id, wholesale) if order_item.nil?
         order_item.quantity = quantity
         saved = order_item.save
         result[k] = saved
@@ -33,11 +33,11 @@ class Order < ActiveRecord::Base
     result
   end
   
-  def add_item(configuration_id, wholesale = false)
-    if configuration = Configuration.find(configuration_id)
-      cents = configuration.price(wholesale) * 100
-      item = order_items.create configuration_id: configuration.id,
-                                name: configuration.name,
+  def add_item(build_id, wholesale = false)
+    if build = Build.find(build_id)
+      cents = build.price(wholesale) * 100
+      item = order_items.create build_id: build.id,
+                                name: build.name,
                                 cents: cents
     end
   end

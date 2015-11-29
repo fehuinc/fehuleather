@@ -7,7 +7,7 @@ angular.module "TotemProduct", []
     centerSpecimenIndex = 0
     $scope.offset = 0
     
-    updateCurrentConfiguration = ()->
+    updateCurrentBuild = ()->
       
     
     $scope.isCenterSpecimen = (index)->

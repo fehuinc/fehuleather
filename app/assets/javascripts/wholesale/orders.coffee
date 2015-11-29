@@ -1,10 +1,10 @@
 $ ()->
   
-  sendUpdate = (productID, configurations)->
+  sendUpdate = (productID, builds)->
     $.ajax
       url: "/wholesale/order/product/" + productID
       method: "PATCH"
-      data: configurations: configurations
+      data: builds: builds
     .done (r)->
       location.reload()
     .fail (r)->
@@ -30,22 +30,22 @@ $ ()->
     
     $(".update-order .button").on "click", (e)->
       e.preventDefault()
-      configurations = {}
+      builds = {}
       
       $(".order-builder input.quantity").each (i, elm)->
         cid = $(elm).attr("cid")
         quantity = $(elm).prop("value")
         if quantity > 0
-          configurations[cid] =
+          builds[cid] =
             id: cid
             quantity: quantity
-          sendUpdate productID, configurations
+          sendUpdate productID, builds
     
     $("[remove-item]").on "click", (e)->
       cid = $(e.target).attr("remove-item")
-      configurations = {}
-      configurations[cid] =
+      builds = {}
+      builds[cid] =
         id: cid
         quantity: 0
-      sendUpdate productID, configurations
+      sendUpdate productID, builds
       

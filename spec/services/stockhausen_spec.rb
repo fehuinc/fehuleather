@@ -5,11 +5,11 @@ RSpec.describe Stockhausen do
   
   context "initial generation" do
     context "0 variations," do
-      it "generates 0 configurations" do
+      it "generates 0 builds" do
         kingdom = Kingdom.create! name: "Kingdom"
         product = kingdom.products.create! name: "Product", description: "Me"
         Stockhausen.generate(product)
-        expect(Configuration.count).to eq(0)
+        expect(Build.count).to eq(0)
       end
     end
     
@@ -19,24 +19,24 @@ RSpec.describe Stockhausen do
       let(:variation) { product.variations.create! name: "Variation" }
       
       context "0 variants," do
-        it "generates 0 configurations" do
+        it "generates 0 builds" do
           Stockhausen.generate(product)
-          expect(Configuration.count).to eq(0)
+          expect(Build.count).to eq(0)
         end
       end
       context "1 variant,", focus: true do
         it "generates 1 stock" do
           variation.variants.create! name: "Variant"
           Stockhausen.generate(product)
-          expect(Configuration.count).to eq(1)
+          expect(Build.count).to eq(1)
         end
       end
       context "2 variants," do
-        it "generates 2 configurations" do
+        it "generates 2 builds" do
           variation.variants.create! name: "VariantA"
           variation.variants.create! name: "VariantB"
           Stockhausen.generate(product)
-          expect(Configuration.count).to eq(2)
+          expect(Build.count).to eq(2)
         end
       end
     end
@@ -48,9 +48,9 @@ RSpec.describe Stockhausen do
       let(:variationB) { product.variations.create! name: "VariationB" }
       
       context "0 & 0 variants," do
-        it "generates 0 configurations" do
+        it "generates 0 builds" do
           Stockhausen.generate(product)
-          expect(Configuration.count).to eq(0)
+          expect(Build.count).to eq(0)
         end
       end
       context "1 & " do
@@ -58,7 +58,7 @@ RSpec.describe Stockhausen do
           it "generates 1 stock", focus: false do
             variationA.variants.create! name: "VariantA1"
             Stockhausen.generate(product)
-            expect(Configuration.count).to eq(1)
+            expect(Build.count).to eq(1)
           end
         end
         context "1 variant," do
@@ -66,28 +66,28 @@ RSpec.describe Stockhausen do
             variationA.variants.create! name: "VariantA1"
             variationB.variants.create! name: "VariantB1"
             Stockhausen.generate(product)
-            expect(Configuration.count).to eq(1)
+            expect(Build.count).to eq(1)
           end
         end
         context "2 variants," do
-          it "generates 2 configurations" do
+          it "generates 2 builds" do
             variationA.variants.create! name: "VariantA1"
             variationB.variants.create! name: "VariantB1"
             variationB.variants.create! name: "VariantB2"
             Stockhausen.generate(product)
-            expect(Configuration.count).to eq(2)
+            expect(Build.count).to eq(2)
           end
         end
       end
       context "2 & " do
         context "2 variants," do
-          it "generates 4 configurations" do
+          it "generates 4 builds" do
             variationA.variants.create! name: "VariantA1"
             variationA.variants.create! name: "VariantA2"
             variationB.variants.create! name: "VariantB1"
             variationB.variants.create! name: "VariantB2"
             Stockhausen.generate(product)
-            expect(Configuration.count).to eq(4)
+            expect(Build.count).to eq(4)
           end
         end
       end

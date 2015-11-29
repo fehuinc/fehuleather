@@ -23,8 +23,8 @@ class Wholesale::OrdersController < ApplicationController
   def update_product
     merchant = Merchant.find(session[:merchant_id])
     order = merchant.current_order
-    configurations = params[:configurations]
-    result = order.update_items configurations
+    builds = params[:builds]
+    result = order.update_items builds
     render json: result
   end
   
