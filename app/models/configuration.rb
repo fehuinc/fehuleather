@@ -1,7 +1,7 @@
 class Configuration < ActiveRecord::Base
   # ASSUMPTIONS
   ## Created/Destroyed by Stockhausen
-
+  
   belongs_to :product
   has_many :parts, class_name: ConfigurationPart # TODO: Create/Destroy in Stockhausen
   has_many :variants, through: :parts

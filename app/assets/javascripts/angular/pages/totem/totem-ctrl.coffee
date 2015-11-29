@@ -7,6 +7,13 @@ angular.module "TotemCtrl", []
   $scope.products = FEHU.totemProducts.map GenerateProductSpecimens
   $scope.shopInfo = FEHU.shopInfo
   
+  # Organize the Configurations
+  productsById = {}
+  productsById[product.id] = product for product in $scope.products
+  $scope.configurations = {}
+  for configuration in FEHU.configurations
+    console.log configuration
+  
   # Only one info unit open at a time
   $scope.showingInfo = null
   $scope.isInfoOpen = (info)-> return info is $scope.showingInfo

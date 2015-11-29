@@ -1,5 +1,7 @@
 class StaticController < ApplicationController
   def totem
+    @configurations = Configuration.all.to_json
+    
     @totem_products = Product.totem_products.to_json include: [
       { variations: { include: :variants } },
       :configurations,

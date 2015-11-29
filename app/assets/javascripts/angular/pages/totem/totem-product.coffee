@@ -7,13 +7,18 @@ angular.module "TotemProduct", []
     centerSpecimenIndex = 0
     $scope.offset = 0
     
+    updateCurrentConfiguration = ()->
+      
+    
     $scope.isCenterSpecimen = (index)->
       index is centerSpecimenIndex
     
     $scope.setCenterSpecimen = (index)->
       $scope.offset -= index - centerSpecimenIndex
       centerSpecimenIndex = index
-    
-    # We might want this for the Panel, later, to determine which variant is selected
-    $scope.getCenterSpecimen = ()->
-      $scope.product.specimens[centerSpecimenIndex]
+      
+      # Update the first variation's <select> to match the selected specimen
+      firstVariation = $scope.product.variations[0]
+      firstVariation.choiceIndex = centerSpecimenIndex % firstVariation.variants.length
+      
+      

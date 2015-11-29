@@ -14,7 +14,13 @@ angular.module "TotemProductPanel", []
     $scope.showCart = ()->
       document.body.scrollTop = 0
       $timeout (()-> $rootScope.cartShowing = true), 300
+
+    $scope.checkChange = (variantIndex, variation)->
+      if variantIndex is 0
+        $scope.setCenterSpecimen(variation.choiceIndex)
     
+    $scope.choiceQuantity = ()->
+      1
     
     # This probably belongs in a Product model
     $scope.choicePrice = (product)->
@@ -24,5 +30,3 @@ angular.module "TotemProductPanel", []
         price += variation.choice.cents_retail
       
       return product.quantity * price / 100
-
-        
