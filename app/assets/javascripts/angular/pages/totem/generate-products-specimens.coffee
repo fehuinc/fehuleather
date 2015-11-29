@@ -46,10 +46,23 @@ angular.module "GenerateProductSpecimens", []
       if i > 0 and variation.has_image
         namesOfDefaultVariantsWithImages.push defaultVariant.name
     
-    # Now, generate specimens
-    product.specimens = for variant in product.variations[0].variants
-      name: variant.name
+    # Now, we can start to generate specimens
+    specimens = for variant in product.variations[0].variants
       totem: generateTotemImagePath variant, product, namesOfDefaultVariantsWithImages
-      description: variant.description
+      variant: variant
     
+    # We're going to clone the list until it's long enough to wrap around the totem properly
+    clonedSpecimens = []
+    while clonedSpecimens.length < 7
+      clonedSpecimens = clonedSpecimens.concat specimens
+    specimens = clonedSpecimens
+    
+    # Now we need to introduce some uniqueness to make ng-repeat happy
+    specimens = for s, i in specimens
+      variant: s.variant
+      totem: s.totem
+      specimenIndex: i
+    
+    # Save, and we're done!
+    product.specimens = specimens
     return product

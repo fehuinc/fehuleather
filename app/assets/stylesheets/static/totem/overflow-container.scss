@@ -1,0 +1,8 @@
+@import 'static/totem/vars';
+
+.overflow-container {
+  display: block;
+  width: 100%;
+  margin-top: $pad;
+  overflow: hidden;
+}

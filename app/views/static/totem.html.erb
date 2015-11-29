@@ -8,14 +8,15 @@
 <div ng-cloak ng-controller="TotemCtrl">
   <totem-product ng-repeat="product in products"
                  ng-class="{showingPanel:isPanelOpen(product)}">
-    
-    <totem-specimens-list ng-style="getListPositionStyle()">
-      <totem-specimen ng-repeat="specimen in product.specimens"
-                      ng-style="getSpecimenStyle()"
-                      ng-click="clickSpecimen(product, $index)">
-        <div bimg="{{specimen.totem}}"></div>
-      </totem-specimen>
-    </totem-specimens-list>
+    <div class="overflow-container">
+      <totem-specimens-list ng-style="getListPositionStyle()">
+        <totem-specimen ng-repeat="specimen in product.specimens"
+                        ng-style="getSpecimenStyle()"
+                        ng-click="clickSpecimen(product, $index)">
+          <div bimg="{{specimen.totem}}"></div>
+        </totem-specimen>
+      </totem-specimens-list>
+    </div>
     
     <totem-product-panel>
       <div class="wrapper">

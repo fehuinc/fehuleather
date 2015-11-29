@@ -15,5 +15,5 @@ angular.module "TotemProduct", []
       centerSpecimenIndex = index
     
     # We might want this for the Panel, later, to determine which variant is selected
-    # $scope.getCenterSpecimen = (index)->
-    #   $scope.product.specimens[index]
+    $scope.getCenterSpecimen = ()->
+      $scope.product.specimens[centerSpecimenIndex]

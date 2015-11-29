@@ -4,7 +4,7 @@ angular.module "TotemSpecimen", []
 
 .directive "totemSpecimen", new Array "PanelManager", (PanelManager)->
   controller: new Array "$scope", ($scope)->
-    SIZE_WITH_PAD = 81
+    SIZE_WITH_PAD = 82
     animationTime = 800
     animString = "#{animationTime}ms cubic-bezier(.2,.2,.3,.9)"
     
@@ -27,8 +27,6 @@ angular.module "TotemSpecimen", []
     getTransition = (position)->
       if Math.abs(position) <= 2
         "transform #{animString}, opacity #{animString}"
-      else
-        "opacity 1s"
     
     $scope.getSpecimenStyle = ()->
       position = getPosition $scope.offset + $scope.$index, $scope.product.specimens.length
