@@ -1,13 +1,12 @@
 class StaticController < ApplicationController
   def totem
-    @builds = Build.all.to_json
-    
     @totem_products = Product.totem_products.to_json include: [
       { variations: { include: :variants } },
-      :builds,
+      { builds: { include: :parts } },
       :infos
     ]
     
+    # Todo: Make a full ActiveRecord model with these records?
     @shop_info = [
       { name: "Payment", content: "You can pay with your own blood!" },
       { name: "Shipping", content: "We don't actually use ships." },

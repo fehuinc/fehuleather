@@ -6,17 +6,17 @@
   <h3>The Goodies You'll Receive</h3>
 
   <div class="items">
-    <div class="item" ng-repeat="item in cartItemsArray | orderBy:item.choiceName.length">
-      <div class="name">{{item.choiceName}}</div>
+    <div class="item" ng-repeat="item in cartItemsArray">
+      <div class="name">{{item.name}}</div>
       <div class="quantity"><input type="number" min="0" max="99" ng-model="item.quantity"></div>
       <div class="price">${{item.quantity * item.cents / 100}}</div>
-      <div class="remove"><div ng-click="remove(item)">x</div></div>
+      <div class="remove"><div ng-click="Cart.removeItem(item)">x</div></div>
     </div>
     
     <div class="item subtotal">
       <div class="name">Total</div>
-      <div class="quantity">{{totalQuantity(cartItemsArray)}} items</div>
-      <div class="price">${{totalPrice(cartItemsArray)}}</div>
+      <div class="quantity">{{Cart.totalQuantity()}} items</div>
+      <div class="price">${{Cart.totalCents() / 100}}</div>
       <div></div>
     </div>
   </div>

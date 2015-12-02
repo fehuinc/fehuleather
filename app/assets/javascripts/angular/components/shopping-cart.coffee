@@ -1,14 +1,16 @@
 angular.module "ShoppingCart", []
 
-.directive "shoppingCart", new Array "Cart", "$rootScope", (Cart, $rootScope)->
-  controller: ($scope)->
+.directive "shoppingCart", new Array "$rootScope", ($rootScope)->
+  controller: new Array "$scope", ($scope)->
     $rootScope.cartShowing = false
     
-    $scope.toggle = ()->
-      $rootScope.cartShowing = !$rootScope.cartShowing
+    closeCart = ()->
+      $rootScope.toggleCart false
     
-    $scope.reset = ()->
-      Cart.reset()
-    
-    $scope.remove = (item)->
-      Cart.remove(item)
+    $rootScope.toggleCart = (doShow)->
+      $rootScope.cartShowing = doShow ?= not $rootScope.cartShowing
+      $rootScope.toggleModalCover closeCart, $rootScope.cartShowing
+      $rootScope.Cart.purgeDeleted()
+
+    $scope.showCheckout = ()->
+      $rootScope.cartItemsArray.length && $rootScope.cartItemsArray.some (i)-> !i.deleted

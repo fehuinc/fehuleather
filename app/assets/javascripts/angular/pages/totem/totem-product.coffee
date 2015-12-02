@@ -2,13 +2,14 @@
 
 angular.module "TotemProduct", []
 
-.directive "totemProduct", ()->
+.directive "totemProduct", new Array "BuildHasher", (BuildHasher)->
   controller: new Array "$scope", ($scope)->
     centerSpecimenIndex = 0
     $scope.offset = 0
+    $scope.currentBuild = null
     
-    updateCurrentBuild = ()->
-      
+    $scope.updateCurrentBuild = ()->
+      $scope.currentBuild = BuildHasher.buildFromProductChoices $scope.product
     
     $scope.isCenterSpecimen = (index)->
       index is centerSpecimenIndex
@@ -21,4 +22,5 @@ angular.module "TotemProduct", []
       firstVariation = $scope.product.variations[0]
       firstVariation.choiceIndex = centerSpecimenIndex % firstVariation.variants.length
       
-      
+    # INIT
+    $scope.updateCurrentBuild()

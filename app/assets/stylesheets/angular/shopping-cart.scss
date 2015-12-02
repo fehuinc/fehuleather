@@ -17,7 +17,7 @@ shopping-cart {
     display: inline-block;
     cursor: pointer;
     padding: .5em;
-    z-index: 100;
+    z-index: 101;
     transform: translate(-50%);
     
     &:hover {
@@ -43,7 +43,6 @@ shopping-cart {
     transform: translate(-50%);
     transition: opacity .2s ease-out;
     opacity: 0;
-    -webkit-font-smoothing: subpixel-antialiased;
     pointer-events: none;
     
     &.showing {
@@ -75,6 +74,10 @@ shopping-cart {
           padding: .2em .5em;
         }
         
+        .name.deleted {
+          opacity: .5;
+        }
+        
         .quantity input {
           width: 3em;
         }
@@ -99,6 +102,16 @@ shopping-cart {
             color: rgba(#F00, 0.3);
             cursor: pointer;
           }
+        }
+        
+        .spacer {
+          visibility: hidden;
+          input { width: 0; }
+        }
+        
+        .undo {
+          color: rgba(#55A, 0.8);
+          cursor: pointer;
         }
       }
     }

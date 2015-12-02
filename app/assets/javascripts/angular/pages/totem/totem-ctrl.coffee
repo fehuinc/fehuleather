@@ -2,21 +2,16 @@
 
 angular.module "TotemCtrl", []
 
-.controller "TotemCtrl", new Array "$scope", "GenerateProductSpecimens", "PanelManager", ($scope, GenerateProductSpecimens, PanelManager)->
+.controller "TotemCtrl", new Array "$scope", "PrepProducts", "PanelManager", ($scope, PrepProducts, PanelManager)->
   
-  $scope.products = FEHU.totemProducts.map GenerateProductSpecimens
+  $scope.products = FEHU.totemProducts.map PrepProducts
   $scope.shopInfo = FEHU.shopInfo
   
-  # Organize the Builds
-  productsById = {}
-  productsById[product.id] = product for product in $scope.products
-  $scope.builds = {}
-  for build in FEHU.builds
-    console.log build
+  # Panel functions
+  $scope.isPanelOpen = PanelManager.isPanelOpen
+  $scope.closePanel = PanelManager.closePanel
   
-  # Only one info unit open at a time
+  # Panel Info state and functions
   $scope.showingInfo = null
   $scope.isInfoOpen = (info)-> return info is $scope.showingInfo
   $scope.toggleInfo = (info)-> $scope.showingInfo = if $scope.isInfoOpen(info) then null else info
-  
-  $scope.isPanelOpen = PanelManager.isPanelOpen

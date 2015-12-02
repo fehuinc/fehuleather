@@ -18,7 +18,7 @@ totem-product-panel {
   transition: opacity 1s ease-in, transform 1s;
   -webkit-font-smoothing: subpixel-antialiased;
   opacity: 0;
-  z-index: 100;
+  z-index: 20;
   pointer-events: none;
   
   .wrapper {

@@ -2,6 +2,7 @@ angular.module "FehuApp", [
   # Components
   "Deleter"
   "Editable"
+  "ModalCover"
   "ShoppingCart"
   "Sticky"
   "StockQuantity"
@@ -23,8 +24,10 @@ angular.module "FehuApp", [
   "Payment"
   
   # Totem
-  "GenerateProductSpecimens"
+  "BuildHasher"
+  "Cart"
   "PanelManager"
+  "PrepProducts"
   "TotemCtrl"
   "TotemProduct"
   "TotemProductPanel"
@@ -32,8 +35,6 @@ angular.module "FehuApp", [
   "TotemSpecimensList"
   
   # Services
-  "CartProduct"
-  "Cart"
   "FeatureDetect"
   "Storage"
   "ShippingAddress"
