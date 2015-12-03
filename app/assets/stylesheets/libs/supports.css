@@ -1,26 +1,35 @@
-@supports (backdrop-filter:blur(10px)) { .orders#product main .order-builder .back {
+@supports (backdrop-filter:blur(10px)) { html .orders#product main .order-builder .back {
   backdrop-filter: brightness(2) saturate(300%) blur(10px);
   background: rgba(255,255,255,0.88);
 }}
-@supports (-webkit-backdrop-filter:blur(10px)) { .orders#product main .order-builder .back {
+@supports (-webkit-backdrop-filter:blur(10px)) { html .orders#product main .order-builder .back {
   -webkit-backdrop-filter: brightness(2) saturate(300%) blur(10px);
   background: rgba(255,255,255,0.88);
 }}
 
-@supports (backdrop-filter:blur(10px)) { product-panel .wrapper {
+@supports (backdrop-filter:blur(10px)) { html totem-product-panel .wrapper {
   backdrop-filter: blur(10px) saturate(300%);
-  background: linear-gradient(to bottom, rgba(255,255,255, 0.8), rgba(255,255,255,0.92) 10em);
+  background: linear-gradient(to bottom, rgba(255,255,255, 0.88), rgba(255,255,255,0.92) 10em);
 }}
-@supports (-webkit-backdrop-filter:blur(10px)) { product-panel .wrapper {
+@supports (-webkit-backdrop-filter:blur(10px)) { html totem-product-panel .wrapper {
   -webkit-backdrop-filter: blur(10px) saturate(300%);
-  background: linear-gradient(to bottom, rgba(255,255,255, 0.8), rgba(255,255,255,0.92) 10em);
+  background: linear-gradient(to bottom, rgba(255,255,255, 0.88), rgba(255,255,255,0.92) 10em);
 }}
 
-@supports (backdrop-filter:blur(10px)) { shopping-cart .contents {
+@supports (backdrop-filter:blur(10px)) { html shopping-cart .contents {
   backdrop-filter: brightness(3) saturate(300%) blur(10px);
   background: rgba(255,255,255,0.85);
 }}
-@supports (-webkit-backdrop-filter:blur(10px)) { shopping-cart .contents {
+@supports (-webkit-backdrop-filter:blur(10px)) { html shopping-cart .contents {
   -webkit-backdrop-filter: brightness(3) saturate(300%) blur(10px);
   background: rgba(255,255,255,0.85);
+}}
+
+@supports (backdrop-filter:blur(10px)) { html modal-cover {
+  backdrop-filter: blur(2px);
+  background: rgba(#FED, .6);
+}}
+@supports (-webkit-backdrop-filter:blur(10px)) { html modal-cover {
+  -webkit-backdrop-filter: blur(2px);
+  background: rgba(#FED, .6);
 }}
