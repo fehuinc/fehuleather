@@ -1,0 +1,9 @@
+<button-bar class="perspective">
+  <% if style_action == "edit_product" %>
+    <%= link_to "< All Products", edit_wholesale_order_path, class: "back button" %>
+  <% end %>
+  
+  <% if @merchant.current_order.order_items.count > 0 %>
+    <%= link_to "Checkout >", checkout_wholesale_order_path, class: "button" %>
+  <% end %>
+</button-bar>

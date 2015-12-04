@@ -1,19 +1,30 @@
-<h1>Add a Product to Your Order</h1>
+<%= render "wholesale/orders/button_bar" %>
 
-<div class="products">
-  
-  <% @kingdoms.each do |kingdom| %>
-    <div class="kingdom">
-      <h2><%= kingdom.name.pluralize %></h2>
+<div class="split">
+  <order-builder>
+
+    
+    <h1>Add a Product to Your Order</h1>
+
+    <div class="products">
       
-      <% kingdom.products.order(:name).each do |product| %>
-        <a class="product" href="<%= product_wholesale_order_path(product.id) %>">
-          <img src="<%=product.image('wholesale')%>">
-          <span><%= product.name.pluralize %></span>
-        </a>
+      <% @kingdoms.each do |kingdom| %>
+        <div class="kingdom">
+          <h2><%= kingdom.name.pluralize %></h2>
+          
+          <% kingdom.products.order(:name).each do |product| %>
+            <a class="product" href="<%= product_wholesale_order_path(product.id) %>">
+              <img src="<%=product.image('wholesale')%>">
+              <span><%= product.name.pluralize %></span>
+            </a>
+          <% end %>
+      
+        </div>
       <% end %>
-  
+      
     </div>
-  <% end %>
-  
+
+    
+  </order-builder>
+  <%= render "wholesale/orders/order_preview" %>
 </div>
