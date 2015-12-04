@@ -1,65 +1,36 @@
-$dark: #456;
-$blue: hsl(200, 50%, 95%);
-$yellow: hsl(30, 50%, 90%);
-$dkyellow: hsla(40, 50%, 80%, 0.5);
+@import 'vars';
 
-.orders#edit {
-  main {
-    // width: 60rem; // Overriden by various pages
-    max-width: none;
-    text-align: center;
-  }
-  
-  sticky-placeholder {
-    display: inline-block;
-    min-width: 15em;
-    margin-right: 1em;
-    vertical-align: top;
-    text-align: left;
-  }
-  
-  .order-builder {
-    display: inline-block;
-    padding-right: 2em;
-    vertical-align: top;
-    text-align: left;
-    border-right: .4em solid $blue;
+.orders#edit order-builder {
+  .kingdom {
+    margin-top: 2em;
     
-    h1 {
-      text-align: left;
+    h2 {
+      border-bottom: 2px solid $dkyellow;
+      padding: 0 0 .2em;
     }
     
-    .kingdom {
-      margin-top: 2em;
-
-      h2 {
-        border-bottom: 2px solid $dkyellow;
-        padding: 0 0 .2em;
+    .product {
+      display: inline-block;
+      width: 10em;
+      margin: 0;
+      padding: 1em;
+      text-align: center;
+      text-decoration: none;
+      vertical-align: top;
+      cursor: pointer;
+      
+      img {
+        width: 100%;
+        border-radius: 100%;
       }
       
-      .product {
-        display: inline-block;
-        width: 10em;
-        margin: 0;
-        padding: 1em;
-        text-align: center;
-        text-decoration: none;
-        vertical-align: top;
-        cursor: pointer;
-        
-        img {
-          width: 100%;
-          border-radius: 100%;
-        }
-        
-        span {
-          font-size: 1.25em;
-        }
-        
-        &:hover {
-          color: $dark;
-          text-decoration: underline;
-        }
+      span {
+        font-size: 1.25em;
+      }
+      
+      &:hover {
+        color: $dark;
+        text-decoration: underline;
       }
     }
   }

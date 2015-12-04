@@ -1,4 +1,5 @@
 class Wholesale::OrdersController < ApplicationController
+  layout "wholesale_order"
   
   def new
     merchant = Merchant.find(session[:merchant_id])

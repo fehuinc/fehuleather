@@ -1,9 +1,5 @@
-<div class="order-builder" product-id="<%=@product.id%>">
+<div product-id="<%=@product.id%>">
   
-  <div class="back" sticky="-1">
-    <a class="button" href="/wholesale/order/edit">&lt; All Products</a>
-  </div>
-
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="20 35 160 150">
     <defs>
       <path id="svg-circle" d="M25, 100 a75,75 0 1,0 150,0 a75,75 0 1,0 -150,0"/>
@@ -16,41 +12,44 @@
   </svg>
 
   <table>
-    <thead>
-      <td>Preview</td>
-      <td><a>Quantity</a></td>
+    <thead class="glass" sticky="0">
       <% @product.variations.order(:level).each_with_index do |variation, index| %>
         <td <%= "default=true" if index == 0 %>><a><%= variation.name %></a></td>
       <% end %>
+      <td>Preview</td>
+      <td><a>Quantity</a></td>
     </thead>
     <tbody>
       <% @product.builds.each do |build| %>
         <tr>
-          <td>
-            <img class="preview-img" src="<%=build.image('wholesale')%>">
-          </td>
-          <td>
-            <div class="quantity">
-              <div class="button-row">
-                <div class="button" delta="-10">-10</div><!--
-            ---><div class="button" delta="-1">-</div><!--
-            ---><div class="button" delta="1">+</div><!--
-            ---><div class="button" delta="10">+10</div>
-              </div>
-              <div class="input-row">
-                <input type="number" class="quantity input-no-spinner" value="0" cid="<%=build.id%>">
-              </div>
-            </div>
-          </td>
           <% build.variants.joins(:variation).order("variations.level").each do |variant| %>
             <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'>
               <%= variant.name %>
             </td>
           <% end %>
+          <td>
+            <img class="preview-img" src="<%=build.image('wholesale')%>">
+          </td>
+          <td>
+            <div class="quantity" wholesale-item-editor>
+              <span ng-init="item.id=<%=build.id%>"></span>
+              <span ng-init="item.img='<%=build.image('wholesale')%>'"></span>
+              <div class="button-row perspective">
+                <div class="button" ng-click="changeQuantity(-5)">-5</div><!--
+            ---><div class="button" ng-click="changeQuantity(-1)">-</div><!--
+            ---><div class="button" ng-click="changeQuantity(1)">+</div><!--
+            ---><div class="button" ng-click="changeQuantity(5)">+5</div>
+              </div>
+              <div class="input-row">
+                <input type="number"
+                       class="quantity input-no-spinner"
+                       ng-model="item.displayQuantity"
+                       ng-change="updateQuantity()">
+              </div>
+            </div>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
-<%= render "wholesale/orders/order_preview" %>

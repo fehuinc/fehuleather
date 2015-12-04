@@ -3,5 +3,6 @@ html {
   color: #706F6D;
   background-color: white;
   
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  // -webkit-tap-highlight-color: rgba(0,0,0,0)
+  -webkit-tap-highlight-color: transparent; // Does this work?
 }

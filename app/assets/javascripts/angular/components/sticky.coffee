@@ -16,6 +16,7 @@ angular.module "Sticky", []
       # console.log "FALLBACK"
       originalPosition = elm.getBoundingClientRect()
       placeholder = document.createElement("sticky-placeholder")
+      placeholder.style.display = elm.getComputedStyle().display
       placeholder.style.width = originalPosition.width + "px"
       placeholder.style.height = originalPosition.height + "px"
       isAdded = false

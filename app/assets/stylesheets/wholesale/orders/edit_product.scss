@@ -1,58 +1,28 @@
-$dark: #456;
-$blue: hsl(200, 50%, 95%);
-$yellow: hsl(30, 30%, 98%);
+@import 'vars';
 
 .orders#edit_product {
-  main {
-    max-width: none;
-    text-align: center;
-  }
-  
-  .back {
-    margin-top: -.6em;
-    padding: .6em 0;
-    background: rgba(white, 0.95);
+  order-builder {
     
-    a {
-      text-decoration: none;
-      &:hover { text-decoration: underline; }
+    svg {
+      display: block;
+      width: 100%;
+      max-width: 20em;
+      margin: -2em auto 0;
     }
-  }
-  
-  svg {
-    display: block;
-    width: 100%;
-    max-width: 26em;
-    margin: 0 auto;
-  }
-  
-  sticky-placeholder {
-    display: inline-block;
-    min-width: 15em;
-    margin-right: 1em;
-    vertical-align: top;
-    text-align: left;
-  }
-  
-  .preview-img {
-    width: 5em;
-  }
-
-  .update-order {
-    font-size: 1.5em;
-    margin-top: 2rem;
-  }
-    
-  .order-builder {
-    display: inline-block;
-    padding-right: 2em;
-    border-right: .4em solid $blue;
-    vertical-align: top;
-    text-align: left;
     
     table {
       display: inline-table;
       margin: 0;
+      text-align: center;
+    }
+    
+    thead {
+      font-weight: bold;
+      
+      td {
+        padding-top: 1em;
+        padding-bottom: .5em;
+      }
     }
     
     tbody tr:nth-child(odd) {

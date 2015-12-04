@@ -1,0 +1,9 @@
+@import 'vars';
+
+order-builder {
+  display: inline-block;
+  padding-right: 2em;
+  border-right: .4em solid $blue;
+  vertical-align: top;
+  text-align: left;
+}

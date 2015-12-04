@@ -1,0 +1,22 @@
+body.orders {
+  main {
+    max-width: 62rem;
+    min-width: 768px;
+    padding: 2em 0;
+    
+    .split {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    
+    h1 {
+      text-align: left;
+    }
+    
+    .preview-img {
+      width: 5em;
+    }
+  }
+}
