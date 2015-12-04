@@ -2,14 +2,13 @@
 
 <%= form_for @merchant, url: merchant_path do |f| %>
   
-  <p>It looks like this is your first time ordering from our wholesale site.</p>
+  <h4><%= @merchant.email %></h4>
   
-  <p><i>If you've ordered from our site before, you probably used a different email address, or made a typo. Easy fix — just <a href="/wholesale">try again</a>.</i></p>
+  <p>It looks like this is your first time ordering from us here.</p>
   
   <hr>
   
-  <h3><%= @merchant.email %></h3>
-  <p>Double-check that you typed this address correctly.<br>Need to make a fix? <a href="/wholesale">Go back</a> and give it another shot.</p>
+  <p><i>If you've ordered from our site before, you probably used a different email address, or made a typo. Easy fix — <a href="/wholesale">go back</a>.</i></p>
   
   <hr>
   
