@@ -33,14 +33,14 @@ shopping-cart {
   
   .contents {
     position: absolute;
-    left: 50%;
     display: block;
+    left: calc(50% - 16em);
+    width: 32em;
     margin: -1em auto 0;
     padding: 3em 2em 1em;
     border: .4rem solid $blue;
     background: white;
     box-shadow: 0 0 2em white;
-    transform: translate(-50%);
     transition: opacity .2s ease-out;
     opacity: 0;
     pointer-events: none;
