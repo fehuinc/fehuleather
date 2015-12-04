@@ -79,17 +79,19 @@ wrap_cuff.infos.create! name: "Gifting", content: "Wrap Cuff Gifting Content"
 wrap_cuff.infos.create! name: "Uniqueness", content: "Wrap Cuff Uniqueness Content"
 
 wrap_cuff_color = wrap_cuff.variations.create! name: "Color", level: 0, has_image: true
-wrap_cuff_color.variants.create! name: "Natural1", show_retail: true, show_wholesale: true, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
-wrap_cuff_color.variants.create! name: "Natural2", show_retail: true, show_wholesale: true, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
-wrap_cuff_color.variants.create! name: "Natural3", show_retail: true, show_wholesale: true, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
-wrap_cuff_color.variants.create! name: "Natural4", show_retail: true, show_wholesale: true, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
-wrap_cuff_color.variants.create! name: "Natural5", show_retail: true, show_wholesale: true, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
-wrap_cuff_color.variants.create! name: "Natural6", show_retail: true, show_wholesale: true, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
-wrap_cuff_color.variants.create! name: "Natural7", show_retail: true, show_wholesale: true, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
+wrap_cuff_color.variants.create! name: "Natural1", show_retail: true, show_wholesale: false, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
+wrap_cuff_color.variants.create! name: "Natural2", show_retail: true, show_wholesale: false, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
+wrap_cuff_color.variants.create! name: "Natural3", show_retail: true, show_wholesale: false, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
+wrap_cuff_color.variants.create! name: "Natural4", show_retail: true, show_wholesale: false, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
+wrap_cuff_color.variants.create! name: "Natural5", show_retail: true, show_wholesale: false, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
+wrap_cuff_color.variants.create! name: "Natural6", show_retail: true, show_wholesale: false, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
+wrap_cuff_color.variants.create! name: "Natural7", show_retail: true, show_wholesale: false, description: "The one, the only, the classic, the champion. This is our product. You'll love it forever, but you'll also buy them by the fistful."
 
-wrap_cuff_size = wrap_cuff.variations.create! name: "Size", level: 1, has_image: false
-wrap_cuff_size.variants.create! name: "Small", show_retail: true, show_wholesale: true
-wrap_cuff_size.variants.create! name: "Normal", show_retail: true, show_wholesale: true
+wrap_cuff_color.variants.create! name: "Brown", show_retail: false, show_wholesale: true, description: "This one is for wholesale!"
+wrap_cuff_color.variants.create! name: "Orange", show_retail: false, show_wholesale: true, description: "This one is for wholesale!"
+wrap_cuff_color.variants.create! name: "Pink", show_retail: false, show_wholesale: true, description: "This one is for wholesale!"
+wrap_cuff_color.variants.create! name: "Yellow", show_retail: false, show_wholesale: true, description: "This one is for wholesale!"
+
 
 # Fuzzy Cuff ####################################
 fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 25

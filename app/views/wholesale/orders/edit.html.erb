@@ -10,12 +10,12 @@
       
       <% @kingdoms.each do |kingdom| %>
         <div class="kingdom">
-          <h2><%= kingdom.name.pluralize %></h2>
+          <h2><%= kingdom.name %></h2>
           
           <% kingdom.products.order(:name).each do |product| %>
             <a class="product" href="<%= product_wholesale_order_path(product.id) %>">
-              <img src="<%=product.image('wholesale')%>">
-              <span><%= product.name.pluralize %></span>
+              <img src="<%=product.wholesale_image%>">
+              <span><%= product.name %></span>
             </a>
           <% end %>
       

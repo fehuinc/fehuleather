@@ -29,9 +29,14 @@ class Product < ActiveRecord::Base
     self.cents_wholesale = (price.to_d * 100).to_i if price.present?
   end
   
-  def image(type)
-    variantNames = variations.where(has_image: true).order(:level).map(&:default_variant).map(&:name)
-    return Images.build_path(name, variantNames, type)
+  def totem_image
+    variantNames = variations.where(has_image: true).order(:level).map(&:default_variant_retail).map(&:name)
+    return Images.build_path(name, variantNames, 'totem')
+  end
+  
+  def wholesale_image
+    variantNames = variations.where(has_image: true).order(:level).map(&:default_variant_wholesale).map(&:name)
+    return Images.build_path(name, variantNames, 'wholesale')
   end
   
   def ensure_safe_destroy

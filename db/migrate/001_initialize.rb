@@ -19,7 +19,6 @@ class Initialize < ActiveRecord::Migration
     
     create_table :variations do |t| # eg: color, hardware, size, leaf pattern
       t.belongs_to :product,         required: true, index: true
-      t.integer :default_variant_id
       t.text :name,                  null: false
       t.boolean :has_image,          null: false, default: false
       t.integer :level,              null: false, default: 0
@@ -29,6 +28,7 @@ class Initialize < ActiveRecord::Migration
       t.belongs_to :variation,       required: true, index: true
       t.text :name,                  null: false
       t.text :description
+      t.boolean :featured,           null: false, default: false
       t.boolean :show_retail,        null: false, default: false
       t.boolean :show_wholesale,     null: false, default: false
       t.integer :cents_retail,       null: false, default: 0

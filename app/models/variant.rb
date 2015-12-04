@@ -13,36 +13,16 @@ class Variant < ActiveRecord::Base
   
   # WE SHOULD PROBABLY PRE-GENERATE THESE AND CACHE THEM IN THE DB
   def totem_image
-    totem_variant_names = variation.product.variations.drop(1).map(&:default_variant).select(&:has_image).map(&:name).join("-")
+    product = variation.product
+    variant_names = product.variations.select(&:has_image).map(&:default_variant_retail).map(&:name)
+    Images.build_path product.name, variant_names, 'totem'
     
-    path = "#{variation.product.name}/totem/#{name} #{totem_variant_names}".strip
-    path = path.downcase()
-               .gsub('&', 'and')
-               .gsub(/[^0-9a-z\-\/]/, ' ')
-               .gsub(/\s+/, '-')
-    "#{ENV['IMAGEPATH']}#{path}.jpg"
-  end
-
-  def has_image
-    variation.has_image
-  end
-    
-  def default
-    if variation.default_variant_id.present?
-      variation.default_variant_id == self.id
-    else
-      variation.variants.first.id == self.id
-    end
-  end
-  
-  def default=(isDefault)
-    if isDefault
-      variation.default_variant_id = self.id
-      variation.save!
-    elsif self.default
-      variation.default_variant_id = nil
-      variation.save!
-    end
+    # path = "#{variation.product.name}/totem/#{variant_names}".strip
+    # path = path.downcase()
+    #            .gsub('&', 'and')
+    #            .gsub(/[^0-9a-z\-\/]/, ' ')
+    #            .gsub(/\s+/, '-')
+    # "#{ENV['IMAGEPATH']}#{path}.jpg"
   end
   
   def price_retail
