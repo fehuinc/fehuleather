@@ -16,6 +16,7 @@ class Wholesale::OrdersController < ApplicationController
   def edit_product
     @merchant = Merchant.find(session[:merchant_id])
     @product = Product.find(params[:id])
+    @builds = @product.builds.joins(:variants).where(variants: { show_wholesale: true })
     @order = @merchant.current_order
   end
   
@@ -30,11 +31,5 @@ class Wholesale::OrdersController < ApplicationController
   def checkout
     
   end
-
-private
   
-  def product_params
-    params.require(:order)
-  end
-
 end

@@ -23,7 +23,7 @@
         <td><a>Quantity</a></td>
       </thead>
       <tbody>
-        <% @product.builds.each do |build| %>
+        <% @builds.each do |build| %>
           <tr>
             <% build.variants.joins(:variation).order("variations.level").each do |variant| %>
               <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'>
