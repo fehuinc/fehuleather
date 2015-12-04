@@ -3,9 +3,14 @@ $yellow: hsl(30, 30%, 98%);
 $blue: hsl(200, 50%, 95%);
 
 .wholesale#index {
+  main {
+    max-width: 50rem;
+  }
+  
   .actions {
     display: flex;
     justify-content: space-between;
+    max-width: none;
     
     a {
       display: inline-block;

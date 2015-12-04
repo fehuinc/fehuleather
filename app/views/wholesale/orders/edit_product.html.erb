@@ -41,10 +41,9 @@
                   <span ng-init="item.id=<%=build.id%>"></span>
                   <span ng-init="item.img='<%=build.image('wholesale')%>'"></span>
                   <div class="button-row perspective">
-                    <div class="button" ng-click="changeQuantity(-5)">-5</div><!--
-                ---><div class="button" ng-click="changeQuantity(-1)">-</div><!--
-                ---><div class="button" ng-click="changeQuantity(1)">+</div><!--
-                ---><div class="button" ng-click="changeQuantity(5)">+5</div>
+                    <div class="button" ng-click="changeQuantity(-1)">-</div>
+                    <div class="button" ng-click="changeQuantity(1)">+</div>
+                    <div class="button five" ng-click="changeQuantity(5)">+5</div>
                   </div>
                   <div class="input-row">
                     <input type="number"

@@ -36,11 +36,11 @@
 
 /* Don't over-specify the selector — we want this to be overridable */
 @supports (backdrop-filter:blur(10px)) { .glass {
-  backdrop-filter: brightness(1.2) saturate(200%) blur(10px);
+  backdrop-filter: saturate(200%) blur(10px);
   background: rgba(255,255,255,0.85);
 }}
 /* Don't over-specify the selector — we want this to be overridable */
 @supports (-webkit-backdrop-filter:blur(10px)) { .glass {
-  -webkit-backdrop-filter: brightness(1.2) saturate(200%) blur(10px);
+  -webkit-backdrop-filter: saturate(200%) blur(10px);
   background: rgba(255,255,255,0.85);
 }}
