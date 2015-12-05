@@ -7,41 +7,41 @@
   
   <div class="bricks">
     
-    <row class="D">
-      <block class="out s7"></block>
-      <space class="s10"></space>
-      <block class="out s7"></block>
-    </row>
+    <header-row class="D">
+      <row-item class="out s7"></row-item>
+      <row-space class="s10"></row-space>
+      <row-item class="out s7"></row-item>
+    </header-row>
     
-    <row class="C">
-      <block class="out s6"></block>
-      <block class="in s2 glyphs" href="/">
+    <header-row class="C">
+      <row-item class="out s6"></row-item>
+      <row-item class="in s2 glyphs" href="/">
         <a href="https://twitter.com/fehuleather" target="_blank"><%= image_tag("twitter.png") %></a><!--
      --><a href="https://www.pinterest.com/fehu/" target="_blank"><%= image_tag("pinterest.png") %></a>
-      </block>
-      <space class="s8"></space>
-      <block class="in s2 glyphs" href="/">
+   </row-item>
+      <row-space class="s8"></row-space>
+      <row-item class="in s2 glyphs" href="/">
         <a href="https://facebook.com/fehuleather" target="_blank"><%= image_tag("facebook.png") %></a><!--
      --><a href="https://instagram.com/fehuleather/" target="_blank"><%= image_tag("instagram.png") %></a>
-      </block>
-      <block class="out s6"></block>
-    </row>
+   </row-item>
+      <row-item class="out s6"></row-item>
+    </header-row>
     
-    <row class="B">
-      <block class="out s5"></block>
-      <block class="in s4"><%= link_to "About", about_path %></block>
-      <space class="s6"></space>
-      <block class="in s4"><%= link_to "Events", events_path %></block>
-      <block class="out s5"></block>
-    </row>
+    <header-row class="B">
+      <row-item class="out s5"></row-item>
+      <row-item class="in s4"><%= link_to "About", about_path %></row-item>
+      <row-space class="s6"></row-space>
+      <row-item class="in s4"><%= link_to "Events", events_path %></row-item>
+      <row-item class="out s5"></row-item>
+    </header-row>
     
-    <row class="A">
-      <block class="out s4"></block>
-      <block class="in s6"><%= link_to "Locations", locations_path %></block>
-      <space class="s4"></space>
-      <block class="in s6"><%= link_to "Wholesale", merchant_path %></block>
-      <block class="out s4"></block>
-    </row>
+    <header-row class="A">
+      <row-item class="out s4"></row-item>
+      <row-item class="in s6"><%= link_to "Locations", locations_path %></row-item>
+      <row-space class="s4"></row-space>
+      <row-item class="in s6"><%= link_to "Wholesale", merchant_path %></row-item>
+      <row-item class="out s4"></row-item>
+    </header-row>
   </div>
   
   <%= render "partials/shopping_cart" %>

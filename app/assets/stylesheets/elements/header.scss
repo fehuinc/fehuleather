@@ -51,12 +51,12 @@ header {
     letter-spacing: .15em;
   }
 
-  row {
+  header-row {
     display: flex;
     margin: 0 auto;
   }
   
-  block {
+  row-item {
     display: block;
     flex: 1 4 auto;
     height: $row-height;
@@ -76,12 +76,13 @@ header {
       justify-content: space-around;
       
       a {
+        display: inline-block;
         flex: 0 1 1.6em;
         &:hover { transform: scale(1.1); }
         
         img {
           margin-top: -.4em;
-          max-width: 100%;
+          width: 100%;
         }
       }
     }
@@ -94,7 +95,7 @@ header {
     }
   }
   
-  space {
+  row-space {
     flex: 0 5 auto;
   }
   
@@ -144,10 +145,5 @@ header {
   .A .out {
     background-color: darken($A, 7%);
     border-bottom: .4rem solid darken($A, 10%);
-  }
-  
-  shopping-cart {
-    position: relative;
-    top: -2.5em;
   }
 }
