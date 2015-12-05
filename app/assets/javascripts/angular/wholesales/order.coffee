@@ -7,7 +7,8 @@ angular.module "Order", []
   createPreviewItem = (editorItem)->
     return previewItem =
       build_id: editorItem.build_id
-      name: editorItem.name
+      build_name: editorItem.build_name
+      product_name: editorItem.product_name
       cents: editorItem.cents
       image: editorItem.image
       quantity: editorItem.quantity

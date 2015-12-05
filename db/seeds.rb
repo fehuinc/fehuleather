@@ -44,7 +44,7 @@ raw_ring_size.variants.create! name: "Large", show_retail: true, show_wholesale:
 bracelets = Kingdom.create! name: "Bracelet"
 
 # C&C Bracelet ##################################
-cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet", show_retail: true, show_wholesale: false, price_retail: 100, price_wholesale: 50, ypos: 10
+cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 10
 
 cc_bracelet.infos.create! name: "Tips", content: "C&C Tips Content"
 cc_bracelet.infos.create! name: "Sizing", content: "C&C Sizing Content"
@@ -62,7 +62,7 @@ cc_bracelet_gem.variants.create! name: "Jasper", show_retail: true, show_wholesa
 cc_bracelet_gem.variants.create! name: "Smokey Quartz", show_retail: true, show_wholesale: true, description: "A descriptive bit of captioning goes here, and it is Smokey indeed. Perhaps another sentence will give us some breadth and depth of understanding. Perhaps not."
 cc_bracelet_gem.variants.create! name: "Goldstone", show_retail: true, show_wholesale: true, description: "A descriptive bit of captioning goes here, and it is Goldstone indeed. Perhaps another sentence will give us some breadth and depth of understanding. Perhaps not."
 
-cc_bracelet_leather_color = cc_bracelet.variations.create! name: "Leather Color", level: 1, has_image: true
+cc_bracelet_leather_color = cc_bracelet.variations.create! name: "Leather Color", level: 1, has_image: false
 cc_bracelet_leather_color.variants.create! name: "Red", show_retail: true, show_wholesale: true
 cc_bracelet_leather_color.variants.create! name: "Yellow", show_retail: true, show_wholesale: true
 

@@ -1,14 +1,20 @@
 body.wholesales {
   main {
-    max-width: 62rem;
+    max-width: none;
     min-width: 768px;
     padding: 0;
     
     .split {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: center;
-      align-items: flex-start;
+      // display: flex;
+      // flex-flow: row nowrap;
+      // justify-content: center;
+      // align-items: flex-start;
+      text-align: center;
+      
+      & > * {
+        display: inline-block;
+        vertical-align: top;
+      }
     }
   }
 }

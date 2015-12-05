@@ -15,8 +15,13 @@ class Build < ActiveRecord::Base
   validates :product, { presence: true }
   validates :stock, { numericality: { only_integer: true } }
   
-  def name
-    variants.map { |variant| variant.name }.reverse.append(product.name).join(" ")
+  def name # TODO: rename to "full_name"
+    "#{build_name} #{product.name}"
+  end
+  
+  def build_name
+    # TODO: I should precompute this and store it in the DB
+    variants.map(&:name).reverse.join(" ")
   end
   
   def image(type)

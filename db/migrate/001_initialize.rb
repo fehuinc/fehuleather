@@ -45,6 +45,8 @@ class Initialize < ActiveRecord::Migration
     create_table :builds do |t|
       t.belongs_to :product,         required: true, index: true
       t.integer :stock,              null: false, default: 0
+      # TODO: Should we precompute the build_name? (concat of all variant names)
+      # TODO: What about the hashKey?
     end
     
     create_table :build_parts do |t|
@@ -77,9 +79,9 @@ class Initialize < ActiveRecord::Migration
       t.references :build,   required: false, index: true
       
       # These will remain correct, even if the build is changed/deleted
-      t.text :name,                  null: false
+      t.text :build_name,            null: false
+      t.text :product_name,          null: false
       t.integer :cents,              null: false, default: 0
-      
       t.integer :quantity,           null: false, default: 0
       t.timestamps
     end

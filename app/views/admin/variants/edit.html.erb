@@ -38,8 +38,8 @@
       <%= f.number_field :sort_order %>
     </div>
     <div>
-      <%= f.label :default do %>
-        <%= f.check_box :default %> Is this the default <%= @variation.name.downcase %>?
+      <%= f.label :featured do %>
+        <%= f.check_box :featured %> Is this a featured <%= @variation.name.downcase %>?
       <% end %>
     </div>
   </div>

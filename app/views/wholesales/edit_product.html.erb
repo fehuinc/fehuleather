@@ -36,7 +36,7 @@
       <tbody>
         <% @builds.each do |build| %>
           <tr>
-            <% build.variants.joins(:variation).order("variations.level").each do |variant| %>
+            <% build.variants.joins(:variation).distinct.order("variations.level").each do |variant| %>
               <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'>
                 <%= variant.name %>
               </td>
@@ -47,7 +47,8 @@
             <td>
               <div class="quantity" item-editor>
                 <span ng-init="editorItem.build_id=<%=build.id%>"></span>
-                <span ng-init="editorItem.name='<%=build.name%>'"></span>
+                <span ng-init="editorItem.build_name='<%=build.build_name%>'"></span>
+                <span ng-init="editorItem.product_name='<%=build.product.name%>'"></span>
                 <span ng-init="editorItem.cents=<%=build.cents_wholesale%>"></span>
                 <span ng-init="editorItem.image='<%=build.image('wholesale')%>'"></span>
                 <span ng-init="setQuantity(<%= current_order_quantity(@order, build) %>)"></span>

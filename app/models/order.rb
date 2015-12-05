@@ -17,7 +17,8 @@ class Order < ActiveRecord::Base
   def create_item_for_build(build, isWholesale)
     item = items.new build_id: build.id
     item.build = build
-    item.name = build.name
+    item.build_name = build.build_name
+    item.product_name = build.product.name
     item.cents = isWholesale ? build.cents_wholesale : build.cents_retail
     item.save!
     item

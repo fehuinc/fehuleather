@@ -6,7 +6,7 @@ class OrderItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :build
   
-  validates :name, :order, { presence: true }
+  validates :build_name, :order, :product_name, { presence: true }
   validates :cents, :quantity, { numericality: { only_integer: true } }
   
   def image(type)

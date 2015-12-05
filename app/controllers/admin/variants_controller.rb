@@ -60,6 +60,6 @@ class Admin::VariantsController < ApplicationController
 private
   
   def standard_params
-    params.require(:variant).permit :default, :description, :name, :price_retail, :price_wholesale, :show_retail, :show_wholesale, :sort_order
+    params.require(:variant).permit :featured, :description, :name, :price_retail, :price_wholesale, :show_retail, :show_wholesale, :sort_order
   end
 end
