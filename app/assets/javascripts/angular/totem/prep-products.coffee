@@ -10,7 +10,8 @@ angular.module "PrepProducts", []
 
 
 .service "PrepVariations", ()->
-  (product)->
+  
+  return PrepVariations = (product)->
     # We will want quick access to specific variations for later code
     product.variationsById = {}
     for variation in product.variations
@@ -21,17 +22,25 @@ angular.module "PrepProducts", []
       
       # We will want quick access to specific variants for later code, too
       variation.variantsById = {}
-      for variant in variation.variants
+      
+      # As we loop and do setup, strip out variants that aren't for retail
+      variation.variants = for variant in variation.variants when variant.show_retail
         variation.variantsById[variant.id] = variant
         
         # Another inverse link
         variant.variation = variation
+        
+        variant
 
     return product
 
 
 
 .service "PrepBuilds", new Array "BuildHasher", (BuildHasher)->
+  
+  showRetail = (part)->
+    # The variant might be null if it's been filtered out
+    part.variant?.show_retail
   
   partVariantName = (part)->
     part.variant.name
@@ -41,7 +50,15 @@ angular.module "PrepProducts", []
   
   
   return PrepBuilds = (product)->
+    
+    # Do this linking first, because we need it when filtering later.
     for build in product.builds
+      for part in build.parts
+        part.variation = product.variationsById[part.variation_id]
+        part.variant = part.variation.variantsById[part.variant_id]
+    
+    # As we loop and do setup, strip out builds that aren't for retail
+    build = for build in product.builds when build.parts.every showRetail
       
       # This is used as the ng-model for the quantity input in the totem-product-panel
       # We track it on a per-build basis — this, it's initialized here
@@ -50,16 +67,7 @@ angular.module "PrepProducts", []
       
       # Begin pre-computing the cost of this build
       build.cents_retail = product.cents_retail
-      build.cents_wholesale = product.cents_wholesale
-      
-      for part in build.parts
-        # Create direct links, so we don't need to go by ID in the future
-        part.variation = product.variationsById[part.variation_id]
-        part.variant = part.variation.variantsById[part.variant_id]
-        
-        # Continue to pre-compute cost
-        build.cents_retail += part.variant.cents_retail
-        build.cents_wholesale += part.variant.cents_wholesale
+      build.cents_retail += part.variant.cents_retail for part in build.parts
       
       # Variations come pre-sorted, but not build parts — we need to sort them by their variation's level
       # Sort happens in-place
@@ -74,6 +82,8 @@ angular.module "PrepProducts", []
       
       # Generate the hash key, and store the build under this key
       BuildHasher.setupProductBuild product, build
+      
+      build
       
     return product
 

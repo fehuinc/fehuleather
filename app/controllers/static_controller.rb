@@ -1,6 +1,7 @@
 class StaticController < ApplicationController
   def totem
-    @totem_products = Product.totem_products.to_json include: [
+    p = Product.where(show_retail: true).includes(:infos, { builds: :parts, variations: :variants })
+    @totem_products = p.to_json include: [
       { variations: { include: :variants } },
       { builds: { include: :parts } },
       :infos

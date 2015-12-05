@@ -10,9 +10,7 @@ class Product < ActiveRecord::Base
   
   # TODO: Check:
   before_destroy :ensure_safe_destroy
-  
-  scope :totem_products, -> { includes :builds, :infos, variations: [:variants] }
-  
+    
   def price_retail
     cents_retail.to_d / 100
   end
