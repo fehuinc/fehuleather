@@ -1,17 +1,20 @@
-class Wholesale::OrdersController < ApplicationController
+class WholesalesController < ApplicationController
+  
   def new
     merchant = Merchant.find(session[:merchant_id])
     if merchant.current_order.nil?
       merchant.current_order = merchant.orders.create!
       merchant.save!
     end
-    redirect_to edit_wholesale_order_path
+    redirect_to edit_wholesale_path
   end
+  
   
   def edit
     @merchant = Merchant.find(session[:merchant_id])
-    @kingdoms = Kingdom.all.order(:name)
+    @kingdoms = Kingdom.all.joins(:products).where(products: { show_wholesale: true }).order(:name)
   end
+  
   
   def edit_product
     @merchant = Merchant.find(session[:merchant_id])
@@ -20,6 +23,7 @@ class Wholesale::OrdersController < ApplicationController
     @order = @merchant.current_order
   end
   
+  
   def update_product
     merchant = Merchant.find(session[:merchant_id])
     order = merchant.current_order
@@ -27,6 +31,7 @@ class Wholesale::OrdersController < ApplicationController
     result = order.update_items builds
     render json: result
   end
+  
   
   def checkout
     

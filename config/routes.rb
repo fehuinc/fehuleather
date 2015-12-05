@@ -14,25 +14,24 @@ Rails.application.routes.draw do
     
     # Wholesale — public
     scope constraints: lambda { |request| request.session[:merchant_id].nil? || Merchant.find_by_id(request.session[:merchant_id]).nil? } do
-      get "wholesale" => "wholesale#login"
-      post "wholesale" => "wholesale#login"
-      get "merchant" => "merchants#new", as: "new_merchant"
-      post "merchant" => "merchants#create"
-      get "wholesale/*ignore" => "wholesale#login"
+      resource :merchant, only: [:new]
+      post "merchant/new" => "merchants#create", as: nil
+      get "merchant" => "merchants#login"
+      post "merchant" => "merchants#login"
+      get "merchant/*ignore" => "merchants#login"
     end
     
     # Wholesale — private
     scope constraints: lambda { |request| !request.session[:merchant_id].nil? && !Merchant.find_by_id(request.session[:merchant_id]).nil? } do
-      get "wholesale" => "wholesale#index"
-      post "wholesale" => "wholesale#index"
-      get "merchant" => "merchants#edit", as: "edit_merchant"
-      patch "merchant" => "merchants#update"
-      namespace :wholesale do
-        resource :order, only: [:new, :edit, :update] do
-          get "product/:id" => "orders#edit_product", as: "product"
-          patch "product/:id" => "orders#update_product"
-          get "checkout" => "orders#checkout"
-        end
+      get "merchant" => "merchants#index"
+      post "merchant" => "merchants#index"
+      get "merchant/edit" => "merchants#edit"
+      patch "merchant/edit" => "merchants#update"
+      
+      resource :wholesale, only: [:new, :edit] do
+        get "product/:id" => "wholesales#edit_product", as: "product"
+        patch "product/:id" => "wholesales#update_product"
+        get "checkout" => "wholesales#checkout"
       end
     end
     

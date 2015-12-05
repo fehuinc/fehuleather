@@ -1,7 +1,7 @@
-<%= render "wholesale/orders/button_bar" %>
+<%= render "wholesales/button_bar" %>
 
 <div class="split">
-  <order-builder>
+  <wholesale-builder>
 
     
     <h1>Add a Product to Your Order</h1>
@@ -12,8 +12,8 @@
         <div class="kingdom">
           <h2><%= kingdom.name %></h2>
           
-          <% kingdom.products.order(:name).each do |product| %>
-            <a class="product" href="<%= product_wholesale_order_path(product.id) %>">
+          <% kingdom.products.where(show_wholesale: true).order(:name).each do |product| %>
+            <a class="product" href="<%= product_wholesale_path(product.id) %>">
               <img src="<%=product.wholesale_image%>">
               <span><%= product.name %></span>
             </a>
@@ -25,6 +25,6 @@
     </div>
 
     
-  </order-builder>
-  <%= render "wholesale/orders/order_preview" %>
+  </wholesale-builder>
+  <%= render "wholesales/wholesale_preview" %>
 </div>

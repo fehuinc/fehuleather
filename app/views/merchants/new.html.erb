@@ -1,6 +1,6 @@
 <h1 class="page-title">Create Your Account</h1>
 
-<%= form_for @merchant, url: merchant_path do |f| %>
+<%= form_for @merchant, url: new_merchant_path do |f| %>
   
   <h4><%= @merchant.email %></h4>
   
@@ -8,7 +8,7 @@
   
   <hr>
   
-  <p><i>If you've ordered from our site before, you probably used a different email address, or made a typo. Easy fix — <a href="/wholesale">go back</a>.</i></p>
+  <p><i>If you've ordered from our site before, you probably used a different email address, or made a typo. Easy fix — <%= link_to "go back", merchant_path %>.</i></p>
   
   <hr>
   

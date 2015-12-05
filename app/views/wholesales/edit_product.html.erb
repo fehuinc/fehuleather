@@ -10,10 +10,10 @@
 </svg>
 
 
-<%= render "wholesale/orders/button_bar" %>
+<%= render "wholesales/button_bar" %>
 
 <div class="split">
-  <order-builder>
+  <wholesale-builder>
     <table>
       <thead class="glass" sticky="0">
         <% @product.variations.order(:level).each_with_index do |variation, index| %>
@@ -30,8 +30,8 @@
                 <%= variant.name %>
               </td>
             <% end %>
-            <td>
-              <img class="preview-img" src="<%=build.image('wholesale')%>">
+            <td class="preview-img">
+              <img src="<%=build.image('wholesale')%>">
             </td>
             <td>
               <div class="quantity" wholesale-item-editor>
@@ -54,9 +54,9 @@
         <% end %>
       </tbody>
     </table>
-  </order-builder>
+  </wholesale-builder>
 
-  <%= render "wholesale/orders/order_preview" %>
+  <%= render "wholesales/wholesale_preview" %>
 </div>
 
-<%= render "wholesale/orders/button_bar" %>
+<%= render "wholesales/button_bar" %>

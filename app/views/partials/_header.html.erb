@@ -29,17 +29,17 @@
     
     <row class="B">
       <block class="out s5"></block>
-      <block class="in s4"><a href="/about">About</a></block>
+      <block class="in s4"><%= link_to "About", about_path %></block>
       <space class="s6"></space>
-      <block class="in s4"><a href="/events">Events</a></block>
+      <block class="in s4"><%= link_to "Events", events_path %></block>
       <block class="out s5"></block>
     </row>
     
     <row class="A">
       <block class="out s4"></block>
-      <block class="in s6"><a href="/locations">Locations</a></block>
+      <block class="in s6"><%= link_to "Locations", locations_path %></block>
       <space class="s4"></space>
-      <block class="in s6"><a href="/wholesale">Wholesale</a></block>
+      <block class="in s6"><%= link_to "Wholesale", merchant_path %></block>
       <block class="out s4"></block>
     </row>
   </div>

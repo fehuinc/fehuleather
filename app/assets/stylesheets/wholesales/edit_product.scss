@@ -1,6 +1,6 @@
 @import 'vars';
 
-.orders#edit_product {
+.wholesales#edit_product {
   
   svg {
     display: block;
@@ -9,7 +9,7 @@
     margin: -2em auto 0;
   }
   
-  order-builder {
+  wholesale-builder {
     
     table {
       display: inline-table;
@@ -29,7 +29,15 @@
       tbody tr:nth-child(odd) {
         background-color: transparent;
       }
-    
+      
+      .preview-img {
+        padding: 0;
+        
+        img {
+          width: 6em;
+        }
+      }
+      
       .quantity {
         display: inline-block;
         

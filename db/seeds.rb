@@ -2,7 +2,7 @@
 rings = Kingdom.create! name: "Ring"
 
 # Gold Ring ######################################
-gold_ring = rings.products.create! name: "Gold Ring", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
+gold_ring = rings.products.create! name: "Gold Ring", show_retail: true, show_wholesale: false, price_retail: 100, price_wholesale: 50, ypos: 15
 
 gold_ring.infos.create! name: "Tips", content: "Gold Ring Tips Content"
 gold_ring.infos.create! name: "Sizing", content: "Gold Ring Sizing Content"
@@ -23,7 +23,7 @@ gold_ring_size.variants.create! name: "Large", show_retail: true, show_wholesale
 
 
 # Raw Ring ######################################
-raw_ring = rings.products.create! name: "Raw Ring", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
+raw_ring = rings.products.create! name: "Raw Ring", show_retail: true, show_wholesale: false, price_retail: 100, price_wholesale: 50, ypos: 15
 
 raw_ring.infos.create! name: "Tips", content: "Raw Ring Tips Content"
 raw_ring.infos.create! name: "Sizing", content: "Raw Ring Sizing Content"
@@ -44,7 +44,7 @@ raw_ring_size.variants.create! name: "Large", show_retail: true, show_wholesale:
 bracelets = Kingdom.create! name: "Bracelet"
 
 # C&C Bracelet ##################################
-cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 10
+cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet", show_retail: true, show_wholesale: false, price_retail: 100, price_wholesale: 50, ypos: 10
 
 cc_bracelet.infos.create! name: "Tips", content: "C&C Tips Content"
 cc_bracelet.infos.create! name: "Sizing", content: "C&C Sizing Content"
@@ -94,7 +94,7 @@ wrap_cuff_color.variants.create! name: "Yellow", show_retail: false, show_wholes
 
 
 # Fuzzy Cuff ####################################
-fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 25
+fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff", show_retail: true, show_wholesale: false, price_retail: 100, price_wholesale: 50, ypos: 25
 
 fuzzy_cuff.infos.create! name: "Tips", content: "Fuzzy Cuff Tips Content"
 fuzzy_cuff.infos.create! name: "Sizing", content: "Fuzzy Cuff Sizing Content"

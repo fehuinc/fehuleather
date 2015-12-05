@@ -2,13 +2,13 @@
 
 <section class="actions">
   <% if @merchant.current_order.nil? %>
-    <a href="/wholesale/order/new">New Order</a>
+    <%= link_to "New Order", new_wholesale_path %>
   <% else %>
-    <a href="/wholesale/order/edit">Edit Current Order</a>
+    <%= link_to "Edit Current Order", edit_wholesale_path %>
   <% end %>
-  <a href="/wholesale/order/repeat">Quick Re-Order</a>
-  <a href="/wholesale/orders">View Past Orders</a>
-  <a href="/wholesale/line-sheet">Download/Print Line Sheet</a>
+  <%= link_to "Quick Re-order", nil %>
+  <%= link_to "View Past Orders", nil %>
+  <%= link_to "Download/Print Line Sheet", nil %>
 </section>
 
 <section>
