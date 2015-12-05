@@ -3,7 +3,7 @@
     <%= link_to "< All Products", edit_wholesale_path, class: "back button" %>
   <% end %>
   
-  <% if @merchant.current_order.items.count > 0 %>
+  <div ng-cloak ng-show="previewItemsCount > 0">
     <%= link_to "Checkout >", checkout_wholesale_path, class: "button" %>
-  <% end %>
+  </div>
 </button-bar>

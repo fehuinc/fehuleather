@@ -13,6 +13,10 @@ class OrderItem < ActiveRecord::Base
     build.image(type)
   end
   
+  def wholesale_image
+    image 'wholesale'
+  end
+  
   def price
     cents.to_d / 100
   end

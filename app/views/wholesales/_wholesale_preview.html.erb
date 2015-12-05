@@ -1,13 +1,14 @@
 <script>
-  FEHU.items = <%= @merchant.current_order.items.to_json.html_safe %>
+  FEHU.items = <%= wholesale_preview_items(@merchant) %>
 </script>
 
 <wholesale-preview sticky="0">
   <h1>In Your Order</h1>
   <h3 class="appear" ng-hide="true">Loading...</h3>
+  <h3 class="appear" ng-hide="previewItemsCount > 0">Nothing yet...</h3>
   <div ng-cloak ng-controller="PreviewCtrl">
     <div class="item" ng-repeat="item in previewItems">
-      <img class="preview" ng-src="item.image">
+      <img class="preview" ng-src="{{item.image}}">
       <div class="details">
         <div class="name">{{item.name}}</div>
         <div class="price">
@@ -16,6 +17,5 @@
       </div>
     </div>
     <h3 class="appear" ng-show="updatingItems">Updating...</h3>
-    <h3 class="appear" ng-hide="previewItemsCount > 0">Nothing yet...</h3>
   </div>
 </wholesale-preview>

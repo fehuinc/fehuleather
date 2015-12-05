@@ -1,19 +1,36 @@
 @import 'vars';
 
 .wholesales#edit_product {
-  
-  svg {
-    display: block;
-    width: 100%;
-    max-width: 24em;
-    margin: 0 auto;
+  .top {
+    text-align: center;
+    margin: 3em 0 4em;
+    
+    svg {
+      display: inline-block;
+      width: 100%;
+      max-width: 32em;
+      margin-left: -4em;
+      vertical-align: middle;
+    }
+    
+    .info {
+      display: inline-block;
+      padding: 2em .5em;
+      vertical-align: middle;
+      text-align: left;
+      
+      h3 {
+        margin-top: 1em;
+      }
+    }
   }
   
   wholesale-builder {
+    display: block;
     
     table {
-      display: inline-table;
       margin: 0;
+      margin-left: auto;
       text-align: center;
     
       thead {

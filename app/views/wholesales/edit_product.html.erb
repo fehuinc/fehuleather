@@ -1,19 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="20 35 160 150">
-  <defs>
-    <path id="svg-circle" d="M25, 100 a75,75 0 1,0 150,0 a75,75 0 1,0 -150,0"/>
-    <clipPath id="clip-path"><path d="M40, 100 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"/></clipPath>
-  </defs>
-  <image x="40" y="40" width="120" height="120" xlink:href="<%=@product.totem_image%>" clip-path='url(#clip-path)'/>
-  <text x="0" y="0" fill="#456" fill-opacity="1" transform="rotate(<%=-90 + @product.name.length*3%>, 100, 100)">
-    <textPath xlink:href="#svg-circle"><%= @product.name %></textPath>
-  </text>
-</svg>
-
-
 <%= render "wholesales/button_bar" %>
 
+<div class="top">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="20 40 160 140">
+    <defs>
+      <path id="svg-circle" d="M25, 100 a75,75 0 1,0 150,0 a75,75 0 1,0 -150,0"/>
+      <clipPath id="clip-path"><path d="M40, 100 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"/></clipPath>
+    </defs>
+    <image x="40" y="40" width="120" height="120" xlink:href="<%=@product.totem_image%>" clip-path='url(#clip-path)' />
+    <text x="0" y="0" fill="#456" fill-opacity="1" transform="rotate(<%=-90 + @product.name.length*3%>, 100, 100)">
+      <textPath xlink:href="#svg-circle"><%= @product.name %></textPath>
+    </text>
+  </svg>
+  
+  <div class="info">
+    <% @product.infos.each do |info| %>
+      <h3><%= info.name %></h3>
+      <p><%= info.content %></p>
+    <% end %>
+  </div>
+</div>
+
 <div class="split">
+    
   <wholesale-builder>
+    <h1>Add to Your Order</h1>
+    
     <table>
       <thead class="glass" sticky="0">
         <% @product.variations.order(:level).each_with_index do |variation, index| %>
@@ -57,9 +68,12 @@
         <% end %>
       </tbody>
     </table>
+  
   </wholesale-builder>
   
-  <%= render "wholesales/wholesale_preview" %>
+  <div>
+    <%= render "wholesales/wholesale_preview" %>
+  </div>
 </div>
 
 <%= render "wholesales/button_bar" %>

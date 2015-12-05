@@ -1,7 +1,8 @@
 wholesale-preview {
   display: inline-block;
   width: 20em;
-  margin-left: 1em;
+  margin-left: 3vw;
+  margin-bottom: 2em;
   vertical-align: top;
   text-align: left;
 
@@ -9,21 +10,21 @@ wholesale-preview {
     text-align: left;
   }
   
-  .right {
-    float: right;
-  }
-  
-  .name {
-    font-weight: bold;
-  }
-  
-  .details {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  
-  .preview {
-    width: 6em;
+  .item {
+    animation: fade-in .5s .1s both;
+    
+    .preview {
+      width: 6em;
+    }
+    
+    .details {
+      display: inline-block;
+      vertical-align: middle;
+      
+      .name {
+        font-weight: bold;
+      }
+    }
   }
   
   .appear {
