@@ -1,23 +1,21 @@
+<script>
+  FEHU.items = <%= @merchant.current_order.items.to_json.html_safe %>
+</script>
+
 <wholesale-preview sticky="0">
-  
   <h1>In Your Order</h1>
-  <% if @merchant.current_order.order_items.count == 0 %>
-    <div>Nothing yet...</div>
-  <% else %>
-    <% @merchant.current_order.order_items.each do |item| %>
-      <div class="item">
-        <img class="preview-img" src="<%=item.image('wholesale')%>">
-        <div class="details">
-          <div class="name"><%= item.name %></div>
-          <div class="price">
-            <%= item.quantity %> x <%= number_to_currency(item.price) %> = <%= number_to_currency(item.quantity * item.price) %>
-          </div>
-          <div class="actions">
-            <%= link_to "Edit", product_wholesale_path(item.product) %>
-            <a remove-item="<%= item.build.id %>">Remove</a>
-          </div>
+  <h3 class="appear" ng-hide="true">Loading...</h3>
+  <div ng-cloak ng-controller="PreviewCtrl">
+    <div class="item" ng-repeat="item in previewItems">
+      <img class="preview" ng-src="item.image">
+      <div class="details">
+        <div class="name">{{item.name}}</div>
+        <div class="price">
+          {{ item.quantity }} for ${{ item.quantity * item.cents/100 }}
         </div>
       </div>
-    <% end %>
-  <% end %>
+    </div>
+    <h3 class="appear" ng-show="updatingItems">Updating...</h3>
+    <h3 class="appear" ng-hide="previewItemsCount > 0">Nothing yet...</h3>
+  </div>
 </wholesale-preview>

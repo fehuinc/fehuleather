@@ -30,13 +30,16 @@
                 <%= variant.name %>
               </td>
             <% end %>
-            <td class="preview-img">
+            <td class="preview">
               <img src="<%=build.image('wholesale')%>">
             </td>
             <td>
-              <div class="quantity" wholesale-item-editor>
-                <span ng-init="item.id=<%=build.id%>"></span>
-                <span ng-init="item.img='<%=build.image('wholesale')%>'"></span>
+              <div class="quantity" item-editor>
+                <span ng-init="editorItem.build_id=<%=build.id%>"></span>
+                <span ng-init="editorItem.name='<%=build.name%>'"></span>
+                <span ng-init="editorItem.cents=<%=build.cents_wholesale%>"></span>
+                <span ng-init="editorItem.image='<%=build.image('wholesale')%>'"></span>
+                <span ng-init="setQuantity(<%= current_order_quantity(@order, build) %>)"></span>
                 <div class="button-row perspective">
                   <div class="button" ng-click="changeQuantity(-1)">-</div>
                   <div class="button" ng-click="changeQuantity(1)">+</div>
@@ -45,8 +48,8 @@
                 <div class="input-row">
                   <input type="number"
                          class="quantity input-no-spinner"
-                         ng-model="item.displayQuantity"
-                         ng-change="updateQuantity()">
+                         ng-model="editorItem.displayQuantity"
+                         ng-change="setQuantity(editorItem.displayQuantity)">
                 </div>
               </div>
             </td>
@@ -55,7 +58,7 @@
       </tbody>
     </table>
   </wholesale-builder>
-
+  
   <%= render "wholesales/wholesale_preview" %>
 </div>
 

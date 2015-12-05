@@ -3,10 +3,8 @@ angular.module "FehuApp", [
   "Deleter"
   "Editable"
   "ModalCover"
-  "ShoppingCart"
   "Sticky"
   "StockQuantity"
-  "WholesaleItemEditor"
   
   # Directives
   "bimg"
@@ -23,19 +21,25 @@ angular.module "FehuApp", [
   "Locations"
   "Payment"
   
+  # Services
+  "FeatureDetect"
+  "Storage"
+  "ShippingAddress"
+  
   # Totem
   "BuildHasher"
   "Cart"
   "PanelManager"
   "PrepProducts"
+  "ShoppingCart"
   "TotemCtrl"
   "TotemProduct"
   "TotemProductPanel"
   "TotemSpecimen"
   "TotemSpecimensList"
   
-  # Services
-  "FeatureDetect"
-  "Storage"
-  "ShippingAddress"
+  # Wholesale
+  "ItemEditor"
+  "Order"
+  "PreviewCtrl"
 ]

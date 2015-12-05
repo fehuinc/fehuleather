@@ -26,15 +26,15 @@ class Build < ActiveRecord::Base
     return Images.build_path(product.name, variantNames, type)
   end
   
-  def price(wholesale = false)
-    if wholesale
-      price = product.price_wholesale
-      variants.all.each { |variant| price += variant.price_wholesale }
-      price.to_i
-    else
-      price = product.price_retail
-      variants.all.each { |variant| price += variant.price_retail }
-      price.to_i
-    end
+  def cents_retail
+    cents = product.cents_retail
+    variants.all.each { |variant| cents += variant.cents_retail }
+    cents
+  end
+
+  def cents_wholesale
+    cents = product.cents_wholesale
+    variants.all.each { |variant| cents += variant.cents_wholesale }
+    cents
   end
 end

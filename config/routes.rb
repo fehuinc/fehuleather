@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       
       resource :wholesale, only: [:new, :edit] do
         get "product/:id" => "wholesales#edit_product", as: "product"
-        patch "product/:id" => "wholesales#update_product"
+        patch "update_order/:build_id" => "wholesales#update_order"
         get "checkout" => "wholesales#checkout"
       end
     end

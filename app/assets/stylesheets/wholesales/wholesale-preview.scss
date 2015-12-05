@@ -21,4 +21,12 @@ wholesale-preview {
     display: inline-block;
     vertical-align: middle;
   }
+  
+  .preview {
+    width: 6em;
+  }
+  
+  .appear {
+    animation: fade-in 1s .5s both;
+  }
 }

@@ -6,7 +6,7 @@
 </div>
 
 <section>
-  <h3>You're about to order <%= link_to "#{merchant.current_order.order_items.count} Product".pluralize(merchant.current_order.order_items.count), edit_wholesale_path %>.</h3>
+  <h3>You're about to order <%= link_to "#{items_count} Product".pluralize(items_count), edit_wholesale_path %>.</h3>
 </section>
 
 <section>

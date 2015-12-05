@@ -24,17 +24,17 @@ class WholesalesController < ApplicationController
   end
   
   
-  def update_product
-    merchant = Merchant.find(session[:merchant_id])
+  def update_order
+    merchant = Merchant.find session[:merchant_id]
     order = merchant.current_order
-    builds = params[:builds]
-    result = order.update_items builds
+    build = Build.find params[:build_id]
+    result = order.update_item_from_build build, params[:quantity], true
     render json: result
   end
   
   
   def checkout
-    
+    @items_count = merchant.current_order.items.count
   end
   
 end
