@@ -20,6 +20,11 @@ shopping-cart {
     z-index: 101;
     transform: translate(-50%);
     
+    img {
+      width: 32px;
+      height: 24px;
+    }
+    
     &:hover {
       transition: transform 5s cubic-bezier(0, 1, 0, 1);
       transform: translate(-50%) scale(1.5);
