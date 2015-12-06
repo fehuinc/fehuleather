@@ -8,6 +8,7 @@
     svg {
       display: inline-block;
       width: 100%;
+      height: 32em; // Fixes IE bug
       max-width: 32em;
       margin-left: -4em;
       vertical-align: middle;
