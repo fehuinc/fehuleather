@@ -36,7 +36,7 @@
       <tbody>
         <% @builds.each do |build| %>
           <tr>
-            <% build.variants.joins(:variation).distinct.order("variations.level").each do |variant| %>
+            <% build.variants.joins(:variation).order("variations.level").each do |variant| %>
               <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'>
                 <%= variant.name %>
               </td>

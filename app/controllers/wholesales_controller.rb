@@ -14,8 +14,8 @@ class WholesalesController < ApplicationController
     @merchant = Merchant.find(session[:merchant_id])
     @kingdoms = Kingdom.all
                        .joins(:products)
-                       .where(products: { show_wholesale: true })
                        .distinct
+                       .where(products: { show_wholesale: true })
                        .order(:name)
   end
   
@@ -26,8 +26,8 @@ class WholesalesController < ApplicationController
     @product = Product.find(params[:id])
     @builds = @product.builds
                       .joins(:variants)
-                      .where(variants: { show_wholesale: true })
                       .distinct
+                      .where(variants: { show_wholesale: true })
   end
   
   
