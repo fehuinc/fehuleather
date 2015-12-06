@@ -6,7 +6,6 @@ angular.module "TotemSpecimen", []
   controller: new Array "$scope", ($scope)->
     SIZE_WITH_PAD = 82
     animationTime = 800
-    animString = "#{animationTime}ms cubic-bezier(.2,.2,.3,.9)"
     
     
     getPosition = (pos, length)->
@@ -16,7 +15,11 @@ angular.module "TotemSpecimen", []
       (((pos + length) + length/2) % length) - length/2
     
     getTransform = (position)->
-      return "translate(#{position * SIZE_WITH_PAD}vmin)"
+      # TODO: This won't necessarily update on resize
+      if document.querySelector("html.wide")?
+        return "translate(#{position * SIZE_WITH_PAD}vh)"
+      else
+        return "translate(#{position * SIZE_WITH_PAD}vw)"
     
     getOpacity = (position)->
       switch Math.abs position
@@ -24,16 +27,11 @@ angular.module "TotemSpecimen", []
         when 1 then 0.2
         else 0
     
-    getTransition = (position)->
-      if Math.abs(position) <= 2
-        "transform #{animString}, opacity #{animString}"
-    
     $scope.getSpecimenStyle = ()->
       position = getPosition $scope.offset + $scope.$index, $scope.product.specimens.length
       return style =
         transform: getTransform position
         opacity: getOpacity position
-        transition: getTransition position
       
     
     $scope.clickSpecimen = ()->

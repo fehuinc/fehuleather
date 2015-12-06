@@ -5,13 +5,31 @@ totem-specimen {
   position: absolute;
   top: 0;
   left: 50%;
-  margin-left: -$size/2;
-  width: $size;
-  height: $size;
   cursor: pointer;
-  
-  div {
-    width: $size;
-    height: $size;
+  transition: transform .8s cubic-bezier(.2,.2,.3,.9), opacity .8s cubic-bezier(.2,.2,.3,.9);
+}
+
+
+html.wide {
+  totem-specimen {
+    margin-left: -$wide-size/2;
+    width: $wide-size;
+    height: $wide-size;
+    div {
+      width: $wide-size;
+      height: $wide-size;
+    }
+  }
+}
+
+html.tall {
+  totem-specimen {
+    margin-left: -$tall-size/2;
+    width: $tall-size;
+    height: $tall-size;
+    div {
+      width: $tall-size;
+      height: $tall-size;
+    }
   }
 }

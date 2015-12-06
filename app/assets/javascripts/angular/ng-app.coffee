@@ -8,6 +8,7 @@ angular.module "FehuApp", [
   
   # Directives
   "bimg"
+  "WideOrTall"
   
   # Filters
   "reverse"
