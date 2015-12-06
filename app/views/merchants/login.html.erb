@@ -7,7 +7,7 @@
     <label>
       Please enter your primary email address.
       <div class="info-prompt" toggler-toggle="popup">?</div>
-      <%= f.text_field :email, autofocus: true, placeholder: "eg: secret-identity@example.com" %>
+      <%= f.email_field :email, autofocus: true, placeholder: "eg: secret-identity@example.com" %>
     </label>
   </div>
   <%= render 'partials/form_errors', model: @merchant %>
