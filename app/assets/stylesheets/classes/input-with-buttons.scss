@@ -1,0 +1,42 @@
+.input-with-buttons {
+  .button-row {
+    display: flex;
+    flex-flow: row nowrap;
+    
+    .button {
+      flex: 1 1 1%;
+      padding: 0;
+      border-radius: 0;
+      border-top: 1px solid #706F6D;
+      text-align: center;
+      font-size: 1.4em;
+      line-height: 1.6rem;
+      user-select: none;
+      vertical-align: top;
+      
+      &:first-child {
+        border-left: 1px solid #706F6D;
+        border-top-left-radius: 5px;
+      }
+      
+      &:last-child {
+        border-right: 1px solid #706F6D;
+        border-top-right-radius: 5px;
+        margin-right: 0;
+      }
+      
+      &.five {
+        font-size: 1em;
+      }
+    }
+  }
+  
+  input {
+    display: inline-block;
+    padding: .3em .4em;
+    text-align: center;
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}

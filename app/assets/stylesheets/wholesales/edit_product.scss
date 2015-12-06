@@ -52,47 +52,6 @@
       
       .quantity {
         display: inline-block;
-        
-        .button-row {
-          display: flex;
-          flex-flow: row nowrap;
-          
-          .button {
-            flex: 1 1 33%;
-            padding: 0;
-            margin-right: -1px;
-            text-align: center;
-            border: 1px solid #706F6D;
-            border-bottom: 0;
-            border-radius: 0;
-            font-size: 1.4em;
-            line-height: 2rem;
-            user-select: none;
-            vertical-align: top;
-            
-            &:first-child {
-              border-top-left-radius: 3px;
-            }
-            
-            &:last-child {
-              border-top-right-radius: 3px;
-              margin-right: 0;
-            }
-            
-            &.five {
-              font-size: 1em;
-            }
-          }
-        }
-      
-        .input-row {
-          input {
-            display: inline-block;
-            width: 6em;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-          }
-        }
       }
     }
   }

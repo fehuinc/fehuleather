@@ -7,7 +7,8 @@ angular.module "TotemProductPanel", []
     
     # This manipulates the DOM
     $scope.showCart = ()->
-      document.body.scrollTop = 0
+      document.body.scrollTop = 0 # Safari
+      document.body.parentNode.scrollTop = 0 # FF, IE
       $timeout (()-> $rootScope.toggleCart true), 300
     
     $scope.checkChange = (variantIndex, variation)->

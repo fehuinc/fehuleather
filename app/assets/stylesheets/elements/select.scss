@@ -1,13 +1,14 @@
-$color: rgba(#543, 0.7);
-
 select {
-  // padding: .2em .4em;
-  // border: 0;
-  // border-left: 1px solid $color;
-  // border-bottom: 1px solid $color;
-  // border-radius: 5px;;
-  // border-bottom-left-radius: 6px;
-  // color: $color;
-  // background: transparent;
-  // appearance: none;
+  padding: .2em .4em;
+  border: 1px solid #706F6D;
+  border-radius: 5px;
+  vertical-align: middle;
+  color: #706F6D;
+  background: white;
+  appearance: none;
+
+  &:focus, &:active, &:hover {
+    border: 1px solid hsl(185, 35%, 50%);
+    box-shadow: 0 0 2px 1px hsla(185, 35%, 50%, .3);
+  }
 }

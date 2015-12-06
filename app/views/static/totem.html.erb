@@ -35,7 +35,16 @@
             </div>
           </div>
           <div class="subtotal">
-            <input class="quantity" type="number" step="1" min="0" max="99" ng-model="currentBuild.desiredQuantity">
+            <div class="input-with-buttons">
+              <div class="button-row perspective">
+                <div class="button" ng-click="changeQuantity(-1)">-</div>
+                <div class="button" ng-click="changeQuantity(1)">+</div>
+              </div>
+              <input type="number"
+                     class="quantity"
+                     step="1"
+                     ng-model="currentBuild.desiredQuantity">
+            </div>
             for
             <div class="price">${{currentBuild.desiredQuantity * currentBuild.cents_retail / 100}}</div>
           </div>
