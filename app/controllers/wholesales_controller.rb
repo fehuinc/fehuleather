@@ -15,8 +15,8 @@ class WholesalesController < ApplicationController
     @kingdoms = Kingdom.all
                        .joins(:products)
                        .where(products: { show_wholesale: true })
-                       .order(:name)
                        .distinct
+                       .order(:name)
   end
   
   
