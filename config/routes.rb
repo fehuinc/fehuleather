@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   scope format: false do
+    # MUST COME FIRST: Redirect apex requests to www
+    match '(*any)', via: :all, constraints: { subdomain: '' }, to: redirect { |_, req| req.url.sub '//', '//www.' }
     
     # Static
     root "static#totem"
