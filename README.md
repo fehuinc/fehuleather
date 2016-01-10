@@ -3,6 +3,31 @@
 Stinks. On Rails.
 
 
+# Todo
+
+Events
+  American Made Booth #: 1030
+
+Wholesale
+  Text block next to product image that Freyja can put [whatever] into — unstructured
+  
+  Sizes are a grid under each product build, with many number boxes for quantities
+  If possible, let them pick the overall total and leave the selection of sizes up to us
+  
+  Made to order — ignore quantities
+  
+  17 ring sizes are actually based on 4 real sizes
+    so in reality, there are 4 quantities for 17 order-able choices
+    this might not be feasible at the moment
+  
+  a new kind of variation that presents as a grid (for sizes)
+  
+  the ability to say "I will let you pick the sizes for me" when ordering a build
+  
+  Email Freyja when an order is delivered
+    the body of the email is the linesheet
+  
+  
 ## Notes
 
 #### Photos

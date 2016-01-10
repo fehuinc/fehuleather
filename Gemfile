@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.3'
+ruby '2.3.0'
 
 gem 'rails', '~> 4.2.5'
 
@@ -21,6 +21,7 @@ gem 'angular_rails_csrf'
 
 # SERVICE INTEGRATIONS
 # gem 'postmark-rails'
+# gem 'skylight'
 
 group :development do
   gem 'web-console', '~> 2.0' # Access an IRB console on exception pages or by using <%= console %> in views
