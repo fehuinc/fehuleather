@@ -18,16 +18,16 @@ Rails.application.configure do
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like
   # NGINX, varnish or squid.
-  config.action_dispatch.rack_cache = true
+  # config.action_dispatch.rack_cache = true
   
   # Configure Rack::Cache
-  config.middleware.use Rack::Cache,
-   :verbose => true,
-   :metastore   => 'file:/var/cache/rack/meta',
-   :entitystore => 'file:/var/cache/rack/body'
+  # config.middleware.use Rack::Cache,
+  #  :verbose => true,
+  #  :metastore   => 'file:/var/cache/rack/meta',
+  #  :entitystore => 'file:/var/cache/rack/body'
   
   # NOTE(IVAN): Added based on some Googling.. not sure if it helps.
-  config.static_cache_control = "public, max-age=31536000"
+  # config.static_cache_control = "public, max-age=31536000"
   
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -49,7 +49,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.

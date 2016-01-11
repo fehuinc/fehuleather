@@ -54,3 +54,11 @@ STINKNAME=
 
 IMAGEPATH=/images/content/
 ```
+
+# Deployment
+
+## To erase and rebuild the DB:
+```bash
+heroku pg:reset DATABASE --confirm fehu
+heroku run rake db:migrate db:seed
+```
