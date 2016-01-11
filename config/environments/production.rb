@@ -18,8 +18,17 @@ Rails.application.configure do
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like
   # NGINX, varnish or squid.
-  # config.action_dispatch.rack_cache = true
-
+  config.action_dispatch.rack_cache = true
+  
+  # Configure Rack::Cache
+  config.middleware.use Rack::Cache,
+   :verbose => true,
+   :metastore   => 'file:/var/cache/rack/meta',
+   :entitystore => 'file:/var/cache/rack/body'
+  
+  # NOTE(IVAN): Added based on some Googling.. not sure if it helps.
+  config.static_cache_control = "public, max-age=31536000"
+  
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   # config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
@@ -34,8 +43,6 @@ Rails.application.configure do
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
-
-  # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -58,7 +65,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = 'http://assets.example.com'
+  config.action_controller.asset_host = ENV["ASSET_HOST"]
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -67,7 +74,7 @@ Rails.application.configure do
   # Ivan added:
   # Specify what domain to use for mailer URLs and assets (like images)
   config.action_mailer.default_url_options = { host: 'www.fehuleather.com' }
-  config.action_mailer.asset_host = 'www.fehuleather.com'
+  config.action_mailer.asset_host = ENV["ASSET_HOST"]
   # NOTE(Ivan): rake rails:update wants me to remove these
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
@@ -82,4 +89,14 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  
+  # Configure Exception Notifications
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+    email: {
+      email_prefix: "Heroku Error: ",
+      sender_address: %{Freyja <freyja@fehuleather.com>},
+      exception_recipients: %w{fulveland@gmail.com},
+      email_format: :html
+    }
+
 end

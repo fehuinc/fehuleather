@@ -107,7 +107,6 @@ GEM
     rack (1.6.4)
     rack-cache (1.5.1)
       rack (>= 0.4)
-    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-timeout (0.3.2)
@@ -206,7 +205,6 @@ DEPENDENCIES
   postmark-rails
   puma
   rack-cache
-  rack-cors
   rack-timeout
   rails (~> 4.2.5)
   rails_12factor

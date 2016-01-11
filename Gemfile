@@ -8,8 +8,6 @@ gem "rails", "~> 4.2.5"
 gem "puma"
 gem "rack-cache"
 gem "rack-timeout"
-gem 'rack-cors', :require => 'rack/cors'
-# gem "jbuilder", "~> 2.0" # JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 
 # DB
 gem "pg"
