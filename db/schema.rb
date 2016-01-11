@@ -13,22 +13,25 @@
 
 ActiveRecord::Schema.define(version: 1) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "build_parts", force: :cascade do |t|
     t.integer "build_id"
     t.integer "variant_id"
     t.integer "variation_id"
   end
 
-  add_index "build_parts", ["build_id"], name: "index_build_parts_on_build_id"
-  add_index "build_parts", ["variant_id"], name: "index_build_parts_on_variant_id"
-  add_index "build_parts", ["variation_id"], name: "index_build_parts_on_variation_id"
+  add_index "build_parts", ["build_id"], name: "index_build_parts_on_build_id", using: :btree
+  add_index "build_parts", ["variant_id"], name: "index_build_parts_on_variant_id", using: :btree
+  add_index "build_parts", ["variation_id"], name: "index_build_parts_on_variation_id", using: :btree
 
   create_table "builds", force: :cascade do |t|
     t.integer "product_id"
     t.integer "stock",      default: 0, null: false
   end
 
-  add_index "builds", ["product_id"], name: "index_builds_on_product_id"
+  add_index "builds", ["product_id"], name: "index_builds_on_product_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.text "name",        null: false
@@ -41,7 +44,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.text "name", null: false
   end
 
-  add_index "kingdoms", ["name"], name: "index_kingdoms_on_name", unique: true
+  add_index "kingdoms", ["name"], name: "index_kingdoms_on_name", unique: true, using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.text "name",     null: false
@@ -64,7 +67,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.datetime "updated_at"
   end
 
-  add_index "merchants", ["email"], name: "index_merchants_on_email", unique: true
+  add_index "merchants", ["email"], name: "index_merchants_on_email", unique: true, using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
@@ -77,8 +80,8 @@ ActiveRecord::Schema.define(version: 1) do
     t.datetime "updated_at"
   end
 
-  add_index "order_items", ["build_id"], name: "index_order_items_on_build_id"
-  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
+  add_index "order_items", ["build_id"], name: "index_order_items_on_build_id", using: :btree
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "merchant_id"
@@ -87,7 +90,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.datetime "updated_at"
   end
 
-  add_index "orders", ["merchant_id"], name: "index_orders_on_merchant_id"
+  add_index "orders", ["merchant_id"], name: "index_orders_on_merchant_id", using: :btree
 
   create_table "product_infos", force: :cascade do |t|
     t.integer "product_id"
@@ -95,7 +98,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.text    "content",    null: false
   end
 
-  add_index "product_infos", ["product_id"], name: "index_product_infos_on_product_id"
+  add_index "product_infos", ["product_id"], name: "index_product_infos_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.integer "kingdom_id"
@@ -108,8 +111,8 @@ ActiveRecord::Schema.define(version: 1) do
     t.integer "ypos",            default: 0,     null: false
   end
 
-  add_index "products", ["kingdom_id"], name: "index_products_on_kingdom_id"
-  add_index "products", ["name"], name: "index_products_on_name", unique: true
+  add_index "products", ["kingdom_id"], name: "index_products_on_kingdom_id", using: :btree
+  add_index "products", ["name"], name: "index_products_on_name", unique: true, using: :btree
 
   create_table "variants", force: :cascade do |t|
     t.integer "variation_id"
@@ -123,7 +126,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.integer "sort_order",      default: 0,     null: false
   end
 
-  add_index "variants", ["variation_id"], name: "index_variants_on_variation_id"
+  add_index "variants", ["variation_id"], name: "index_variants_on_variation_id", using: :btree
 
   create_table "variations", force: :cascade do |t|
     t.integer "product_id"
@@ -132,6 +135,6 @@ ActiveRecord::Schema.define(version: 1) do
     t.integer "level",      default: 0,     null: false
   end
 
-  add_index "variations", ["product_id"], name: "index_variations_on_product_id"
+  add_index "variations", ["product_id"], name: "index_variations_on_product_id", using: :btree
 
 end
