@@ -57,8 +57,15 @@ IMAGEPATH=/images/content/
 
 # Deployment
 
-## To erase and rebuild the DB:
+### To erase and rebuild the DB:
 ```bash
 heroku pg:reset DATABASE --confirm fehu
 heroku run rake db:migrate db:seed
+```
+
+### Maintenance Mode
+```bash
+heroku maintenance:on
+# Later...
+heroku maintenance:off
 ```
