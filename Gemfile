@@ -17,12 +17,12 @@ gem "pg"
 # gem "sorcery", "~> 0.9.0" # Minor verson updates break backwards compatability, see upgrading: http://rubydoc.info/gems/sorcery
 
 # ASSETS & UI
-gem "uglifier"
-gem "sass-rails"
+gem "angular_rails_csrf"
+gem "autoprefixer-rails"
 gem "coffee-rails"
 gem "jquery-rails"
-gem "autoprefixer-rails"
-gem "angular_rails_csrf"
+gem "sass-rails"
+gem "uglifier"
 
 # SERVICE INTEGRATIONS
 gem "postmark-rails"
@@ -45,6 +45,6 @@ group :test do
 end
 
 group :production do
-  gem "rails_12factor"
   gem "exception_notification"
+  gem "rails_12factor"
 end
