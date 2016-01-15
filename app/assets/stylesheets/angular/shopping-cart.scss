@@ -4,7 +4,8 @@ $yellow: hsl(30, 50%, 95%);
 
 shopping-cart {
   position: relative;
-  display: block;
+  // display: block;
+  display: none;
   top: -2.5em;
   height: 0;
   text-align: center;

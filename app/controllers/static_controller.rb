@@ -23,7 +23,4 @@ class StaticController < ApplicationController
   def events
     @events = Event.all
   end
-  
-  def err
-  end
 end

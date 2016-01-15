@@ -8,9 +8,11 @@
   <h2>We're still working out the kinks, so please check back later this week.</h2>
 </div>
 
+<% if false %>
+
 <h1 ng-hide="true">Loading</h1>
 
-<div style="display: none;" ng-cloak ng-controller="TotemCtrl">
+<div ng-cloak ng-controller="TotemCtrl">
   <totem-product ng-repeat="product in products"
                  ng-class="{showingPanel:isPanelOpen(product)}">
     <div class="overflow-container">
@@ -26,7 +28,8 @@
     <totem-product-panel>
       <div class="wrapper">
         <h1>{{product.name}}</h1>
-
+        <p>We'll soon be offering this product for sale, right here. Check back in February!</p>
+        
         <purchasing-info>
           <div class="variations">
             <div class="variation" ng-repeat="variation in product.variations">
@@ -95,3 +98,4 @@
     </totem-product-panel>
   </totem-product>
 </div>
+<% end %>

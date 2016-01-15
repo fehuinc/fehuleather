@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get "events" => "static#events"
     get "locations" => "static#locations"
     get "checkout" => "static#checkout"
+    get "press" => "static#press"
     
     
     # Wholesale
