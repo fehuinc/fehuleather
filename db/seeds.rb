@@ -243,5 +243,5 @@ Location.create!(
 
 ## EVENTS #########################################################################################
 
-Event.create! name: "American Made Show", date: "January 15-17, 2016", location: "Washington, D.C", description: "Booth #1030"
-Event.create! name: "By Hand", date: "Jan 31st - Feb 3rd, 2016", location: "Toronto, Ontario"
+Event.create! name: "American Made Show", date: "January 15-17, 2016", location: "Washington DC", description: "Booth #1030"
+Event.create! name: "By Hand", date: "Jan 31st - Feb 3rd, 2016", location: "Toronto, ON", description: "Booth #301"
