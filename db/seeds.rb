@@ -2,23 +2,27 @@ rings = Kingdom.create! name: "Ring"
 
 wrap_ring = rings.products.create! name: "Wrap Ring", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
 wrap_ring_style = wrap_ring.variations.create! name: "Style", level: 0, has_image: true
-wrap_ring_style.variants.create! name: "Gold Stripes", show_retail: true, show_wholesale: true
+wrap_ring_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
+wrap_ring_style.variants.create! name: "Back", show_retail: true, show_wholesale: true
+wrap_ring_style.variants.create! name: "Black", show_retail: true, show_wholesale: true
 wrap_ring_style.variants.create! name: "Gold Leaf", show_retail: true, show_wholesale: true
 wrap_ring_style.variants.create! name: "White Leaf", show_retail: true, show_wholesale: true
-wrap_ring_style.variants.create! name: "Black", show_retail: true, show_wholesale: true
+wrap_ring_style.variants.create! name: "Gold Stripes", show_retail: true, show_wholesale: true
 
 
 hair = Kingdom.create! name: "Hair"
 
 hair_cuff = hair.products.create! name: "Hair Cuff", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
 hair_cuff_style = hair_cuff.variations.create! name: "Style", level: 0, has_image: true
-hair_cuff_style.variants.create! name: "Default", show_retail: true, show_wholesale: true
+hair_cuff_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
+hair_cuff_style.variants.create! name: "Back", show_retail: true, show_wholesale: true
 
 
 bracelets = Kingdom.create! name: "Bracelets"
 
 wrap_cuff = bracelets.products.create! name: "Wrap Cuff", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
 wrap_cuff_color = wrap_cuff.variations.create! name: "Color", level: 0, has_image: true
+wrap_cuff_color.variants.create! name: "Back", show_retail: true, show_wholesale: false
 wrap_cuff_color.variants.create! name: "Natural1", show_retail: true, show_wholesale: false
 wrap_cuff_color.variants.create! name: "Natural2", show_retail: true, show_wholesale: false
 wrap_cuff_color.variants.create! name: "Natural3", show_retail: true, show_wholesale: false
@@ -29,7 +33,8 @@ wrap_cuff_color.variants.create! name: "Natural7", show_retail: true, show_whole
 
 gilt_cuff = bracelets.products.create! name: "Gilt Cuff", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
 gilt_cuff_style = gilt_cuff.variations.create! name: "Style", level: 0, has_image: true
-gilt_cuff_style.variants.create! name: "Default", show_retail: true, show_wholesale: true
+gilt_cuff_style.variants.create! name: "Back", show_retail: true, show_wholesale: true
+gilt_cuff_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
 
 fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff", show_retail: true, show_wholesale: false, price_retail: 100, price_wholesale: 50, ypos: 25
 fuzzy_cuff_name = fuzzy_cuff.variations.create! name: "Name", level: 0, has_image: true
@@ -48,6 +53,7 @@ fuzzy_cuff_name.variants.create! name: "Hunt", show_retail: true, show_wholesale
 
 cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
 cc_bracelet_gem = cc_bracelet.variations.create! name: "Gem", level: 0, has_image: true
+cc_bracelet_gem.variants.create! name: "Front", show_retail: true, show_wholesale: true
 cc_bracelet_gem.variants.create! name: "Howlite", show_retail: true, show_wholesale: true
 cc_bracelet_gem.variants.create! name: "Pyrite", show_retail: true, show_wholesale: true
 cc_bracelet_gem.variants.create! name: "Green Turquoise", show_retail: true, show_wholesale: true
@@ -62,19 +68,21 @@ belts = Kingdom.create! name: "Belts"
 
 cc_belt = belts.products.create! name: "Coffee & Crystals Belt", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
 cc_belt_style = cc_belt.variations.create! name: "Style", level: 0, has_image: true
-cc_belt_style.variants.create! name: "Default", show_retail: true, show_wholesale: true
+cc_belt_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
 
 volva_belt = belts.products.create! name: "Volva Belt", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
 volva_belt_style = volva_belt.variations.create! name: "Style", level: 0, has_image: true
-volva_belt_style.variants.create! name: "Default", show_retail: true, show_wholesale: true
+volva_belt_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
 
 seven_belt = belts.products.create! name: "7 Belt", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
 seven_belt_style = seven_belt.variations.create! name: "Style", level: 0, has_image: true
-seven_belt_style.variants.create! name: "Default", show_retail: true, show_wholesale: true
+seven_belt_style.variants.create! name: "Back", show_retail: true, show_wholesale: true
+seven_belt_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
 
 thirteen_belt = belts.products.create! name: "13 Belt", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
 thirteen_belt_style = thirteen_belt.variations.create! name: "Style", level: 0, has_image: true
-thirteen_belt_style.variants.create! name: "Default", show_retail: true, show_wholesale: true
+thirteen_belt_style.variants.create! name: "Back", show_retail: true, show_wholesale: true
+thirteen_belt_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
 
 
 ## LOCATIONS ######################################################################################

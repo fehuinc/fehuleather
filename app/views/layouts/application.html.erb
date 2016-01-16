@@ -12,6 +12,10 @@
   </script>
   <%= stylesheet_link_tag "application", media: "all" %>
   <%= javascript_include_tag "application", defer: "defer" %>
+  <% if false && style_action == "totem" %>
+    <link rel="stylesheet" href="https://npmcdn.com/flickity@1.1/dist/flickity.min.css">
+    <script src="https://npmcdn.com/flickity@1.1/dist/flickity.pkgd.min.js" defer></script>
+  <% end %>
   <%= csrf_meta_tags %>
 </head>
 
