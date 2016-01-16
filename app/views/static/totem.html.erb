@@ -29,7 +29,7 @@
       <div class="wrapper">
         <h1>{{product.name}}</h1>
         <p>We'll soon be offering this product for sale, right here. Check back in February!</p>
-        
+        <% if false %>
         <purchasing-info>
           <div class="variations">
             <div class="variation" ng-repeat="variation in product.variations">
@@ -92,7 +92,7 @@
             <div>{{showingInfo.content}}</div>
           </info-display>
         </bottom-info>
-        
+        <% end %>
         <a class="closer" ng-click="closePanel()">Close</a>
       </div>
     </totem-product-panel>

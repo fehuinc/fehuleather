@@ -1,3 +1,3 @@
 class Event < ActiveRecord::Base
-  validates :name, :date, :location, :description,  { presence: true }
+  validates :name, :date, :location, { presence: true }
 end

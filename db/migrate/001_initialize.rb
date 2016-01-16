@@ -101,7 +101,7 @@ class Initialize < ActiveRecord::Migration
       t.text :name,	                 null: false
       t.text :date,	                 null: false
       t.text :location,	             null: false
-      t.text :description,	         null: false
+      t.text :description
     end
   end
 end

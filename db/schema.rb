@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.text "name",        null: false
     t.text "date",        null: false
     t.text "location",    null: false
-    t.text "description", null: false
+    t.text "description"
   end
 
   create_table "kingdoms", force: :cascade do |t|
