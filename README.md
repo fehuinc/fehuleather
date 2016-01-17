@@ -5,9 +5,6 @@ Stinks. On Rails.
 
 # Todo
 
-Events
-  American Made Booth #: 1030
-
 Wholesale
   Text block next to product image that Freyja can put [whatever] into — unstructured
   

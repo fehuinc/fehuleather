@@ -4,7 +4,10 @@ angular.module "TotemSpecimensList", []
 
 .directive "totemSpecimensList", new Array "$swipe", ($swipe)->
   controller: new Array "$scope", ($scope)->
-
+    
+    $scope.mouseMove = (e)->
+      console.log e
+    
     $scope.getListPositionStyle = ()->
       ypos = if $scope.isPanelOpen($scope.product) then $scope.product.ypos else 0
       translate = "translateY(-#{ypos}%)"
