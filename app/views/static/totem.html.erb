@@ -1,8 +1,3 @@
-<% content_for :head do %>
-  <link rel="stylesheet" href="https://npmcdn.com/flickity@1.1/dist/flickity.min.css">
-  <script src="https://npmcdn.com/flickity@1.1/dist/flickity.pkgd.min.js" defer></script>
-<% end %>
-
 <script>
   FEHU.totemProducts = <%= @totem_products.html_safe %>
   FEHU.shopInfo = <%= @shop_info.html_safe %>
