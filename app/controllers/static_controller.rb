@@ -25,6 +25,6 @@ class StaticController < ApplicationController
   end
   
   def err
-    ExceptionNotifier.notify_exception(Exception.new, :env => request.env, :data => {:message => "404 for URL: #{request.original_url }"})
+    ExceptionNotifier.notify_exception(Exception.new, :env => request.env)
   end
 end
