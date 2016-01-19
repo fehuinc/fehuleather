@@ -24,6 +24,10 @@ class StaticController < ApplicationController
     @events = Event.all
   end
   
+  def cause_an_error
+    raise "My Organs!"
+  end
+  
   def err
     if Rails.env == "production"
       ExceptionNotifier.notify_exception(Exception.new, :env => request.env)

@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     end
     
     # Errors
+    get "cause_an_error" => "static#cause_an_error"
     get "err" => "static#err"
     get "*slug" => "static#err", as: "fake_err"
     
