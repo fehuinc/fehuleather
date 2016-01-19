@@ -30,7 +30,7 @@ class StaticController < ApplicationController
   
   def err
     if Rails.env == "production"
-      ExceptionNotifier.notify_exception(Exception.new, :env => request.env)
+      ExceptionNotifier.notify_exception(Exception.new("404: #{request.request_uri}"), :env => request.env)
     end
   end
 end
