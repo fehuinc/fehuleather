@@ -12,6 +12,12 @@ Rails.application.routes.draw do
     get "press" => "static#press"
     get "catalog" => "static#catalog"
     
+    # Legacy routes
+    get "/pages/story" => redirect("/about")
+    get "/pages/events" => redirect("/events")
+    get "/pages/locations" => redirect("/locations")
+    get "/pages/press-kit" => redirect("/press-kit")
+    get "/pages/wholesale" => redirect("/merchant")
     
     # Wholesale
     get "logout" => "merchants#logout", as: "logout_merchant"
