@@ -18,8 +18,8 @@ Rails.application.configure do
   
   # Ivan added:
   # Specify what domain to use for mailer URLs and assets (like images)
-  config.action_mailer.default_url_options = { host: "rails-fehu.dev" }
-  config.action_mailer.asset_host = "rails-fehu.dev"
+  config.action_mailer.default_url_options = { host: ENV["DOMAIN"] }
+  config.action_mailer.asset_host = ENV["DOMAIN"]
   
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

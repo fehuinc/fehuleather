@@ -23,4 +23,8 @@ class StaticController < ApplicationController
   def events
     @events = Event.all
   end
+  
+  def err
+    ExceptionNotifier.notify_exception(nil, :env => request.env, :data => {:message => "404 for URL: #{request.original_url }"})
+  end
 end

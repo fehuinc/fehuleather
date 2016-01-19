@@ -73,7 +73,7 @@ Rails.application.configure do
   
   # Ivan added:
   # Specify what domain to use for mailer URLs and assets (like images)
-  config.action_mailer.default_url_options = { host: 'www.fehuleather.com' }
+  config.action_mailer.default_url_options = { host: ENV["DOMAIN"] }
   config.action_mailer.asset_host = ENV["ASSET_HOST"]
   # NOTE(Ivan): rake rails:update wants me to remove these
 
@@ -94,8 +94,8 @@ Rails.application.configure do
   Rails.application.config.middleware.use ExceptionNotification::Rack,
     email: {
       email_prefix: "Heroku Error: ",
-      sender_address: %{Freyja <freyja@fehuleather.com>},
-      exception_recipients: %w{fulveland@gmail.com},
+      sender_address: %{Fehu <freyja@fehuleather.com>},
+      exception_recipients: %w{ivanreese@gmail.com},
       email_format: :html
     }
 
