@@ -25,6 +25,8 @@ class StaticController < ApplicationController
   end
   
   def err
-    ExceptionNotifier.notify_exception(Exception.new, :env => request.env)
+    if Rails.env == "production"
+      ExceptionNotifier.notify_exception(Exception.new, :env => request.env)
+    end
   end
 end
