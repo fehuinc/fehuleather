@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get "/pages/story" => redirect("/about")
     get "/pages/events" => redirect("/events")
     get "/pages/locations" => redirect("/locations")
-    get "/pages/press-kit" => redirect("/press-kit")
+    get "/pages/press-kit" => redirect("/press")
     get "/pages/wholesale" => redirect("/merchant")
     
     # Wholesale
