@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get "/pages/locations" => redirect("/locations")
     get "/pages/press-kit" => redirect("/press")
     get "/pages/wholesale" => redirect("/merchant")
+    get "/products/*ignore" => redirect("/")
     
     # Wholesale
     get "logout" => "merchants#logout", as: "logout_merchant"
@@ -57,6 +58,10 @@ Rails.application.routes.draw do
         get "preview-images/:id" => "products#preview_images", as: "preview_images"
         put "build/:id" => "products#update_build", as: "update_build"
         
+        resources :totem_rows do
+          resources :totem_items, shallow: true
+        end
+        
         resources :kingdoms, except: [:show] do
           resources :products, only: [:new, :create]
         end
@@ -75,10 +80,6 @@ Rails.application.routes.draw do
       end
     end
     
-    # Errors
-    get "cause_an_error" => "static#cause_an_error"
-    get "err" => "static#err"
-    get "*slug" => "static#err", as: "fake_err"
-    
+    get "*slug" => "static#not_found"
   end
 end
