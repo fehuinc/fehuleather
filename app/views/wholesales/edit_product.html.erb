@@ -49,7 +49,7 @@
                 <span ng-init="editorItem.build_id=<%=build.id%>"></span>
                 <span ng-init="editorItem.build_name='<%=build.build_name%>'"></span>
                 <span ng-init="editorItem.product_name='<%=build.product.name%>'"></span>
-                <span ng-init="editorItem.cents=<%=build.cents_wholesale%>"></span>
+                <span ng-init="editorItem.cents=<%=build.price_wholesale%>"></span>
                 <span ng-init="editorItem.image='<%=build.image('wholesale')%>'"></span>
                 <span ng-init="setQuantity(<%= current_order_quantity(@order, build) %>)"></span>
                 <div class="input-with-buttons">

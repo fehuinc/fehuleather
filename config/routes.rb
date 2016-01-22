@@ -58,7 +58,8 @@ Rails.application.routes.draw do
         get "preview-images/:id" => "products#preview_images", as: "preview_images"
         put "build/:id" => "products#update_build", as: "update_build"
         
-        resources :totem_rows do
+        get "totem" => "totem_rows#index", as: "totem"
+        resources :totem_rows, except: [:index] do
           resources :totem_items, shallow: true
         end
         

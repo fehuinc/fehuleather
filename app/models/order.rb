@@ -1,14 +1,6 @@
 class Order < ActiveRecord::Base
-  # ASSUMPTIONS
-  ## Orders are never deleted
-  
   belongs_to :merchant # Optional — will be nil if this is a retail order
-  has_many :items, class_name: OrderItem
-  
-  enum status: [:open, :submitted, :paid, :shipped] # WARNING: ENUM! APPEND ONLY!
-  
-  # TODO: What do I do to validate the enum?? Something like.... (?)
-  # validates :status, { presence: true, numericality: { only_integer: true } }
+  has_many :items, class_name: OrderItem, dependent: :destroy
   
   def item_for_build(build)
     items.where(build_id: build.id).first
@@ -19,7 +11,7 @@ class Order < ActiveRecord::Base
     item.build = build
     item.build_name = build.build_name
     item.product_name = build.product.name
-    item.cents = isWholesale ? build.cents_wholesale : build.cents_retail
+    item.cents = isWholesale ? build.price_wholesale : build.price_retail
     item.save!
     item
   end

@@ -15,23 +15,17 @@ ActiveRecord::Schema.define(version: 1) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "build_parts", force: :cascade do |t|
-    t.integer "build_id"
-    t.integer "variant_id"
-    t.integer "variation_id"
-  end
-
-  add_index "build_parts", ["build_id"], name: "index_build_parts_on_build_id", using: :btree
-  add_index "build_parts", ["variant_id"], name: "index_build_parts_on_variant_id", using: :btree
-  add_index "build_parts", ["variation_id"], name: "index_build_parts_on_variation_id", using: :btree
+  enable_extension "uuid-ossp"
 
   create_table "builds", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "stock",      default: 0, null: false
+    t.integer "variation_id"
+    t.integer "size_id"
+    t.text    "model",                    null: false
+    t.integer "stock",        default: 0
   end
 
-  add_index "builds", ["product_id"], name: "index_builds_on_product_id", using: :btree
+  add_index "builds", ["size_id"], name: "index_builds_on_size_id", using: :btree
+  add_index "builds", ["variation_id"], name: "index_builds_on_variation_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.text "name",        null: false
@@ -63,6 +57,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.text     "phone_number",     null: false
     t.text     "store_name",       null: false
     t.text     "your_name",        null: false
+    t.text     "encrypted_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,10 +67,11 @@ ActiveRecord::Schema.define(version: 1) do
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "build_id"
-    t.text     "build_name",               null: false
-    t.text     "product_name",             null: false
-    t.integer  "cents",        default: 0, null: false
-    t.integer  "quantity",     default: 0, null: false
+    t.text     "build_name",                     null: false
+    t.text     "product_name",                   null: false
+    t.integer  "price_cents",    default: 0,     null: false
+    t.string   "price_currency", default: "CAD", null: false
+    t.integer  "quantity",                       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -85,7 +81,11 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "merchant_id"
-    t.integer  "status",      default: 0, null: false
+    t.uuid     "uuid",        default: "uuid_generate_v4()"
+    t.text     "notes"
+    t.datetime "submitted"
+    t.datetime "paid"
+    t.datetime "shipped"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -102,37 +102,51 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "products", force: :cascade do |t|
     t.integer "kingdom_id"
-    t.text    "name",                            null: false
-    t.boolean "show_retail",     default: false, null: false
-    t.boolean "show_wholesale",  default: false, null: false
-    t.integer "cents_retail",    default: 0,     null: false
-    t.integer "cents_wholesale", default: 0,     null: false
-    t.integer "totem_order",     default: 0,     null: false
-    t.integer "ypos",            default: 0,     null: false
+    t.text    "name",                                     null: false
+    t.boolean "made_to_order",            default: false
+    t.integer "price_retail_cents",       default: 0,     null: false
+    t.string  "price_retail_currency",    default: "CAD", null: false
+    t.integer "price_wholesale_cents",    default: 0,     null: false
+    t.string  "price_wholesale_currency", default: "CAD", null: false
   end
 
   add_index "products", ["kingdom_id"], name: "index_products_on_kingdom_id", using: :btree
   add_index "products", ["name"], name: "index_products_on_name", unique: true, using: :btree
 
-  create_table "variants", force: :cascade do |t|
-    t.integer "variation_id"
-    t.text    "name",                            null: false
-    t.text    "description"
-    t.boolean "featured",        default: false, null: false
-    t.boolean "show_retail",     default: false, null: false
-    t.boolean "show_wholesale",  default: false, null: false
-    t.integer "cents_retail",    default: 0,     null: false
-    t.integer "cents_wholesale", default: 0,     null: false
-    t.integer "sort_order",      default: 0,     null: false
+  create_table "sizes", force: :cascade do |t|
+    t.integer "product_id"
+    t.text    "name",       null: false
   end
 
-  add_index "variants", ["variation_id"], name: "index_variants_on_variation_id", using: :btree
+  add_index "sizes", ["product_id"], name: "index_sizes_on_product_id", using: :btree
+
+  create_table "totem_items", force: :cascade do |t|
+    t.integer "totem_row_id"
+    t.integer "build_id"
+    t.text    "name",                     null: false
+    t.text    "image",                    null: false
+    t.text    "content",                  null: false
+    t.integer "ypos",         default: 0
+    t.integer "index",        default: 0
+  end
+
+  add_index "totem_items", ["index"], name: "index_totem_items_on_index", using: :btree
+  add_index "totem_items", ["totem_row_id"], name: "index_totem_items_on_totem_row_id", using: :btree
+
+  create_table "totem_rows", force: :cascade do |t|
+    t.integer "index", default: 0
+  end
+
+  add_index "totem_rows", ["index"], name: "index_totem_rows_on_index", using: :btree
 
   create_table "variations", force: :cascade do |t|
     t.integer "product_id"
-    t.text    "name",                       null: false
-    t.boolean "has_image",  default: false, null: false
-    t.integer "level",      default: 0,     null: false
+    t.text    "name",                                     null: false
+    t.text    "description"
+    t.integer "price_retail_cents",       default: 0,     null: false
+    t.string  "price_retail_currency",    default: "CAD", null: false
+    t.integer "price_wholesale_cents",    default: 0,     null: false
+    t.string  "price_wholesale_currency", default: "CAD", null: false
   end
 
   add_index "variations", ["product_id"], name: "index_variations_on_product_id", using: :btree

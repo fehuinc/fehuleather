@@ -1,3 +1,3 @@
-.error {
+.error:not(label) {
   background: hsl(0, 50%, 90%);
 }

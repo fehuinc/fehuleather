@@ -1,0 +1,12 @@
+<%= render 'partials/form_errors', model: f.object %>
+
+<div>
+  <%= f.number_field :index %>
+  <%= f.label :index, "Index" %>
+</div>
+
+<hr>
+
+<div class="perspective">
+  <%= f.submit "Save", class: "save" %>
+</div>

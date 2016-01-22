@@ -1,0 +1,34 @@
+<%= render 'partials/form_errors', model: f.object %>
+
+<div>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+</div>
+
+<div>
+  <%= f.label :build_id, "Product Build" %>
+  <%= f.collection_select :build_id, product_builds, :id, :build_name %>
+</div>
+
+<div>
+  <%= f.label :image, "Image" %>
+  <%= f.text_field :image %>
+</div>
+
+<div>
+  <%= f.label :content, "Content" %>
+  <%= f.text_area :content, rows: 5 %>
+</div>
+
+<hr>
+
+<div>
+  <%= f.number_field :index %>
+  <%= f.label :index, "Index" %>
+</div>
+
+<hr>
+
+<div class="perspective">
+  <%= f.submit "Save", class: "save", data: { disable_with: "Saving" } %>
+</div>

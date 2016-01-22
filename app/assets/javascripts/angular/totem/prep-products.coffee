@@ -66,8 +66,8 @@ angular.module "PrepProducts", []
       build.desiredQuantity = 1
       
       # Begin pre-computing the cost of this build
-      build.cents_retail = product.cents_retail
-      build.cents_retail += part.variant.cents_retail for part in build.parts
+      build.price_retail = product.price_retail
+      build.price_retail += part.variant.price_retail for part in build.parts
       
       # Variations come pre-sorted, but not build parts — we need to sort them by their variation's level
       # Sort happens in-place

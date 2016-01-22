@@ -1,88 +1,93 @@
 rings = Kingdom.create! name: "Ring"
 
-wrap_ring = rings.products.create! name: "Wrap Ring", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
-wrap_ring_style = wrap_ring.variations.create! name: "Style", level: 0, has_image: true
-wrap_ring_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
-wrap_ring_style.variants.create! name: "Back", show_retail: true, show_wholesale: true
-wrap_ring_style.variants.create! name: "Black", show_retail: true, show_wholesale: true
-wrap_ring_style.variants.create! name: "Gold Leaf", show_retail: true, show_wholesale: true
-wrap_ring_style.variants.create! name: "White Leaf", show_retail: true, show_wholesale: true
-wrap_ring_style.variants.create! name: "Gold Stripes", show_retail: true, show_wholesale: true
+wrap_ring = rings.products.create! name: "Wrap Ring"
+wrap_ring.variations.create! name: "Front"
+wrap_ring.variations.create! name: "Back"
+wrap_ring.variations.create! name: "Black"
+wrap_ring.variations.create! name: "Gold Leaf"
+wrap_ring.variations.create! name: "White Leaf"
+wrap_ring.variations.create! name: "Gold Stripes"
 
+row = TotemRow.create!
+row.items.create! name: "Wrap Ring", image: ENV["IMAGEPATH"] + "wrap-ring/totem/back.jpg", content: "We'll soon be offering this product for sale, right here. Check back in February!"
+row = TotemRow.create!
+row.items.create! name: "Wrap Ring", image: ENV["IMAGEPATH"] + "wrap-ring/totem/front.jpg", content: "We'll soon be offering this product for sale, right here. Check back in February!"
 
 hair = Kingdom.create! name: "Hair"
 
-hair_cuff = hair.products.create! name: "Hair Cuff", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
-hair_cuff_style = hair_cuff.variations.create! name: "Style", level: 0, has_image: true
-hair_cuff_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
-hair_cuff_style.variants.create! name: "Back", show_retail: true, show_wholesale: true
-
+hair_cuff = hair.products.create! name: "Hair Cuff"
+hair_cuff.variations.create! name: "Front"
+hair_cuff.variations.create! name: "Back"
 
 bracelets = Kingdom.create! name: "Bracelets"
 
-wrap_cuff = bracelets.products.create! name: "Wrap Cuff", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
-wrap_cuff_color = wrap_cuff.variations.create! name: "Color", level: 0, has_image: true
-wrap_cuff_color.variants.create! name: "Back", show_retail: true, show_wholesale: false
-wrap_cuff_color.variants.create! name: "Natural1", show_retail: true, show_wholesale: false
-wrap_cuff_color.variants.create! name: "Natural2", show_retail: true, show_wholesale: false
-wrap_cuff_color.variants.create! name: "Natural3", show_retail: true, show_wholesale: false
-wrap_cuff_color.variants.create! name: "Natural4", show_retail: true, show_wholesale: false
-wrap_cuff_color.variants.create! name: "Natural5", show_retail: true, show_wholesale: false
-wrap_cuff_color.variants.create! name: "Natural6", show_retail: true, show_wholesale: false
-wrap_cuff_color.variants.create! name: "Natural7", show_retail: true, show_wholesale: false
+wrap_cuff = bracelets.products.create! name: "Wrap Cuff"
+wrap_cuff.variations.create! name: "Back"
+wrap_cuff.variations.create! name: "Natural1"
+wrap_cuff.variations.create! name: "Natural2"
+wrap_cuff.variations.create! name: "Natural3"
+wrap_cuff.variations.create! name: "Natural4"
+wrap_cuff.variations.create! name: "Natural5"
+wrap_cuff.variations.create! name: "Natural6"
+wrap_cuff.variations.create! name: "Natural7"
 
-gilt_cuff = bracelets.products.create! name: "Gilt Cuff", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
-gilt_cuff_style = gilt_cuff.variations.create! name: "Style", level: 0, has_image: true
-gilt_cuff_style.variants.create! name: "Back", show_retail: true, show_wholesale: true
-gilt_cuff_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
+row = TotemRow.create!
+row.items.create! name: "Wrap Cuff", image: ENV["IMAGEPATH"] + "wrap-cuff/totem/back.jpg", content: "We'll soon be offering this product for sale, right here. Check back in February!"
 
-fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff", show_retail: true, show_wholesale: false, price_retail: 100, price_wholesale: 50, ypos: 25
-fuzzy_cuff_name = fuzzy_cuff.variations.create! name: "Name", level: 0, has_image: true
-fuzzy_cuff_name.variants.create! name: "Painter", show_retail: true, show_wholesale: true
-fuzzy_cuff_name.variants.create! name: "Mo", show_retail: true, show_wholesale: true
-fuzzy_cuff_name.variants.create! name: "Spook", show_retail: true, show_wholesale: true
-fuzzy_cuff_name.variants.create! name: "Duster", show_retail: true, show_wholesale: true
-fuzzy_cuff_name.variants.create! name: "Grumble", show_retail: true, show_wholesale: true
-fuzzy_cuff_name.variants.create! name: "Tippy", show_retail: true, show_wholesale: true
-fuzzy_cuff_name.variants.create! name: "Wizen", show_retail: true, show_wholesale: true
-fuzzy_cuff_name.variants.create! name: "Chief", show_retail: true, show_wholesale: true
-fuzzy_cuff_name.variants.create! name: "Fluffle", show_retail: true, show_wholesale: true
-fuzzy_cuff_name.variants.create! name: "Wiley", show_retail: true, show_wholesale: true
-fuzzy_cuff_name.variants.create! name: "Bean", show_retail: true, show_wholesale: true
-fuzzy_cuff_name.variants.create! name: "Hunt", show_retail: true, show_wholesale: true
+gilt_cuff = bracelets.products.create! name: "Gilt Cuff"
+gilt_cuff.variations.create! name: "Back"
+gilt_cuff.variations.create! name: "Front"
 
-cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
-cc_bracelet_gem = cc_bracelet.variations.create! name: "Gem", level: 0, has_image: true
-cc_bracelet_gem.variants.create! name: "Front", show_retail: true, show_wholesale: true
-cc_bracelet_gem.variants.create! name: "Howlite", show_retail: true, show_wholesale: true
-cc_bracelet_gem.variants.create! name: "Pyrite", show_retail: true, show_wholesale: true
-cc_bracelet_gem.variants.create! name: "Green Turquoise", show_retail: true, show_wholesale: true
-cc_bracelet_gem.variants.create! name: "Light Turquoise", show_retail: true, show_wholesale: true
-cc_bracelet_gem.variants.create! name: "Malachite", show_retail: true, show_wholesale: true
-cc_bracelet_gem.variants.create! name: "Lapis", show_retail: true, show_wholesale: true
-cc_bracelet_gem.variants.create! name: "Jasper", show_retail: true, show_wholesale: true
-cc_bracelet_gem.variants.create! name: "Smokey Quartz", show_retail: true, show_wholesale: true
-cc_bracelet_gem.variants.create! name: "Goldstone", show_retail: true, show_wholesale: true
+fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff"
+fuzzy_cuff.variations.create! name: "Painter"
+fuzzy_cuff.variations.create! name: "Mo"
+fuzzy_cuff.variations.create! name: "Spook"
+fuzzy_cuff.variations.create! name: "Duster"
+fuzzy_cuff.variations.create! name: "Grumble"
+fuzzy_cuff.variations.create! name: "Tippy"
+fuzzy_cuff.variations.create! name: "Wizen"
+fuzzy_cuff.variations.create! name: "Chief"
+fuzzy_cuff.variations.create! name: "Fluffle"
+fuzzy_cuff.variations.create! name: "Wiley"
+fuzzy_cuff.variations.create! name: "Bean"
+fuzzy_cuff.variations.create! name: "Hunt"
+
+cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet"
+cc_bracelet.variations.create! name: "Front"
+cc_bracelet.variations.create! name: "Howlite"
+cc_bracelet.variations.create! name: "Pyrite"
+cc_bracelet.variations.create! name: "Green Turquoise"
+cc_bracelet.variations.create! name: "Light Turquoise"
+cc_bracelet.variations.create! name: "Malachite"
+cc_bracelet.variations.create! name: "Lapis"
+cc_bracelet.variations.create! name: "Jasper"
+cc_bracelet.variations.create! name: "Smokey Quartz"
+cc_bracelet.variations.create! name: "Goldstone"
+
+row = TotemRow.create!
+row.items.create! name: "Coffee & Crystals Bracelet", image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/front.jpg", content: "We'll soon be offering this product for sale, right here. Check back in February!"
 
 belts = Kingdom.create! name: "Belts"
 
-cc_belt = belts.products.create! name: "Coffee & Crystals Belt", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
-cc_belt_style = cc_belt.variations.create! name: "Style", level: 0, has_image: true
-cc_belt_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
+cc_belt = belts.products.create! name: "Coffee & Crystals Belt"
+cc_belt.variations.create! name: "Front"
 
-volva_belt = belts.products.create! name: "Volva Belt", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
-volva_belt_style = volva_belt.variations.create! name: "Style", level: 0, has_image: true
-volva_belt_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
+volva_belt = belts.products.create! name: "Volva Belt"
+volva_belt.variations.create! name: "Front"
 
-seven_belt = belts.products.create! name: "7 Belt", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
-seven_belt_style = seven_belt.variations.create! name: "Style", level: 0, has_image: true
-seven_belt_style.variants.create! name: "Back", show_retail: true, show_wholesale: true
-seven_belt_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
+row = TotemRow.create!
+row.items.create! name: "Volva Belt", image: ENV["IMAGEPATH"] + "volva-belt/totem/front.jpg", content: "We'll soon be offering this product for sale, right here. Check back in February!"
 
-thirteen_belt = belts.products.create! name: "13 Belt", show_retail: true, show_wholesale: true, price_retail: 100, price_wholesale: 50, ypos: 15
-thirteen_belt_style = thirteen_belt.variations.create! name: "Style", level: 0, has_image: true
-thirteen_belt_style.variants.create! name: "Back", show_retail: true, show_wholesale: true
-thirteen_belt_style.variants.create! name: "Front", show_retail: true, show_wholesale: true
+seven_belt = belts.products.create! name: "7 Belt"
+seven_belt.variations.create! name: "Back"
+seven_belt.variations.create! name: "Front"
+
+row = TotemRow.create!
+row.items.create! name: "7 Belt", image: ENV["IMAGEPATH"] + "7-belt/totem/back.jpg", content: "We'll soon be offering this product for sale, right here. Check back in February!"
+
+thirteen_belt = belts.products.create! name: "13 Belt"
+thirteen_belt.variations.create! name: "Back"
+thirteen_belt.variations.create! name: "Front"
 
 
 ## LOCATIONS ######################################################################################
@@ -251,5 +256,4 @@ Location.create!(
 
 ## EVENTS #########################################################################################
 
-Event.create! name: "American Made Show", date: "January 15-17, 2016", location: "Washington DC", description: "Booth #1030"
 Event.create! name: "By Hand", date: "Jan 31st - Feb 3rd, 2016", location: "Toronto, ON", description: "Booth #301"

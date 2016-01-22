@@ -1,3 +1,13 @@
-<% @totem_rows.each do |row| %>
-  
+<h1 class="page-title">Well Hello There</h1>
+<h2 class="center">Welcome to our new website.</h2>
+<h2 class="center">We're still finishing up a few things, so check back soon!</h2>
+
+<% @totem_rows.each do |totem_row| %>
+  <div class="totem-row">
+    <% totem_row.items.each do |totem_item| %>
+      <div class="totem-item">
+        <img src="<%= totem_item.image %>">
+      </div>
+    <% end %>
+  </div>
 <% end %>

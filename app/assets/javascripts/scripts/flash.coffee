@@ -2,10 +2,10 @@ $ ()->
   flash = $ "#flash"
       .delay 400
       .fadeIn 500
-      .delay 6000
-      .fadeOut 1000
+      .delay 1500
+      .fadeOut 1500
       .on "mouseenter mousedown touchstart", ()->
         flash
           .clearQueue()
-          .fadeOut 'fast'
+          .fadeOut 300
         false

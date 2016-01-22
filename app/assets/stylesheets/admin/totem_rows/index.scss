@@ -1,0 +1,24 @@
+.totem_rows#index {
+  main {
+    text-align: center;
+
+    .listing {
+      display: inline-block;
+      text-align: left;
+      
+      .totem-row {
+        margin: 0 0 2em;
+        
+        .totem-item {
+          padding-left: 2em;
+        }
+        
+        .new {
+          padding: .2em .5em;
+          margin-top: .1em;
+          margin-left: 1.5em;
+        }
+      }
+    }
+  }
+}

@@ -34,7 +34,7 @@ angular.module "Cart", []
       item = $rootScope.cartItemsHash[build.id] ?=
         build_id: build.id
         name: build.name # Stored in case the build is later deleted
-        cents: build.cents_retail
+        cents: build.price_retail
         deleted: false
       
       item.quantity = build.desiredQuantity

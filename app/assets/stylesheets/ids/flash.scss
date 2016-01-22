@@ -1,9 +1,9 @@
 #flash {
   display: none; // Pre-hide the flash, so that the JS can show it when it's ready
   position: absolute;
-  top: 1em;
+  top: 2vmin;
   left: 50%;
-  padding: 1em;
+  padding: calc(5vmin + .5em);
   border-radius: 100%;
   text-align: center;
   font-size: 2em;
@@ -11,5 +11,5 @@
   z-index: 3;
   cursor: pointer;
   transform: translate(-50%);
-  animation: rainbow-background 5s linear infinite;
+  animation: rainbow-background 1.3s linear infinite;
 }
