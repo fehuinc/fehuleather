@@ -4,9 +4,9 @@
   <% @totem_rows.each do |totem_row| %>
     <div class="totem-row">
       <h3><%= link_to "Row #{totem_row.index}", edit_admin_totem_row_path(totem_row) %></h3>
-      <% totem_row.totem_items.order(:index).each do |totem_item| %>
+      <% totem_row.items.order(:index).each do |item| %>
         <div class="totem-item">
-          <%= link_to totem_item.name, edit_admin_totem_item_path(totem_item) %>
+          <%= link_to item.name, edit_admin_totem_item_path(item) %>
         </div>
       <% end %>
       <div class="perspective">

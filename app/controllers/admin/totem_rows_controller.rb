@@ -1,6 +1,6 @@
 class Admin::TotemRowsController < ApplicationController
   def index
-    @totem_rows = TotemRow.includes(:totem_items).order(:index)
+    @totem_rows = TotemRow.order(:index)
   end
 
   def new
