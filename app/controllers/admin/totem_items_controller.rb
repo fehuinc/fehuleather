@@ -1,13 +1,13 @@
 class Admin::TotemItemsController < ApplicationController
   def new
     @totem_row = TotemRow.find(params[:totem_row_id])
-    @totem_item = @totem_row.totem_items.new
+    @totem_item = @totem_row.items.new
     @product_builds = Build.all
   end
   
   def create
     @totem_row = TotemRow.find(params[:totem_row_id])
-    @totem_item = @totem_row.totem_items.new(standard_params)
+    @totem_item = @totem_row.items.new(standard_params)
     @product_builds = Build.all
     if @totem_item.save
       flash[:success] = "Saved"

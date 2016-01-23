@@ -1,6 +1,6 @@
 class StaticController < ApplicationController
   def totem
-    @totem_rows = TotemRow.all
+    @totem_rows = TotemRow.includes(:items)
   end
   
   def locations
