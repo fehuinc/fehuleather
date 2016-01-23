@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get "/pages/press-kit" => redirect("/press")
     get "/pages/wholesale" => redirect("/merchant")
     get "/products/*ignore" => redirect("/")
+    get "/collections/*ignore" => redirect("/")
     
     # Wholesale
     get "logout" => "merchants#logout", as: "logout_merchant"
