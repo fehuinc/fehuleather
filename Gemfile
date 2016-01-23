@@ -4,13 +4,14 @@ ruby "2.3.0"
 # FRAMEWORK
 gem "rails", "~> 4.2.5"
 
+# DB — Must come before SERVER
+gem "pg"
+
 # SERVER
 gem "puma"
 gem "rack-cache"
+gem "rack-mini-profiler" # Must come after DB
 gem "rack-timeout"
-
-# DB
-gem "pg"
 
 # AUTH
 # gem 'bcrypt-ruby', :require => 'bcrypt'
@@ -39,6 +40,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "bullet"
   gem "derailed"
   gem "stackprof"
   gem "table_print"

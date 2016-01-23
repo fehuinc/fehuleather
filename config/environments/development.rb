@@ -46,4 +46,14 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Configure Bullet
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.add_footer = true     # bottom left
+    Bullet.alert = false         # pop up a JavaScript alert in the browser
+    Bullet.bullet_logger = false # log to the Bullet log file (/log/bullet.log)
+    Bullet.console = true        # console.log
+    Bullet.rails_logger = false  # add warnings directly to the Rails log
+  end
 end
