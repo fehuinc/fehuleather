@@ -41,13 +41,19 @@ IE does not support vmax — perhaps we serve them a shittier stylesheet that d
 Here be the needed env vars:
 
 ```
-RACK_ENV=development
+ASSET_HOST=http://www.rails-fehu.dev
+DOMAIN=www.frails.dev
+IMAGEPATH=/product-images/
 PORT=3000
+POSTMARK_API_KEY=(secret — get from Postmark)
+RACK_ENV=development
+RAILS_ENV=development
+S3_PATH=https://d8bjlz07mgiyc.cloudfront.net
 SECRET_KEY_BASE=(rake secret)
-STRIPE_KEY=(secret — get from stripe)
+SKYLIGHT_AUTHENTICATION=(secret — get from Skylight)
 STINKCODE=s (use a rake secret in prod)
 STINKNAME=(rake secret)
-IMAGEPATH=/images/content/
+STRIPE_KEY=(secret — get from stripe)
 ```
 
 
