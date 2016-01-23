@@ -13,7 +13,7 @@ class StaticController < ApplicationController
   
   def not_found
     if Rails.env == "production"
-      ExceptionNotifier.notify_exception(Exception.new("404: #{request.original_fullpath}"), :env => request.env)
+      ExceptionNotifier.notify_exception(Exception.new("404: #{request.original_fullpath}"), env: request.env)
     end
     render :err, status: 404
   end

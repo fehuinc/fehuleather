@@ -19,6 +19,7 @@ class StinkController < ApplicationController
   
   def stink_out
     Access.unbecome_admin!(session)
+    reset_session
     redirect_to :root
   end
 end

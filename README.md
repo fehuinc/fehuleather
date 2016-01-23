@@ -43,12 +43,10 @@ Here be the needed env vars:
 ```
 RACK_ENV=development
 PORT=3000
-
-SECRET_KEY_BASE=
-STRIPE_KEY=
-STINKCODE=
-STINKNAME=
-
+SECRET_KEY_BASE=(rake secret)
+STRIPE_KEY=(secret — get from stripe)
+STINKCODE=s (use a rake secret in prod)
+STINKNAME=(rake secret)
 IMAGEPATH=/images/content/
 ```
 
