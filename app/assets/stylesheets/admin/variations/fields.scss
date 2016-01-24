@@ -1,0 +1,24 @@
+.variations#new, .variations#edit {
+  .build {
+    display: inline-block;
+    
+    .name {
+      display: inline-block;
+      width: 5em;
+      text-align: right;
+    }
+    
+    input {
+      display: inline-block;
+      width: 3em;
+      text-align: center;
+    }
+  }
+}
+
+@keyframes spin {
+  from { transform: translateY(0)    scale(1, 1); }
+  30%  { transform: translateY(7px) scale(1.1, 0.9); }
+  50%  { transform: translateY(-8px) scale(0.8, 1.3); }
+  100% { transform: translateY(0)    scale(1, 1); }
+}

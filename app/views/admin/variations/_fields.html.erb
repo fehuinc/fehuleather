@@ -18,18 +18,19 @@
 
 <hr>
 
-<div class="builds">
-  <% f.object.builds.each do |build| %>
-    <div stock-quantity path="<%= admin_update_build_path(build) %>">
-      <input type="number" value="<%= build.stock %>" class="quantity">
-      <input type="submit" value="💩" class="save">
-    </div>
-  <% end %>
-</div>
-
-<hr>
-
 <% if edit %>
+  <div class="builds">
+    <% f.object.builds.each do |build| %>
+      <div class="build" stock-quantity path="<%= admin_update_build_path(build) %>">
+        <span class="name"><%= build.size.name %></span>
+        <input type="number" value="<%= build.stock %>" class="quantity">
+        <input type="submit" value="💩" class="save">
+      </div>
+    <% end %>
+  </div>
+
+  <hr>
+
   <div class="row">
     <deleter class="button right" path="<%= admin_variation_path(@variation) %>" redirect="<%= edit_admin_product_path(@product) %>">
       Hold To Delete
