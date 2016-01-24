@@ -17,8 +17,9 @@ class Admin::ProductsController < ApplicationController
   
   def edit
     @product = Product.find params[:id]
-    @variations = @product.variations.includes(builds: [:size]).order(:name)
-    @sizes = @product.sizes
+    @variations = @product.variations.order(:name)
+    @sizes = @product.sizes.order(:name)
+    @infos = @product.infos.order(:name)
   end
   
   def update
