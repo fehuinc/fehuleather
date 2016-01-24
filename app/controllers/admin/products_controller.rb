@@ -7,23 +7,18 @@ class Admin::ProductsController < ApplicationController
   def create
     @kingdom = Kingdom.find params[:kingdom_id]
     @product = @kingdom.products.new standard_params
-    
-    if @product.valid?
-      @kingdom.products.create! standard_params
+    if @product.save
       flash[:notice] = "Saved"
-      redirect_to admin_kingdoms_path
+      redirect_to edit_admin_product_path(@product)
     else
       render :new
     end
-  
-  rescue
-    flash.now[:error] = "Something bad happened! Tell Ivan!"
-    render :new
   end
   
   def edit
     @product = Product.find params[:id]
-    @builds = @product.builds
+    @variations = @product.variations.includes(builds: [:size]).order(:name)
+    @sizes = @product.sizes
   end
   
   def update
@@ -61,7 +56,7 @@ class Admin::ProductsController < ApplicationController
 private
   
   def standard_params
-    params.require(:product).permit :description, :name, :price_retail, :price_wholesale, :show_retail, :show_wholesale
+    params.require(:product).permit :name, :price_retail, :price_wholesale, :made_to_order
   end
 
 end

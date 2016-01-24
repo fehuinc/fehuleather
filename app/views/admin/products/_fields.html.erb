@@ -1,0 +1,28 @@
+<%= render 'partials/form_errors', model: f.object %>
+
+<div>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+</div>
+
+<div class="row">
+  <%= f.label :price_retail, "Retail Price" %>
+  <%= f.number_field :price_retail %>
+  <%= f.label :price_wholesale, "Wholesale Price" %>
+  <%= f.number_field :price_wholesale %>
+</div>
+
+<div class="row spread">
+  <%= f.label :made_to_order do %>
+    <%= f.check_box :made_to_order %> Made To Order
+  <% end %>
+  <% if edit %>
+    <deleter class="button" path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
+      Hold To Delete
+    </deleter>
+  <% end %>
+</div>
+
+<div class="perspective">
+  <%= f.submit "Save", class: "save" %>
+</div>

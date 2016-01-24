@@ -1,30 +1,43 @@
 <%= render 'partials/form_errors', model: f.object %>
 
 <div>
-  <%= f.label :name, "Name" %>
-  <%= f.text_field :name %>
-</div>
-
-<div>
   <%= f.label :build_id, "Product Build" %>
-  <%= f.collection_select :build_id, product_builds, :id, :build_name %>
+  <%= f.collection_select :build_id, product_builds, :first, :second, {}, { "ng-model" => "hasProduct" } %>
 </div>
 
-<div>
-  <%= f.label :image, "Image" %>
-  <%= f.text_field :image %>
-</div>
+<div ng-hide="hasProduct">
+  <div>
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name %>
+  </div>
 
-<div>
-  <%= f.label :content, "Content" %>
-  <%= f.text_area :content, rows: 5 %>
+  <div>
+    <%= f.label :image, "Image" %>
+    <%= f.text_field :image %>
+  </div>
+
+  <div>
+    <%= f.label :content, "Content" %>
+    <%= f.text_area :content, rows: 5 %>
+  </div>
 </div>
 
 <hr>
 
-<div>
-  <%= f.number_field :index %>
-  <%= f.label :index, "Index" %>
+<div class="row spread">
+  <div>
+    <%= f.number_field :index %>
+    <%= f.label :index, "Index" %>
+  </div>
+  <div>
+    <%= f.label :ypos, "Photo Y Position" %>
+    <%= f.number_field :ypos %>
+  </div>
+  <% if edit %>
+    <deleter class="button" path="<%= admin_totem_item_path(f.object) %>" redirect="<%= admin_totem_path %>">
+      Hold To Delete
+    </deleter>
+  <% end %>
 </div>
 
 <hr>

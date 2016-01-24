@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
   has_many :infos, class_name: ProductInfo, dependent: :delete_all
   has_many :variations, dependent: :destroy
   has_many :builds, through: :variation
+  has_many :sizes, dependent: :delete_all
   
   validates :kingdom, :name, { presence: true }
   validates :name, { uniqueness: { case_sensitive: false } }

@@ -2,7 +2,7 @@ class Admin::TotemItemsController < ApplicationController
   def new
     @totem_row = TotemRow.find(params[:totem_row_id])
     @totem_item = @totem_row.items.new
-    @product_builds = Build.all
+    @product_builds = [[nil, "None"]].concat Build.all.map { |g| [g.id, g.build_name] }
   end
   
   def create
@@ -19,7 +19,7 @@ class Admin::TotemItemsController < ApplicationController
   
   def edit
     @totem_item = TotemItem.find(params[:id])
-    @product_builds = Build.all
+    @product_builds = [[nil, "None"]].concat Build.all.map { |g| [g.id, g.build_name] }
   end
   
   def update

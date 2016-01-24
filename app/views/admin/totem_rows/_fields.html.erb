@@ -1,8 +1,15 @@
 <%= render 'partials/form_errors', model: f.object %>
 
-<div>
-  <%= f.number_field :index %>
-  <%= f.label :index, "Index" %>
+<div class="row spread">
+  <div>
+    <%= f.number_field :index %>
+    <%= f.label :index, "Index" %>
+  </div>
+  <% if edit %>
+    <deleter class="button" path="<%= admin_totem_row_path(f.object) %>" redirect="<%= admin_totem_path %>">
+      Hold To Delete
+    </deleter>
+  <% end %>
 </div>
 
 <hr>

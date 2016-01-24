@@ -1,76 +1,43 @@
 <h1><%= @product.name %></h1>
 
-<div>
-  <%= link_to "Preview Images", admin_preview_images_path(@product) %>
-</div>
-
 <section>
-  <h2>Stock</h2>
-  <table class="stock">
-    <thead>
-      <td><a>Quantity</a></td>
-      <% @product.variations.order(:level).each_with_index do |variation, index| %>
-        <td <%= "default=true" if index == 0 %>><a><%= variation.name %></a></td>
-      <% end %>
-    </thead>
-    <tbody>
-      <% @builds.each do |build| %>
-        <tr>
-          <td stock-quantity path="<%= admin_update_build_path(build) %>">
-            <input type="number" value="<%= build.stock %>" class="quantity">
-            <input type="submit" value="💩" class="save">
-          </td>
-          <% build.variants.joins(:variation).distinct.order("variations.level").each do |variant| %>
-            <td sort-value='<%= "#{variant.sort_order.to_s}_#{variant.name}" %>'>
-              <%= variant.name %>
-            </td>
-          <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <h2>Sizes</h2>
+  <% @sizes.each do |size| %>
+    <div class="size">
+      <h3><%= size.name %></h3>
+      <deleter class="button" path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
+        X
+      </deleter>
+    </div>
+  <% end %>
+  <div class="new-size">
+    <%= link_to "New Size", new_admin_product_size_path(@product) %>
+  </div>
 </section>
 
 <section>
   <h2>Variations</h2>
-  
-  <% @product.variations.order(:level).each_with_index do |variation, index| %>
+  <% @variations.each do |variation| %>
     <div class="variation">
-      <h3 class="hide-edit">
-        <%= variation.name %>
-        <div class="status"><%= variation.level %></div>
-        <div class="status"><%= '🗻' if variation.has_image %></div>
-        <%= link_to "Edit", edit_admin_variation_path(variation), class: "edit" %>
-      </h3>
-      
-      <% variation.variants.order(:sort_order, :name).each do |variant| %>
-        <div class="variant hide-edit">
-          <div class="status <%= 'un' if !variant.show_retail %>">R</div><!--
-      ---><div class="status <%= 'un' if !variant.show_wholesale %>">W</div><!--
-      ---><% if index == 0 %><!--
-        ---><div class="status <%= 'un' if !variant.description %>">D</div><!--
-      ---><% end %><!---
-      ---><% if variant.price_retail > 0 or variant.price_wholesale > 0 %><!--
-        ---><div class="status un">$</div><!--
-      ---><% end %>
-          
-          <!-- This comment closes stray comments above -->
-          <span class="<%= 'default' if variant.featured %>">
-            <%= variant.name %> <%= link_to "Edit", edit_admin_variant_path(variant), class: "edit" %>
-          </span>
-        </div>
-      <% end %>
-      <div class="new-variant">
-        <%= link_to "New #{variation.name.titlecase}", new_admin_variation_variant_path(variation) %>
+      <div class="image">
+        Image Goes Here
       </div>
-      
+      <div class="info">
+        <h3><%= variantion.name %></h3>
+      </div>
+      <div class="sizes">
+        <% variation.builds.each do |build| %>
+          <div stock-quantity path="<%= admin_update_build_path(build) %>">
+            <input type="number" value="<%= build.stock %>" class="quantity">
+            <input type="submit" value="💩" class="save">
+          </div>
+        <% end %>
+      </div>
     </div>
   <% end %>
-  
   <div class="new-variation">
     <%= link_to "New Variation", new_admin_product_variation_path(@product) %>
   </div>
-
 </section>
 
 <section>
@@ -88,45 +55,6 @@
 <section>
   <h2>Basics</h2>
   <%= form_for [:admin, @product] do |f| %>
-    <%= render 'partials/form_errors', model: @product %>
-
-    <div>
-      <%= f.label :name, "Name" %>
-      <%= f.text_field :name %>
-    </div>
-    <hr>
-    <div>
-      <%= f.label :show_retail do %>
-        <%= f.check_box :show_retail, { "ng-model" => "show_retail", "ng-init" => "show_retail = #{@product.show_retail}" } %> Retail
-      <% end %>
-      <%= f.label :show_wholesale do %>
-        <%= f.check_box :show_wholesale, { "ng-model" => "show_wholesale", "ng-init" => "show_wholesale = #{@product.show_wholesale}" } %> Wholesale
-      <% end %>
-    </div>
-    <div class="row">
-      <div ng-if="show_retail">
-        <%= f.label :price_retail, "Retail Price" %>
-        <%= f.number_field :price_retail %>
-      </div>
-      <div ng-if="show_wholesale">
-        <%= f.label :price_wholesale, "Wholesale Price" %>
-        <%= f.number_field :price_wholesale %>
-      </div>
-    </div>
-    <hr>
-    <div class="row spread">
-      <div>
-        <%= f.label :ypos, "Photo Y Position" %>
-        <%= f.number_field :ypos %>
-      </div>
-      <deleter class="button" path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
-        Hold To Delete
-      </deleter>
-    </div>
-    <hr>
-    <div class="perspective">
-      <%= f.submit "Save", class: "save" %>
-    </div>
-    
+    <%= render "admin/products/fields", f: f, edit: true %>
   <% end %>
 </section>

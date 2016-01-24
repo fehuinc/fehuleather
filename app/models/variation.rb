@@ -1,6 +1,6 @@
 class Variation < ActiveRecord::Base
   belongs_to :product
-  has_many :builds
+  has_many :builds, dependent: :destroy
   
   validates :name, :product, { presence: true }
   

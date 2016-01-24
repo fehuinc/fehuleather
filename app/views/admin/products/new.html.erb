@@ -1,45 +1,5 @@
 <h1>New <%= @kingdom.name.titlecase.singularize %></h1>
 
 <%= form_for [:admin, @kingdom, @product] do |f| %>
-  <%= render 'partials/form_errors', model: @product %>
-
-  <div>
-    <%= f.label :name, "Name" %>
-    <%= f.text_field :name, autofocus:true %>
-  </div>
-  <div>
-    <%= f.label :description, "Description" %>
-    <%= f.text_area :description, rows: 5 %>
-  </div>
-  <hr>
-  <div>
-    <%= f.label :show_retail do %>
-      <%= f.check_box :show_retail, { "ng-model" => "show_retail", "ng-init" => "show_retail = #{@product.show_retail}" } %> Retail
-    <% end %>
-    <%= f.label :show_wholesale do %>
-      <%= f.check_box :show_wholesale, { "ng-model" => "show_wholesale", "ng-init" => "show_wholesale = #{@product.show_wholesale}" } %> Wholesale
-    <% end %>
-  </div>
-  <div class="row">
-    <div ng-if="show_retail">
-      <%= f.label :price_retail, "Retail Price" %>
-      <%= f.number_field :price_retail %>
-    </div>
-    <div ng-if="show_wholesale">
-      <%= f.label :price_wholesale, "Wholesale Price" %>
-      <%= f.number_field :price_wholesale %>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="totem-levels">
-      <%= f.number_field :totem_levels %>
-      <%= f.label :totem_levels, "Levels to show in the Totem" %>
-    </div>
-  </div>
-  <hr>
-  <div class="perspective">
-    <%= f.submit "Save", class: "save" %>
-  </div>
-  
+  <%= render "admin/products/fields", f: f, edit: false %>
 <% end %>
