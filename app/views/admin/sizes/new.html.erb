@@ -1,0 +1,5 @@
+<h1>New <%= @product.name %> Size</h1>
+
+<%= form_for [:admin, @product, @size] do |f| %>
+  <%= render "admin/sizes/fields", f: f, edit: false %>
+<% end %>

@@ -49,10 +49,6 @@ class Admin::ProductsController < ApplicationController
     render json: success
   end
   
-  def preview_images
-    @product = Product.find params[:id]
-  end
-  
 private
   
   def standard_params

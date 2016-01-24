@@ -2,14 +2,16 @@
 
 <section>
   <h2>Sizes</h2>
-  <% @sizes.each do |size| %>
-    <div class="size">
-      <h3><%= size.name %></h3>
-      <deleter class="button" path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
-        X
-      </deleter>
-    </div>
-  <% end %>
+  <div class="sizes">
+    <% @sizes.each do |size| %>
+      <div class="size">
+        <h3><%= size.name %></h3>
+        <deleter class="button" path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
+          X
+        </deleter>
+      </div>
+    <% end %>
+  </div>
   <div class="new-size">
     <%= link_to "New Size", new_admin_product_size_path(@product) %>
   </div>
@@ -44,11 +46,11 @@
   <h2>Info</h2>
   <% @product.infos.each do |info| %>
     <div class="info hide-edit">
-      <%= info.name %> <%= link_to "Edit", edit_admin_info_path(info), class: "edit" %></h3>
+      <%= info.name %> <%= link_to "Edit", edit_admin_product_info_path(info), class: "edit" %></h3>
     </div>
   <% end %>
   <div class="new-info">
-    <%= link_to "New Info", new_admin_product_info_path(@product) %>
+    <%= link_to "New Info", new_admin_product_product_info_path(@product) %>
   </div>
 </section>
 

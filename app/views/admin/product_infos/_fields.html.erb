@@ -1,0 +1,27 @@
+<%= render 'partials/form_errors', model: @info %>
+
+<div>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name, autofocus:true %>
+</div>
+
+<div>
+  <%= f.label :content, "Content" %>
+  <%= f.text_area :content, rows: 5 %>
+</div>
+
+<div class="perspective">
+  <%= f.submit "Save", class: "save" %>
+</div>
+
+<div class="row">
+  <div class="center">
+    <%= link_to "Er... cancel please!", edit_admin_product_path(@product) %>
+  </div>
+
+  <% if edit %>
+    <deleter class="right button" path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
+      Hold To Delete
+    </deleter>
+  <% end %>
+</div>

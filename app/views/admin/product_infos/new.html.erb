@@ -1,0 +1,6 @@
+<h1>New Info</h1>
+<h4 class="center"><%= "For the #{@product.name.titlecase}" %></h4>
+
+<%= form_for [:admin, @product, @info] do |f| %>
+  <%= render "admin/product_infos/fields", f: f, edit: false %>
+<% end %>

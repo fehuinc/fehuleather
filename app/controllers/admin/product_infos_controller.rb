@@ -1,4 +1,4 @@
-class Admin::InfosController < ApplicationController
+class Admin::ProductInfosController < ApplicationController
   
   def new
     @product = Product.find params[:product_id]
@@ -12,37 +12,30 @@ class Admin::InfosController < ApplicationController
     if @info.valid?
       @info = @product.infos.create! standard_params
       flash[:notice] = "Saved"
-      redirect_to edit_admin_info_path @info
+      redirect_to edit_admin_product_path @product
     else
       render :new
     end
-  
-  # rescue
-  #   flash.now[:error] = "Something bad happened! Tell Ivan!"
-  #   render :new
   end
 
   def edit
-    @info = Info.find params[:id]
+    @info = ProductInfo.find params[:id]
     @product = @info.product
   end
   
   def update
-    @info = Info.find params[:id]
+    @info = ProductInfo.find params[:id]
     if @info.update! standard_params
       flash[:notice] = "Saved"
-      redirect_to edit_admin_info_path @info
+      redirect_to edit_admin_product_path @info.product
     else
       flash.now[:error] = "Your hard effort was rejected! Poor hoo!"
       render :edit
     end
-  rescue
-    flash.now[:error] = "Something bad happened! Tell Ivan!"
-    render :edit
   end
   
   def destroy
-    info = Info.find params[:id]
+    info = ProductInfo.find params[:id]
     success = info.destroy
     flash[:notice] = "Goodbye, #{info.name.titlecase}" if success
     render json: success
@@ -51,6 +44,6 @@ class Admin::InfosController < ApplicationController
 private
   
   def standard_params
-    params.require(:info).permit :name, :content
+    params.require(:product_info).permit :name, :content
   end
 end

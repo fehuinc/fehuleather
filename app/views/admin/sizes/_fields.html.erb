@@ -1,0 +1,10 @@
+<%= render 'partials/form_errors', model: f.object %>
+
+<div>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+</div>
+
+<div class="perspective">
+  <%= f.submit "Save", class: "save" %>
+</div>
