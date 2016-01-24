@@ -8,7 +8,7 @@ class Admin::VariationsController < ApplicationController
     @product = Product.find params[:product_id]
     @variation = @product.variations.new standard_params
     if @variation.save
-      BuildMaker.new_variation(@product, variation)
+      BuildMaker.make_build_pair(@variation, @variation.product.sizes)
       flash[:notice] = @variation.name + " was successfully created!"
       redirect_to edit_admin_product_path @product
     else

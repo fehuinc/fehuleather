@@ -1,11 +1,6 @@
 class BuildMaker
-  def self.new_variation(product, variation)
-    variation.builds = product.sizes.map { |size| size.builds.new }
-    variation.save
-  end
-
-  def self.new_size(product, size)
-    size.builds = product.variations.map { |variation| variation.builds.new }
-    size.save
+  def self.make_build_pair(a, bs)
+    a.builds = bs.map { |b| b.builds.new }
+    a.save
   end
 end
