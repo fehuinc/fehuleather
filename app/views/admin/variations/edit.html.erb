@@ -1,43 +1,6 @@
-<h1><%= @variation.name.titlecase %></h1>
-<h4 class="center"><%= "A variation of #{@product.name.titlecase}" %></h4>
+<h1><%= @variation.name %></h1>
+<h4 class="center"><%= "A variation of #{@product.name}" %></h4>
 
 <%= form_for [:admin, @variation] do |f| %>
-  <%= render 'partials/form_errors', model: @variation %>
-
-  <div>
-    <%= f.label :name, "Name (eg: Size, Color, Pattern)" %>
-    <%= f.text_field :name, autofocus:true %>
-  </div>
-  <hr>
-  <div class="row">
-    <div>
-      <%= f.label :level, "Level" %>
-      <%= f.number_field :level %>
-    </div>
-    <div>
-      <%= f.label :has_image do %>
-        <%= f.check_box :has_image %> Has Image?
-      <% end %>
-    </div>
-    <% if @variation.variants.count <= 1 %>
-      <deleter class="button" class="right" path="<%= admin_variation_path(@variation) %>" redirect="<%= edit_admin_product_path(@product) %>">
-        Hold To Delete
-      </deleter>
-    <% else %>
-      <span class="right">
-        Can't Delete — Still Has Variants
-      </span>
-    <% end %>
-  </div>
-  <hr>
-  <div class="perspective">
-    <%= f.submit "Save", class: "save" %>
-  </div>
-  
-  <div class="row spread">
-    <%= link_to @prev.name.titlecase, edit_admin_variation_path(@prev) %>
-    <%= link_to "Er... cancel please!", edit_admin_product_path(@product) %>
-    <%= link_to @next.name.titlecase, edit_admin_variation_path(@next) %>
-  </div>
-  
+  <%= render "admin/variations/fields", f: f, edit: true %>
 <% end %>

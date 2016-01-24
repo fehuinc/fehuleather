@@ -1,0 +1,48 @@
+<%= render 'partials/form_errors', model: f.object %>
+
+<div>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+</div>
+
+<div class="row">
+  <%= f.label :price_retail, "Retail Price" %>
+  <%= f.number_field :price_retail %>
+  <%= f.label :price_wholesale, "Wholesale Price" %>
+  <%= f.number_field :price_wholesale %>
+</div>
+
+<hr>
+
+<h2>Images Go Here</h2>
+
+<hr>
+
+<div class="builds">
+  <% f.object.builds.each do |build| %>
+    <div stock-quantity path="<%= admin_update_build_path(build) %>">
+      <input type="number" value="<%= build.stock %>" class="quantity">
+      <input type="submit" value="💩" class="save">
+    </div>
+  <% end %>
+</div>
+
+<hr>
+
+<% if edit %>
+  <div class="row">
+    <deleter class="button right" path="<%= admin_variation_path(@variation) %>" redirect="<%= edit_admin_product_path(@product) %>">
+      Hold To Delete
+    </deleter>
+  </div>
+<% end %>
+
+<div class="perspective">
+  <%= f.submit "Save", class: "save" %>
+</div>
+
+<div class="row spread">
+  <%= link_to(@prev.name.titlecase, edit_admin_variation_path(@prev)) if edit %>
+  <%= link_to("Er... cancel please!", edit_admin_product_path(@product)) %>
+  <%= link_to(@next.name.titlecase, edit_admin_variation_path(@next)) if edit %>
+</div>

@@ -32,7 +32,7 @@ class Initialize < ActiveRecord::Migration
     create_table :builds do |t|
       t.belongs_to :variation,         required: true, index: true
       t.belongs_to :size,              required: true, index: true
-      t.text :model,                   null: false
+      t.text :model
       t.integer :stock,                default: 0
     end
     

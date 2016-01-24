@@ -8,6 +8,7 @@ class Admin::SizesController < ApplicationController
     @product = Product.find params[:product_id]
     @size = @product.sizes.new standard_params
     if @size.save
+      BuildMaker.new_size(@product, size)
       flash[:notice] = "Saved"
       redirect_to edit_admin_product_path(@product)
     else

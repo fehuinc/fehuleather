@@ -7,24 +7,19 @@ class Admin::VariationsController < ApplicationController
   def create
     @product = Product.find params[:product_id]
     @variation = @product.variations.new standard_params
-    
-    if @variation.valid?
-      @variation = @product.variations.create! standard_params
+    if @variation.save
+      BuildMaker.new_variation(@product, variation)
       flash[:notice] = @variation.name + " was successfully created!"
       redirect_to edit_admin_product_path @product
     else
       render :new
     end
-  
-  rescue
-    flash.now[:error] = "Something bad happened! Tell Ivan!"
-    render :new
   end
   
   def edit
     @variation = Variation.find params[:id]
     @product = @variation.product
-    variations = @product.variations.order(:level)
+    variations = @product.variations.order(:name)
     index = variations.index(@variation)
     @next = variations[(index+1)%variations.length]
     @prev = variations[(index-1+variations.length)%variations.length]
@@ -33,14 +28,14 @@ class Admin::VariationsController < ApplicationController
   def update
     @variation = Variation.find params[:id]
     @product = @variation.product
-    variations = @product.variations.order(:level)
+    variations = @product.variations.order(:name)
     index = variations.index(@variation)
     @next = variations[(index+1)%variations.length]
     @prev = variations[(index-1+variations.length)%variations.length]
     
-    if @variation.update! standard_params
+    if @variation.update standard_params
       flash[:notice] = "Saved"
-      redirect_to edit_admin_product_path @product
+      redirect_to edit_admin_variation_path @variation
     else
       flash.now[:error] = "Your hard effort was rejected! Poor hoo!"
       render :edit

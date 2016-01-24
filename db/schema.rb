@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 1) do
   create_table "builds", force: :cascade do |t|
     t.integer "variation_id"
     t.integer "size_id"
-    t.text    "model",                    null: false
+    t.text    "model"
     t.integer "stock",        default: 0
   end
 

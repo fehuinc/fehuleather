@@ -2,35 +2,5 @@
 <h4 class="center"><%= "For the #{@product.name.titlecase}" %></h4>
 
 <%= form_for [:admin, @product, @variation] do |f| %>
-  <%= render 'partials/form_errors', model: @variation %>
-
-  <div>
-    <%= f.label :name, "Name (eg: Size, Color, Pattern)" %>
-    <%= f.text_field :name, autofocus:true %>
-  </div>
-  <div>
-    <%= f.label :description, "Description (Optional)" %>
-    <%= f.text_area :description, rows: 5 %>
-  </div>
-  <hr>
-  <div class="row">
-    <div>
-      <%= f.label :level, "Level" %>
-      <%= f.number_field :level %>
-    </div>
-    <div>
-      <%= f.label :has_image do %>
-        <%= f.check_box :has_image %> Has Image?
-      <% end %>
-    </div>
-  </div>
-  <hr>
-  <div class="perspective">
-    <%= f.submit "Save", class: "save" %>
-  </div>
-  
-  <div class="center">
-    <%= link_to "Er... cancel please!", edit_admin_product_path(@product) %>
-  </div>
-
+  <%= render "admin/variations/fields", f: f, edit: false %>
 <% end %>
