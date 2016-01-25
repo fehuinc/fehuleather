@@ -2,13 +2,13 @@ class Admin::TotemItemsController < ApplicationController
   def new
     @totem_row = TotemRow.find(params[:totem_row_id])
     @totem_item = @totem_row.items.new
-    @product_builds = [[nil, "None"]].concat Build.all.map { |g| [g.id, g.build_name] }
+    @select_variations = select_variations
   end
   
   def create
     @totem_row = TotemRow.find(params[:totem_row_id])
     @totem_item = @totem_row.items.new(standard_params)
-    @product_builds = Build.all
+    @select_variations = select_variations
     if @totem_item.save
       flash[:success] = "Saved"
       redirect_to admin_totem_path
@@ -19,13 +19,13 @@ class Admin::TotemItemsController < ApplicationController
   
   def edit
     @totem_item = TotemItem.find(params[:id])
-    @product_builds = [[nil, "None"]].concat Build.all.map { |g| [g.id, g.build_name] }
+    @select_variations = select_variations
   end
   
   def update
     @totem_item = TotemItem.find(params[:id])
     @totem_item.update(standard_params)
-    @product_builds = Build.all
+    @select_variations = select_variations
     if @totem_item.save
       flash[:success] = "Saved"
       redirect_to admin_totem_path
@@ -43,6 +43,10 @@ class Admin::TotemItemsController < ApplicationController
 private
   
   def standard_params
-    params.require(:totem_item).permit(:name, :content, :image, :index, :build_id)
+    params.require(:totem_item).permit(:name, :content, :image, :index, :variation_id)
+  end
+  
+  def select_variations
+    [[nil, "None"]].concat Variation.includes(:product).map { |g| [g.id, g.full_name] }
   end
 end

@@ -1,11 +1,11 @@
 <%= render 'partials/form_errors', model: f.object %>
 
 <div>
-  <%= f.label :build_id, "Product Build" %>
-  <%= f.collection_select :build_id, product_builds, :first, :second, {}, { "ng-model" => "hasProduct" } %>
+  <%= f.label :variation_id, "Product Variation" %>
+  <%= f.collection_select :variation_id, select_variations, :first, :second, {}, { "variation-select" => true } %>
 </div>
 
-<div ng-hide="hasProduct">
+<div manual-entry>
   <div>
     <%= f.label :name, "Name" %>
     <%= f.text_field :name %>

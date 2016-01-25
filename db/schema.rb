@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "totem_items", force: :cascade do |t|
     t.integer "totem_row_id"
-    t.integer "build_id"
+    t.integer "variation_id"
     t.text    "name",                     null: false
     t.text    "image",                    null: false
     t.text    "content",                  null: false

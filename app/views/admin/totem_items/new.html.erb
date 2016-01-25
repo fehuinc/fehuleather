@@ -1,5 +1,5 @@
 <h1>New Totem Item in row <%= @totem_row.index %></h1>
 
 <%= form_for [:admin, @totem_row, @totem_item] do |f| %>
-  <%= render "admin/totem_items/fields", f: f, product_builds: @product_builds, edit: false %>
+  <%= render "admin/totem_items/fields", f: f, select_variations: @select_variations, edit: false %>
 <% end %>

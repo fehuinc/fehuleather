@@ -1,5 +1,5 @@
 <h1>Edit Row <%= @totem_row.index %></h1>
 
 <%= form_for [:admin, @totem_row] do |f| %>
-  <%= render "admin/totem_rows/fields", f: f %>
+  <%= render "admin/totem_rows/fields", f: f, edit: true %>
 <% end %>

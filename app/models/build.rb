@@ -1,5 +1,5 @@
 class Build < ActiveRecord::Base
-  # has_one :product, through: :variation # Will this work?
+  has_one :product, through: :variation # Will this work?
   belongs_to :variation
   belongs_to :size
   has_many :order_items

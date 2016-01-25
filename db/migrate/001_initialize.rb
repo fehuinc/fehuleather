@@ -49,7 +49,7 @@ class Initialize < ActiveRecord::Migration
     
     create_table :totem_items do |t|
       t.belongs_to :totem_row,         required: true, index: true
-      t.references :build,             required: false
+      t.belongs_to :variation,         required: false
       t.text :name,                    null: false
       t.text :image,                   null: false
       t.text :content,                 null: false
