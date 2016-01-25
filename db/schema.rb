@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 1) do
     t.text "description"
   end
 
+  create_table "images", force: :cascade do |t|
+    t.integer "imageable_id"
+    t.string  "imageable_type"
+    t.text    "src"
+  end
+
+  add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
+
   create_table "kingdoms", force: :cascade do |t|
     t.text "name", null: false
   end
@@ -124,7 +132,6 @@ ActiveRecord::Schema.define(version: 1) do
     t.integer "totem_row_id"
     t.integer "variation_id"
     t.text    "name",                     null: false
-    t.text    "image",                    null: false
     t.text    "content",                  null: false
     t.integer "ypos",         default: 0
     t.integer "index",        default: 0

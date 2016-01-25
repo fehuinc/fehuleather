@@ -2,6 +2,7 @@ class Variation < ActiveRecord::Base
   belongs_to :product
   has_many :builds, dependent: :destroy
   has_many :totem_items, dependent: :destroy
+  has_one :image, as: :imageable
   
   validates :name, :product, { presence: true }
   

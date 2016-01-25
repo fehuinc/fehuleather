@@ -1,6 +1,7 @@
 class TotemItem < ActiveRecord::Base
   belongs_to :row, class_name: "TotemRow", inverse_of: :items
   belongs_to :variation
+  has_one :image, as: :imageable
   
   validates :index, :ypos, { numericality: { only_integer: true } }
   

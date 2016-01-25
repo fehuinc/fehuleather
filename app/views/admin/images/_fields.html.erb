@@ -1,0 +1,10 @@
+<%= render 'partials/form_errors', model: f.object %>
+
+<%= image_tag f.object.src_url if f.object.src? %>
+<%= image_tag f.object.src_url(:thumb) if f.object.src? %>
+
+<%= f.file_field :src %>
+
+<div class="perspective">
+  <%= f.submit "Save", class: "save" %>
+</div>

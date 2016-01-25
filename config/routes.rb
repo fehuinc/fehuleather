@@ -81,6 +81,7 @@ Rails.application.routes.draw do
         resources :events, except: [:show]
         resources :locations, except: [:show]
         resources :orders, except: [:show]
+        resources :images, except: [:show]
       end
     end
     

@@ -6,3 +6,4 @@
 .env
 .sass-cache/
 /public/product-images/
+/public/uploads/

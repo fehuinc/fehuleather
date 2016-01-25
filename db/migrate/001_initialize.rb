@@ -24,6 +24,11 @@ class Initialize < ActiveRecord::Migration
       t.monetize :price_wholesale
     end
     
+    create_table :images do |t|
+      t.belongs_to :imageable,         polymorphic: true, index: true
+      t.text :src
+    end
+    
     create_table :sizes do |t|
       t.belongs_to :product,           required: true, index: true
       t.text :name,                    null: false
@@ -51,7 +56,6 @@ class Initialize < ActiveRecord::Migration
       t.belongs_to :totem_row,         required: true, index: true
       t.belongs_to :variation,         required: false
       t.text :name,                    null: false
-      t.text :image,                   null: false
       t.text :content,                 null: false
       t.integer :ypos,                 default: 0
       t.integer :index,	               default: 0

@@ -30,6 +30,11 @@ gem "uglifier"
 gem "postmark-rails"
 gem "skylight"
 
+# IMAGE UPLOADS
+gem "mini_magick"
+gem "carrierwave"
+gem "fog"
+
 # MISC
 gem "money-rails"
 gem "google_currency"

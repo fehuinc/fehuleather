@@ -1,0 +1,10 @@
+<h1>Image Stinks</h1>
+
+
+<% @images.each do |image| %>
+  <%= image_tag image.src_url(:thumb) if image.src? %>
+<% end %>
+
+<div class="perspective">
+  <%= link_to "New Image", new_admin_image_path, class: "new button" %>
+</div>
