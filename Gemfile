@@ -31,9 +31,8 @@ gem "postmark-rails"
 gem "skylight"
 
 # IMAGE UPLOADS
-gem "mini_magick"
-gem "carrierwave"
-gem "fog"
+gem 'aws-sdk', '~> 2'
+gem "jquery-fileupload-rails"
 
 # MISC
 gem "money-rails"
