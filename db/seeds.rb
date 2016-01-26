@@ -9,9 +9,9 @@ wrap_ring.variations.create! name: "White Leaf"
 wrap_ring.variations.create! name: "Gold Stripes"
 
 row = TotemRow.create! index: 0
-row.items.create! name: "Wrap Ring", content: "We'll soon be offering this product for sale, right here. Check back in February!"
+row.items.create! name: "Wrap Ring", content: "We'll soon be offering this product for sale, right here. Check back in February!", temp_image: ENV["IMAGEPATH"] + "wrap-ring/totem/back.jpg"
 row = TotemRow.create! index: 1
-row.items.create! name: "Wrap Ring", content: "We'll soon be offering this product for sale, right here. Check back in February!"
+row.items.create! name: "Wrap Ring", content: "We'll soon be offering this product for sale, right here. Check back in February!", temp_image: ENV["IMAGEPATH"] + "wrap-ring/totem/front.jpg"
 
 hair = Kingdom.create! name: "Hair"
 
@@ -32,7 +32,7 @@ wrap_cuff.variations.create! name: "Natural6"
 wrap_cuff.variations.create! name: "Natural7"
 
 row = TotemRow.create! index: 2
-row.items.create! name: "Wrap Cuff", content: "We'll soon be offering this product for sale, right here. Check back in February!"
+row.items.create! name: "Wrap Cuff", content: "We'll soon be offering this product for sale, right here. Check back in February!", temp_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/back.jpg"
 
 gilt_cuff = bracelets.products.create! name: "Gilt Cuff"
 gilt_cuff.variations.create! name: "Back"
@@ -65,7 +65,7 @@ cc_bracelet.variations.create! name: "Smokey Quartz"
 cc_bracelet.variations.create! name: "Goldstone"
 
 row = TotemRow.create! index: 3
-row.items.create! name: "Coffee & Crystals Bracelet", content: "We'll soon be offering this product for sale, right here. Check back in February!"
+row.items.create! name: "Coffee & Crystals Bracelet", content: "We'll soon be offering this product for sale, right here. Check back in February!", temp_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/front.jpg"
 
 belts = Kingdom.create! name: "Belts"
 
@@ -76,14 +76,14 @@ volva_belt = belts.products.create! name: "Volva Belt"
 volva_belt.variations.create! name: "Front"
 
 row = TotemRow.create! index: 4
-row.items.create! name: "Volva Belt", content: "We'll soon be offering this product for sale, right here. Check back in February!"
+row.items.create! name: "Volva Belt", content: "We'll soon be offering this product for sale, right here. Check back in February!", temp_image: ENV["IMAGEPATH"] + "volva-belt/totem/front.jpg"
 
 seven_belt = belts.products.create! name: "7 Belt"
 seven_belt.variations.create! name: "Back"
 seven_belt.variations.create! name: "Front"
 
 row = TotemRow.create! index: 5
-row.items.create! name: "7 Belt", content: "We'll soon be offering this product for sale, right here. Check back in February!"
+row.items.create! name: "7 Belt", content: "We'll soon be offering this product for sale, right here. Check back in February!", temp_image: ENV["IMAGEPATH"] + "7-belt/totem/back.jpg"
 
 thirteen_belt = belts.products.create! name: "13 Belt"
 thirteen_belt.variations.create! name: "Back"

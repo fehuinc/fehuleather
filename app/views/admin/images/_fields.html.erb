@@ -3,7 +3,10 @@
 <%= image_tag f.object.src_url if f.object.src? %>
 <%= image_tag f.object.src_url(:thumb) if f.object.src? %>
 
+<%= f.label :src, "Image File" %>
 <%= f.file_field :src %>
+
+<input type="hidden" s3-data="<%= { 'form-data' => s3_presigned_post.fields, 'url' => s3_presigned_post.url, 'host' => URI.parse(s3_presigned_post.url).host } %>">
 
 <div class="perspective">
   <%= f.submit "Save", class: "save" %>

@@ -42,5 +42,5 @@ private
   def standard_params
     params.require(:image).permit(:src)
   end
-
+  
 end

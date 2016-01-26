@@ -57,6 +57,7 @@ class Initialize < ActiveRecord::Migration
       t.belongs_to :variation,         required: false
       t.text :name,                    null: false
       t.text :content,                 null: false
+      t.text :temp_image
       t.integer :ypos,                 default: 0
       t.integer :index,	               default: 0
       t.index :index

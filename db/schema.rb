@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.integer "variation_id"
     t.text    "name",                     null: false
     t.text    "content",                  null: false
+    t.text    "temp_image"
     t.integer "ypos",         default: 0
     t.integer "index",        default: 0
   end
