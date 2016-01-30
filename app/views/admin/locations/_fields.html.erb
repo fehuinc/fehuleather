@@ -1,0 +1,26 @@
+<%= render 'partials/form_errors', model: f.object %>
+
+<div>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+</div>
+
+<hr>
+
+<div class="row spread">
+  <% if edit %>
+    <deleter class="button right" path="<%= admin_location_path(f.object) %>" redirect="<%= admin_locations_path %>">
+      Hold To Delete
+    </deleter>
+  <% end %>
+</div>
+
+<hr>
+
+<div class="perspective">
+  <%= f.submit "Save", class: "save" %>
+</div>
+
+<div class="center">
+  <%= link_to "Er... cancel please!", admin_locations_path %>
+</div>

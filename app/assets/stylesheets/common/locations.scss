@@ -1,8 +1,12 @@
 .common-locations {
+  section {
+    max-width: none;
+  }
+
   form {
     max-width: none;
     font-size: 1.1em;
-    margin: 1.2em 0 2.5em;
+    margin: 1.2em 0;
     text-align: center;
     
     label {

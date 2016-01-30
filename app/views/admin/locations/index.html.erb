@@ -2,9 +2,11 @@
   FEHU.locations = <%= raw @locations.to_json %>
 </script>
 
-<h1 class="page-title">Stinky Locations</h1>
+<h2 class="perspective">
+  <%= link_to "New Location", new_admin_event_path, class: "button" %>
+</h2>
 
-<div ng-controller="LocationsCtrl">
+<section ng-controller="LocationsCtrl">
   <form>
     <label>
       <span>City</span>
@@ -39,4 +41,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>

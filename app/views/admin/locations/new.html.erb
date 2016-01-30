@@ -1,0 +1,5 @@
+<h1><%= action_name.humanize %> <%= @model.class.name %></h1>
+
+<%= form_for [:admin, @model] do |f| %>
+  <%= render "admin/#{controller_name.parameterize}/fields", f: f, edit: action_name == "edit" %>
+<% end %>
