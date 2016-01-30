@@ -28,6 +28,10 @@ class Admin::KingdomsController < ApplicationController
     success = @kingdom.update!(standard_params)
     render json: success
   end
+
+  def destroy
+    render json: Kingdom.find(params[:id]).destroy!
+  end
   
 private
   

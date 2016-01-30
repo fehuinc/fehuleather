@@ -32,10 +32,7 @@ class Admin::SizesController < ApplicationController
   end
   
   def destroy
-    size = Size.find params[:id]
-    success = size.destroy
-    flash[:notice] = "Goodbye, #{size.name}" if success
-    render json: success
+    render json: Size.find(params[:id]).destroy!
   end
   
 private

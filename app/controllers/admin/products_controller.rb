@@ -36,18 +36,8 @@ class Admin::ProductsController < ApplicationController
     render :edit
   end
   
-  def update_stock
-    build = Build.find params[:id]
-    build.stock = params[:quantity]
-    success = build.save
-    render json: success
-  end
-  
   def destroy
-    product = Product.find params[:id]
-    success = product.destroy
-    flash[:notice] = "Goodbye, #{product.name.titlecase}" if success
-    render json: success
+    render json: Product.find(params[:id]).destroy!
   end
   
 private

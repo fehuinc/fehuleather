@@ -41,6 +41,14 @@ class Admin::VariationsController < ApplicationController
       render :edit
     end
   end
+  
+  # NOT SURE IF WE NEED THIS ANYWHERE ANYMORE
+  # def update_stock
+  #   build = Build.find params[:id]
+  #   build.stock = params[:quantity]
+  #   success = build.save
+  #   render json: success
+  # end
 
   def destroy
     render json: Variation.find(params[:id]).destroy!

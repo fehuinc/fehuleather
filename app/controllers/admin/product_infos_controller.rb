@@ -35,10 +35,7 @@ class Admin::ProductInfosController < ApplicationController
   end
   
   def destroy
-    info = ProductInfo.find params[:id]
-    success = info.destroy
-    flash[:notice] = "Goodbye, #{info.name.titlecase}" if success
-    render json: success
+    render json: ProductInfo.find(params[:id]).destroy!
   end
 
 private

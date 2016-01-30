@@ -1,4 +1,5 @@
 class Admin::OrdersController < ApplicationController
-  def index
+  def destroy
+    render json: Order.find(params[:id]).destroy!
   end
 end

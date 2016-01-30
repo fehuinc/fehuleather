@@ -37,8 +37,7 @@ class Admin::ImagesController < ApplicationController
   end
   
   def destroy
-    Image.find(params[:id]).destroy
-    redirect_to admin_images_path
+    render json: Image.find(params[:id]).destroy!
   end
   
 private
