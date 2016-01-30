@@ -1,9 +1,40 @@
 class Admin::EventsController < ApplicationController
   def index
-    @events = Event.all
+    @events = Event.all.order(:index)
   end
-
+  
+  def new
+    @model = Event.new
+  end
+  
+  def create
+    if @model = Event.create(standard_params)
+      redirect_to admin_events_path
+    else
+      render :new
+    end
+  end
+  
+  def edit
+    @model = Event.find(params[:id])
+  end
+  
+  def update
+    if @model = Event.find(params[:id]).update(standard_params)
+      redirect_to admin_events_path
+    else
+      render :edit
+    end
+  end
+  
   def destroy
     render json: Event.find(params[:id]).destroy!
   end
+  
+private
+  
+  def standard_params
+    params.require(:event).permit :name, :date, :location, :description
+  end
+  
 end

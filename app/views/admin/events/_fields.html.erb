@@ -1,0 +1,45 @@
+<%= render 'partials/form_errors', model: f.object %>
+
+<div>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+</div>
+
+<div>
+  <%= f.label :date, "Date" %>
+  <%= f.text_field :date %>
+</div>
+
+<div>
+  <%= f.label :location, "Location" %>
+  <%= f.text_field :location %>
+</div>
+
+<div>
+  <%= f.label :description, "Description" %>
+  <%= f.text_area :description, rows: 2 %>
+</div>
+
+<hr>
+
+<div class="row spread">
+  <div>
+    <%= f.number_field :index %>
+    <%= f.label :index, "Index" %>
+  </div>
+  <% if edit %>
+    <deleter class="button" path="<%= admin_event_path(f.object) %>" redirect="<%= admin_events_path %>">
+      Hold To Delete
+    </deleter>
+  <% end %>
+</div>
+
+<hr>
+
+<div class="perspective">
+  <%= f.submit "Save", class: "save" %>
+</div>
+
+<div class="center">
+  <%= link_to "Er... cancel please!", admin_events_path %>
+</div>

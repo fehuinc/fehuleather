@@ -115,6 +115,8 @@ class Initialize < ActiveRecord::Migration
       t.text :date,	                   null: false
       t.text :location,	               null: false
       t.text :description
+      t.integer :index,	               default: 0
+      t.index :index
     end
   end
 end

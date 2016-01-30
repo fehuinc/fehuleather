@@ -28,11 +28,14 @@ ActiveRecord::Schema.define(version: 1) do
   add_index "builds", ["variation_id"], name: "index_builds_on_variation_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.text "name",        null: false
-    t.text "date",        null: false
-    t.text "location",    null: false
-    t.text "description"
+    t.text    "name",                    null: false
+    t.text    "date",                    null: false
+    t.text    "location",                null: false
+    t.text    "description"
+    t.integer "index",       default: 0
   end
+
+  add_index "events", ["index"], name: "index_events_on_index", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.integer "imageable_id"
