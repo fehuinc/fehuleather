@@ -41,7 +41,6 @@ input[type="submit"], input[type="file"] {
   cursor: pointer;
   transition: transform .3s cubic-bezier(0.5, 2, 0.5, 2), background-color .2s;
   -webkit-font-smoothing: subpixel-antialiased;
-  -webkit-tap-highlight-color: transparent;
   
   &:hover, &:focus {
     background-color: hsl(155, 50%, 70%);

@@ -35,9 +35,7 @@ class Admin::TotemItemsController < ApplicationController
   end
   
   def destroy
-    @totem_item = TotemItem.find(params[:id])
-    @totem_item.destroy
-    redirect_to admin_totem_path
+    render json: TotemItem.find(params[:id]).destroy!
   end
   
 private

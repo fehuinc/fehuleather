@@ -1,21 +1,20 @@
 @import 'libs/inherit.scss';
 
-deleter {
+deleter.button {
   @extend .unselectable;
-  display: inline-block;
+  cursor: pointer;
+  background: hsl(15, 100%, 75%);
+  transition: transform .3s cubic-bezier(0.5, 2, 0.5, 2), background-color .2s, opacity .2s ease-out;
   
-  .button {
-    display: inline-block;
-    padding: .5em 1em;
-    border-radius: 5px;;
-    color: white;
-    background: hsl( 15, 100%, 75%);
-    cursor: pointer;
-    transition: 2s opacity;
-    -webkit-font-smoothing: subpixel-antialiased;
-    
-    &.deleting {
-      opacity: 0;
-    }
+  &:hover, &:focus {
+    background-color: hsl(10, 100%, 70%);
+  }
+  
+  &:active, &.active {
+    transition: transform .25s cubic-bezier(0.3, -1, 0.7, 2), background-color .2s, opacity 2s ease-in;
+  }
+  
+  &.deleting {
+    opacity: 0;
   }
 }

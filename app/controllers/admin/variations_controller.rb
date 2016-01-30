@@ -43,10 +43,7 @@ class Admin::VariationsController < ApplicationController
   end
 
   def destroy
-    variation = Variation.find params[:id]
-    success = variation.destroy!
-    flash[:notice] = "Goodbye, #{variation.name.titlecase}"
-    render json: success
+    render json: Variation.find(params[:id]).destroy!
   end
   
 private
