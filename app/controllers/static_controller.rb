@@ -4,7 +4,7 @@ class StaticController < ApplicationController
   end
   
   def locations
-    @locations = Location.all
+    @locations = Location.all.order(:country, :province, :name)
   end
   
   def events

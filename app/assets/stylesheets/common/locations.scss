@@ -2,7 +2,7 @@
   section {
     max-width: none;
   }
-
+  
   form {
     max-width: none;
     font-size: 1.1em;
@@ -24,25 +24,42 @@
   }
   
   .country {
-    text-align: center;
-  }
-  
-  .province {
-    display: inline-block;
-    max-width: 30rem;
-    margin: 2em;
-    vertical-align: top;
     text-align: left;
   }
   
-  .location {
-    margin-bottom: 3em;
+  .province {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin: 2em;
+    text-align: left;
     
-    address {
-      margin: .5em 0;
+    .province-name {
+      padding: 1em;
+      display: inline-block;
+      span {
+      }
+    }
+    
+    .locations-block {
+      display: inline-block;
       
-      pre {
-        margin: 0;
+      .location {
+        display: inline-block;
+        margin: 2em;
+        
+        address {
+          margin: .5em 0;
+          
+          pre {
+            margin: 0;
+          }
+        }
+        
+        .perspective {
+          float: right;
+          display: inline-block;
+        }
       }
     }
   }

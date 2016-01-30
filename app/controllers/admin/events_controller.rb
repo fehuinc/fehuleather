@@ -8,7 +8,8 @@ class Admin::EventsController < ApplicationController
   end
   
   def create
-    if @model = Event.create(standard_params)
+    @model = Event.new(standard_params)
+    if @model.save
       redirect_to admin_events_path
     else
       render :new

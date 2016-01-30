@@ -3,7 +3,7 @@
 </script>
 
 <h2 class="perspective">
-  <%= link_to "New Location", new_admin_event_path, class: "button" %>
+  <%= link_to "New Location", new_admin_location_path, class: "button" %>
 </h2>
 
 <section ng-controller="LocationsCtrl">
@@ -26,17 +26,22 @@
         <h2 class="province-name bar"
             ng-show="filteredLocations.length > 0"
             ng-class="['A','B','C','D'][$index%4]">
-          {{provinceName}}
+          <span>{{provinceName}}</span>
         </h2>
-        <div class="location" ng-repeat="location in filteredLocations = (locationList | filter:search)">
-          <h3 class="name">{{location.name}}</h3>
-          <address>
-            <pre>{{location.address}}</pre>
-            <pre>{{location.city}}, {{location.province}}</pre>
-            <pre>{{location.postal}}</pre>
-            <pre ng-show="location.country != 'Canada'">{{location.country}}</pre>
-          </address>
-          <a ng-href="http://{{location.url}}" ng-show="location.url">Website</a>
+        <div class="locations-block">
+          <div class="location" ng-repeat="location in filteredLocations = (locationList | filter:search)">
+            <h3 class="name">{{location.name}}</h3>
+            <address>
+              <pre>{{location.address}}</pre>
+              <pre>{{location.city}}, {{location.province}}</pre>
+              <pre>{{location.postal}}</pre>
+              <pre ng-show="location.country != 'Canada'">{{location.country}}</pre>
+            </address>
+            <a ng-href="http://{{location.url}}" ng-show="location.url">Website</a>
+            <div class="perspective">
+              <a href="/admin/locations/{{location.id}}/edit" class="button">Edit</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
