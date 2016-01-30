@@ -1,13 +1,16 @@
 <%= render 'partials/form_errors', model: f.object %>
-
-<%= image_tag f.object.src_url if f.object.src? %>
-<%= image_tag f.object.src_url(:thumb) if f.object.src? %>
-
-<%= f.label :src, "Image File" %>
-<%= f.file_field :src %>
-
-<input type="hidden" s3-data="<%= { 'form-data' => s3_presigned_post.fields, 'url' => s3_presigned_post.url, 'host' => URI.parse(s3_presigned_post.url).host } %>">
+<input type="hidden" s3-data="<%= @data %>">
 
 <div class="perspective">
+  <%= f.file_field :src %>
+  <div class="progress-bar button"><span>o‿‿o</span></div>
   <%= f.submit "Save", class: "save" %>
+</div>
+
+<div class="center">
+  <%= link_to "Er... cancel please!", admin_images_path %>
+</div>
+
+<div class="preview">
+  <%= image_tag f.object.src if f.object.src? %>
 </div>

@@ -1,9 +1,9 @@
 input {
   width: 100%;
+  vertical-align: middle;
   padding: .2em .4em;
   border: 1px solid #706F6D;
   border-radius: 5px;
-  vertical-align: middle;
   color: #706F6D;
   background: white;
 }
@@ -30,7 +30,7 @@ input[type="number"] {
   }
 }
 
-input[type="submit"] {
+input[type="submit"], input[type="file"] {
   display: inline-block;
   padding: .5em 1em;
   border: none;

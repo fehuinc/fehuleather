@@ -1,0 +1,40 @@
+.images#index {
+  main {
+    text-align: center;
+  }
+  
+  .listing {
+    margin-top: 2em;
+    
+    img {
+      max-width: 10em;
+      max-height: 10em;
+    }
+  }
+}
+
+.images#new, .images#edit {
+  .preview {
+    img {
+      max-width: 100%;
+      background: #F7F7F7;
+    }
+  }
+  
+  [type="submit"] {
+    display: none;
+  }
+  
+  .progress-bar {
+    display: none;
+    text-align: right;
+    background: hsl(145, 40%, 75%);
+    border-radius: 5px;
+    color: white;
+    opacity: .5;
+    cursor: none;
+    span {
+      display: inline-block;
+    }
+  }
+}

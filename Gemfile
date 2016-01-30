@@ -14,7 +14,7 @@ gem "rack-mini-profiler" # Must come after DB
 gem "rack-timeout"
 
 # AUTH
-# gem 'bcrypt-ruby', :require => 'bcrypt'
+# gem "bcrypt-ruby", :require => "bcrypt"
 # gem "bcrypt", "~> 3.1.7" # ActiveModel has_secure_password
 # gem "sorcery", "~> 0.9.0" # Minor verson updates break backwards compatability, see upgrading: http://rubydoc.info/gems/sorcery
 
@@ -29,9 +29,9 @@ gem "uglifier"
 # SERVICE INTEGRATIONS
 gem "postmark-rails"
 gem "skylight"
+gem "aws-sdk", "~> 2"
 
 # IMAGE UPLOADS
-gem 'aws-sdk', '~> 2'
 gem "jquery-fileupload-rails"
 
 # MISC
