@@ -1,4 +1,7 @@
 .common-locations {
+  max-width: 66em;
+  padding: 0;
+  
   section {
     max-width: none;
   }
@@ -31,13 +34,18 @@
     display: flex;
     justify-content: flex-start;
     align-items: stretch;
-    margin: 2em;
     text-align: left;
     
     .province-name {
-      padding: 1em;
+      flex: 0 0 5vw;
+      min-width: 1.5em;
+      max-width: 3em;
+      margin: 0;
+      padding: 1em 0;
       display: inline-block;
       span {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
       }
     }
     
@@ -46,10 +54,10 @@
       
       .location {
         display: inline-block;
-        margin: 2em;
+        margin: 1em 1.5em;
         
         address {
-          margin: .5em 0;
+          margin: .3em 0;
           
           pre {
             margin: 0;
