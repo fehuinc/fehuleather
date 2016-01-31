@@ -1,0 +1,13 @@
+<h2 class="perspective">
+  <%= link_to "New Store", new_store_path, class: "button" %>
+</h2>
+
+<hr>
+
+<section>
+  <% @models.each do |store| %>
+    <div class="store">
+      <h2><%= link_to store.name, edit_store_path(store) %></h2>
+    </div>
+  <% end %>
+</section>

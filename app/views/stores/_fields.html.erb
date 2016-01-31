@@ -1,0 +1,48 @@
+<%= render 'partials/form_errors', model: f.object %>
+
+<div>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+</div>
+
+<div>
+  <%= f.label :store_name, "Store Name" %>
+  <%= f.text_field :store_name %>
+</div>
+
+<div>
+  <%= f.label :email, "Email" %>
+  <%= f.text_field :email %>
+</div>
+
+<div>
+  <%= f.label :phone, "Phone" %>
+  <%= f.text_field :phone %>
+</div>
+
+<div>
+  <%= f.label :notes, "Notes" %>
+  <%= f.text_area :notes, rows: 5 %>
+</div>
+
+<hr>
+
+<div class="row spread">
+  <% if edit %>
+    <div class="perspective right">
+      <deleter class="button" path="<%= store_path(f.object) %>" redirect="<%= stores_path %>">
+        Hold To Delete
+      </deleter>
+    </div>
+  <% end %>
+</div>
+
+<hr>
+
+<div class="perspective">
+  <%= f.submit "Save", class: "save" %>
+</div>
+
+<div class="center">
+  <%= link_to "Er... cancel please!", stores_path %>
+</div>

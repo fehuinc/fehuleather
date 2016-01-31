@@ -2,6 +2,15 @@ class Initialize < ActiveRecord::Migration
   def change
     enable_extension 'uuid-ossp'
     
+    create_table :stores do |t| # eg: belt, bracelet
+      t.text :name
+      t.text :store_name
+      t.text :email
+      t.text :phone
+      t.text :name
+      t.text :notes
+    end
+    
     create_table :kingdoms do |t| # eg: belt, bracelet
       t.text :name,	                   null: false
       t.index :name,                   unique: true
@@ -56,6 +65,7 @@ class Initialize < ActiveRecord::Migration
       t.belongs_to :totem_row,         required: true, index: true
       t.belongs_to :variation,         required: false
       t.text :name,                    null: false
+      t.text :temp_image,              null: false
       t.text :content,                 null: false
       t.integer :ypos,                 default: 0
       t.integer :index,	               default: 0

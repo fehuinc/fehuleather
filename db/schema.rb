@@ -131,12 +131,20 @@ ActiveRecord::Schema.define(version: 1) do
 
   add_index "sizes", ["product_id"], name: "index_sizes_on_product_id", using: :btree
 
+  create_table "stores", force: :cascade do |t|
+    t.text "name"
+    t.text "store_name"
+    t.text "email"
+    t.text "phone"
+    t.text "notes"
+  end
+
   create_table "totem_items", force: :cascade do |t|
     t.integer "totem_row_id"
     t.integer "variation_id"
     t.text    "name",                     null: false
+    t.text    "temp_image",               null: false
     t.text    "content",                  null: false
-    t.text    "temp_image"
     t.integer "ypos",         default: 0
     t.integer "index",        default: 0
   end
