@@ -13,12 +13,12 @@
     <% end %>
     
     <h4 class="new-product">
-      <%= link_to "New #{kingdom.name.singularize}", new_admin_kingdom_product_path(kingdom) %>
+      <%= link_to "New #{kingdom.name.singularize}", new_admin_kingdom_product_path(kingdom), class: "button" %>
     </h4>
     
   </section>
 <% end %>
 
 <h3 class="new-kingdom">
-  <%= link_to "New Kingdom", new_admin_kingdom_path %>
+  <%= link_to "New Kingdom", new_admin_kingdom_path, class: "button" %>
 </h3>

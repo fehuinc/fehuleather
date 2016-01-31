@@ -34,9 +34,11 @@
     <%= f.number_field :ypos %>
   </div>
   <% if edit %>
-    <deleter class="button" path="<%= admin_totem_item_path(f.object) %>" redirect="<%= admin_totem_path %>">
-      Hold To Delete
-    </deleter>
+    <div class="perspective right">
+      <deleter class="button" path="<%= admin_totem_item_path(f.object) %>" redirect="<%= admin_totem_path %>">
+        Hold To Delete
+      </deleter>
+    </div>
   <% end %>
 </div>
 

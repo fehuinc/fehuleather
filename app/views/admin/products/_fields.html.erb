@@ -17,9 +17,11 @@
     <%= f.check_box :made_to_order %> Made To Order
   <% end %>
   <% if edit %>
-    <deleter class="button" path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
-      Hold To Delete
-    </deleter>
+    <div class="perspective right">
+      <deleter class="button" path="<%= admin_product_path(@product) %>" redirect="<%= admin_kingdoms_path %>">
+        Hold To Delete
+      </deleter>
+    </div>
   <% end %>
 </div>
 

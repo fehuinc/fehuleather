@@ -28,9 +28,11 @@
     <%= f.label :index, "Index" %>
   </div>
   <% if edit %>
-    <deleter class="button" path="<%= admin_event_path(f.object) %>" redirect="<%= admin_events_path %>">
-      Hold To Delete
-    </deleter>
+    <div class="perspective right">
+      <deleter class="button" path="<%= admin_event_path(f.object) %>" redirect="<%= admin_events_path %>">
+        Hold To Delete
+      </deleter>
+    </div>
   <% end %>
 </div>
 

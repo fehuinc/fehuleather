@@ -45,9 +45,11 @@
 
 <div class="row spread">
   <% if edit %>
-    <deleter class="button right" path="<%= admin_location_path(f.object) %>" redirect="<%= admin_locations_path %>">
-      Hold To Delete
-    </deleter>
+    <div class="perspective right">
+      <deleter class="button" path="<%= admin_location_path(f.object) %>" redirect="<%= admin_locations_path %>">
+        Hold To Delete
+      </deleter>
+    </div>
   <% end %>
 </div>
 

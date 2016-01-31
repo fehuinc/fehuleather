@@ -32,9 +32,11 @@
   <hr>
 
   <div class="row">
-    <deleter class="button right" path="<%= admin_variation_path(@variation) %>" redirect="<%= edit_admin_product_path(@product) %>">
-      Hold To Delete
-    </deleter>
+    <div class="perspective right">
+      <deleter class="button" path="<%= admin_variation_path(@variation) %>" redirect="<%= edit_admin_product_path(@product) %>">
+        Hold To Delete
+      </deleter>
+    </div>
   </div>
 <% end %>
 

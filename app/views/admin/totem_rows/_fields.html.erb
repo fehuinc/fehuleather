@@ -6,9 +6,11 @@
     <%= f.label :index, "Index" %>
   </div>
   <% if edit %>
-    <deleter class="button" path="<%= admin_totem_row_path(f.object) %>" redirect="<%= admin_totem_path %>">
-      Hold To Delete
-    </deleter>
+    <div class="perspective right">
+      <deleter class="button" path="<%= admin_totem_row_path(f.object) %>" redirect="<%= admin_totem_path %>">
+        Hold To Delete
+      </deleter>
+    </div>
   <% end %>
 </div>
 
