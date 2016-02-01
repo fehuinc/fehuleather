@@ -7,7 +7,7 @@
 <section>
   <% @models.each do |store| %>
     <div class="store">
-      <h2><%= link_to store.name, edit_store_path(store) %></h2>
+      <h2><%= link_to store.display_name, edit_store_path(store) %></h2>
     </div>
   <% end %>
 </section>
