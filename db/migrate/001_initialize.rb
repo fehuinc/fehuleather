@@ -2,15 +2,6 @@ class Initialize < ActiveRecord::Migration
   def change
     enable_extension 'uuid-ossp'
     
-    create_table :stores do |t| # eg: belt, bracelet
-      t.text :name
-      t.text :store_name
-      t.text :email
-      t.text :phone
-      t.text :name
-      t.text :notes
-    end
-    
     create_table :kingdoms do |t| # eg: belt, bracelet
       t.text :name,	                   null: false
       t.index :name,                   unique: true

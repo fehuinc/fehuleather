@@ -24,12 +24,6 @@ Rails.application.routes.draw do
     # Wholesale
     get "logout" => "merchants#logout", as: "logout_merchant"
     
-    # Shows
-    get "stores/auth" => "stores#auth"
-    scope constraints: lambda { |request| request.cookies["stores_auth"] == "ME" } do
-      resources :stores
-    end
-    
     # Wholesale — public
     scope constraints: lambda { |request| request.session[:merchant_id].nil? || Merchant.find_by_id(request.session[:merchant_id]).nil? } do
       resource :merchant, only: [:new]
