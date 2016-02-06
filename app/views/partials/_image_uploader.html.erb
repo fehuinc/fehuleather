@@ -1,9 +1,10 @@
-<div class="perspective image-uploader">
+<div class="perspective image-uploader" data-presigned-post="<%= presigned_post %>">
   <div class="preview">
-    <%= image_tag f.object.src if f.object.src? %>
+    <%= image_tag f.object[field] %>
   </div>
-  <input type="hidden" data-presigned-post="<%= presigned_post %>">
-  <%= f.label field, name %>
-  <%= f.file_field field %>
-  <div class="progress-bar button"><span>⊙‿‿⊙</span></div>
+  <div class="inputs">
+    <%= f.label field, name %>
+    <%= f.file_field field %>
+    <div class="progress-bar"><span>⊙‿‿⊙</span></div>
+  </div>
 </div>

@@ -37,14 +37,6 @@ ActiveRecord::Schema.define(version: 1) do
 
   add_index "events", ["index"], name: "index_events_on_index", using: :btree
 
-  create_table "images", force: :cascade do |t|
-    t.integer "imageable_id"
-    t.string  "imageable_type"
-    t.text    "src"
-  end
-
-  add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
-
   create_table "kingdoms", force: :cascade do |t|
     t.text "name", null: false
   end
@@ -131,20 +123,12 @@ ActiveRecord::Schema.define(version: 1) do
 
   add_index "sizes", ["product_id"], name: "index_sizes_on_product_id", using: :btree
 
-  create_table "stores", force: :cascade do |t|
-    t.text "name"
-    t.text "store_name"
-    t.text "email"
-    t.text "phone"
-    t.text "notes"
-  end
-
   create_table "totem_items", force: :cascade do |t|
     t.integer "totem_row_id"
     t.integer "variation_id"
-    t.text    "name",                     null: false
-    t.text    "temp_image",               null: false
-    t.text    "content",                  null: false
+    t.text    "name"
+    t.text    "image"
+    t.text    "content"
     t.integer "ypos",         default: 0
     t.integer "index",        default: 0
   end
@@ -162,6 +146,8 @@ ActiveRecord::Schema.define(version: 1) do
     t.integer "product_id"
     t.text    "name",                                     null: false
     t.text    "description"
+    t.text    "totem_image"
+    t.text    "wholesale_image"
     t.integer "price_retail_cents",       default: 0,     null: false
     t.string  "price_retail_currency",    default: "CAD", null: false
     t.integer "price_wholesale_cents",    default: 0,     null: false

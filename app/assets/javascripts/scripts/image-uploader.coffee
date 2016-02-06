@@ -1,23 +1,35 @@
-$ ()->
+Take ["MD5", "DOMContentLoaded"], (MD5)->
+  minWidth = 15 # minimum % width of the progress bar
+  
+  enableSubmit = (submitButton, enable = true)->
+    count = (submitButton.prop("disable-count") || 0)
+    count += if enable then -1 else 1
+    submitButton.prop("disable-count", count)
+    
+    if !enable
+      submitButton.hide()
+    else if count == 0
+      submitButton.show()
+    
+    
   $(".image-uploader").each (_, elm)->
     uploadData = null
-    
-    imageUploader = $ elm
-    
-    presignedPost = imageUploader.find("input[data-presigned-post]").data("presigned-post")
-    fileInput = imageUploader.find("input:file")
-    form = imageUploader.parent("form")
-    preview = $ ".preview"
-    progressBar = imageUploader.find(".progress-bar")
-    submitButton = $ "input[type='submit']"
     reader = new FileReader()
     
+    iu = $ elm
+    presignedPost = iu.data "presigned-post"
+    fileInput = iu.find "input:file"
+    form = iu.parent "form"
+    preview = iu.find ".preview"
+    progressBar = iu.find ".progress-bar"
+    submitButton = iu.find "input[type='submit']"
+    
     reader.onload = ()->
-      hash = md5 reader.result
+      hash = MD5 reader.result
       ext = uploadData.files[0].name.split(".").pop().toLowerCase()
       fields = presignedPost.fields
       fields.key = hash + "." + ext
-      fileInput.fileupload('option', 'formData', fields);
+      fileInput.fileupload 'option', 'formData', fields
       uploadData?.submit()
     
     fileInput.fileupload
@@ -29,21 +41,22 @@ $ ()->
 
       add: (e, data)->
         fileInput.hide()
-        progressBar.show().css("width", "10%")
+        progressBar.show().css("width", "#{minWidth}%")
         uploadData = data
-        submitButton.hide()
+        enableSubmit(submitButton, false)
         reader.readAsText(fileInput[0].files[0])
-
+      
       start: (e)->
         fileInput.css "background", null
 
       progressall: (e, data)->
-        progress = parseInt (data.loaded / data.total * 90) + 10
+        progress = parseInt (data.loaded / data.total * (100 - minWidth)) + minWidth
         progressBar.css("width", progress + "%")
       
       done: (e, data)->
         progressBar.hide()
-        submitButton.show()
+        fileInput.show()
+        enableSubmit(submitButton)
         
         key = $(data.jqXHR.responseXML).find("Key").text()
         host = presignedPost.host
@@ -57,3 +70,4 @@ $ ()->
       fail: (e, data)->
         fileInput.show().css("background", "red")
         progressBar.hide()
+        enableSubmit(submitButton)
