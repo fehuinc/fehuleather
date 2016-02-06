@@ -1,6 +1,7 @@
 .common-locations {
   max-width: 66em;
   padding: 0;
+  text-align: center;
   
   section {
     max-width: none;
@@ -10,7 +11,6 @@
     max-width: none;
     font-size: 1.1em;
     margin: 1.2em 0;
-    text-align: center;
     
     label {
       display: inline-block;
@@ -24,6 +24,12 @@
     select {
       margin-left: 1.5em;
     }
+  }
+  
+  .empty {
+    text-align: center;
+    font-size: 1.4em;
+    margin-top: 2em;
   }
   
   .country {

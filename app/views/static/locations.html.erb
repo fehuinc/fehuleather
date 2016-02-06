@@ -13,8 +13,8 @@
     <select ng-model="searchProvince" ng-options="value for value in searchProvinces"></select>
   </form>
   
-  <div ng-show="!(locations | filter:search).length && (searchProvince == allProvinces)">Nobody here :(</div>
-  <div ng-show="!(countries['Canada'][searchProvince] | filter:search).length && (searchProvince != allProvinces)">Nobody here :(</div>
+  <div class="empty" ng-show="!(locations | filter:search).length && (searchProvince == allProvinces)">Nobody here :(</div>
+  <div class="empty" ng-show="!(countries['Canada'][searchProvince] | filter:search).length && (searchProvince != allProvinces)">Nobody here :(</div>
   
   <div class="locations">
     <div class="country" ng-repeat="(countryName, provinceObj) in countries">
