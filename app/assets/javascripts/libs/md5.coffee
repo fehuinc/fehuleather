@@ -5,7 +5,7 @@ do ()->
   
   hex_chr = '0123456789abcdef'.split('')
   
-  window.md5 = (s)->
+  Make "MD5", (s)->
     hex(md51(s))
 
   hex = (x)->
@@ -159,6 +159,3 @@ do ()->
   
   add32 = (a, b)->
     return (a + b) & 0xFFFFFFFF
-
-
-# console.log md5 "hello"
