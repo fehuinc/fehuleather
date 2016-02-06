@@ -7,7 +7,7 @@
       <% totem_row.items.order(:index).each do |item| %>
         <div class="totem-item">
           <%= item.index %>
-          <%= link_to item.full_name, edit_admin_totem_item_path(item) %>
+          <%= link_to item.real_name, edit_admin_totem_item_path(item) %>
         </div>
       <% end %>
       <div class="perspective">

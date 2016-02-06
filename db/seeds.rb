@@ -1,17 +1,10 @@
 rings = Kingdom.create! name: "Ring"
 
 wrap_ring = rings.products.create! name: "Wrap Ring"
-wrap_ring.variations.create! name: "Front"
-wrap_ring.variations.create! name: "Back"
-wrap_ring.variations.create! name: "Black"
-wrap_ring.variations.create! name: "Gold Leaf"
-wrap_ring.variations.create! name: "White Leaf"
-wrap_ring.variations.create! name: "Gold Stripes"
+wrap_ring_black = wrap_ring.variations.create! name: "Black", totem_image: ENV["IMAGEPATH"] + "wrap-ring/totem/front.jpg"
 
 row = TotemRow.create! index: 0
-row.items.create! name: "Wrap Ring", content: "We'll soon be offering this product for sale, right here. Check back in February!", image: ENV["IMAGEPATH"] + "wrap-ring/totem/back.jpg"
-row = TotemRow.create! index: 1
-row.items.create! name: "Wrap Ring", content: "We'll soon be offering this product for sale, right here. Check back in February!", image: ENV["IMAGEPATH"] + "wrap-ring/totem/front.jpg"
+row.items.create! name: "Wrap Ring", variation: wrap_ring_black
 
 hair = Kingdom.create! name: "Hair"
 
