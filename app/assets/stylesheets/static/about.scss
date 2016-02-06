@@ -5,7 +5,7 @@
     .person {
       display: inline-block;
       float: left;
-      max-width: 48%;
+      max-width: 49%;
       
       img {
         width: 100%;
@@ -17,9 +17,13 @@
       p, h3 {
         text-align: center;
       }
+      
+      span {
+        display: inline-block;
+      }
     }
     
-    .person + .person {
+    .ivan {
       float: right;
     }
   }
