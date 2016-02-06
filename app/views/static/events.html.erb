@@ -1,10 +1,10 @@
 <h1 class="page-title">We Are Coming At You Live</h1>
 
 <section>
-  <% unless @events.length %>
+  <% if @events.empty? %>
     No upcoming events.
   <% end %>
-
+  
   <% @events.each do |event| %>
     <div class="event">
       <h3 class="bar <%= bar_color %>"><%=event.name%></h3>
