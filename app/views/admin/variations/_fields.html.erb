@@ -14,21 +14,19 @@
 
 <hr>
 
-<h2>Images Go Here</h2>
+<%= render 'partials/image_uploader', f:f, field: :totem_image, name: "Totem Image" %>
+<%= render 'partials/image_uploader', f:f, field: :wholesale_image, name: "Wholesale Image" %>
 
 <hr>
 
 <% if edit %>
   <div class="builds">
-    <% f.object.builds.each do |build| %>
-      <div class="build" stock-quantity path="<%= admin_update_build_path(build) %>">
-        <span class="name"><%= build.size.name %></span>
-        <input type="number" value="<%= build.stock %>" class="quantity">
-        <input type="submit" value="💩" class="save">
-      </div>
+    <%= f.fields_for :builds do |b| %>
+      <span class="name"><%= b.object.size.name %></span>
+      <%= b.number_field :stock %>
     <% end %>
   </div>
-
+  
   <hr>
 
   <div class="row">

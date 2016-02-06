@@ -1,24 +1,27 @@
 $ ()->
-  if $ "body.images"
+  $(".image-uploader").each (_, elm)->
     uploadData = null
     
-    fileInput = $ "input:file"
-    form = $ "form"
+    imageUploader = $ elm
+    
+    presignedPost = imageUploader.find("input[data-presigned-post]").data("presigned-post")
+    fileInput = imageUploader.find("input:file")
+    form = imageUploader.parent("form")
     preview = $ ".preview"
-    progressBar = $ ".progress-bar"
+    progressBar = imageUploader.find(".progress-bar")
     submitButton = $ "input[type='submit']"
     reader = new FileReader()
     
     reader.onload = ()->
       hash = md5 reader.result
       ext = uploadData.files[0].name.split(".").pop().toLowerCase()
-      fields = form.data("fields")
+      fields = presignedPost.fields
       fields.key = hash + "." + ext
       fileInput.fileupload('option', 'formData', fields);
       uploadData?.submit()
     
     fileInput.fileupload
-      url: form.data("url")
+      url: presignedPost.url
       type: "POST"
       paramName: "file" # S3 does not like nested name fields i.e. name="user[avatar_url]"
       dataType: "XML"
@@ -28,7 +31,7 @@ $ ()->
         fileInput.hide()
         progressBar.show().css("width", "10%")
         uploadData = data
-        # data.files[0].name = "IVAN"
+        submitButton.hide()
         reader.readAsText(fileInput[0].files[0])
 
       start: (e)->
@@ -43,8 +46,8 @@ $ ()->
         submitButton.show()
         
         key = $(data.jqXHR.responseXML).find("Key").text()
-        host = form.data "host"
-        console.log url = "https://#{host}/#{key}"
+        host = presignedPost.host
+        url = "https://#{host}/#{key}"
         
         input = $("<input />", { type:"hidden", name: fileInput.attr("name"), value: url })
         form.append(input)
@@ -52,6 +55,5 @@ $ ()->
         preview.html("<img src='#{url}'>")
         
       fail: (e, data)->
-        console.log data
         fileInput.show().css("background", "red")
         progressBar.hide()

@@ -1,9 +1,0 @@
-<h2 class="perspective">
-  <%= link_to "New Image", new_admin_image_path, class: "new button" %>
-</h2>
-
-<div class="listing">
-  <% @images.each do |image| %>
-    <%= image_tag image.src %>
-  <% end %>
-</div>

@@ -17,7 +17,7 @@ class Admin::VariationsController < ApplicationController
   end
   
   def edit
-    @variation = Variation.find params[:id]
+    @variation = Variation.includes(builds: [:size]).find(params[:id])
     @product = @variation.product
     variations = @product.variations.order(:name)
     index = variations.index(@variation)
@@ -26,7 +26,7 @@ class Admin::VariationsController < ApplicationController
   end
   
   def update
-    @variation = Variation.find params[:id]
+    @variation = Variation.includes(builds: [:size]).find(params[:id])
     @product = @variation.product
     variations = @product.variations.order(:name)
     index = variations.index(@variation)
@@ -57,6 +57,6 @@ class Admin::VariationsController < ApplicationController
 private
   
   def standard_params
-    params.require(:variation).permit :description, :has_image, :level, :name
+    params.require(:variation).permit :description, :has_image, :level, :name, builds_attributes: [:id, :stock]
   end
 end

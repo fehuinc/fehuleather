@@ -1,9 +1,9 @@
 module StyleHelper
-  def style_controller
+  def body_class
     controller_name.parameterize
   end
   
-  def style_action
+  def body_id
     case name = action_name.parameterize
       when "create" then "new"
       when "update" then "edit"

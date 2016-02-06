@@ -10,6 +10,13 @@
   <%= f.text_field :name %>
 </div>
 
+<div class="perspective image-uploader" manual-entry>
+  <input type="hidden" data-presigned-post="<%= presigned_post %>">
+  <%= f.label :image, "Image" %>
+  <%= f.file_field :image %>
+  <div class="progress-bar button"><span>⊙‿‿⊙</span></div>
+</div>
+
 <div manual-entry>
   <%= f.label :content, "Content" %>
   <%= f.text_area :content, rows: 5 %>
