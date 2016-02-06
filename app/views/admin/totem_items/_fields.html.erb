@@ -10,11 +10,8 @@
   <%= f.text_field :name %>
 </div>
 
-<div class="perspective image-uploader" manual-entry>
-  <input type="hidden" data-presigned-post="<%= presigned_post %>">
-  <%= f.label :image, "Image" %>
-  <%= f.file_field :image %>
-  <div class="progress-bar button"><span>⊙‿‿⊙</span></div>
+<div manual-entry>
+  <%= render 'partials/image_uploader', f:f, field: :image, name: "Totem Image" %>
 </div>
 
 <div manual-entry>

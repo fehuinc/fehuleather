@@ -56,7 +56,6 @@ Rails.application.routes.draw do
     scope constraints: lambda { |request| request.session[:stinker] == ENV["STINKNAME"] } do
       namespace :admin do
         root "kingdoms#index"
-        get "preview-images/:id" => "products#preview_images", as: "preview_images"
         put "build/:id" => "products#update_build", as: "update_build"
         
         get "totem" => "totem_rows#index", as: "totem"
@@ -81,7 +80,6 @@ Rails.application.routes.draw do
         resources :events, except: [:show]
         resources :locations, except: [:show]
         resources :orders, except: [:show]
-        resources :images, except: [:show]
       end
     end
     
