@@ -19,6 +19,7 @@ class Initialize < ActiveRecord::Migration
     create_table :variations do |t| # eg: yellow gilt cuff, cinnamon wrap cuff
       t.belongs_to :product,           required: true, index: true
       t.text :name,                    null: false
+      t.text :model
       t.text :description
       t.text :totem_image
       t.text :wholesale_image

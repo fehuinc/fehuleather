@@ -1,86 +1,135 @@
-rings = Kingdom.create! name: "Ring"
+belts =     Kingdom.create! name: "Belts"
+bracelets = Kingdom.create! name: "Bracelets"
+hair =      Kingdom.create! name: "Hair"
+rings =     Kingdom.create! name: "Ring"
 
-wrap_ring = rings.products.create! name: "Wrap Ring"
-wrap_ring_black = wrap_ring.variations.create! name: "Black", totem_image: ENV["IMAGEPATH"] + "wrap-ring/totem/front.jpg"
 
 row = TotemRow.create! index: 0
-row.items.create! name: "Wrap Ring", variation: wrap_ring_black
-
-hair = Kingdom.create! name: "Hair"
-
-hair_cuff = hair.products.create! name: "Hair Cuff"
-hair_cuff.variations.create! name: "Front"
-hair_cuff.variations.create! name: "Back"
-
-bracelets = Kingdom.create! name: "Bracelets"
-
 wrap_cuff = bracelets.products.create! name: "Wrap Cuff"
-wrap_cuff.variations.create! name: "Back"
-wrap_cuff.variations.create! name: "Natural1"
-wrap_cuff.variations.create! name: "Natural2"
-wrap_cuff.variations.create! name: "Natural3"
-wrap_cuff.variations.create! name: "Natural4"
-wrap_cuff.variations.create! name: "Natural5"
-wrap_cuff.variations.create! name: "Natural6"
-wrap_cuff.variations.create! name: "Natural7"
+wrap_cuff.sizes.create! name: "Adjustable"
+row.items.create! variation: (wrap_cuff.variations.create! name: "Pumpkin",     totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/pumpkin.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Black",       totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/black.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Nude",        totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/nude.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Slate",       totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/slate.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Cinnamon",    totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/cinnamon.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Walnut",      totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/walnut.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Turmeric",    totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/turmeric.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Mushroom",    totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/mushroom.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Rose",        totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/rose.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Cranberry",   totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/cranberry.jpg")
+
+
+row = TotemRow.create! index: 1
+gilt_cuff = bracelets.products.create! name: "Gilt Cuff"
+gilt_cuff.sizes.create! name: "Adjustable"
+row.items.create! variation: (gilt_cuff.variations.create! name: "White/Black",    totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/white-black.jpg")
+row.items.create! variation: (gilt_cuff.variations.create! name: "White/Brown",    totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/white-brown.jpg")
+row.items.create! variation: (gilt_cuff.variations.create! name: "Yellow/Brown",   totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-brown.jpg")
+row.items.create! variation: (gilt_cuff.variations.create! name: "Yellow/Black",   totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-black.jpg")
+row.items.create! variation: (gilt_cuff.variations.create! name: "Yellow Stripes", totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-stripes.jpg")
+
 
 row = TotemRow.create! index: 2
-row.items.create! name: "Wrap Cuff", content: "We'll soon be offering this product for sale, right here. Check back in February!", image: ENV["IMAGEPATH"] + "wrap-cuff/totem/back.jpg"
+hair_cuff = hair.products.create! name: "Hair Cuff"
+hair_cuff.sizes.create! name: "Small"
+hair_cuff.sizes.create! name: "Large"
+row.items.create! variation: (hair_cuff.variations.create! name: "Black",          totem_image: ENV["IMAGEPATH"] + "hair-cuff/totem/black.jpg")
+row.items.create! variation: (hair_cuff.variations.create! name: "Yellow Stripes", totem_image: ENV["IMAGEPATH"] + "hair-cuff/totem/yellow-stripes.jpg")
+row.items.create! variation: (hair_cuff.variations.create! name: "Yellow Leaf",    totem_image: ENV["IMAGEPATH"] + "hair-cuff/totem/yellow-leaf.jpg")
+row.items.create! variation: (hair_cuff.variations.create! name: "White Leaf",     totem_image: ENV["IMAGEPATH"] + "hair-cuff/totem/white-leaf.jpg")
 
-gilt_cuff = bracelets.products.create! name: "Gilt Cuff"
-gilt_cuff.variations.create! name: "Back"
-gilt_cuff.variations.create! name: "Front"
-
-fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff"
-fuzzy_cuff.variations.create! name: "Painter"
-fuzzy_cuff.variations.create! name: "Mo"
-fuzzy_cuff.variations.create! name: "Spook"
-fuzzy_cuff.variations.create! name: "Duster"
-fuzzy_cuff.variations.create! name: "Grumble"
-fuzzy_cuff.variations.create! name: "Tippy"
-fuzzy_cuff.variations.create! name: "Wizen"
-fuzzy_cuff.variations.create! name: "Chief"
-fuzzy_cuff.variations.create! name: "Fluffle"
-fuzzy_cuff.variations.create! name: "Wiley"
-fuzzy_cuff.variations.create! name: "Bean"
-fuzzy_cuff.variations.create! name: "Hunt"
-
-cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet"
-cc_bracelet.variations.create! name: "Front"
-cc_bracelet.variations.create! name: "Howlite"
-cc_bracelet.variations.create! name: "Pyrite"
-cc_bracelet.variations.create! name: "Green Turquoise"
-cc_bracelet.variations.create! name: "Light Turquoise"
-cc_bracelet.variations.create! name: "Malachite"
-cc_bracelet.variations.create! name: "Lapis"
-cc_bracelet.variations.create! name: "Jasper"
-cc_bracelet.variations.create! name: "Smokey Quartz"
-cc_bracelet.variations.create! name: "Goldstone"
 
 row = TotemRow.create! index: 3
-row.items.create! name: "Coffee & Crystals Bracelet", content: "We'll soon be offering this product for sale, right here. Check back in February!", image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/front.jpg"
+wrap_ring = rings.products.create! name: "Wrap Ring"
+wrap_ring.sizes.create! name: "Tiny"
+wrap_ring.sizes.create! name: "Small"
+wrap_ring.sizes.create! name: "Medium"
+wrap_ring.sizes.create! name: "Large"
+row.items.create! variation: (wrap_ring.variations.create! name: "Black", totem_image: ENV["IMAGEPATH"] + "wrap-ring/totem/front.jpg")
 
-belts = Kingdom.create! name: "Belts"
-
-cc_belt = belts.products.create! name: "Coffee & Crystals Belt"
-cc_belt.variations.create! name: "Front"
-
-volva_belt = belts.products.create! name: "Volva Belt"
-volva_belt.variations.create! name: "Front"
 
 row = TotemRow.create! index: 4
-row.items.create! name: "Volva Belt", content: "We'll soon be offering this product for sale, right here. Check back in February!", image: ENV["IMAGEPATH"] + "volva-belt/totem/front.jpg"
+fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff"
+fuzzy_cuff.sizes.create! name: "One Of A Kind"
+row.items.create! variation: (fuzzy_cuff.variations.create! name: "Painter", totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/painter.jpg")
+row.items.create! variation: (fuzzy_cuff.variations.create! name: "Mo",      totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/mo.jpg")
+row.items.create! variation: (fuzzy_cuff.variations.create! name: "Spook",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/spook.jpg")
+row.items.create! variation: (fuzzy_cuff.variations.create! name: "Duster",  totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/duster.jpg")
+row.items.create! variation: (fuzzy_cuff.variations.create! name: "Grumble", totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/grumble.jpg")
+row.items.create! variation: (fuzzy_cuff.variations.create! name: "Tippy",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/tippy.jpg")
+row.items.create! variation: (fuzzy_cuff.variations.create! name: "Wizen",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/wizen.jpg")
+row.items.create! variation: (fuzzy_cuff.variations.create! name: "Chief",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/chief.jpg")
+row.items.create! variation: (fuzzy_cuff.variations.create! name: "Fluffle", totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/fluffle.jpg")
+row.items.create! variation: (fuzzy_cuff.variations.create! name: "Wiley",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/wiley.jpg")
+row.items.create! variation: (fuzzy_cuff.variations.create! name: "Bean",    totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/bean.jpg")
+row.items.create! variation: (fuzzy_cuff.variations.create! name: "Hunt",    totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/hunt.jpg")
 
-seven_belt = belts.products.create! name: "7 Belt"
-seven_belt.variations.create! name: "Back"
-seven_belt.variations.create! name: "Front"
 
 row = TotemRow.create! index: 5
-row.items.create! name: "7 Belt", content: "We'll soon be offering this product for sale, right here. Check back in February!", image: ENV["IMAGEPATH"] + "7-belt/totem/back.jpg"
+cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet"
+cc_bracelet.sizes.create! name: "Adjustable"
+row.items.create! variation: (cc_bracelet.variations.create! name: "Basic",           totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/basic.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Amethyst",        totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/amethyst.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Blue Lace Agate", totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/blue-lace-agate.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Carnelian",       totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/carnelian.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Howlite",         totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/howlite.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Jasper",          totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/jasper.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Lapis Lazuli",    totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/lapis-lazuli.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Malachite",       totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/malachite.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Onyx",            totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/onyx.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Pyrite",          totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/pyrite.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Rose Quartz",     totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/rose-quartz.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Smoky Quartz",    totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/smoky-quartz.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Tigers Eye",      totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/tigers-eye.jpg")
 
+
+row = TotemRow.create! index: 6
+cc_belt = belts.products.create! name: "Coffee & Crystals Belt"
+cc_bracelet.sizes.create! name: "Adjustable"
+row.items.create! variation: (cc_belt.variations.create! name: "Basic",           totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/basic.jpg")
+row.items.create! variation: (cc_belt.variations.create! name: "Amethyst",        totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/amethyst.jpg")
+row.items.create! variation: (cc_belt.variations.create! name: "Blue Lace Agate", totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/blue-lace-agate.jpg")
+row.items.create! variation: (cc_belt.variations.create! name: "Carnelian",       totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/carnelian.jpg")
+row.items.create! variation: (cc_belt.variations.create! name: "Howlite",         totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/howlite.jpg")
+row.items.create! variation: (cc_belt.variations.create! name: "Jasper",          totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/jasper.jpg")
+row.items.create! variation: (cc_belt.variations.create! name: "Lapis Lazuli",    totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/lapis-lazuli.jpg")
+row.items.create! variation: (cc_belt.variations.create! name: "Malachite",       totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/malachite.jpg")
+row.items.create! variation: (cc_belt.variations.create! name: "Onyx",            totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/onyx.jpg")
+row.items.create! variation: (cc_belt.variations.create! name: "Pyrite",          totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/pyrite.jpg")
+row.items.create! variation: (cc_belt.variations.create! name: "Rose Quartz",     totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/rose-quartz.jpg")
+row.items.create! variation: (cc_belt.variations.create! name: "Smoky Quartz",    totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/smoky-quartz.jpg")
+row.items.create! variation: (cc_belt.variations.create! name: "Tigers Eye",      totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/tigers-eye.jpg")
+
+
+row = TotemRow.create! index: 7
+volva_belt = belts.products.create! name: "Volva Belt"
+volva_belt.sizes.create! name: "Medium"
+volva_belt.sizes.create! name: "Large"
+row.items.create! variation: (volva_belt.variations.create! name: "Rose",   totem_image: ENV["IMAGEPATH"] + "volva-belt/totem/rose.jpg")
+row.items.create! variation: (volva_belt.variations.create! name: "Indigo", totem_image: ENV["IMAGEPATH"] + "volva-belt/totem/indigo.jpg")
+row.items.create! variation: (volva_belt.variations.create! name: "Black",  totem_image: ENV["IMAGEPATH"] + "volva-belt/totem/black.jpg")
+row.items.create! variation: (volva_belt.variations.create! name: "Brown",  totem_image: ENV["IMAGEPATH"] + "volva-belt/totem/brown.jpg")
+
+
+row = TotemRow.create! index: 8
+seven_belt = belts.products.create! name: "7 Belt"
+seven_belt.sizes.create! name: "Small"
+seven_belt.sizes.create! name: "Medium"
+seven_belt.sizes.create! name: "Large"
+row.items.create! variation: (seven_belt.variations.create! name: "Rose",   totem_image: ENV["IMAGEPATH"] + "7-belt/totem/rose.jpg")
+row.items.create! variation: (seven_belt.variations.create! name: "Indigo", totem_image: ENV["IMAGEPATH"] + "7-belt/totem/indigo.jpg")
+row.items.create! variation: (seven_belt.variations.create! name: "Black",  totem_image: ENV["IMAGEPATH"] + "7-belt/totem/black.jpg")
+row.items.create! variation: (seven_belt.variations.create! name: "Brown",  totem_image: ENV["IMAGEPATH"] + "7-belt/totem/brown.jpg")
+
+
+row = TotemRow.create! index: 9
 thirteen_belt = belts.products.create! name: "13 Belt"
-thirteen_belt.variations.create! name: "Back"
-thirteen_belt.variations.create! name: "Front"
+seven_belt.sizes.create! name: "Medium"
+seven_belt.sizes.create! name: "Large"
+row.items.create! variation: (thirteen_belt.variations.create! name: "Rose",   totem_image: ENV["IMAGEPATH"] + "13-belt/totem/rose.jpg")
+row.items.create! variation: (thirteen_belt.variations.create! name: "Indigo", totem_image: ENV["IMAGEPATH"] + "13-belt/totem/indigo.jpg")
+row.items.create! variation: (thirteen_belt.variations.create! name: "Black",  totem_image: ENV["IMAGEPATH"] + "13-belt/totem/black.jpg")
+row.items.create! variation: (thirteen_belt.variations.create! name: "Brown",  totem_image: ENV["IMAGEPATH"] + "13-belt/totem/brown.jpg")
 
 
 ## LOCATIONS ######################################################################################

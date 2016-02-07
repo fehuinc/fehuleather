@@ -1,9 +1,22 @@
 <%= render 'partials/form_errors', model: f.object %>
 
-<div>
-  <%= f.label :name, "Name" %>
-  <%= f.text_field :name %>
+<div class="row">
+  <div>
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div>
+    <%= f.label :model, "Model" %>
+    <%= f.text_field :model %>
+  </div>
 </div>
+
+<div>
+  <%= f.label :description, "Description" %>
+  <%= f.text_area :description, rows: 3 %>
+</div>
+
 
 <div class="row">
   <%= f.label :price_retail, "Retail Price" %>

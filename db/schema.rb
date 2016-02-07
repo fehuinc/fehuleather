@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 1) do
   create_table "variations", force: :cascade do |t|
     t.integer "product_id"
     t.text    "name",                                     null: false
+    t.text    "model"
     t.text    "description"
     t.text    "totem_image"
     t.text    "wholesale_image"
