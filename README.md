@@ -5,6 +5,14 @@ Stinks. On Rails.
 
 # Todo
 
+Totem
+  All images wrapped in a square container of a known size
+  One screen-wide container that slides back and forth
+  Images snap when wrapping
+  One screen-wide cover layer that receives input (and, perhaps, does a gradient fade?)
+
+
+
 Automatic Currency Conversion — users choose their own country (perhaps, a little flag next to prices?)
   https://github.com/RubyMoney/money
   http://stackoverflow.com/a/3843805/313576

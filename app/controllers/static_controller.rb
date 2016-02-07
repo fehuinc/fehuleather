@@ -1,6 +1,6 @@
 class StaticController < ApplicationController
   def totem
-    @totem_rows = TotemRow.includes(:items)
+    @totem_rows = TotemRow.includes(items: [:variation]).order(:index)
   end
   
   def locations
