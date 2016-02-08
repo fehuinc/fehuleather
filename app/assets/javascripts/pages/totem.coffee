@@ -1,5 +1,6 @@
 Take "DOMContentLoaded", ()->
   
+  PANEL_OPEN_CENTER_POS = 30 # panelClosedCenterPos would be 50
   TILE_SIZE = 82
   
   # PURE LIB FUNCTIONS #############################################################################
@@ -99,8 +100,8 @@ Take "DOMContentLoaded", ()->
   
   sliderOffsetPyUpdater = (currentItemData, rowState)-> ()->
     if rowState.panelData.panelOpen
-      panelOpenCenterPos = 30 # panelClosedCenterPos would be 50
-      deltaPos = currentItemData.ypos - panelOpenCenterPos
+      
+      deltaPos = currentItemData.ypos - PANEL_OPEN_CENTER_POS
       deltaPx = rowState.tileSizePx * deltaPos/100
       return -deltaPx
     else
@@ -155,7 +156,12 @@ Take "DOMContentLoaded", ()->
       itemData.item.css "transform", ""
     return null
   
-  render = (rowState)->
+  render = (row, rowState)->
+    if rowState.panelData.panelOpen
+      row.addClass "showingPanel"
+    else
+      row.removeClass "showingPanel"
+    
     rowState.sliderData.slider.css "transform", "translate(#{rowState.sliderData.offsetPx}px, #{rowState.sliderData.offsetPy}px)"
     for itemData in rowState.itemDataList
       renderItemData(itemData, rowState.tileSizePx)
@@ -174,8 +180,8 @@ Take "DOMContentLoaded", ()->
     totemItems = slider.find "totem-item"
     
     # State
-    rowState = render resize window, newRowState slider, totemItems, panel
+    rowState = render row, resize window, newRowState slider, totemItems, panel
     
     # Events
-    $(window).resize ()-> rowState = render resize window, rowState
-    inputLayer.click (e)-> rowState = render click window, rowState, e.clientX
+    $(window).resize ()-> rowState = render row, resize window, rowState
+    inputLayer.click (e)-> rowState = render row, click window, rowState, e.clientX
