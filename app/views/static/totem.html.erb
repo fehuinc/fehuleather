@@ -4,9 +4,9 @@
 
 <% @totem_rows.each do |totem_row| %>
   <totem-row class="unselectable">
-    <totem-product-panel>
+    <totem-panel>
       <div class="wrapper">
-        <h1>Product Name</h1>
+        <h1 product-name></h1>
         <purchasing-info>
           <div class="variations">
             <div class="variation" ng-repeat="variation in product.variations">
@@ -69,11 +69,11 @@
         
         <a class="closer" ng-click="closePanel()">Close</a>
       </div>
-    </totem-product-panel>
+    </totem-panel>
     
     <sliding-layer>
       <% totem_row.items.each do |totem_item| %>
-        <totem-item item-ypos="<%= totem_item.real_ypos %>">
+        <totem-item item-ypos="<%= totem_item.real_ypos %>" item-name="<%= totem_item.real_name %>">
           <totem-image style="background-image: url('<%= totem_item.real_image %>')"></totem-image>
         </totem-item>
       <% end %>

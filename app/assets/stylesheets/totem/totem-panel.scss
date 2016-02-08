@@ -1,20 +1,20 @@
 @import 'vars';
 
-.showingPanel totem-product-panel {
+.showingPanel totem-panel {
   opacity: 1;
   overflow: visible;
   transform: translate(-50%, 0);
-  transition: opacity .7s ease-out, transform .7s;
+  transition: opacity .4s ease-out, transform .7s;
   pointer-events: auto;
 }
 
-totem-product-panel {
+totem-panel {
   position: absolute;
   display: block;
   top: 65%;
   left: 50%;
   text-align: center;
-  transform: translate(-50%, 10vmin);
+  transform: translate(-50%, 5vmin);
   transition: opacity .7s ease-in, transform .7s;
   -webkit-font-smoothing: subpixel-antialiased;
   opacity: 0;

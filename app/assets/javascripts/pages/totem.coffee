@@ -58,10 +58,12 @@ Take "DOMContentLoaded", ()->
       offsetPy: 0
       widthPx: 0
   
-  newRowState = (slider, totemItems, panel)->
+  newRowState = (row, slider, totemItems, panel)->
     return rowState =
+      row: row
       vminPx: 0
       tileSizePx: 0
+      currentItemData: null
       panelData: newPanelData panel
       sliderData: newSliderData slider
       itemDataList: newItemDataList totemItems
@@ -98,10 +100,9 @@ Take "DOMContentLoaded", ()->
       itemData = wrapItemDataToScreen sliderData, itemData, tileSizePx
       itemData
   
-  sliderOffsetPyUpdater = (currentItemData, rowState)-> ()->
+  sliderOffsetPyUpdater = (rowState)-> ()->
     if rowState.panelData.panelOpen
-      
-      deltaPos = currentItemData.ypos - PANEL_OPEN_CENTER_POS
+      deltaPos = rowState.currentItemData.ypos - PANEL_OPEN_CENTER_POS
       deltaPx = rowState.tileSizePx * deltaPos/100
       return -deltaPx
     else
@@ -114,9 +115,8 @@ Take "DOMContentLoaded", ()->
   update = (rowState)->
     rowState = updateIn rowState, "sliderData", "offsetPx", sliderOffsetPxUpdater rowState
     rowState = updateIn rowState, "itemDataList", itemDataListUpdater rowState.sliderData, rowState.tileSizePx
-    currentItemIndex = getCurrentItemIndex rowState.itemDataList
-    currentItemData = rowState.itemDataList[currentItemIndex]
-    return updateIn rowState, "sliderData", "offsetPy", sliderOffsetPyUpdater currentItemData, rowState
+    rowState = updateIn rowState, "currentItemData", ()-> rowState.itemDataList[getCurrentItemIndex rowState.itemDataList]
+    return updateIn rowState, "sliderData", "offsetPy", sliderOffsetPyUpdater rowState
 
   
   slideBy = (rowState, delta)->
@@ -156,16 +156,26 @@ Take "DOMContentLoaded", ()->
       itemData.item.css "transform", ""
     return null
   
-  render = (row, rowState)->
+  renderPanelData = (rowState)->
     if rowState.panelData.panelOpen
-      row.addClass "showingPanel"
+      rowState.row.addClass "showingPanel"
+
+      panel = rowState.panelData.panel
+      currentItem = rowState.currentItemData.item
+      panel.find("[product-name]").html currentItem.attr "item-name"
     else
-      row.removeClass "showingPanel"
-    
+      rowState.row.removeClass "showingPanel"
+    return null
+      
+  renderSliderData = (rowState)->
     rowState.sliderData.slider.css "transform", "translate(#{rowState.sliderData.offsetPx}px, #{rowState.sliderData.offsetPy}px)"
-    for itemData in rowState.itemDataList
-      renderItemData(itemData, rowState.tileSizePx)
-    return rowState
+    return null
+    
+  render = (rowState)->
+    renderItemData itemData, rowState.tileSizePx for itemData in rowState.itemDataList
+    renderPanelData rowState
+    renderSliderData rowState
+    return rowState # pass-through
   
   
   # INITIALIZE ####################################################################################
@@ -180,8 +190,10 @@ Take "DOMContentLoaded", ()->
     totemItems = slider.find "totem-item"
     
     # State
-    rowState = render row, resize window, newRowState slider, totemItems, panel
+    rowState = render resize window, newRowState row, slider, totemItems, panel
     
     # Events
-    $(window).resize ()-> rowState = render row, resize window, rowState
-    inputLayer.click (e)-> rowState = render row, click window, rowState, e.clientX
+    $(window).resize ()-> rowState = render resize window, rowState
+    inputLayer.click (e)-> rowState = render click window, rowState, e.clientX
+
+# transform .6s cubic-bezier(.2,.2,.3,.9)
