@@ -1,77 +1,181 @@
 Take "DOMContentLoaded", ()->
-  slideDecay = 20
-  epsilon = 0.01
   
-  $("totem-row").each (rowIndex, _rowElm)->
+  TILE_SIZE = 82
+  
+  # PURE LIB FUNCTIONS #############################################################################
+
+  # Takes 0 or more structs. Returns a new struct with the values from the given structs merged together.
+  # Last struct wins. Shallow. Values copied by reference.
+  merge = (structs...)->
+    result = {}
+    for struct in structs
+      for k,v of struct
+        result[k] = v
+    result
+  
+  updateIn = (struct, keys..., fn)->
+    key = keys.shift() # mutation
+    val = struct[key]
+    result = {}
+    if keys.length > 0
+      result[key] = updateIn val, keys..., fn
+    else
+      result[key] = fn val
+    return merge struct, result
+  
+  fixFloatError = (i)->
+    Math.round(i*1000)/1000
+  
     
-    rowElm = $ _rowElm
-    inputLayer = rowElm.find "input-layer"
-    slidingLayer = rowElm.find "sliding-layer"
-    totemItems = rowElm.find "totem-item"
+  # STRUCT GENERATION FUNCTIONS ####################################################################
+  
+  newPanelData = (panel)->
+    return panelData =
+      panel: panel
+      panelOpen: false
+  
+  newItemData = (totemItem, i)->
+    return itemData =
+      item: $ totemItem
+      i: i
+      x:0
+      screenX:0
+      absScreenX:0
+      octave:0
+      ypos: totemItem.getAttribute("item-ypos")
+  
+  newItemDataList = (totemItems)->
+    return itemDataList =
+      for totemItem, i in totemItems
+        newItemData totemItem, i
+  
+  newSliderData = (slider)->
+    return sliderData =
+      slider: slider
+      offsetUnits: 0
+      offsetPx: 0
+      offsetPy: 0
+      widthPx: 0
+  
+  newRowState = (slider, totemItems, panel)->
+    return rowState =
+      vminPx: 0
+      tileSizePx: 0
+      panelData: newPanelData panel
+      sliderData: newSliderData slider
+      itemDataList: newItemDataList totemItems
+
+  
+  # PURE LOGIC FUNCTIONS ##########################################################################
+  
+  getCurrentItemIndex = (itemDataList)->
+    for item, i in itemDataList
+      if item.absScreenX == 0
+        return i
+    throw "Could not determine currentItemIndex"
+  
+  getVminPx = (win)->
+    Math.min(win.innerWidth, win.innerHeight) / 100
+  
+  getUpdatedItemData = (sliderData, itemData, tileSizePx)->
+    x = itemData.i * tileSizePx + itemData.octave * sliderData.widthPx
+    screenX = fixFloatError x + sliderData.offsetPx
+    absScreenX = Math.abs screenX
+    return merge itemData, { x:x, screenX:screenX, absScreenX:absScreenX }
+  
+  wrapItemDataToScreen = (sliderData, itemData, tileSizePx)->
+    if itemData.absScreenX > sliderData.widthPx/2
+      itemData.octave -= itemData.screenX / itemData.absScreenX
+      getUpdatedItemData sliderData, itemData, tileSizePx
+    else
+      itemData
+  
+  
+  itemDataListUpdater = (sliderData, tileSizePx)-> (itemDataList)->
+    for itemData in itemDataList
+      itemData = getUpdatedItemData sliderData, itemData, tileSizePx
+      itemData = wrapItemDataToScreen sliderData, itemData, tileSizePx
+      itemData
+  
+  sliderOffsetPyUpdater = (currentItemData, rowState)-> ()->
+    if rowState.panelData.panelOpen
+      panelOpenCenterPos = 30 # panelClosedCenterPos would be 50
+      deltaPos = currentItemData.ypos - panelOpenCenterPos
+      deltaPx = rowState.tileSizePx * deltaPos/100
+      return -deltaPx
+    else
+      return 0
+  
+  sliderOffsetPxUpdater = (rowState)-> ()->
+    rowState.sliderData.offsetUnits * rowState.tileSizePx
+  
+  
+  update = (rowState)->
+    rowState = updateIn rowState, "sliderData", "offsetPx", sliderOffsetPxUpdater rowState
+    rowState = updateIn rowState, "itemDataList", itemDataListUpdater rowState.sliderData, rowState.tileSizePx
+    currentItemIndex = getCurrentItemIndex rowState.itemDataList
+    currentItemData = rowState.itemDataList[currentItemIndex]
+    return updateIn rowState, "sliderData", "offsetPy", sliderOffsetPyUpdater currentItemData, rowState
+
+  
+  slideBy = (rowState, delta)->
+    return update updateIn rowState, "sliderData", "offsetUnits", (offsetUnits)-> offsetUnits - delta
     
-    vminPx = 0
-    panelOpen = false
-    slideOffsetUnits = 0
-    slideOffsetPx = 0
-    slidingLayerWidthPx = 0
-    itemData = $.map totemItems, (item, i)-> { i:i, octave: 0 }
+  togglePanelOpen = (rowState)->
+    return update updateIn rowState, "panelData", "panelOpen", (panelOpen)-> !panelOpen
+  
+  resize = (win, rowState)->
+    vminPx = getVminPx win
+    tileSizePx = TILE_SIZE * vminPx
+    sliderData = merge rowState.sliderData, { widthPx: rowState.itemDataList.length * tileSizePx }
+    return update merge rowState, { vminPx:vminPx, tileSizePx:tileSizePx, sliderData:sliderData }
+  
+  
+  click = (win, rowState, clientX)->
+    clickVmin = (clientX - win.innerWidth/2) / rowState.vminPx
+    absClickVmin = Math.abs clickVmin
+    rowState = if absClickVmin < TILE_SIZE/2 # Half tile size
+      togglePanelOpen rowState
+    else
+      slideBy rowState, clickVmin / absClickVmin
+    return rowState
+  
+  
+  # SIDE-EFFECTING HELPER FUNCTIONS ################################################################
+  
+  renderItemData = (itemData, tileSizePx)->
+    opacity = fixFloatError 1 - itemData.absScreenX / (tileSizePx * 2)
+    if opacity >= 0
+      itemData.item.css "display", "block"
+      itemData.item.css "opacity", opacity
+      itemData.item.css "transform", "translateX(#{itemData.x}px)"
+    else
+      itemData.item.css "display", "none"
+      itemData.item.css "opacity", ""
+      itemData.item.css "transform", ""
+    return null
+  
+  render = (rowState)->
+    rowState.sliderData.slider.css "transform", "translate(#{rowState.sliderData.offsetPx}px, #{rowState.sliderData.offsetPy}px)"
+    for itemData in rowState.itemDataList
+      renderItemData(itemData, rowState.tileSizePx)
+    return rowState
+  
+  
+  # INITIALIZE ####################################################################################
+  
+  for rowElm in $("totem-row")
     
-    updateVminPx = ()->
-      vminPx = Math.min(window.innerWidth, window.innerHeight) / 100
-      slidingLayerWidthPx = totemItems.length * 82 * vminPx
+    # DOM
+    row = $ rowElm
+    panel = row.find "totem-panel"
+    slider = row.find "sliding-layer"
+    inputLayer = row.find "input-layer"
+    totemItems = slider.find "totem-item"
     
-    updateItemPositions = ()->
-      totemItems.each (i, _item)->
-        item = $ _item
-        data = itemData[i]
-        
-        x = data.i * 82 * vminPx + data.octave * slidingLayerWidthPx
-        screenX = x + slideOffsetPx
-        
-        if Math.abs(screenX) > slidingLayerWidthPx/2
-          data.octave += if screenX > 0 then -1 else 1
-          x = data.i * 82 * vminPx + data.octave * slidingLayerWidthPx
-          screenX = x + slideOffsetPx
-        
-        opacity = 1 - Math.abs(screenX) / (82 * vminPx * 2)
-        opacity = Math.round(opacity*100)/100 # Eliminate rounding error weirdness
-        show = opacity >= 0
-        if show
-          item.css "display", "block"
-          item.css "opacity", opacity
-          item.css "transform", "translateX(#{x}px)"
-        else
-          item.css "display", "none"
-          item.css "opacity", ""
-          item.css "transform", ""
+    # State
+    rowState = render resize window, newRowState slider, totemItems, panel
     
-    updateSlideOffset = ()->
-      slideOffsetPx = slideOffsetUnits * 82 * vminPx
-      slidingLayer.css "transform", "translateX(#{slideOffsetPx}px)"
-      updateItemPositions()
-    
-    slideBy = (delta)->
-      slideOffsetUnits -= delta
-      updateSlideOffset()
-    
-    togglePanelOpen = ()->
-      # if panelOpen = !panelOpen
-      
-    updateAll = ()->
-      updateVminPx()
-      updateSlideOffset()
-    
-    # When we click the input layer, decide what to do
-    inputLayer.click (e)->
-      clickVmin = (e.clientX - window.innerWidth/2) / vminPx
-      absClickVmin = Math.abs(clickVmin)
-      if absClickVmin < 41
-        togglePanelOpen()
-      else
-        slideBy(clickVmin / absClickVmin)
-    
-    # Update whenever the window is resized
-    $(window).resize updateAll
-        
-    # Initialize
-    updateAll()
+    # Events
+    $(window).resize ()-> rowState = render resize window, rowState
+    inputLayer.click (e)-> rowState = render click window, rowState, e.clientX

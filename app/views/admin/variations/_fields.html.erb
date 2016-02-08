@@ -1,6 +1,6 @@
 <%= render 'partials/form_errors', model: f.object %>
 
-<div class="row">
+<div class="row spread">
   <div>
     <%= f.label :name, "Name" %>
     <%= f.text_field :name %>
@@ -29,6 +29,9 @@
 
 <%= render 'partials/image_uploader', f:f, field: :totem_image, name: "Totem Image" %>
 <%= render 'partials/image_uploader', f:f, field: :wholesale_image, name: "Wholesale Image" %>
+
+<%= f.label :ypos, "Totem Center Y (0-100 Top-Bottom)" %>
+<%= f.number_field :ypos %>
 
 <hr>
 

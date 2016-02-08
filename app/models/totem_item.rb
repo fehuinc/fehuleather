@@ -11,4 +11,8 @@ class TotemItem < ActiveRecord::Base
   def real_image
     variation_id ? variation.totem_image : image
   end
+  
+  def real_ypos
+    variation_id ? variation.ypos : ypos
+  end
 end

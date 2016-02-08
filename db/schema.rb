@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.text    "name"
     t.text    "image"
     t.text    "content"
-    t.integer "ypos",         default: 0
+    t.integer "ypos",         default: 50
     t.integer "index",        default: 0
   end
 
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.text    "description"
     t.text    "totem_image"
     t.text    "wholesale_image"
+    t.integer "ypos",                     default: 50
     t.integer "price_retail_cents",       default: 0,     null: false
     t.string  "price_retail_currency",    default: "CAD", null: false
     t.integer "price_wholesale_cents",    default: 0,     null: false

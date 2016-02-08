@@ -23,6 +23,7 @@ class Initialize < ActiveRecord::Migration
       t.text :description
       t.text :totem_image
       t.text :wholesale_image
+      t.integer :ypos,                 default: 50
       t.monetize :price_retail
       t.monetize :price_wholesale
     end
@@ -56,7 +57,7 @@ class Initialize < ActiveRecord::Migration
       t.text :name
       t.text :image
       t.text :content
-      t.integer :ypos,                 default: 0
+      t.integer :ypos,                 default: 50
       t.integer :index,	               default: 0
       t.index :index
     end

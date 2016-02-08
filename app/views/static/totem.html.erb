@@ -6,7 +6,7 @@
   <totem-row class="unselectable">
     <sliding-layer>
       <% totem_row.items.each do |totem_item| %>
-        <totem-item>
+        <totem-item item-ypos="<%= totem_item.real_ypos %>">
           <totem-image style="background-image: url('<%= totem_item.real_image %>')"></totem-image>
         </totem-item>
       <% end %>
