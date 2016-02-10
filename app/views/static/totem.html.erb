@@ -8,66 +8,50 @@
       <div class="wrapper">
         <h1 product-name></h1>
         <purchasing-info>
-          <div class="variations">
-            <div class="variation" ng-repeat="variation in product.variations">
-              <select ng-model="variation.choiceIndex"
-                      ng-change="checkChange($index, variation)"
-                      ng-options="index*1 as variant.name for (index, variant) in variation.variants">
-              </select>
-            </div>
-          </div>
+          <div>Select Variations</div>
+          <div>Select Size</div>
           <div class="subtotal">
             <div class="input-with-buttons">
               <div class="button-row perspective">
-                <div class="button" ng-click="changeQuantity(-1)">-</div>
-                <div class="button" ng-click="changeQuantity(1)">+</div>
+                <div class="button">-</div>
+                <div class="button">+</div>
               </div>
               <input type="number"
                      class="quantity"
-                     step="1"
-                     ng-model="currentBuild.desiredQuantity">
+                     step="1">
             </div>
             for
             <div class="price">$</div>
           </div>
           
-          <div class="perspective submit" ng-hide="Cart.has(currentBuild)">
-            <button ng-click="Cart.add(currentBuild)">Yes Please!</button>
+          <div class="perspective submit">
+            <button>Yes Please!</button>
           </div>
           
-          <div class="perspective submit"
-               ng-show="Cart.has(currentBuild) && (currentBuild.desiredQuantity != Cart.get(currentBuild).quantity)">
+          <div class="perspective submit">
             <button ng-click="Cart.add(currentBuild)">Update Quantity</button>
           </div>
           
-          <div class="cart"
-               ng-show="Cart.has(currentBuild) && (currentBuild.desiredQuantity == Cart.get(currentBuild).quantity)">
-            <div>It's in <a ng-click="showCart()">The Bag</a></div>
+          <div class="cart">
+            <div>It's in <a>The Bag</a></div>
           </div>
         </purchasing-info>
 
         <descriptive-info>
-          <div ng-bind-html="specimen.description"></div>
+          <div>Description</div>
         </descriptive-info>
         
         
         <bottom-info>
-          <custom-info>
-            <div ng-repeat="info in product.infos"
-                 ng-click="toggleInfo(info)"
-                 ng-class="{active:isInfoOpen(info)}">Info Name</div>
-          </custom-info>
-          <shop-info>
-            <div ng-repeat="info in shopInfo"
-                 ng-click="toggleInfo(info)"
-                 ng-class="{active:isInfoOpen(info)}">Info Name</div>
-          </shop-info>
-          <info-display ng-show="showingInfo">
+          <div>Info Name</div>
+          <div>Info Name</div>
+          <div>Info Name</div>
+          <info-display>
             <div>Info Content</div>
           </info-display>
         </bottom-info>
         
-        <a class="closer" ng-click="closePanel()">Close</a>
+        <a class="closer">Close</a>
       </div>
     </totem-panel>
     
