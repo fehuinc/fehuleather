@@ -1,10 +1,45 @@
-Take "DOMContentLoaded", ()->
+$ ()->
   
   PANEL_OPEN_CENTER_POS = 30 # panelClosedCenterPos would be 50
   TILE_SIZE = 82
   
-  # PURE LIB FUNCTIONS #############################################################################
+  # STATE #########################################################################################
+  
+  newItem = (item, i)->
+    return item =
+      elm: $ item
+      i: i
+      x:0
+      screenX:0
+      absScreenX:0
+      octave:0
+      ypos: item.getAttribute("item-ypos")
+  
+  newState = (row, slider, items, panel)->
+    return state =
+      blockNextClick: false
+      currentItem: null
+      e: null
+      itemList: (newItem item, i for item, i in items)
+      offsetPx: 0
+      offsetPy: 0
+      offsetUnits: 0
+      panel: panel
+      panelOpen: false
+      row: row
+      scrolling: false
+      slider: slider
+      sliding: false
+      tileSizePx: 0
+      touchCurrent: x:0, y:0
+      touchStart: x:0, y:0
+      transitioning: true
+      vminPx: 0
+      widthPx: 0
 
+  
+  # PURE LIB FUNCTIONS #############################################################################
+  
   # Takes 0 or more structs. Returns a new struct with the values from the given structs merged together.
   # Last struct wins. Shallow. Values copied by reference.
   merge = (structs...)->
@@ -28,192 +63,132 @@ Take "DOMContentLoaded", ()->
     Math.round(i*1000)/1000
   
     
-  # STRUCT GENERATION FUNCTIONS ####################################################################
-  
-  newPanelData = (panel)->
-    return panelData =
-      panel: panel
-      panelOpen: false
-  
-  newItemData = (totemItem, i)->
-    return itemData =
-      item: $ totemItem
-      i: i
-      x:0
-      screenX:0
-      absScreenX:0
-      octave:0
-      ypos: totemItem.getAttribute("item-ypos")
-  
-  newItemDataList = (totemItems)->
-    return itemDataList =
-      for totemItem, i in totemItems
-        newItemData totemItem, i
-  
-  newSliderData = (slider)->
-    return sliderData =
-      slider: slider
-      offsetUnits: 0
-      offsetPx: 0
-      offsetPy: 0
-      widthPx: 0
-  
-  newInputData = ()->
-    return inputData =
-      e: null
-      blockNextClick: false
-      sliding: false
-      scrolling: false
-      touching: false
-      touchCurrent: x: 0, y:0
-      touchStart: x: 0, y:0
-  
-  newRowState = (row, slider, totemItems, panel)->
-    return rowState =
-      row: row
-      vminPx: 0
-      tileSizePx: 0
-      transitioning: true
-      currentItemData: null
-      inputData: newInputData()
-      panelData: newPanelData panel
-      sliderData: newSliderData slider
-      itemDataList: newItemDataList totemItems
-
-  
   # PURE LOGIC FUNCTIONS ##########################################################################
   
-  currentItemDataGetter = (itemDataList)-> ()->
+  currentItemGetter = (itemList)-> ()->
     closestDistance = Infinity
-    closestItemData = null
-    for itemData, i in itemDataList
-      if itemData.absScreenX < closestDistance
-        closestDistance = itemData.absScreenX
-        closestItemData = itemData
-    return closestItemData
+    closestItem = null
+    for item, i in itemList
+      if item.absScreenX < closestDistance
+        closestDistance = item.absScreenX
+        closestItem = item
+    return closestItem
   
-  getVminPx = (win)->
-    Math.min(win.innerWidth, win.innerHeight) / 100
+  getUpdatedItem = (state, item, tileSizePx)->
+    item.x = item.i * tileSizePx + item.octave * state.widthPx
+    item.screenX = fixFloatError item.x + state.offsetPx
+    item.absScreenX = Math.abs item.screenX
+    return item
   
-  getUpdatedItemData = (sliderData, itemData, tileSizePx)->
-    x = itemData.i * tileSizePx + itemData.octave * sliderData.widthPx
-    screenX = fixFloatError x + sliderData.offsetPx
-    absScreenX = Math.abs screenX
-    return merge itemData, { x:x, screenX:screenX, absScreenX:absScreenX }
-  
-  wrapItemDataToScreen = (sliderData, itemData, tileSizePx)->
-    if itemData.absScreenX > sliderData.widthPx/2
-      itemData.octave -= itemData.screenX / itemData.absScreenX
-      getUpdatedItemData sliderData, itemData, tileSizePx
+  wrapItemToScreen = (state, item, tileSizePx)->
+    if item.absScreenX > state.widthPx/2
+      item.octave -= item.screenX / item.absScreenX
+      getUpdatedItem state, item, tileSizePx
     else
-      itemData
+      item
   
-  itemDataListUpdater = (sliderData, tileSizePx)-> (itemDataList)->
-    for itemData in itemDataList
-      itemData = getUpdatedItemData sliderData, itemData, tileSizePx
-      itemData = wrapItemDataToScreen sliderData, itemData, tileSizePx
-      itemData
+  itemListUpdater = (state, tileSizePx)-> (itemList)->
+    for item in itemList
+      item = getUpdatedItem state, item, tileSizePx
+      item = wrapItemToScreen state, item, tileSizePx
+      item
   
-  sliderOffsetPyUpdater = (rowState)-> ()->
-    if rowState.panelData.panelOpen
-      deltaPos = rowState.currentItemData.ypos - PANEL_OPEN_CENTER_POS
-      deltaPx = rowState.tileSizePx * deltaPos/100
+  sliderOffsetPyUpdater = (state)-> ()->
+    if state.panelOpen
+      deltaPos = state.currentItem.ypos - PANEL_OPEN_CENTER_POS
+      deltaPx = state.tileSizePx * deltaPos/100
       return -deltaPx
     else
       return 0
   
-  sliderOffsetPxUpdater = (rowState)-> ()->
-    return rowState.sliderData.offsetUnits * rowState.tileSizePx
+  sliderOffsetPxUpdater = (state)-> ()->
+    return state.offsetUnits * state.tileSizePx
   
-  touchingSliderOffsetPxUpdater = (inputData)-> (offsetPx)->
-    if inputData.sliding
-      return inputData.touchCurrent.x - inputData.touchStart.x
+  touchingSliderOffsetPxUpdater = (state)-> (offsetPx)->
+    if state.sliding
+      return state.touchCurrent.x - state.touchStart.x
     else
       return 0
   
-  slidingUpdater = (inputData)-> (sliding)->
+  slidingUpdater = (state)-> (sliding)->
     return true if sliding
-    return false if inputData.scrolling
-    xDelta = Math.abs inputData.touchCurrent.x - inputData.touchStart.x
-    yDelta = Math.abs inputData.touchCurrent.y - inputData.touchStart.y
+    return false if state.scrolling
+    xDelta = Math.abs state.touchCurrent.x - state.touchStart.x
+    yDelta = Math.abs state.touchCurrent.y - state.touchStart.y
     return xDelta > 3 and xDelta > yDelta
     
-  scrollingUpdater = (inputData)-> (scrolling)->
+  scrollingUpdater = (state)-> (scrolling)->
     return true if scrolling
-    return false if inputData.sliding
-    xDelta = Math.abs inputData.touchCurrent.x - inputData.touchStart.x
-    yDelta = Math.abs inputData.touchCurrent.y - inputData.touchStart.y
+    return false if state.sliding
+    xDelta = Math.abs state.touchCurrent.x - state.touchStart.x
+    yDelta = Math.abs state.touchCurrent.y - state.touchStart.y
     return yDelta > 3 and yDelta > xDelta
     
-  updateSliderOffset = (rowState)->
-    rowState = updateIn rowState, "sliderData", "offsetPx", sliderOffsetPxUpdater rowState
-    rowState = updateIn rowState, "itemDataList", itemDataListUpdater rowState.sliderData, rowState.tileSizePx
-    rowState = updateIn rowState, "currentItemData", currentItemDataGetter rowState.itemDataList
-    return updateIn rowState, "sliderData", "offsetPy", sliderOffsetPyUpdater rowState
-
-  slideBy = (rowState, delta)->
-    return updateSliderOffset updateIn rowState, "sliderData", "offsetUnits", (offsetUnits)-> offsetUnits - delta
+  updateSliderOffset = (state)->
+    state = updateIn state, "offsetPx", sliderOffsetPxUpdater state
+    state = updateIn state, "itemList", itemListUpdater state, state.tileSizePx
+    state = updateIn state, "currentItem", currentItemGetter state.itemList
+    return updateIn state, "offsetPy", sliderOffsetPyUpdater state
+  
+  slideBy = (state, delta)->
+    return updateSliderOffset updateIn state, "offsetUnits", (offsetUnits)-> offsetUnits - delta
     
-  togglePanelOpen = (rowState)->
-    return updateSliderOffset updateIn rowState, "panelData", "panelOpen", (panelOpen)-> !panelOpen
+  togglePanelOpen = (state)->
+    return updateSliderOffset updateIn state, "panelOpen", (panelOpen)-> !panelOpen
   
   
   # PURE INPUT HANDLERS ###########################################################################
   
-  resize = (win, rowState)->
-    vminPx = getVminPx win
-    tileSizePx = TILE_SIZE * vminPx
-    sliderData = merge rowState.sliderData, { widthPx: rowState.itemDataList.length * tileSizePx }
-    rowState = updateSliderOffset merge rowState, { vminPx:vminPx, tileSizePx:tileSizePx, sliderData:sliderData }
-    rowState = updateIn rowState, "transitioning", ()-> false
-    return rowState
+  resize = (win, state)->
+    state.vminPx = Math.min(win.innerWidth, win.innerHeight) / 100
+    state.tileSizePx = TILE_SIZE * state.vminPx
+    state.widthPx = state.itemList.length * state.tileSizePx
+    state = updateSliderOffset state
+    state.transitioning = false
+    return state
   
-  click = (win, rowState, clientX)->
-    console.log "CLICK"
-    if rowState.inputData.blockNextClick
-      rowState = updateIn rowState, "inputData", "blockNextClick", ()-> false
-      return rowState
+  click = (win, state, clientX)->
+    if state.blockNextClick
+      state = updateIn state, "blockNextClick", ()-> false
+      return state
     else
-      clickVmin = (clientX - win.innerWidth/2) / rowState.vminPx
+      clickVmin = (clientX - win.innerWidth/2) / state.vminPx
       absClickVmin = Math.abs clickVmin
-      rowState = if absClickVmin < TILE_SIZE/2 # Half tile size
-        togglePanelOpen rowState
+      state = if absClickVmin < TILE_SIZE/2 # Half tile size
+        togglePanelOpen state
       else
-        slideBy rowState, clickVmin / absClickVmin
-      rowState = updateIn rowState, "transitioning", ()-> true
-      return rowState
+        slideBy state, clickVmin / absClickVmin
+      state = updateIn state, "transitioning", ()-> true
+      return state
   
-  touchstart = (rowState, e)->
+  touchstart = (state, e)->
     touchPoint = e.originalEvent.touches[0]
-    rowState = updateIn rowState, "inputData", "touching", ()-> true
-    rowState = updateIn rowState, "inputData", "sliding", ()-> false
-    rowState = updateIn rowState, "inputData", "scrolling", ()-> false
-    rowState = updateIn rowState, "inputData", "touchStart", "x", ()-> touchPoint.screenX - rowState.sliderData.offsetPx
-    rowState = updateIn rowState, "inputData", "touchStart", "y", ()-> touchPoint.screenY
-    return rowState
+    state.sliding = false
+    state.scrolling = false
+    state.touchStart.x = touchPoint.screenX - state.offsetPx
+    state.touchStart.y = touchPoint.screenY
+    return state
   
-  touchmove = (rowState, e)->
+  touchmove = (state, e)->
     touchPoint = e.originalEvent.touches[0]
-    rowState = updateIn rowState, "inputData", "e", ()-> e
-    rowState = updateIn rowState, "inputData", "touchCurrent", "x", ()-> touchPoint.screenX
-    rowState = updateIn rowState, "inputData", "touchCurrent", "y", ()-> touchPoint.screenY
-    rowState = updateIn rowState, "inputData", "sliding", slidingUpdater rowState.inputData
-    rowState = updateIn rowState, "inputData", "scrolling", scrollingUpdater rowState.inputData
-    rowState = updateIn rowState, "sliderData", "offsetPx", touchingSliderOffsetPxUpdater rowState.inputData
-    rowState = updateIn rowState, "itemDataList", itemDataListUpdater rowState.sliderData, rowState.tileSizePx
-    rowState = updateIn rowState, "currentItemData", currentItemDataGetter rowState.itemDataList
-    rowState = updateIn rowState, "transitioning", ()-> !rowState.inputData.sliding
-    return rowState
+    state.e = e
+    state.touchCurrent.x = touchPoint.screenX
+    state.touchCurrent.y = touchPoint.screenY
+    state = updateIn state, "sliding", slidingUpdater state
+    state = updateIn state, "scrolling", scrollingUpdater state
+    state = updateIn state, "offsetPx", touchingSliderOffsetPxUpdater state
+    state = updateIn state, "itemList", itemListUpdater state, state.tileSizePx
+    state = updateIn state, "currentItem", currentItemGetter state.itemList
+    state = updateIn state, "transitioning", ()-> !state.sliding
+    return state
     
-  touchend = (rowState)->
-    console.log "END"
-    rowState = updateIn rowState, "inputData", "touching", ()-> false
-    rowState = updateIn rowState, "transitioning", ()-> true
-    delta = Math.round (rowState.inputData.touchCurrent.x - rowState.inputData.touchStart.x) / rowState.tileSizePx
-    delta = -delta + rowState.sliderData.offsetUnits
-    rowState = slideBy rowState, delta
-    rowState = updateIn rowState, "inputData", "blockNextClick", ()-> delta != 0
-    return updateSliderOffset rowState
+  touchend = (state)->
+    state.transitioning = true
+    delta = Math.round (state.touchCurrent.x - state.touchStart.x) / state.tileSizePx
+    delta = -delta + state.offsetUnits
+    state = slideBy state, delta
+    state.blockNextClick = delta != 0
+    return updateSliderOffset state
     
   
   
@@ -222,59 +197,56 @@ Take "DOMContentLoaded", ()->
   condCSS = (elm, prop, test, tVal, fVal = "")->
     elm.css prop, if test then tVal else fVal
   
-  renderItemData = (itemData, rowState)->
-    opacity = fixFloatError 1 - itemData.absScreenX / (rowState.tileSizePx * 2)
-    condCSS itemData.item, "transition", rowState.transitioning, "opacity .4s cubic-bezier(.2,.2,.3,.9)"
-    condCSS itemData.item, "display",   opacity >= 0, "block", "none"
-    condCSS itemData.item, "opacity",   opacity >= 0, opacity
-    condCSS itemData.item, "transform", opacity >= 0, "translateX(#{itemData.x}px)"
+  renderItem = (item, state)->
+    opacity = fixFloatError 1 - item.absScreenX / (state.tileSizePx * 2)
+    condCSS item.elm, "transition", state.transitioning, "opacity .4s cubic-bezier(.2,.2,.3,.9)"
+    condCSS item.elm, "display",   opacity >= 0, "block", "none"
+    condCSS item.elm, "opacity",   opacity >= 0, opacity
+    condCSS item.elm, "transform", opacity >= 0, "translateX(#{item.x}px)"
     return null
   
-  renderPanelData = (rowState)->
-    if rowState.panelData.panelOpen
-      rowState.row.addClass "showingPanel"
-      panel = rowState.panelData.panel
-      currentItem = rowState.currentItemData.item
-      panel.find("[product-name]").html currentItem.attr "item-name"
+  renderPanelData = (state)->
+    if state.panelOpen
+      state.row.addClass "showingPanel"
+      panel = state.panel
+      currentItemElm = state.currentItem.elm
+      panel.find("[product-name]").html currentItemElm.attr "item-name"
       # render variations, etc etc
     else
-      rowState.row.removeClass "showingPanel"
+      state.row.removeClass "showingPanel"
     return null
   
-  renderSliderData = (rowState)->
-    condCSS rowState.sliderData.slider, "transition", rowState.transitioning, "transform .6s cubic-bezier(.2,.2,.3,.9)"
-    rowState.sliderData.slider.css "transform", "translate(#{rowState.sliderData.offsetPx}px, #{rowState.sliderData.offsetPy}px)"
+  renderSliderData = (state)->
+    condCSS state.slider, "transition", state.transitioning, "transform .6s cubic-bezier(.2,.2,.3,.9)"
+    state.slider.css "transform", "translate(#{state.offsetPx}px, #{state.offsetPy}px)"
     return null
     
-  renderInputData = (rowState)->
-    rowState.inputData.e.preventDefault() if rowState.inputData.sliding
+  renderInputData = (state)->
+    state.e.preventDefault() if state.sliding
     return null
     
-  render = (rowState)->
-    renderItemData itemData, rowState for itemData in rowState.itemDataList
-    renderPanelData rowState
-    renderSliderData rowState
-    renderInputData rowState
-    return rowState # pass-through
+  render = (state)->
+    renderItem item, state for item in state.itemList
+    renderPanelData state
+    renderSliderData state
+    renderInputData state
+    return state # pass-through
   
   
   # INITIALIZE ####################################################################################
   
   for rowElm in $("totem-row")
-    
-    # DOM
     row = $ rowElm
     panel = row.find "totem-panel"
     slider = row.find "sliding-layer"
+    items = row.find "totem-item"
     inputLayer = row.find "input-layer"
-    totemItems = slider.find "totem-item"
     
-    # State
-    rowState = render resize window, newRowState row, slider, totemItems, panel
+    state = render resize window, newState row, slider, items, panel
     
-    # Events
-    $(window).resize ()-> rowState = render resize window, rowState
-    inputLayer.click (e)-> rowState = render click window, rowState, e.clientX
-    inputLayer.on "touchstart", (e)-> rowState = render touchstart rowState, e
-    inputLayer.on "touchmove", (e)-> rowState = render touchmove rowState, e
-    inputLayer.on "touchend", (e)-> rowState = render touchend rowState
+    $(window).resize ()-> state = render resize window, state
+    inputLayer.click (e)-> state = render click window, state, e.clientX
+    inputLayer.on "touchstart", (e)-> state = render touchstart state, e
+    inputLayer.on "touchmove", (e)-> state = render touchmove state, e
+    inputLayer.on "touchend", (e)-> state = render touchend state
+    
