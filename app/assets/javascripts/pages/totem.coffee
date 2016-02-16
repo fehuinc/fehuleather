@@ -17,7 +17,7 @@ $ ()->
   
   newState = (row, slider, items, panel)->
     return state =
-      blockNextClick: false
+      blockClickTime: 0
       currentItem: null
       e: null
       itemList: (newItem item, i for item, i in items)
@@ -63,35 +63,29 @@ $ ()->
     Math.round(i*1000)/1000
   
     
-  # PURE LOGIC FUNCTIONS ##########################################################################
+  # LOGIC FUNCTIONS ###############################################################################
   
-  currentItemGetter = (itemList)-> ()->
+  updateCurrentItem = (state)->
     closestDistance = Infinity
-    closestItem = null
-    for item, i in itemList
+    for item, i in state.itemList
       if item.absScreenX < closestDistance
         closestDistance = item.absScreenX
-        closestItem = item
-    return closestItem
+        state.currentItem = item
   
-  getUpdatedItem = (state, item, tileSizePx)->
-    item.x = item.i * tileSizePx + item.octave * state.widthPx
+  updateItem = (state, item)->
+    item.x = item.i * state.tileSizePx + item.octave * state.widthPx
     item.screenX = fixFloatError item.x + state.offsetPx
     item.absScreenX = Math.abs item.screenX
-    return item
   
-  wrapItemToScreen = (state, item, tileSizePx)->
+  wrapItemToScreen = (state, item)->
     if item.absScreenX > state.widthPx/2
       item.octave -= item.screenX / item.absScreenX
-      getUpdatedItem state, item, tileSizePx
-    else
-      item
+      updateItem state, item
   
-  itemListUpdater = (state, tileSizePx)-> (itemList)->
-    for item in itemList
-      item = getUpdatedItem state, item, tileSizePx
-      item = wrapItemToScreen state, item, tileSizePx
-      item
+  updateItemList = (state)->
+    for item in state.itemList
+      updateItem state, item
+      wrapItemToScreen state, item
   
   sliderOffsetPyUpdater = (state)-> ()->
     if state.panelOpen
@@ -104,34 +98,14 @@ $ ()->
   sliderOffsetPxUpdater = (state)-> ()->
     return state.offsetUnits * state.tileSizePx
   
-  touchingSliderOffsetPxUpdater = (state)-> (offsetPx)->
-    if state.sliding
-      return state.touchCurrent.x - state.touchStart.x
-    else
-      return 0
-  
-  slidingUpdater = (state)-> (sliding)->
-    return true if sliding
-    return false if state.scrolling
-    xDelta = Math.abs state.touchCurrent.x - state.touchStart.x
-    yDelta = Math.abs state.touchCurrent.y - state.touchStart.y
-    return xDelta > 3 and xDelta > yDelta
-    
-  scrollingUpdater = (state)-> (scrolling)->
-    return true if scrolling
-    return false if state.sliding
-    xDelta = Math.abs state.touchCurrent.x - state.touchStart.x
-    yDelta = Math.abs state.touchCurrent.y - state.touchStart.y
-    return yDelta > 3 and yDelta > xDelta
-    
   updateSliderOffset = (state)->
     state = updateIn state, "offsetPx", sliderOffsetPxUpdater state
-    state = updateIn state, "itemList", itemListUpdater state, state.tileSizePx
-    state = updateIn state, "currentItem", currentItemGetter state.itemList
+    updateItemList state
+    updateCurrentItem state
     return updateIn state, "offsetPy", sliderOffsetPyUpdater state
   
-  slideBy = (state, delta)->
-    return updateSliderOffset updateIn state, "offsetUnits", (offsetUnits)-> offsetUnits - delta
+  slideByUnits = (state, deltaUnits)->
+    return updateSliderOffset updateIn state, "offsetUnits", (offsetUnits)-> offsetUnits - deltaUnits
     
   togglePanelOpen = (state)->
     return updateSliderOffset updateIn state, "panelOpen", (panelOpen)-> !panelOpen
@@ -148,18 +122,15 @@ $ ()->
     return state
   
   click = (win, state, clientX)->
-    if state.blockNextClick
-      state = updateIn state, "blockNextClick", ()-> false
-      return state
-    else
+    if state.blockClickTime < Date.now() - 310
       clickVmin = (clientX - win.innerWidth/2) / state.vminPx
       absClickVmin = Math.abs clickVmin
       state = if absClickVmin < TILE_SIZE/2 # Half tile size
         togglePanelOpen state
       else
-        slideBy state, clickVmin / absClickVmin
-      state = updateIn state, "transitioning", ()-> true
-      return state
+        slideByUnits state, clickVmin / absClickVmin
+      state.transitioning = true
+    return state
   
   touchstart = (state, e)->
     touchPoint = e.originalEvent.touches[0]
@@ -170,24 +141,29 @@ $ ()->
     return state
   
   touchmove = (state, e)->
-    touchPoint = e.originalEvent.touches[0]
     state.e = e
+    touchPoint = e.originalEvent.touches[0]
     state.touchCurrent.x = touchPoint.screenX
     state.touchCurrent.y = touchPoint.screenY
-    state = updateIn state, "sliding", slidingUpdater state
-    state = updateIn state, "scrolling", scrollingUpdater state
-    state = updateIn state, "offsetPx", touchingSliderOffsetPxUpdater state
-    state = updateIn state, "itemList", itemListUpdater state, state.tileSizePx
-    state = updateIn state, "currentItem", currentItemGetter state.itemList
-    state = updateIn state, "transitioning", ()-> !state.sliding
+    unless state.sliding or state.scrolling
+      xDelta = Math.abs state.touchCurrent.x - state.touchStart.x
+      yDelta = Math.abs state.touchCurrent.y - state.touchStart.y
+      state.sliding =   xDelta > 10 and xDelta >= yDelta
+      state.scrolling = yDelta > 10 and yDelta < xDelta
+    if state.sliding
+      state.offsetPx = state.touchCurrent.x - state.touchStart.x
+      updateItemList state
+      updateCurrentItem state
+      state.transitioning = !state.sliding
     return state
     
   touchend = (state)->
     state.transitioning = true
-    delta = Math.round (state.touchCurrent.x - state.touchStart.x) / state.tileSizePx
-    delta = -delta + state.offsetUnits
-    state = slideBy state, delta
-    state.blockNextClick = delta != 0
+    deltaUnits = Math.round (state.touchCurrent.x - state.touchStart.x) / state.tileSizePx
+    deltaUnits = -deltaUnits + state.offsetUnits
+    state = slideByUnits state, deltaUnits
+    # Manually toggle open the panel here, if we didn't slide/scroll
+    state.blockClickTime = Date.now()
     return updateSliderOffset state
     
   
