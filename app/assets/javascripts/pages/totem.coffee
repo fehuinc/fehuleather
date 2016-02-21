@@ -8,14 +8,6 @@ $ ()->
     Math.round(i*1000)/1000
   
   
-  updateCurrentItem = (state)->
-    closestDistance = Infinity
-    for item, i in state.itemList
-      if item.absScreenX < closestDistance
-        closestDistance = item.absScreenX
-        state.currentItem = item
-  
-  
   updateItemX = (state, item)->
     item.x = item.i * state.tileSizePx + item.octave * state.sliderWidthPx
     item.screenX = fixFloatError item.x + state.offsetX
@@ -34,6 +26,14 @@ $ ()->
       wrapItemToScreen state, item
   
   
+  updateCurrentItem = (state)->
+    closestDistance = Infinity
+    for item, i in state.itemList
+      if item.absScreenX < closestDistance
+        closestDistance = item.absScreenX
+        state.currentItem = item
+  
+  
   updateSliderOffset = (state)->
     state.offsetX = state.offsetUnits * state.tileSizePx
     updateItemList state
@@ -44,6 +44,7 @@ $ ()->
     state.offsetUnits = state.offsetUnits - deltaUnits
     updateSliderOffset state
     
+    
   togglePanel = (state)->
     state.isPanelOpen = !state.isPanelOpen
     if state.isPanelOpen
@@ -52,6 +53,7 @@ $ ()->
       state.offsetY = -deltaPx
     else
       state.offsetY = 0
+  
   
   clickAction = (clientX)->
     clickVmin = (clientX - window.innerWidth/2) / state.vminPx
@@ -84,45 +86,49 @@ $ ()->
   
   touchstart = (state, e)->
     touchPoint = e.originalEvent.touches[0]
-    state.isSliding = false
-    state.isScrolling = false
-    state.touchStart.x = touchPoint.screenX - state.offsetX
-    state.touchStart.y = touchPoint.screenY
+    state.offsetXStart = state.offsetX
+    state.isScrolling = state.isSliding = false
+    state.touchCurrent.x = state.touchPrevious.x = state.touchStart.x = touchPoint.screenX
+    state.touchCurrent.y = state.touchPrevious.y = state.touchStart.y = touchPoint.screenY
     return state
   
   
   touchmove = (state, e)->
     state.e = e
     touchPoint = e.originalEvent.touches[0]
+    state.touchPrevious.x = state.touchCurrent.x
+    state.touchPrevious.y = state.touchCurrent.y
     state.touchCurrent.x = touchPoint.screenX
     state.touchCurrent.y = touchPoint.screenY
     unless state.isSliding or state.isScrolling
       xDelta = Math.abs state.touchCurrent.x - state.touchStart.x
       yDelta = Math.abs state.touchCurrent.y - state.touchStart.y
       state.isSliding =   xDelta > 10 and xDelta > yDelta
-      state.isScrolling = yDelta > 10 and yDelta < xDelta
+      state.isScrolling = yDelta > 10 and xDelta < yDelta
     if state.isSliding
-      state.offsetX = state.touchCurrent.x - state.touchStart.x
+      state.offsetX = state.offsetXStart + state.touchCurrent.x - state.touchStart.x
+      state.offsetUnits = Math.round state.offsetX / state.tileSizePx
       updateItemList state
       updateCurrentItem state
-      state.isTransitioning = !state.isSliding
+    state.isTransitioning = !state.isSliding
     return state
   
-    
+  
   touchend = (state, e)->
     state.blockClickTime = Date.now()
     if state.isSliding
-      deltaUnits = Math.round (state.touchCurrent.x - state.touchStart.x) / state.tileSizePx
-      deltaUnits = -deltaUnits + state.offsetUnits
+      previousDeltaPx = state.touchCurrent.x - state.touchPrevious.x
+      totalDeltaUnits = -Math.round (state.offsetXStart - state.touchStart.x) / state.tileSizePx
       
-      # if deltaUnits is 0
-      #   deltaUnits = Math.round (state.touchCurrent.x - state.touchStart.x) / (state.tileSizePx * .6 )
-      #   deltaUnits = -deltaUnits
-      
-      slideByUnits state, deltaUnits
+      if previousDeltaPx > state.tileSizePx/10 and totalDeltaUnits >= 0
+        slideByUnits state, -1
+      else if previousDeltaPx < -state.tileSizePx/10 and totalDeltaUnits <= 0
+        slideByUnits state, 1
+      else
+        updateSliderOffset state
       state.isTransitioning = true
     else if not state.isScrolling
-      clickAction state.touchStart.x + state.offsetX
+      clickAction state.touchStart.x
     return state
     
     
@@ -174,7 +180,7 @@ $ ()->
     renderPanelData state
     renderSliderData state
     renderInputData state
-    return true # for scrolling?
+    return !state.isSliding
   
   
   # INITIALIZE ####################################################################################
@@ -203,6 +209,7 @@ $ ()->
         x: 0
         ypos: item.getAttribute "item-ypos"
       offsetX: 0
+      offsetXStart: 0
       offsetY: 0
       offsetUnits: 0
       panel: row.find "totem-panel"
@@ -210,8 +217,9 @@ $ ()->
       slider: row.find "sliding-layer"
       sliderWidthPx: 0
       tileSizePx: 0
-      touchCurrent: x:0, y:0
-      touchStart: x:0, y:0
+      touchCurrent:  x:0, y:0
+      touchPrevious: x:0, y:0
+      touchStart:    x:0, y:0
       vminPx: 0
     
     render resize state
