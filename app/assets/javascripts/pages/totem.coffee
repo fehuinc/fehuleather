@@ -38,20 +38,32 @@ $ ()->
     state.offsetX = state.offsetUnits * state.tileSizePx
     updateItemList state
     updateCurrentItem state
-    if state.isPanelOpen
-      deltaPos = state.currentItem.ypos/2 - PANEL_OPEN_CENTER_POS
-      deltaPx = state.tileSizePx * deltaPos/100
-      state.offsetY = -deltaPx
-    else
-      state.offsetY = 0
   
   
   slideByUnits = (state, deltaUnits)->
     state.offsetUnits = state.offsetUnits - deltaUnits
     updateSliderOffset state
     
+  togglePanel = (state)->
+    state.isPanelOpen = !state.isPanelOpen
+    if state.isPanelOpen
+      deltaPos = state.currentItem.ypos - PANEL_OPEN_CENTER_POS
+      deltaPx = state.tileSizePx * deltaPos/100
+      state.offsetY = -deltaPx
+    else
+      state.offsetY = 0
   
-  # LOGIC #########################################################################################
+  clickAction = (clientX)->
+    clickVmin = (clientX - window.innerWidth/2) / state.vminPx
+    absClickVmin = Math.abs clickVmin
+    if absClickVmin > TILE_SIZE/2
+      slideByUnits state, clickVmin / absClickVmin
+    else
+      togglePanel state
+    state.isTransitioning = true
+
+  
+  # EVENTS ########################################################################################
   
   
   
@@ -66,14 +78,7 @@ $ ()->
   
   
   click = (state, clientX)->
-    if state.blockClickTime < Date.now() - 310
-      clickVmin = (clientX - window.innerWidth/2) / state.vminPx
-      absClickVmin = Math.abs clickVmin
-      if absClickVmin < TILE_SIZE/2 # Half tile size
-        state.isPanelOpen = !state.isPanelOpen
-      else
-        slideByUnits state, clickVmin / absClickVmin
-      state.isTransitioning = true
+    clickAction(clientX) if state.blockClickTime < Date.now() - 310
     return state
   
   
@@ -94,7 +99,7 @@ $ ()->
     unless state.isSliding or state.isScrolling
       xDelta = Math.abs state.touchCurrent.x - state.touchStart.x
       yDelta = Math.abs state.touchCurrent.y - state.touchStart.y
-      state.isSliding =   xDelta > 10 and xDelta >= yDelta
+      state.isSliding =   xDelta > 10 and xDelta > yDelta
       state.isScrolling = yDelta > 10 and yDelta < xDelta
     if state.isSliding
       state.offsetX = state.touchCurrent.x - state.touchStart.x
@@ -104,14 +109,20 @@ $ ()->
     return state
   
     
-  touchend = (state)->
-    state.isTransitioning = true
-    deltaUnits = Math.round (state.touchCurrent.x - state.touchStart.x) / state.tileSizePx
-    deltaUnits = -deltaUnits + state.offsetUnits
-    slideByUnits state, deltaUnits
-    # Manually toggle open the panel here, if we didn't slide/scroll
+  touchend = (state, e)->
     state.blockClickTime = Date.now()
-    updateSliderOffset state
+    if state.isSliding
+      deltaUnits = Math.round (state.touchCurrent.x - state.touchStart.x) / state.tileSizePx
+      deltaUnits = -deltaUnits + state.offsetUnits
+      
+      # if deltaUnits is 0
+      #   deltaUnits = Math.round (state.touchCurrent.x - state.touchStart.x) / (state.tileSizePx * .6 )
+      #   deltaUnits = -deltaUnits
+      
+      slideByUnits state, deltaUnits
+      state.isTransitioning = true
+    else if not state.isScrolling
+      clickAction state.touchStart.x + state.offsetX
     return state
     
     
@@ -163,6 +174,7 @@ $ ()->
     renderPanelData state
     renderSliderData state
     renderInputData state
+    return true # for scrolling?
   
   
   # INITIALIZE ####################################################################################
@@ -205,7 +217,7 @@ $ ()->
     render resize state
     $(window).resize ()-> render resize state
     # inputLayer.click (e)-> render click state, e.clientX
-    # inputLayer.on "touchstart", (e)-> render touchstart state, e
-    # inputLayer.on "touchmove", (e)-> render touchmove state, e
-    # inputLayer.on "touchend", (e)-> render touchend state
+    inputLayer.on "touchstart", (e)-> render touchstart state, e
+    inputLayer.on "touchmove", (e)-> render touchmove state, e
+    inputLayer.on "touchend", (e)-> render touchend state, e
     
