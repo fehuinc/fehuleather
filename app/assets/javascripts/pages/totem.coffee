@@ -54,18 +54,20 @@ $ ()->
   # LOGIC #########################################################################################
   
   
-  resize = (win, state)->
-    state.vminPx = Math.min(win.innerWidth, win.innerHeight) / 100
+  
+  resize = (state)->
+    state.vminPx = Math.min(window.innerWidth, window.innerHeight) / 100
     state.tileSizePx = TILE_SIZE * state.vminPx
     state.sliderWidthPx = state.itemList.length * state.tileSizePx
     updateSliderOffset state
     state.isTransitioning = false
+    resizeRender state
     return state
   
   
-  click = (win, state, clientX)->
+  click = (state, clientX)->
     if state.blockClickTime < Date.now() - 310
-      clickVmin = (clientX - win.innerWidth/2) / state.vminPx
+      clickVmin = (clientX - window.innerWidth/2) / state.vminPx
       absClickVmin = Math.abs clickVmin
       if absClickVmin < TILE_SIZE/2 # Half tile size
         state.isPanelOpen = !state.isPanelOpen
@@ -115,6 +117,14 @@ $ ()->
     
   # RENDERING #####################################################################################
   
+  resizeRender = (state)->
+    for item in state.itemList
+      item.elm.css("margin-left", (window.innerWidth/2 - 40 * state.vminPx) + "px" )
+      item.imageElm.width(80 * state.vminPx).height(80 * state.vminPx)
+    state.slider.height(80 * state.vminPx)
+    state.clipper.height(80 * state.vminPx)
+    state.row.height(80 * state.vminPx).css("margin", "#{2*state.vminPx}px 0")
+
   
   condCSS = (elm, prop, test, tVal, fVal = "")->
     elm.css prop, if test then tVal else fVal
@@ -164,6 +174,7 @@ $ ()->
     
     state =
       blockClickTime: 0
+      clipper: row.find "clipping-layer"
       currentItem: null
       e: null
       isPanelOpen: false
@@ -173,6 +184,7 @@ $ ()->
       itemList: for item, i in row.find "totem-item"
         absScreenX: 0
         elm: $ item
+        imageElm: $(item).find("totem-image")
         i: i
         octave: 0
         screenX: 0
@@ -190,10 +202,10 @@ $ ()->
       touchStart: x:0, y:0
       vminPx: 0
     
-    render resize window, state
-    $(window).resize ()-> render resize window, state
-    inputLayer.click (e)-> render click window, state, e.clientX
-    inputLayer.on "touchstart", (e)-> render touchstart state, e
-    inputLayer.on "touchmove", (e)-> render touchmove state, e
-    inputLayer.on "touchend", (e)-> render touchend state
+    render resize state
+    $(window).resize ()-> render resize state
+    # inputLayer.click (e)-> render click state, e.clientX
+    # inputLayer.on "touchstart", (e)-> render touchstart state, e
+    # inputLayer.on "touchmove", (e)-> render touchmove state, e
+    # inputLayer.on "touchend", (e)-> render touchend state
     
