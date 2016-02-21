@@ -78,11 +78,13 @@ fieldset {
 
 /* 1. The page should fill the page! (Ivan) */
 /* 2. Don't re-scale our text on mobile (Ivan) */
-/* 3. Don't highlight taps; let our own interactivity styles handle that (Ivan) */
+/* 3. Disable double-tap zoom (Ivan) */
+/* 4. Don't highlight taps; let our own interactivity styles handle that (Ivan) */
 html {
   width: 100%;
   height: 100%;
   text-size-adjust: none;
+  touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 
