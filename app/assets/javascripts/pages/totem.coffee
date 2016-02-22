@@ -60,7 +60,7 @@ $ ()->
       state.offsetY = 0
   
   
-  clickAction = (clientX)->
+  clickAction = (state, clientX)->
     clickVmin = (clientX - window.innerWidth/2) / state.vminPx
     absClickVmin = Math.abs clickVmin
     if absClickVmin > TILE_SIZE/2
@@ -86,7 +86,7 @@ $ ()->
   
   click = (state, clientX)->
     state.isSliding = state.isScrolling = false
-    clickAction(clientX) unless state.blockNextClick
+    clickAction state,(clientX) unless state.blockNextClick
     state.blockNextClick = false
     return state
   
@@ -140,7 +140,7 @@ $ ()->
         updateSliderOffset state
       state.isTransitioning = true
     else if not state.isScrolling
-      clickAction state.touchStart.x
+      clickAction state, state.touchStart.x
     return state
     
     
@@ -153,6 +153,11 @@ $ ()->
     state.slider.height(80 * state.vminPx)
     state.clipper.height(80 * state.vminPx)
     state.row.height(80 * state.vminPx).css("margin", "#{2*state.vminPx}px 0")
+    rowPos = state.row.offset()
+    rowPos.left = window.innerWidth/2
+    rowPos.top += 65 * state.vminPx
+    console.log rowPos
+    state.panel.offset(rowPos)
 
   
   condCSS = (elm, prop, test, tVal, fVal = "")->
@@ -211,10 +216,10 @@ $ ()->
       return false
   
   
-  # INITIALIZE ####################################################################################
+  # SETUP #########################################################################################
   
   
-  for rowElm in $("totem-row")
+  setup = (rowElm)->
     row = $ rowElm
     inputLayer = row.find "input-layer"
     
@@ -257,4 +262,7 @@ $ ()->
     inputLayer.on "touchstart", (e)-> render touchstart state, e
     inputLayer.on "touchmove", (e)-> render touchmove state, e
     inputLayer.on "touchend", (e)-> render touchend state, e
-    
+  
+  
+  # INIT ##########################################################################################
+  setup rowElm for rowElm in $("totem-row")

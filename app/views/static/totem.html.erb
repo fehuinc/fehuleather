@@ -1,56 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="20 40 160 140">
+  <defs>
+    <path id="svg-circle" d="M25, 100 a75,75 0 1,0 150,0 a75,75 0 1,0 -150,0"/>
+    <clipPath id="clip-path"><path d="M40, 100 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"/></clipPath>
+  </defs>
+  <text x="0" y="0" fill="#456" fill-opacity="1" transform="rotate(0, 100, 100)">
+    <textPath xlink:href="#svg-circle">This Is The Text I Care About</textPath>
+  </text>
+</svg>
+
+
 <% @totem_rows.each do |totem_row| %>
   <totem-row class="unselectable">
-    <totem-panel>
-      <div class="wrapper">
-        <h1 product-name></h1>
-        <purchasing-info>
-          <div>Select Variations</div>
-          <div>Select Size</div>
-          <div class="subtotal">
-            <div class="input-with-buttons">
-              <div class="button-row perspective">
-                <div class="button">-</div>
-                <div class="button">+</div>
-              </div>
-              <input type="number"
-                     class="quantity"
-                     step="1">
-            </div>
-            for
-            <div class="price">$</div>
-          </div>
-          
-          <div class="perspective submit">
-            <button>Yes Please!</button>
-          </div>
-          
-          <div class="perspective submit">
-            <button ng-click="Cart.add(currentBuild)">Update Quantity</button>
-          </div>
-          
-          <div class="cart">
-            <div>It's in <a>The Bag</a></div>
-          </div>
-        </purchasing-info>
-
-        <descriptive-info>
-          <div>Description</div>
-        </descriptive-info>
-        
-        
-        <bottom-info>
-          <div>Info Name</div>
-          <div>Info Name</div>
-          <div>Info Name</div>
-          <info-display>
-            <div>Info Content</div>
-          </info-display>
-        </bottom-info>
-        
-        <a class="closer">Close</a>
-      </div>
-    </totem-panel>
-    
     <clipping-layer>
       <sliding-layer>
         <% totem_row.items.each do |totem_item| %>
@@ -62,4 +22,54 @@
     </clipping-layer>
     <input-layer></input-layer>
   </totem-row>
+  <totem-panel>
+    <div class="wrapper">
+      <h1 product-name></h1>
+      <purchasing-info>
+        <div>Select Variations</div>
+        <div>Select Size</div>
+        <div class="subtotal">
+          <div class="input-with-buttons">
+            <div class="button-row perspective">
+              <div class="button">-</div>
+              <div class="button">+</div>
+            </div>
+            <input type="number"
+                   class="quantity"
+                   step="1">
+          </div>
+          for
+          <div class="price">$</div>
+        </div>
+        
+        <div class="perspective submit">
+          <button>Yes Please!</button>
+        </div>
+        
+        <div class="perspective submit">
+          <button ng-click="Cart.add(currentBuild)">Update Quantity</button>
+        </div>
+        
+        <div class="cart">
+          <div>It's in <a>The Bag</a></div>
+        </div>
+      </purchasing-info>
+
+      <descriptive-info>
+        <div>Description</div>
+      </descriptive-info>
+      
+      
+      <bottom-info>
+        <div>Info Name</div>
+        <div>Info Name</div>
+        <div>Info Name</div>
+        <info-display>
+          <div>Info Content</div>
+        </info-display>
+      </bottom-info>
+      
+      <a class="closer">Close</a>
+    </div>
+  </totem-panel>
 <% end %>
