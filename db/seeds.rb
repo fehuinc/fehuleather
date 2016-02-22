@@ -8,15 +8,15 @@ row = TotemRow.create! index: 0
 wrap_cuff = bracelets.products.create! name: "Wrap Cuff"
 wrap_cuff.sizes.create! name: "Adjustable"
 row.items.create! variation: (wrap_cuff.variations.create! name: "Pumpkin",     totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/pumpkin.jpg")
-row.items.create! variation: (wrap_cuff.variations.create! name: "Black",       totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/black.jpg")
+# row.items.create! variation: (wrap_cuff.variations.create! name: "Black",       totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/black.jpg")
 row.items.create! variation: (wrap_cuff.variations.create! name: "Nude",        totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/nude.jpg")
 row.items.create! variation: (wrap_cuff.variations.create! name: "Slate",       totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/slate.jpg")
 row.items.create! variation: (wrap_cuff.variations.create! name: "Cinnamon",    totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/cinnamon.jpg")
 row.items.create! variation: (wrap_cuff.variations.create! name: "Walnut",      totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/walnut.jpg")
 row.items.create! variation: (wrap_cuff.variations.create! name: "Turmeric",    totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/turmeric.jpg")
 row.items.create! variation: (wrap_cuff.variations.create! name: "Mushroom",    totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/mushroom.jpg")
-row.items.create! variation: (wrap_cuff.variations.create! name: "Rose",        totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/rose.jpg")
-row.items.create! variation: (wrap_cuff.variations.create! name: "Cranberry",   totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/cranberry.jpg")
+# row.items.create! variation: (wrap_cuff.variations.create! name: "Rose",        totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/rose.jpg")
+# row.items.create! variation: (wrap_cuff.variations.create! name: "Cranberry",   totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/cranberry.jpg")
 
 
 row = TotemRow.create! index: 1
