@@ -4,31 +4,31 @@ hair =      Kingdom.create! name: "Hair"
 rings =     Kingdom.create! name: "Ring"
 
 
-# row = TotemRow.create! index: 0
-# wrap_cuff = bracelets.products.create! name: "Wrap Cuff"
-# wrap_cuff.sizes.create! name: "Adjustable"
-# row.items.create! variation: (wrap_cuff.variations.create! name: "Pumpkin",     totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/pumpkin.jpg")
-# row.items.create! variation: (wrap_cuff.variations.create! name: "Black",       totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/black.jpg")
-# row.items.create! variation: (wrap_cuff.variations.create! name: "Nude",        totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/nude.jpg")
-# row.items.create! variation: (wrap_cuff.variations.create! name: "Slate",       totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/slate.jpg")
-# row.items.create! variation: (wrap_cuff.variations.create! name: "Cinnamon",    totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/cinnamon.jpg")
-# row.items.create! variation: (wrap_cuff.variations.create! name: "Walnut",      totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/walnut.jpg")
-# row.items.create! variation: (wrap_cuff.variations.create! name: "Turmeric",    totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/turmeric.jpg")
-# row.items.create! variation: (wrap_cuff.variations.create! name: "Mushroom",    totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/mushroom.jpg")
-# row.items.create! variation: (wrap_cuff.variations.create! name: "Rose",        totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/rose.jpg")
-# row.items.create! variation: (wrap_cuff.variations.create! name: "Cranberry",   totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/cranberry.jpg")
-#
-#
-# row = TotemRow.create! index: 1
-# gilt_cuff = bracelets.products.create! name: "Gilt Cuff"
-# gilt_cuff.sizes.create! name: "Adjustable"
-# row.items.create! variation: (gilt_cuff.variations.create! name: "White/Black",    totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/white-black.jpg")
-# row.items.create! variation: (gilt_cuff.variations.create! name: "White/Brown",    totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/white-brown.jpg")
-# row.items.create! variation: (gilt_cuff.variations.create! name: "Yellow/Brown",   totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-brown.jpg")
-# row.items.create! variation: (gilt_cuff.variations.create! name: "Yellow/Black",   totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-black.jpg")
-# row.items.create! variation: (gilt_cuff.variations.create! name: "Yellow Stripes", totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-stripes.jpg")
-#
-#
+row = TotemRow.create! index: 0
+wrap_cuff = bracelets.products.create! name: "Wrap Cuff"
+wrap_cuff.sizes.create! name: "Adjustable"
+row.items.create! variation: (wrap_cuff.variations.create! name: "Pumpkin",     totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/pumpkin.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Black",       totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/black.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Nude",        totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/nude.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Slate",       totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/slate.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Cinnamon",    totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/cinnamon.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Walnut",      totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/walnut.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Turmeric",    totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/turmeric.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Mushroom",    totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/mushroom.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Rose",        totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/rose.jpg")
+row.items.create! variation: (wrap_cuff.variations.create! name: "Cranberry",   totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/cranberry.jpg")
+
+
+row = TotemRow.create! index: 1
+gilt_cuff = bracelets.products.create! name: "Gilt Cuff"
+gilt_cuff.sizes.create! name: "Adjustable"
+row.items.create! variation: (gilt_cuff.variations.create! name: "White/Black",    totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/white-black.jpg")
+row.items.create! variation: (gilt_cuff.variations.create! name: "White/Brown",    totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/white-brown.jpg")
+row.items.create! variation: (gilt_cuff.variations.create! name: "Yellow/Brown",   totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-brown.jpg")
+row.items.create! variation: (gilt_cuff.variations.create! name: "Yellow/Black",   totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-black.jpg")
+row.items.create! variation: (gilt_cuff.variations.create! name: "Yellow Stripes", totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-stripes.jpg")
+
+
 # row = TotemRow.create! index: 2
 # hair_cuff = hair.products.create! name: "Hair Cuff"
 # hair_cuff.sizes.create! name: "Small"
@@ -37,15 +37,15 @@ rings =     Kingdom.create! name: "Ring"
 # row.items.create! variation: (hair_cuff.variations.create! name: "Yellow Stripes", totem_image: ENV["IMAGEPATH"] + "hair-cuff/totem/yellow-stripes.jpg")
 # row.items.create! variation: (hair_cuff.variations.create! name: "Yellow Leaf",    totem_image: ENV["IMAGEPATH"] + "hair-cuff/totem/yellow-leaf.jpg")
 # row.items.create! variation: (hair_cuff.variations.create! name: "White Leaf",     totem_image: ENV["IMAGEPATH"] + "hair-cuff/totem/white-leaf.jpg")
-#
-#
-# row = TotemRow.create! index: 3
-# wrap_ring = rings.products.create! name: "Wrap Ring"
-# wrap_ring.sizes.create! name: "Tiny"
-# wrap_ring.sizes.create! name: "Small"
-# wrap_ring.sizes.create! name: "Medium"
-# wrap_ring.sizes.create! name: "Large"
-# row.items.create! variation: (wrap_ring.variations.create! name: "Black", totem_image: ENV["IMAGEPATH"] + "wrap-ring/totem/front.jpg")
+
+
+row = TotemRow.create! index: 3
+wrap_ring = rings.products.create! name: "Wrap Ring"
+wrap_ring.sizes.create! name: "Tiny"
+wrap_ring.sizes.create! name: "Small"
+wrap_ring.sizes.create! name: "Medium"
+wrap_ring.sizes.create! name: "Large"
+row.items.create! variation: (wrap_ring.variations.create! name: "Black", totem_image: ENV["IMAGEPATH"] + "wrap-ring/totem/black.jpg")
 
 
 row = TotemRow.create! index: 4
@@ -64,54 +64,22 @@ row.items.create! variation: (fuzzy_cuff.variations.create! name: "Wiley",   tot
 row.items.create! variation: (fuzzy_cuff.variations.create! name: "Bean",    totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/bean.jpg")
 row.items.create! variation: (fuzzy_cuff.variations.create! name: "Hunt",    totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/hunt.jpg")
 
-# row = TotemRow.create! index: 5
-# fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff Test"
-# fuzzy_cuff.sizes.create! name: "One Of A Kind"
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Painter", totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/painter.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Mo",      totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/mo.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Spook",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/spook.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Duster",  totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/duster.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Grumble", totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/grumble.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Tippy",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/tippy.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Wizen",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/wizen.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Chief",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/chief.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Fluffle", totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/fluffle.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Wiley",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/wiley.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Bean",    totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/bean.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Hunt",    totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/hunt.jpg")
-#
-# row = TotemRow.create! index: 6
-# fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff Test 2"
-# fuzzy_cuff.sizes.create! name: "One Of A Kind"
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Painter", totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/painter.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Mo",      totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/mo.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Spook",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/spook.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Duster",  totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/duster.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Grumble", totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/grumble.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Tippy",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/tippy.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Wizen",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/wizen.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Chief",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/chief.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Fluffle", totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/fluffle.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Wiley",   totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/wiley.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Bean",    totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/bean.jpg")
-# row.items.create! variation: (fuzzy_cuff.variations.create! name: "Hunt",    totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/hunt.jpg")
 
-
-# row = TotemRow.create! index: 5
-# cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet"
-# cc_bracelet.sizes.create! name: "Adjustable"
+row = TotemRow.create! index: 5
+cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet"
+cc_bracelet.sizes.create! name: "Adjustable"
 # row.items.create! variation: (cc_bracelet.variations.create! name: "Basic",           totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/basic.jpg")
 # row.items.create! variation: (cc_bracelet.variations.create! name: "Amethyst",        totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/amethyst.jpg")
 # row.items.create! variation: (cc_bracelet.variations.create! name: "Blue Lace Agate", totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/blue-lace-agate.jpg")
 # row.items.create! variation: (cc_bracelet.variations.create! name: "Carnelian",       totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/carnelian.jpg")
-# row.items.create! variation: (cc_bracelet.variations.create! name: "Howlite",         totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/howlite.jpg")
-# row.items.create! variation: (cc_bracelet.variations.create! name: "Jasper",          totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/jasper.jpg")
-# row.items.create! variation: (cc_bracelet.variations.create! name: "Lapis Lazuli",    totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/lapis-lazuli.jpg")
-# row.items.create! variation: (cc_bracelet.variations.create! name: "Malachite",       totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/malachite.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Howlite",         totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/howlite.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Jasper",          totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/jasper.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Lapis Lazuli",    totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/lapis-lazuli.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Malachite",       totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/malachite.jpg")
 # row.items.create! variation: (cc_bracelet.variations.create! name: "Onyx",            totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/onyx.jpg")
-# row.items.create! variation: (cc_bracelet.variations.create! name: "Pyrite",          totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/pyrite.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Pyrite",          totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/pyrite.jpg")
 # row.items.create! variation: (cc_bracelet.variations.create! name: "Rose Quartz",     totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/rose-quartz.jpg")
-# row.items.create! variation: (cc_bracelet.variations.create! name: "Smoky Quartz",    totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/smoky-quartz.jpg")
+row.items.create! variation: (cc_bracelet.variations.create! name: "Smoky Quartz",    totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/smoky-quartz.jpg")
 # row.items.create! variation: (cc_bracelet.variations.create! name: "Tigers Eye",      totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/tigers-eye.jpg")
 #
 #
@@ -330,4 +298,4 @@ Location.create!(
 
 ## EVENTS #########################################################################################
 
-Event.create! name: "By Hand", date: "Jan 31st - Feb 3rd, 2016", location: "Toronto, ON", description: "Booth #301"
+Event.create! name: "All Things Pretty", date: "April 30th to May 1st, 2016", location: "Red Deer, AB", description: "Booth #301"

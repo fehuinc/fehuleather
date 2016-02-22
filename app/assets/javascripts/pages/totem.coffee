@@ -181,8 +181,7 @@ $ ()->
   
   renderSliderData = (state)->
     time = 0.6
-    x1 = .2
-    y1 = .2
+    x1 = y1 = .2
     x2 = .3
     y2 = .9
     if state.isTransitioning and state.isSliding
@@ -191,9 +190,8 @@ $ ()->
       time = Math.abs dist/vel
       time = 10 * time
       time = Math.max .3, Math.min .8, time
-      x1 = 0
-      y1 = 0
-      console.log y1 = .3 + Math.max 0, (vel/dist)/50
+      x1 = y1 = 0
+      y1 = .3 + Math.max 0, (vel/dist)/50
     
     condCSS state.slider, "-webkit-transition", state.isTransitioning, "-webkit-transform #{time}s cubic-bezier(#{x1},#{y1},#{x2},#{y2})"
     condCSS state.slider, "-ms-transition", state.isTransitioning, "-ms-transform #{time}s cubic-bezier(#{x1},#{y1},#{x2},#{y2})"

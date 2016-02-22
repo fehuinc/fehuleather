@@ -2,16 +2,7 @@
 
 Stinks. On Rails.
 
-
 # Todo
-
-Totem
-  All images wrapped in a square container of a known size
-  One screen-wide container that slides back and forth
-  Images snap when wrapping
-  One screen-wide cover layer that receives input (and, perhaps, does a gradient fade?)
-
-
 
 Automatic Currency Conversion — users choose their own country (perhaps, a little flag next to prices?)
   https://github.com/RubyMoney/money
@@ -31,20 +22,8 @@ Wholesale
   
   Email Freyja when an order is delivered
     the body of the email is the linesheet
+
   
-  
-## Notes
-
-#### Photos
-*	3 sizes: 400 (25k), 800 (75k), 1600 (300k)
-*	is a ~90% quality jpeg (after ImageOptim)
-*	Group, Hero, Retail (per variation), Wholesale (per variation)
-
-
-#### Cross Browser
-IE does not support vmax — perhaps we serve them a shittier stylesheet that doesn't do the full-fancy totem scaling?
-
-
 ## Dev
 Here be the needed env vars:
 
@@ -68,9 +47,19 @@ STRIPE_KEY=(secret — get from stripe)
 
 # Development
 
-### Rebuild the DB from scratch
+### To erase and rebuild the Development DB:
 ```bash
 pg_ctl restart -m fast && rake db:drop db:create db:migrate db:seed
+```
+
+
+# Staging
+
+
+### To erase and rebuild the Staging DB:
+```bash
+heroku pg:reset DATABASE --remote staging --confirm fehu-staging
+heroku run rake db:migrate db:seed --remote staging
 ```
 
 
@@ -100,7 +89,7 @@ WEB_CONCURRENCY=3
 
 
 
-### To erase and rebuild the DB:
+### To erase and rebuild the Production DB:
 ```bash
 heroku pg:reset DATABASE --app fehu --confirm fehu
 heroku run rake db:migrate db:seed --app fehu
