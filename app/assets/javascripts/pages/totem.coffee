@@ -23,6 +23,10 @@ $ ()->
   updateItemList = (state)->
     for item in state.itemList
       updateItemX state, item
+  
+  
+  wrapItemList = (state)->
+    for item in state.itemList
       wrapItemToScreen state, item
   
   
@@ -37,6 +41,7 @@ $ ()->
   updateSliderOffset = (state)->
     state.offsetX = state.offsetUnits * state.tileSizePx
     updateItemList state
+    wrapItemList state
     updateCurrentItem state
   
   
@@ -80,7 +85,9 @@ $ ()->
   
   
   click = (state, clientX)->
-    clickAction(clientX) if state.blockClickTime < Date.now() - 310
+    state.isSliding = state.isScrolling = false
+    clickAction(clientX) unless state.blockNextClick
+    state.blockNextClick = false
     return state
   
   
@@ -115,14 +122,19 @@ $ ()->
   
   
   touchend = (state, e)->
-    state.blockClickTime = Date.now()
+    state.blockNextClick = true
     if state.isSliding
-      previousDeltaPx = state.touchCurrent.x - state.touchPrevious.x
-      totalDeltaUnits = -Math.round (state.offsetXStart - state.touchStart.x) / state.tileSizePx
+      state.offsetXPrevious = state.offsetX
+      velPx = state.touchCurrent.x - state.touchPrevious.x
+      totalDeltaUnits = (state.touchStart.x - state.touchCurrent.x) / state.tileSizePx
       
-      if previousDeltaPx > state.tileSizePx/10 and totalDeltaUnits >= 0
+      if velPx > state.tileSizePx/50 and Math.round(totalDeltaUnits) >= 0
         slideByUnits state, -1
-      else if previousDeltaPx < -state.tileSizePx/10 and totalDeltaUnits <= 0
+      else if velPx < -state.tileSizePx/50 and Math.round(totalDeltaUnits) <= 0
+        slideByUnits state, 1
+      else if velPx > 0 and totalDeltaUnits > 0.2
+        slideByUnits state, -1
+      else if velPx < 0 and totalDeltaUnits < 0.2
         slideByUnits state, 1
       else
         updateSliderOffset state
@@ -148,11 +160,12 @@ $ ()->
   
   
   renderItem = (item, state)->
-    opacity = fixFloatError 1 - item.absScreenX / (state.tileSizePx * 2)
-    condCSS item.elm, "transition", state.isTransitioning, "opacity .4s cubic-bezier(.2,.2,.3,.9)"
-    condCSS item.elm, "display",   opacity >= 0, "block", "none"
-    condCSS item.elm, "opacity",   opacity >= 0, opacity
-    condCSS item.elm, "transform", opacity >= 0, "translateX(#{item.x}px)"
+    pos = fixFloatError 1 - item.absScreenX / (state.tileSizePx * 2)
+    # condCSS item.elm, "transition", state.isTransitioning, "opacity .4s cubic-bezier(.2,.2,.3,.9)"
+    condCSS item.elm, "display",   pos >= 0, "block", "none"
+    # condCSS item.elm, "opacity",   pos >= 0, pos
+    condCSS item.elm, "opacity",   pos >= 0, if state.currentItem is item then 1 else 0.2
+    condCSS item.elm, "transform", pos >= 0, "translateX(#{item.x}px)"
   
   
   renderPanelData = (state)->
@@ -167,20 +180,37 @@ $ ()->
   
   
   renderSliderData = (state)->
-    condCSS state.slider, "transition", state.isTransitioning, "transform .6s cubic-bezier(.2,.2,.3,.9)"
-    state.slider.css "transform", "translate(#{state.offsetX}px, #{state.offsetY}px)"
-  
+    time = 0.6
+    x1 = .2
+    y1 = .2
+    x2 = .3
+    y2 = .9
+    if state.isTransitioning and state.isSliding
+      dist = state.offsetX - state.offsetXPrevious
+      vel = (state.touchCurrent.x - state.touchPrevious.x) * 60
+      time = Math.abs dist/vel
+      time = 10 * time
+      time = Math.max .3, Math.min .8, time
+      x1 = 0
+      y1 = 0
+      console.log y1 = .3 + Math.max 0, (vel/dist)/50
     
-  renderInputData = (state)->
-    state.e.preventDefault() if state.isSliding
+    condCSS state.slider, "-webkit-transition", state.isTransitioning, "-webkit-transform #{time}s cubic-bezier(#{x1},#{y1},#{x2},#{y2})"
+    condCSS state.slider, "-ms-transition", state.isTransitioning, "-ms-transform #{time}s cubic-bezier(#{x1},#{y1},#{x2},#{y2})"
+    condCSS state.slider, "transition", state.isTransitioning, "transform #{time}s cubic-bezier(#{x1},#{y1},#{x2},#{y2})"
+    state.slider.css "-webkit-transform", "translate(#{state.offsetX}px, #{state.offsetY}px)"
+    state.slider.css "-ms-transform", "translate(#{state.offsetX}px, #{state.offsetY}px)"
+    state.slider.css "transform", "translate(#{state.offsetX}px, #{state.offsetY}px)"
   
     
   render = (state)->
     renderItem item, state for item in state.itemList
     renderPanelData state
     renderSliderData state
-    renderInputData state
-    return !state.isSliding
+    
+    if state.isSliding
+      state.e.preventDefault()
+      return false
   
   
   # INITIALIZE ####################################################################################
@@ -191,7 +221,7 @@ $ ()->
     inputLayer = row.find "input-layer"
     
     state =
-      blockClickTime: 0
+      blockNextClick: false
       clipper: row.find "clipping-layer"
       currentItem: null
       e: null
@@ -209,6 +239,7 @@ $ ()->
         x: 0
         ypos: item.getAttribute "item-ypos"
       offsetX: 0
+      offsetXPrevious: 0
       offsetXStart: 0
       offsetY: 0
       offsetUnits: 0
@@ -224,7 +255,7 @@ $ ()->
     
     render resize state
     $(window).resize ()-> render resize state
-    # inputLayer.click (e)-> render click state, e.clientX
+    inputLayer.click (e)-> render click state, e.clientX
     inputLayer.on "touchstart", (e)-> render touchstart state, e
     inputLayer.on "touchmove", (e)-> render touchmove state, e
     inputLayer.on "touchend", (e)-> render touchend state, e
