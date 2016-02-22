@@ -26,20 +26,20 @@ Rails.application.configure do
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like
   # NGINX, varnish or squid.
-  config.action_dispatch.rack_cache = true
+  # config.action_dispatch.rack_cache = true
   
   # Configure Rack::Cache
-  config.middleware.use Rack::Cache,
-   :verbose => true,
-   :metastore   => 'file:/var/cache/rack/meta',
-   :entitystore => 'file:/var/cache/rack/body'
+  # config.middleware.use Rack::Cache,
+  #  :verbose => true,
+  #  :metastore   => 'file:/var/cache/rack/meta',
+  #  :entitystore => 'file:/var/cache/rack/body'
   
   # NOTE(IVAN): Added based on some Googling.. not sure if it helps.
   config.static_cache_control = "public, max-age=31536000"
   
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  # config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.serve_static_files = true #ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
