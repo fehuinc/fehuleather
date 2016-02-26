@@ -11,12 +11,24 @@
     </clipping-layer>
     <input-layer></input-layer>
   </totem-row>
+  
+  
   <totem-panel>
-    <div class="wrapper">
+    <panel-wrapper>
       <h1 product-name></h1>
       <purchasing-info>
-        <div>Select Variations</div>
-        <div>Select Size</div>
+        <label>
+          Variation
+          <select>
+            <option>Default</option>
+          </select>
+        </label>
+        <label>
+          Size
+          <select>
+            <option>Default</option>
+          </select>
+        </label>
         <div class="subtotal">
           <div class="input-with-buttons">
             <div class="button-row perspective">
@@ -28,37 +40,37 @@
                    step="1">
           </div>
           for
-          <div class="price">$</div>
+          <div class="price">$100</div>
         </div>
         
-        <div class="perspective submit">
+        <purchase-status class="perspective submit">
           <button>Yes Please!</button>
-        </div>
+        </purchase-status>
         
-        <div class="perspective submit">
+        <purchase-status class="perspective submit">
           <button ng-click="Cart.add(currentBuild)">Update Quantity</button>
-        </div>
+        </purchase-status>
         
-        <div class="cart">
+        <purchase-status class="cart">
           <div>It's in <a>The Bag</a></div>
-        </div>
+        </purchase-status>
       </purchasing-info>
-
-      <descriptive-info>
-        <div>Description</div>
-      </descriptive-info>
-      
       
       <bottom-info>
-        <div>Info Name</div>
-        <div>Info Name</div>
-        <div>Info Name</div>
+        <custom-info>
+          <div>Sizing</div>
+        </custom-info>
+        <shop-info>
+          <div>Shipping</div>
+          <div>Refunds</div>
+          <div>Uniqueness</div>
+        </shop-info>
         <info-display>
           <div>Info Content</div>
         </info-display>
       </bottom-info>
       
-      <a class="closer">Close</a>
-    </div>
+      <panel-closer>close</panel-closer>
+    </panel-wrapper>
   </totem-panel>
 <% end %>

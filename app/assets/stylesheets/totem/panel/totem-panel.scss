@@ -1,0 +1,24 @@
+@import 'vars';
+
+totem-panel.showingPanel {
+  opacity: 1;
+  overflow: visible;
+  transform: translateY(0);
+  transition: opacity .4s ease-out, transform .7s;
+  pointer-events: auto;
+}
+
+totem-panel {
+  position: absolute;
+  display: block;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  text-align: center;
+  transform: translateY(5vmin);
+  transition: opacity .7s ease-in, transform .7s;
+  -webkit-font-smoothing: subpixel-antialiased;
+  opacity: 0;
+  z-index: 20;
+  pointer-events: none;
+}

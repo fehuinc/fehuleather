@@ -1,0 +1,8 @@
+panel-closer {
+  display: inline-block;
+  margin-top: .5em;
+  padding: .5em;
+  font-variant: small-caps;
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}
