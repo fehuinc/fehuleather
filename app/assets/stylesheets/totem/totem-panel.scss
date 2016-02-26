@@ -1,9 +1,9 @@
 @import 'vars';
 
-.showingPanel totem-panel {
+totem-panel.showingPanel {
   opacity: 1;
   overflow: visible;
-  transform: translate(-50%, 0);
+  transform: translateY(0);
   transition: opacity .4s ease-out, transform .7s;
   pointer-events: auto;
 }
@@ -11,10 +11,11 @@
 totem-panel {
   position: absolute;
   display: block;
-  // top: 65%;
-  left: 50%;
+  top: 0%;
+  left: 0%;
+  width: 100%;
   text-align: center;
-  transform: translate(-50%, 5vmin);
+  transform: translateY(5vmin);
   transition: opacity .7s ease-in, transform .7s;
   -webkit-font-smoothing: subpixel-antialiased;
   opacity: 0;
@@ -38,7 +39,7 @@ totem-panel {
       padding: .5em 0 0;
     }
   }
-
+  
   .closer {
     display: inline-block;
     margin-top: .5em;

@@ -3,6 +3,8 @@ $ ()->
   PANEL_OPEN_CENTER_POS = 30 # panelClosedCenterPos would be 50
   TILE_SIZE = 82
   
+  currentPanelState = null
+  
   
   fixFloatError = (i)->
     Math.round(i*1000)/1000
@@ -48,16 +50,23 @@ $ ()->
   slideByUnits = (state, deltaUnits)->
     state.offsetUnits = state.offsetUnits - deltaUnits
     updateSliderOffset state
-    
-    
-  togglePanel = (state)->
-    state.isPanelOpen = !state.isPanelOpen
+  
+  
+  togglePanel = (state, newVal)->
+    state.isPanelOpen = if newVal? then newVal else !state.isPanelOpen
     if state.isPanelOpen
+      
+      render togglePanel(currentPanelState, false) if currentPanelState
+      currentPanelState = state
+      
       deltaPos = state.currentItem.ypos - PANEL_OPEN_CENTER_POS
       deltaPx = state.tileSizePx * deltaPos/100
       state.offsetY = -deltaPx
     else
       state.offsetY = 0
+      currentPanelState = null
+      
+    return state # Used as an event, need to pass-through
   
   
   clickAction = (state, clientX)->
@@ -142,7 +151,7 @@ $ ()->
     else if not state.isScrolling
       clickAction state, state.touchStart.x
     return state
-    
+
     
   # RENDERING #####################################################################################
   
@@ -154,11 +163,9 @@ $ ()->
     state.clipper.height(80 * state.vminPx)
     state.row.height(80 * state.vminPx).css("margin", "#{2*state.vminPx}px 0")
     rowPos = state.row.offset()
-    rowPos.left = window.innerWidth/2
-    rowPos.top += 65 * state.vminPx
-    console.log rowPos
-    state.panel.offset(rowPos)
-
+    rowPos.top += 60 * state.vminPx
+    state.panel.css("top", rowPos.top)
+  
   
   condCSS = (elm, prop, test, tVal, fVal = "")->
     elm.css prop, if test then tVal else fVal
@@ -175,13 +182,13 @@ $ ()->
   
   renderPanelData = (state)->
     if state.isPanelOpen
-      state.row.addClass "showingPanel"
+      state.panel.addClass "showingPanel"
       panel = state.panel
       currentItemElm = state.currentItem.elm
       panel.find("[product-name]").html currentItemElm.attr "item-name"
       # render variations, etc etc
     else
-      state.row.removeClass "showingPanel"
+      state.panel.removeClass "showingPanel"
   
   
   renderSliderData = (state)->
@@ -246,7 +253,7 @@ $ ()->
       offsetXStart: 0
       offsetY: 0
       offsetUnits: 0
-      panel: row.find "totem-panel"
+      panel: row.next()
       row: row
       slider: row.find "sliding-layer"
       sliderWidthPx: 0
@@ -262,6 +269,7 @@ $ ()->
     inputLayer.on "touchstart", (e)-> render touchstart state, e
     inputLayer.on "touchmove", (e)-> render touchmove state, e
     inputLayer.on "touchend", (e)-> render touchend state, e
+    state.panel.find(".closer").click (e)-> render togglePanel state, false
   
   
   # INIT ##########################################################################################
