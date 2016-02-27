@@ -19,7 +19,7 @@ header {
   .logo {
     position: absolute;
     text-align: center;
-    top: $row-height * 1.9;
+    top: $row-height * 1.7;
     left: 50%;
     z-index: 0;
     transform: translate(-50%, -50%);
@@ -36,16 +36,14 @@ header {
       
       img {
         display: block;
-        width: 7rem;
+        width: 8rem;
         margin: 0 auto;
         @media (max-width: 550px) { width: 6rem; }
         @media (max-width: 400px) { width: 5rem; }
       }
     }
     
-    @media (max-height: 740px) { top: $row-height * 0.9; }
-    @media (max-width: 1024px) { top: $row-height * 1.5; }
-    @media (max-width: 700px) { top: $row-height * 1.2; }
+    // @media (max-width: 700px) { top: $row-height * 1.2; }
     @media (max-width: 550px) { top: $row-height * 0.9; }
   }
   
@@ -64,7 +62,7 @@ header {
     height: $row-height;
     line-height: $row-height;
     
-    @media (max-height: 740px) {
+    @media (max-width: 550px) {
       height: $row-height * .8;
       line-height: $row-height * .8;
     }
