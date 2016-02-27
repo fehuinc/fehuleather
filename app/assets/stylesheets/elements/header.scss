@@ -9,9 +9,8 @@ header {
   background: white;
   margin: 0 auto;
   
-  @media (max-width: 600px) { font-size: 0.9em; }
-  @media (max-width: 500px) { font-size: 0.75em; }
-  @media (max-width: 400px) { font-size: 0.6em; }
+  @media (max-width: 450px) { font-size: 0.9em; }
+  @media (max-width: 400px) { font-size: 0.8em; }
   
   a {
     text-decoration: none;
@@ -39,15 +38,13 @@ header {
         display: block;
         width: 7rem;
         margin: 0 auto;
-        @media (max-width: 650px) { width: 6rem; }
-        @media (max-width: 550px) { width: 5rem; }
-        @media (max-width: 450px) { width: 4rem; }
+        @media (max-width: 550px) { width: 6rem; }
+        @media (max-width: 400px) { width: 5rem; }
       }
     }
     
-    @media (max-width: 800px) { top: $row-height * 1.4; }
-    @media (max-width: 700px) { top: $row-height * 1.2; }
-    @media (max-width: 600px) { top: $row-height * 0.9; }
+    @media (max-height: 740px) { top: $row-height * 0.9; }
+    @media (max-width: 550px) { top: $row-height * 0.9; }
   }
   
   .bricks {
@@ -62,13 +59,20 @@ header {
   
   row-item {
     display: block;
-    flex: 1 4 auto;
     height: $row-height;
     line-height: $row-height;
     
-    @media (max-width: 600px) {
+    @media (max-height: 740px) {
       height: $row-height * .8;
       line-height: $row-height * .8;
+    }
+    
+    &.out {
+      flex: 1 3;
+      &.s7 { flex-basis: 3em * 3; }
+      &.s6 { flex-basis: 3em * 2; }
+      &.s5 { flex-basis: 3em * 1; }
+      &.s4 { flex-basis: 3em * 0; }
     }
     
     &.in {
@@ -95,7 +99,7 @@ header {
       font-size: 1.1em;
       color: rgba(#543, 0.7);
       &:hover { text-decoration: underline; }
-      @media (max-width: 500px) { font-size: 1em; }
+      @media (max-width: 550px) { font-size: 1em; }
     }
   }
   
