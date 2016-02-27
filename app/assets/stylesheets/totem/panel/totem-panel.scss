@@ -1,13 +1,5 @@
 @import 'vars';
 
-totem-panel.showingPanel {
-  opacity: 1;
-  overflow: visible;
-  transform: translateY(0);
-  transition: opacity .4s ease-out, transform .7s;
-  pointer-events: auto;
-}
-
 totem-panel {
   position: absolute;
   display: block;
@@ -21,4 +13,12 @@ totem-panel {
   opacity: 0;
   z-index: 20;
   pointer-events: none;
+
+  &.showingPanel {
+    opacity: 1;
+    overflow: visible;
+    transform: translateY(0);
+    transition: opacity .4s ease-out, transform .7s;
+    pointer-events: auto;
+  }
 }

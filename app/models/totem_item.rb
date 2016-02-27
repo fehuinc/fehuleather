@@ -5,7 +5,7 @@ class TotemItem < ActiveRecord::Base
   validates :index, :ypos, { numericality: { only_integer: true } }
   
   def real_name
-    variation_id ? variation.full_name : name
+    variation_id ? variation.product.name : name
   end
   
   def real_image

@@ -1,8 +1,22 @@
+@import 'vars';
+
 panel-closer {
   display: inline-block;
-  margin-top: .5em;
-  padding: .5em;
-  font-variant: small-caps;
+  position: absolute;
+  top: -1em;
+  right: -1em;
+  width: 2.4em;
+  height: 2.4em;
+  line-height: 2.2em;
+  border: 1px solid rgba($dark, .5);
+  border-radius: 100%;
+  text-align: center;
   text-decoration: none;
-  &:hover { text-decoration: underline; }
+  color: $dark;
+  background: #FFF;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+    border: 1px solid $dark;
+  }
 }

@@ -7,11 +7,11 @@
   background: rgba(255,255,255,0.88);
 }}
 
-@supports (backdrop-filter:blur(10px)) { html totem-product-panel .wrapper {
+@supports (backdrop-filter:blur(10px)) { html panel-wrapper {
   backdrop-filter: blur(10px) saturate(300%);
   background: linear-gradient(to bottom, rgba(255,255,255, 0.88), rgba(255,255,255,0.92) 10em);
 }}
-@supports (-webkit-backdrop-filter:blur(10px)) { html totem-product-panel .wrapper {
+@supports (-webkit-backdrop-filter:blur(10px)) { html panel-wrapper {
   -webkit-backdrop-filter: blur(10px) saturate(300%);
   background: linear-gradient(to bottom, rgba(255,255,255, 0.88), rgba(255,255,255,0.92) 10em);
 }}

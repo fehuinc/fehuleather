@@ -54,18 +54,16 @@ $ ()->
   
   togglePanel = (state, newVal)->
     state.isPanelOpen = if newVal? then newVal else !state.isPanelOpen
+    
     if state.isPanelOpen
-      
       render togglePanel(currentPanelState, false) if currentPanelState
       currentPanelState = state
-      
       deltaPos = state.currentItem.ypos - PANEL_OPEN_CENTER_POS
       deltaPx = state.tileSizePx * deltaPos/100
       state.offsetY = -deltaPx
     else
       state.offsetY = 0
       currentPanelState = null
-      
     return state # Used as an event, need to pass-through
   
   
@@ -263,13 +261,16 @@ $ ()->
       touchStart:    x:0, y:0
       vminPx: 0
     
-    render resize state
     $(window).resize ()-> render resize state
     inputLayer.click (e)-> render click state, e.clientX
     inputLayer.on "touchstart", (e)-> render touchstart state, e
     inputLayer.on "touchmove", (e)-> render touchmove state, e
     inputLayer.on "touchend", (e)-> render touchend state, e
-    state.panel.find(".closer").click (e)-> render togglePanel state, false
+    state.panel.find("panel-closer").click (e)-> render togglePanel state, false
+    
+    # Need to do this twice
+    render resize state # Once now to avoid a flash
+    setTimeout ()-> render resize state # Once later to make sure the panels go to the right spot
   
   
   # INIT ##########################################################################################

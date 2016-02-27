@@ -15,29 +15,24 @@
   
   <totem-panel>
     <panel-wrapper>
+      <panel-closer>x</panel-closer>
       <h1 product-name></h1>
       <purchasing-info>
-        <label>
-          Variation
-          <select>
-            <option>Default</option>
-          </select>
-        </label>
-        <label>
-          Size
-          <select>
-            <option>Default</option>
-          </select>
-        </label>
+        <select>
+          <option>Variation</option>
+        </select>
+        <select>
+          <option>Size</option>
+        </select>
         <div class="subtotal">
           <div class="input-with-buttons">
+            <input type="number"
+                   class="quantity"
+                   step="1">
             <div class="button-row perspective">
               <div class="button">-</div>
               <div class="button">+</div>
             </div>
-            <input type="number"
-                   class="quantity"
-                   step="1">
           </div>
           for
           <div class="price">$100</div>
@@ -69,8 +64,6 @@
           <div>Info Content</div>
         </info-display>
       </bottom-info>
-      
-      <panel-closer>close</panel-closer>
     </panel-wrapper>
   </totem-panel>
 <% end %>
