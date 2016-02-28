@@ -280,11 +280,8 @@ $ ()->
     
     # Need to do this twice
     render resize state # Once now to avoid a flash
-    setTimeout ()->
-      if j == 2
-        render togglePanel state, true
-      else
-        render resize state # Once later to make sure the panelsWrapper go to the right spot
+    setTimeout ()-> render resize state # Once later to make sure the panelsWrapper go to the right spot
+    setTimeout (()-> render togglePanel state, true), 50 if j == 2
   
   # INIT ##########################################################################################
   setup rowElm, i for rowElm, i in $("totem-row")
