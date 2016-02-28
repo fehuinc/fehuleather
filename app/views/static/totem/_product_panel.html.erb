@@ -6,11 +6,13 @@
   <div class="next button">-&gt;</div>
 </variation-selector>
 
-<size-selector>
-  <% item.variation.product.sizes.each do |size| %>
-    <div><%= size.name %></div>
-  <% end %>
-</size-selector>
+<% if item.variation.product.sizes.count > 1 %>
+  <size-selector>
+    <% item.variation.product.sizes.each do |size| %>
+      <div><%= size.name %></div>
+    <% end %>
+  </size-selector>
+<% end %>
 
 <purchasing-info>
   <div class="subtotal">

@@ -1,14 +1,14 @@
 @import "vars";
 
 size-selector {
-  display: inline-flex;
+  display: flex;
   flex-flow: row wrap;
-  border-left: 1px solid $med;
+  border-bottom: 1px solid $med;
+  justify-content: center;
   
   div {
-    flex: 1 0 auto;
+    flex: 0 0 auto;
     padding: .5em .5em;
-    border-right: 1px solid $med;
-    border-bottom: 1px solid $med;
+    background: $med;
   }
 }
