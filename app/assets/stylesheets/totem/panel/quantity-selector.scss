@@ -6,17 +6,17 @@ quantity-selector {
   margin: 0 auto;
   align-items: center;
   border-bottom: 1px solid $med;
+  font-size: 1.2em;
   
   .less, .more {
-    flex: 0 0 3em;
+    flex: 0 0 1.5em;
+    padding: 0em 0;
     border-radius: 0;
-    font-size: 1.5em;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
   
   .subtotal {
     flex: 1 1 auto;
-    font-size: 1.3em;
     vertical-align: middle;
     
     .quantity {
