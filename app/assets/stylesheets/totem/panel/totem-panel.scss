@@ -1,19 +1,9 @@
-@import 'vars';
-
 totem-panel {
   position: relative; // Contain panel-closer
   display: block;
-  margin: 0 auto;
   max-width: 50em;
-  padding: 0 0 .5em;
-  border: 1px solid hsl(200, 50%, 90%);
+  margin: 0 auto;
   background: white;
-  box-shadow: 0 6px 8px -4px hsl(200, 20%, 70%), 0 50px 200px 10px white;
+  box-shadow: 0 3px 10px -2px hsl(210, 100%, 20%);
   -webkit-font-smoothing: subpixel-antialiased;
-  
-  h1 {
-    color: $dark;
-    margin: 0;
-    padding: .2em 0;
-  }
 }
