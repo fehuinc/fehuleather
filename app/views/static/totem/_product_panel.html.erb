@@ -1,46 +1,40 @@
 <h1><%=item.variation.product.name%></h1>
 
 <variation-selector>
-  <div class="prev button">&lt;-</div>
+  <div class="prev button">&#8678;</div>
   <variation-name><%=item.variation.name%></variation-name>
-  <div class="next button">-&gt;</div>
+  <div class="next button">&#8680;</div>
 </variation-selector>
 
 <% if item.variation.product.sizes.count > 1 %>
   <size-selector>
-    <% item.variation.product.sizes.each do |size| %>
-      <div><%= size.name %></div>
+    <% item.variation.product.sizes.each_with_index do |size, index| %>
+      <div <%= 'class="selected"'.html_safe if index == 0 %>><%= size.name %></div>
     <% end %>
   </size-selector>
 <% end %>
 
-<purchasing-info>
+<quantity-selector>
+  <div class="less button">-</div>
   <div class="subtotal">
-    <div class="input-with-buttons">
-      <input type="number"
-             class="quantity"
-             step="1">
-      <div class="button-row perspective">
-        <div class="button">-</div>
-        <div class="button">+</div>
-      </div>
-    </div>
-    for
-    <div class="price">$100</div>
+    <span contenteditable class="quantity">1</span> for $<span class="price">100</span>
   </div>
-  
+  <div class="more button">+</div>
+</quantity-selector>
+
+<purchase-selector>
   <purchase-status class="perspective submit">
     <button>Yes Please!</button>
   </purchase-status>
-  
+
   <purchase-status class="perspective submit">
     <button ng-click="Cart.add(currentBuild)">Update Quantity</button>
   </purchase-status>
-  
+
   <purchase-status class="cart">
     <div>It's in <a>The Bag</a></div>
   </purchase-status>
-</purchasing-info>
+</purchase-selector>
 
 <bottom-info>
   <custom-info>

@@ -2,7 +2,8 @@
 
 totem-panel {
   display: block;
-  position: relative;
+  position: absolute; // see: .panels-wrapper-inner
+  width: 100%;
   max-width: 50em;
   margin: 0 auto;
   padding: 0 0 .5em;

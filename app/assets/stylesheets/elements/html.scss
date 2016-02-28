@@ -3,7 +3,6 @@ html {
   color: #706F6D;
   background-color: white;
   
-  body {
-    width: 100%;
-  }
+  @media (max-width: 450px) { font-size: 0.9em; }
+  @media (max-width: 400px) { font-size: 0.8em; }
 }

@@ -3,8 +3,8 @@
 panels-wrapper {
   position: absolute;
   display: block;
-  top: 0%;
-  left: 0%;
+  top: 0; // Set by JS
+  left: 0;
   width: 100%;
   text-align: center;
   transform: translateY(5vmin);
@@ -20,5 +20,11 @@ panels-wrapper {
     transform: translateY(0);
     transition: opacity .4s ease-out, transform .7s;
     pointer-events: auto;
+  }
+  
+  // We need this to avoid blowing out the bottom of the screen.
+  & > .panels-wrapper-inner {
+    position: relative;
+    margin: 0 1em;
   }
 }

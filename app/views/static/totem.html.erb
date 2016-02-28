@@ -12,8 +12,10 @@
     <input-layer></input-layer>
   </totem-row>
   <panels-wrapper>
-    <% totem_row.items.each do |totem_item| %>
-      <%= render "static/totem/panel", item: totem_item %>
-    <% end %>
+    <div class="panels-wrapper-inner">
+      <% totem_row.items.each do |totem_item| %>
+        <%= render "static/totem/panel", item: totem_item %>
+      <% end %>
+    </div>
   </panels-wrapper>
 <% end %>

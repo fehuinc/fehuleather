@@ -258,7 +258,7 @@ $ ()->
       offsetY: 0
       offsetUnits: 0
       panelsWrapper: row.next()
-      panels: row.next().children()
+      panels: row.next().find("totem-panel")
       row: row
       slider: row.find "sliding-layer"
       sliderWidthPx: 0
@@ -281,7 +281,7 @@ $ ()->
     # Need to do this twice
     render resize state # Once now to avoid a flash
     setTimeout ()->
-      if j == 0
+      if j == 2
         render togglePanel state, true
       else
         render resize state # Once later to make sure the panelsWrapper go to the right spot
