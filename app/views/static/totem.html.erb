@@ -11,59 +11,9 @@
     </clipping-layer>
     <input-layer></input-layer>
   </totem-row>
-  
-  
-  <totem-panel>
-    <panel-wrapper>
-      <panel-closer>x</panel-closer>
-      <h1 product-name></h1>
-      <purchasing-info>
-        <select>
-          <option>Variation</option>
-        </select>
-        <select>
-          <option>Size</option>
-        </select>
-        <div class="subtotal">
-          <div class="input-with-buttons">
-            <input type="number"
-                   class="quantity"
-                   step="1">
-            <div class="button-row perspective">
-              <div class="button">-</div>
-              <div class="button">+</div>
-            </div>
-          </div>
-          for
-          <div class="price">$100</div>
-        </div>
-        
-        <purchase-status class="perspective submit">
-          <button>Yes Please!</button>
-        </purchase-status>
-        
-        <purchase-status class="perspective submit">
-          <button ng-click="Cart.add(currentBuild)">Update Quantity</button>
-        </purchase-status>
-        
-        <purchase-status class="cart">
-          <div>It's in <a>The Bag</a></div>
-        </purchase-status>
-      </purchasing-info>
-      
-      <bottom-info>
-        <custom-info>
-          <div>Sizing</div>
-        </custom-info>
-        <shop-info>
-          <div>Shipping</div>
-          <div>Refunds</div>
-          <div>Uniqueness</div>
-        </shop-info>
-        <info-display>
-          <div>Info Content</div>
-        </info-display>
-      </bottom-info>
-    </panel-wrapper>
-  </totem-panel>
+  <panels-wrapper>
+    <% totem_row.items.each do |totem_item| %>
+      <%= render "static/totem/panel", item: totem_item %>
+    <% end %>
+  </panels-wrapper>
 <% end %>

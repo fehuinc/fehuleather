@@ -50,6 +50,8 @@ $ ()->
   slideByUnits = (state, deltaUnits)->
     state.offsetUnits = state.offsetUnits - deltaUnits
     updateSliderOffset state
+    state.isTransitioning = true
+    return state # Used as an event, need to pass-through
   
   
   togglePanel = (state, newVal)->
@@ -83,6 +85,11 @@ $ ()->
   
   resize = (state)->
     state.vminPx = Math.min(window.innerWidth, window.innerHeight) / 100
+    
+    # If the screen is too small, it's okay to blow out the available height
+    if state.vminPx < 5
+      state.vminPx = Math.min(window.innerWidth/100, 5)
+    
     state.tileSizePx = TILE_SIZE * state.vminPx
     state.sliderWidthPx = state.itemList.length * state.tileSizePx
     updateSliderOffset state
@@ -93,7 +100,7 @@ $ ()->
   
   click = (state, clientX)->
     state.isSliding = state.isScrolling = false
-    clickAction state,(clientX) unless state.blockNextClick
+    clickAction state, clientX unless state.blockNextClick
     state.blockNextClick = false
     return state
   
@@ -162,7 +169,7 @@ $ ()->
     state.row.height(80 * state.vminPx).css("margin", "#{2*state.vminPx}px 0")
     rowPos = state.row.offset()
     rowPos.top += 60 * state.vminPx
-    state.panel.css("top", rowPos.top)
+    state.panelsWrapper.css("top", rowPos.top)
   
   
   condCSS = (elm, prop, test, tVal, fVal = "")->
@@ -180,13 +187,12 @@ $ ()->
   
   renderPanelData = (state)->
     if state.isPanelOpen
-      state.panel.addClass "showingPanel"
-      panel = state.panel
+      state.panels.hide()
+      $(state.panels[state.currentItem.i]).show()
+      state.panelsWrapper.addClass "showingPanel"
       currentItemElm = state.currentItem.elm
-      panel.find("[product-name]").html currentItemElm.attr "item-name"
-      # render variations, etc etc
     else
-      state.panel.removeClass "showingPanel"
+      state.panelsWrapper.removeClass "showingPanel"
   
   
   renderSliderData = (state)->
@@ -224,7 +230,7 @@ $ ()->
   # SETUP #########################################################################################
   
   
-  setup = (rowElm)->
+  setup = (rowElm, j)->
     row = $ rowElm
     inputLayer = row.find "input-layer"
     
@@ -251,7 +257,8 @@ $ ()->
       offsetXStart: 0
       offsetY: 0
       offsetUnits: 0
-      panel: row.next()
+      panelsWrapper: row.next()
+      panels: row.next().children()
       row: row
       slider: row.find "sliding-layer"
       sliderWidthPx: 0
@@ -266,12 +273,16 @@ $ ()->
     inputLayer.on "touchstart", (e)-> render touchstart state, e
     inputLayer.on "touchmove", (e)-> render touchmove state, e
     inputLayer.on "touchend", (e)-> render touchend state, e
-    state.panel.find("panel-closer").click (e)-> render togglePanel state, false
+    
+    state.panelsWrapper.find("panel-closer").click (e)-> render togglePanel state, false
+    state.panelsWrapper.find(".next.button").click (e)-> render slideByUnits state, 1
+    state.panelsWrapper.find(".prev.button").click (e)-> render slideByUnits state, -1
     
     # Need to do this twice
     render resize state # Once now to avoid a flash
-    setTimeout ()-> render resize state # Once later to make sure the panels go to the right spot
-  
+    setTimeout ()-> render resize state # Once later to make sure the panelsWrapper go to the right spot
+    
+    render togglePanel state, true if j == 0
   
   # INIT ##########################################################################################
-  setup rowElm for rowElm in $("totem-row")
+  setup rowElm, i for rowElm, i in $("totem-row")
