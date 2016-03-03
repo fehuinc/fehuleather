@@ -24,14 +24,6 @@
     z-index: 10; // below panel
   }
   
-  clipping-layer {
-    display: block;
-    width: 100%;
-    height: 80vmin; // Replaced by JS
-    text-align: center;
-    overflow: hidden;
-  }
-  
   sliding-layer {
     display: block;
     height: 80vmin; // Replaced by JS

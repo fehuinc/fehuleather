@@ -1,0 +1,17 @@
+@media(max-width: 351)  { [hide-350]  { display: none; } }
+@media(max-width: 401)  { [hide-400]  { display: none; } }
+@media(max-width: 501)  { [hide-500]  { display: none; } }
+@media(max-width: 601)  { [hide-600]  { display: none; } }
+@media(max-width: 701)  { [hide-700]  { display: none; } }
+@media(max-width: 801)  { [hide-800]  { display: none; } }
+@media(max-width: 901)  { [hide-900]  { display: none; } }
+@media(max-width: 1001) { [hide-1000] { display: none; } }
+
+@media(min-width: 350)  { [show-350]  { display: none; } }
+@media(min-width: 400)  { [show-400]  { display: none; } }
+@media(min-width: 500)  { [show-500]  { display: none; } }
+@media(min-width: 600)  { [show-600]  { display: none; } }
+@media(min-width: 700)  { [show-700]  { display: none; } }
+@media(min-width: 800)  { [show-800]  { display: none; } }
+@media(min-width: 900)  { [show-900]  { display: none; } }
+@media(min-width: 1000) { [show-1000] { display: none; } }
