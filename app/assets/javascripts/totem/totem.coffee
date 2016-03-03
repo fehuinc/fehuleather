@@ -1,9 +1,6 @@
 $ ()->
-  
-  PANEL_OPEN_CENTER_POS = 30 # panelClosedCenterPos would be 50
   TILE_SIZE = 82
-  
-  currentPanelState = null
+  stateMapOfCurrentlyOpenTotem = null
   
   
   fixFloatError = (i)->
@@ -58,14 +55,10 @@ $ ()->
     state.isPanelOpen = if newVal? then newVal else !state.isPanelOpen
     
     if state.isPanelOpen
-      render togglePanel(currentPanelState, false) if currentPanelState
-      currentPanelState = state
-      deltaPos = state.currentItem.ypos - PANEL_OPEN_CENTER_POS
-      deltaPx = state.tileSizePx * deltaPos/100
-      state.offsetY = -deltaPx
+      render togglePanel(stateMapOfCurrentlyOpenTotem, false) if stateMapOfCurrentlyOpenTotem?
+      stateMapOfCurrentlyOpenTotem = state
     else
-      state.offsetY = 0
-      currentPanelState = null
+      stateMapOfCurrentlyOpenTotem = null
     return state # Used as an event, need to pass-through
   
   
@@ -165,11 +158,15 @@ $ ()->
       item.elm.css("margin-left", (window.innerWidth/2 - 40 * state.vminPx) + "px" )
       item.imageElm.width(80 * state.vminPx).height(80 * state.vminPx)
     state.slider.height(80 * state.vminPx)
-    state.clipper.height(80 * state.vminPx)
     state.row.height(80 * state.vminPx).css("margin", "#{2*state.vminPx}px 0")
-    rowPos = state.row.offset()
-    rowPos.top += 60 * state.vminPx
-    state.panelsWrapper.css("top", rowPos.top)
+    state.panelsWrapper.css
+      top: -2 * state.vminPx
+      marginLeft: -42 * state.vminPx
+      width: 84 * state.vminPx
+    
+    state.topSpacer.css
+      height: 84 * state.vminPx
+      borderWidth: 2 * state.vminPx
   
   
   condCSS = (elm, prop, test, tVal, fVal = "")->
@@ -189,10 +186,10 @@ $ ()->
     if state.isPanelOpen
       state.panels.hide()
       $(state.panels[state.currentItem.i]).show()
-      state.panelsWrapper.addClass "showingPanel"
+      state.row.addClass "showingPanel"
       currentItemElm = state.currentItem.elm
     else
-      state.panelsWrapper.removeClass "showingPanel"
+      state.row.removeClass "showingPanel"
   
   
   renderSliderData = (state)->
@@ -212,9 +209,9 @@ $ ()->
     condCSS state.slider, "-webkit-transition", state.isTransitioning, "-webkit-transform #{time}s cubic-bezier(#{x1},#{y1},#{x2},#{y2})"
     condCSS state.slider, "-ms-transition", state.isTransitioning, "-ms-transform #{time}s cubic-bezier(#{x1},#{y1},#{x2},#{y2})"
     condCSS state.slider, "transition", state.isTransitioning, "transform #{time}s cubic-bezier(#{x1},#{y1},#{x2},#{y2})"
-    state.slider.css "-webkit-transform", "translate(#{state.offsetX}px, #{state.offsetY}px)"
-    state.slider.css "-ms-transform", "translate(#{state.offsetX}px, #{state.offsetY}px)"
-    state.slider.css "transform", "translate(#{state.offsetX}px, #{state.offsetY}px)"
+    state.slider.css "-webkit-transform", "translate(#{state.offsetX}px)"
+    state.slider.css "-ms-transform", "translate(#{state.offsetX}px)"
+    state.slider.css "transform", "translate(#{state.offsetX}px)"
   
     
   render = (state)->
@@ -236,7 +233,6 @@ $ ()->
     
     state =
       blockNextClick: false
-      clipper: row.find "clipping-layer"
       currentItem: null
       e: null
       isPanelOpen: false
@@ -257,12 +253,13 @@ $ ()->
       offsetXStart: 0
       offsetY: 0
       offsetUnits: 0
-      panelsWrapper: row.next()
-      panels: row.next().find("totem-panel")
+      panelsWrapper: row.find "panels-wrapper"
+      panels: row.find "totem-panel"
       row: row
       slider: row.find "sliding-layer"
       sliderWidthPx: 0
       tileSizePx: 0
+      topSpacer: row.find "top-spacer"
       touchCurrent:  x:0, y:0
       touchPrevious: x:0, y:0
       touchStart:    x:0, y:0
@@ -281,7 +278,7 @@ $ ()->
     # Need to do this twice
     render resize state # Once now to avoid a flash
     setTimeout ()-> render resize state # Once later to make sure the panelsWrapper go to the right spot
-    setTimeout (()-> render togglePanel state, true), 50 if j == 2
+    setTimeout (()-> render togglePanel state, true), 50 if j == 0
   
   # INIT ##########################################################################################
   setup rowElm, i for rowElm, i in $("totem-row")

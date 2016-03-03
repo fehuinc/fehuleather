@@ -4,7 +4,7 @@
     padding: 0;
     margin: 0;
   }
-
+  
   totem-row {
     display: block;
     position: relative;
@@ -12,6 +12,10 @@
     height: 80vmin; // Replaced by JS
     margin: 2vmin 0; // Replaced by JS
     z-index: 1;
+    
+    &.showingPanel {
+      z-index: 2;
+    }
   }
   
   input-layer {
@@ -22,6 +26,12 @@
     height: 100%;
     cursor: pointer;
     z-index: 10; // below panel
+  }
+  
+  clipping-layer {
+    display: block;
+    width: 100%;
+    overflow: hidden;
   }
   
   sliding-layer {
@@ -38,6 +48,7 @@
     width: 0;
     height: 0;
     overflow: visible;
+    z-index: 1;
     
     totem-image {
       display: inline-block;

@@ -1,9 +1,6 @@
 totem-panel {
   position: relative; // Contain panel-closer
   display: block;
-  max-width: 50em;
   margin: 0 auto;
   background: white;
-  box-shadow: 0 3px 10px -2px hsl(210, 100%, 20%);
-  -webkit-font-smoothing: subpixel-antialiased;
 }

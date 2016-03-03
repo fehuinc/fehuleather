@@ -1,24 +1,25 @@
 @import 'vars';
 
+.showingPanel panels-wrapper {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 panels-wrapper {
   position: absolute;
   display: block;
-  top: 0; // Set by JS
-  left: 2vw; // Set by JS
-  width: 96vw;
+  left: 50%;
   text-align: center;
-  transform: translateY(5vmin);
-  transition: opacity .7s ease-in, transform .7s;
-  -webkit-font-smoothing: subpixel-antialiased;
+  box-shadow: 0 4px 12px hsl(210, 50%, 20%);
   opacity: 0;
-  z-index: 20;
+  transition: opacity .3s linear;
   pointer-events: none;
-
-  &.showingPanel {
-    opacity: 1;
-    overflow: visible;
-    transform: translateY(0);
-    transition: opacity .4s ease-out, transform .7s;
-    pointer-events: auto;
+  
+  top-spacer {
+    display: block;
+    width: 100%;
+    pointer-events: none;
+    border-color: white;
+    border-style: solid;
   }
 }

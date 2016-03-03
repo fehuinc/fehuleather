@@ -1,17 +1,20 @@
 <% @totem_rows.each do |totem_row| %>
   <totem-row class="unselectable">
-    <sliding-layer>
+    <clipping-layer>
+      <sliding-layer>
+        <% totem_row.items.each do |totem_item| %>
+          <totem-item item-ypos="<%= totem_item.real_ypos %>" item-name="<%= totem_item.real_name %>">
+            <totem-image style="background-image: url('<%= totem_item.real_image %>')"></totem-image>
+          </totem-item>
+        <% end %>
+      </sliding-layer>
+    </clipping-layer>
+    <panels-wrapper>
+      <top-spacer></top-spacer>
       <% totem_row.items.each do |totem_item| %>
-        <totem-item item-ypos="<%= totem_item.real_ypos %>" item-name="<%= totem_item.real_name %>">
-          <totem-image style="background-image: url('<%= totem_item.real_image %>')"></totem-image>
-        </totem-item>
+        <%= render "static/totem/panel", item: totem_item %>
       <% end %>
-    </sliding-layer>
+    </panels-wrapper>
     <input-layer></input-layer>
   </totem-row>
-  <panels-wrapper>
-    <% totem_row.items.each do |totem_item| %>
-      <%= render "static/totem/panel", item: totem_item %>
-    <% end %>
-  </panels-wrapper>
 <% end %>
