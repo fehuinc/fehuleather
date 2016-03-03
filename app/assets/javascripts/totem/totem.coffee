@@ -165,8 +165,9 @@ $ ()->
       width: 84 * state.vminPx
     
     state.topSpacer.css
-      height: 84 * state.vminPx
+      height: 82 * state.vminPx
       borderWidth: 2 * state.vminPx
+      borderBottomWidth: 0
   
   
   condCSS = (elm, prop, test, tVal, fVal = "")->
@@ -271,7 +272,7 @@ $ ()->
     inputLayer.on "touchmove", (e)-> render touchmove state, e
     inputLayer.on "touchend", (e)-> render touchend state, e
     
-    state.panelsWrapper.find("panel-closer").click (e)-> render togglePanel state, false
+    # state.panelsWrapper.find("panel-closer").click (e)-> render togglePanel state, false
     state.panelsWrapper.find(".next.button").click (e)-> render slideByUnits state, 1
     state.panelsWrapper.find(".prev.button").click (e)-> render slideByUnits state, -1
     
