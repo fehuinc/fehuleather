@@ -1,26 +1,21 @@
 @import "vars";
 
 quantity-selector {
-  margin: 0 auto;
-  align-items: center;
-  font-size: 1.1em;
+  display: block;
+  margin: 0 auto 1vh;
+  font-size: calc(1em + .2vh);
   
   .subtotal {
-    vertical-align: middle;
-    
-    .quantity {
-      display: inline-block;
-      min-width: 1.8em;
-      height: 1.8em;
-      line-height: 1.8em;
-      border: 0;
-      text-align: center;
-      border-radius: 100%;
-      background: $blue;
-    }
-    
-    .price {
-      display: inline-block;
-    }
+    display: inline-block;
+    margin: 0 2vw;
+  }
+  
+  .more, .less {
+    margin: 0;
+    padding: 1vh 2vh;
+    border-radius: 0;
+    font-size: 1.3em;
+    color: $dark;
+    background: $blue;
   }
 }

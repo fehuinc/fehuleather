@@ -2,21 +2,31 @@
 
 totem-panel {
   display: block;
+  padding-bottom: 1px; // Avoid background holes
   text-align: center;
   background: white;
   
-  .names {
-    .variation {
+  .top {
+    div {
       display: inline-block;
-      font-size: 3.5vh;
-      margin: 2vh .5vw;
-      color: $dark;
+      margin: 1vh .3vw;
+      font-size: calc(1em + 1vmin);
     }
     
-    .product {
+    .variation {
+      color: $dark;
+    }
+  }
+  
+  .middle {
+    & > * {
+      margin: .5vh .5vw;
+    }
+    
+    .price {
       display: inline-block;
-      margin: 2vh .5vw;
-      font-size: 3.5vh;
+      padding: .5em 1em;
+      border-bottom: 1px solid $med;
     }
   }
 }

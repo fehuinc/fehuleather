@@ -1,5 +1,6 @@
 $ ()->
-  TILE_SIZE = 82
+  ITEM_SIZE = 74
+  TILE_SIZE = ITEM_SIZE + 2
   stateMapOfCurrentlyOpenTotem = null
   
   
@@ -53,12 +54,16 @@ $ ()->
   
   
   togglePanel = (state, newVal)->
+    if stateMapOfCurrentlyOpenTotem? and stateMapOfCurrentlyOpenTotem.i
+      
+      render togglePanel(stateMapOfCurrentlyOpenTotem, false)
+
     state.isPanelOpen = if newVal? then newVal else !state.isPanelOpen
     
     if state.isPanelOpen
-      render togglePanel(stateMapOfCurrentlyOpenTotem, false) if stateMapOfCurrentlyOpenTotem?
+      
+      
       stateMapOfCurrentlyOpenTotem = state
-      $("html,body").animate (scrollTop: state.row.offset().top - 2 * state.vminPx + 1), 500
     else
       stateMapOfCurrentlyOpenTotem = null
     return state # Used as an event, need to pass-through
@@ -77,13 +82,16 @@ $ ()->
   # EVENTS ########################################################################################
   
   
-  
   resize = (state)->
     state.vminPx = Math.min(window.innerWidth, window.innerHeight) / 100
     
     # If the screen is too small, it's okay to blow out the available height
     if state.vminPx < 5
       state.vminPx = Math.min(window.innerWidth/100, 5)
+    
+    # If the screen is too large.. let's keep it reasonable
+    if state.vminPx > 10
+      state.vminPx = 10
     
     state.tileSizePx = TILE_SIZE * state.vminPx
     state.sliderWidthPx = state.itemList.length * state.tileSizePx
@@ -155,19 +163,21 @@ $ ()->
     
   # RENDERING #####################################################################################
   
+  
   resizeRender = (state)->
     for item in state.itemList
-      item.elm.css("margin-left", (window.innerWidth/2 - 40 * state.vminPx) + "px" )
-      item.imageElm.width(80 * state.vminPx).height(80 * state.vminPx)
-    state.slider.height(80 * state.vminPx)
-    state.row.height(80 * state.vminPx).css("margin", "#{2*state.vminPx}px 0")
+      item.elm.css("margin-left", (window.innerWidth/2 - (ITEM_SIZE/2) * state.vminPx) + "px" )
+      item.imageElm.width(ITEM_SIZE * state.vminPx).height(ITEM_SIZE * state.vminPx)
+    state.slider.height(ITEM_SIZE * state.vminPx)
+    state.row.height(ITEM_SIZE * state.vminPx).css("margin", "#{2*state.vminPx}px 0")
+    
     state.panelsWrapper.css
-      top: -2 * state.vminPx
-      marginLeft: -42 * state.vminPx
-      width: 84 * state.vminPx
+      top: -4 * state.vminPx
+      marginLeft: -(ITEM_SIZE/2 + 4) * state.vminPx
+      width: (ITEM_SIZE + 8) * state.vminPx
     
     state.topSpacer.css
-      height: 82 * state.vminPx
+      height: (ITEM_SIZE + 4) * state.vminPx
       borderWidth: 4 * state.vminPx
       borderBottomWidth: 0 * state.vminPx
   
@@ -187,10 +197,17 @@ $ ()->
   
   renderPanelData = (state)->
     if state.isPanelOpen
-      state.panels.hide()
-      $(state.panels[state.currentItem.i]).show()
-      state.row.addClass "showingPanel"
-      currentItemElm = state.currentItem.elm
+      if not state.row.hasClass "showingPanel"
+        state.panels.hide()
+        $(state.panels[state.currentItem.i]).show()
+        state.row.addClass "showingPanel"
+        currentItemElm = state.currentItem.elm
+
+        top = state.row.offset().top
+        top -= (window.innerHeight - state.panelsWrapper.height())/2
+        top -= 4 * state.vminPx + 1
+        $("html,body").animate (scrollTop: top), 500
+
     else
       state.row.removeClass "showingPanel"
   
@@ -230,7 +247,7 @@ $ ()->
   # SETUP #########################################################################################
   
   
-  setup = (rowElm, j)->
+  setup = (rowElm, index)->
     row = $ rowElm
     inputLayer = row.find "input-layer"
     
@@ -238,6 +255,7 @@ $ ()->
       blockNextClick: false
       currentItem: null
       e: null
+      index: index
       isPanelOpen: false
       isScrolling: false
       isSliding: false
@@ -274,7 +292,7 @@ $ ()->
     inputLayer.on "touchmove", (e)-> render touchmove state, e
     inputLayer.on "touchend", (e)-> render touchend state, e
     
-    # state.panelsWrapper.find("panel-closer").click (e)-> render togglePanel state, false
+    state.topSpacer.click (e)-> render click state, e.clientX
     state.panelsWrapper.find(".next.button").click (e)-> render slideByUnits state, 1
     state.panelsWrapper.find(".prev.button").click (e)-> render slideByUnits state, -1
     
@@ -282,7 +300,8 @@ $ ()->
     # Need to do this twice
     render resize state # Once now to avoid a flash
     setTimeout ()-> render resize state # Once later to make sure the panelsWrapper go to the right spot
-    setTimeout (()-> render togglePanel state, true), 500 if j == 2
+    setTimeout (()-> render togglePanel state, true), 500 if index == 2
+  
   
   # INIT ##########################################################################################
   setTimeout ()-> # Might avoid a layout bug

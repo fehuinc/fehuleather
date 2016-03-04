@@ -1,20 +1,20 @@
 @import "vars";
 
 size-selector {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  max-width: 30em;
-  margin: 0 auto;
+  display: inline-block;
+  text-align: center;
+  padding: 0 1em;
   border-bottom: 1px solid $med;
   
   div {
-    flex: 0 0 auto;
-    padding: 1vw;
+    display: inline-block;
+    padding: .5em;
+    color: $dark;
     cursor: pointer;
     
     &.selected {
-      background: $med;
+      color: white;
+      background: hsl(145, 40%, 75%);
     }
   }
 }

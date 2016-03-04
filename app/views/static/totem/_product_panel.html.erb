@@ -1,28 +1,23 @@
-<div class="names">
+<div class="top">
   <div class="variation"><%=item.variation.name%></div>
   <div class="product"><%=item.variation.product.name%></div>
 </div>
 
-<% if item.variation.product.sizes.count > 1 %>
-  <size-selector>
-    <% item.variation.product.sizes.each_with_index do |size, index| %>
-      <div <%= 'class="selected"'.html_safe if index == 0 %>><%= size.name %></div>
-    <% end %>
-  </size-selector>
-<% end %>
+<div class="middle">
+  <% if item.variation.product.sizes.count > 1 %>
+    <size-selector>
+      <% item.variation.product.sizes.each_with_index do |size, index| %>
+        <div <%= 'class="selected"'.html_safe if index == 0 %>><%= size.name %></div>
+      <% end %>
+    </size-selector>
+  <% end %>
+  
+  <div class="price">$<span js-price>100</span></div>
+  <button>Yes Please!</button>
+</div>
 
-<quantity-selector>
-  <div class="subtotal">
-    <span contenteditable class="quantity">1</span> for $<span class="price">100</span>
-  </div>
-</quantity-selector>
-
-<purchase-selector>
-  <purchase-status class="perspective submit">
-    <button>Yes Please!</button>
-  </purchase-status>
-
-  <purchase-status class="perspective submit">
+<purchase-selector class="perspective">
+  <purchase-status class="submit">
     <button ng-click="Cart.add(currentBuild)">Update Quantity</button>
   </purchase-status>
 
