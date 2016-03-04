@@ -45,7 +45,8 @@ $ ()->
   
   
   slideByUnits = (state, deltaUnits)->
-    state.offsetUnits = state.offsetUnits - deltaUnits
+    if state.itemList.length > 1
+      state.offsetUnits = state.offsetUnits - deltaUnits
     updateSliderOffset state
     state.isTransitioning = true
     return state # Used as an event, need to pass-through
@@ -57,6 +58,7 @@ $ ()->
     if state.isPanelOpen
       render togglePanel(stateMapOfCurrentlyOpenTotem, false) if stateMapOfCurrentlyOpenTotem?
       stateMapOfCurrentlyOpenTotem = state
+      $("html,body").animate (scrollTop: state.row.offset().top - 2 * state.vminPx + 1), 500
     else
       stateMapOfCurrentlyOpenTotem = null
     return state # Used as an event, need to pass-through
@@ -166,8 +168,8 @@ $ ()->
     
     state.topSpacer.css
       height: 82 * state.vminPx
-      borderWidth: 2 * state.vminPx
-      borderBottomWidth: 0
+      borderWidth: 4 * state.vminPx
+      borderBottomWidth: 0 * state.vminPx
   
   
   condCSS = (elm, prop, test, tVal, fVal = "")->
@@ -276,10 +278,12 @@ $ ()->
     state.panelsWrapper.find(".next.button").click (e)-> render slideByUnits state, 1
     state.panelsWrapper.find(".prev.button").click (e)-> render slideByUnits state, -1
     
+    state.panels.hide() # This avoids a weird layout bug that blows out the bottom of the page
     # Need to do this twice
     render resize state # Once now to avoid a flash
     setTimeout ()-> render resize state # Once later to make sure the panelsWrapper go to the right spot
-    setTimeout (()-> render togglePanel state, true), 50 if j == 0
+    setTimeout (()-> render togglePanel state, true), 500 if j == 2
   
   # INIT ##########################################################################################
-  setup rowElm, i for rowElm, i in $("totem-row")
+  setTimeout ()-> # Might avoid a layout bug
+    setup rowElm, i for rowElm, i in $("totem-row")

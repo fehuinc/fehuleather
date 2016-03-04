@@ -1,10 +1,7 @@
-<product-title><%=item.variation.product.name%></product-title>
-
-<variation-selector>
-  <div class="prev button">&#8678;</div>
-  <variation-name><%=item.variation.name%></variation-name>
-  <div class="next button">&#8680;</div>
-</variation-selector>
+<div class="names">
+  <div class="variation"><%=item.variation.name%></div>
+  <div class="product"><%=item.variation.product.name%></div>
+</div>
 
 <% if item.variation.product.sizes.count > 1 %>
   <size-selector>
@@ -15,11 +12,9 @@
 <% end %>
 
 <quantity-selector>
-  <div class="less button">-</div>
   <div class="subtotal">
     <span contenteditable class="quantity">1</span> for $<span class="price">100</span>
   </div>
-  <div class="more button">+</div>
 </quantity-selector>
 
 <purchase-selector>

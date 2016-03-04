@@ -7,11 +7,10 @@ size-selector {
   max-width: 30em;
   margin: 0 auto;
   border-bottom: 1px solid $med;
-  // font-size: 1.2em;
   
   div {
     flex: 0 0 auto;
-    padding: .2em;
+    padding: 1vw;
     cursor: pointer;
     
     &.selected {

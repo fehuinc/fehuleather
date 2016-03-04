@@ -10,10 +10,11 @@ panels-wrapper {
   display: block;
   left: 50%;
   text-align: center;
-  box-shadow: 0 4px 12px hsl(210, 50%, 20%);
+  box-shadow: 0 0 2px hsl(210, 100%, 20%), 0 8px 48px hsla(210, 50%, 15%, .5);
   opacity: 0;
   transition: opacity .3s linear;
   pointer-events: none;
+  z-index: 3;
   
   top-spacer {
     display: block;
