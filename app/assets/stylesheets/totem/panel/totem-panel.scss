@@ -5,6 +5,7 @@ totem-panel {
   padding-bottom: 1px; // Avoid background holes
   text-align: center;
   background: white;
+  -webkit-font-smoothing: subpixel-antialiased;
   
   .top {
     div {

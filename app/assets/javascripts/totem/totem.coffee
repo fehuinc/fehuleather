@@ -54,15 +54,10 @@ $ ()->
   
   
   togglePanel = (state, newVal)->
-    if stateMapOfCurrentlyOpenTotem? and stateMapOfCurrentlyOpenTotem.i
-      
-      render togglePanel(stateMapOfCurrentlyOpenTotem, false)
-
     state.isPanelOpen = if newVal? then newVal else !state.isPanelOpen
     
     if state.isPanelOpen
-      
-      
+      render togglePanel(stateMapOfCurrentlyOpenTotem, false) if stateMapOfCurrentlyOpenTotem?
       stateMapOfCurrentlyOpenTotem = state
     else
       stateMapOfCurrentlyOpenTotem = null
@@ -83,7 +78,7 @@ $ ()->
   
   
   resize = (state)->
-    state.vminPx = Math.min(window.innerWidth, window.innerHeight) / 100
+    state.vminPx = Math.min(window.innerWidth, window.innerHeight * .9) / 100
     
     # If the screen is too small, it's okay to blow out the available height
     if state.vminPx < 5
@@ -170,17 +165,17 @@ $ ()->
       item.imageElm.width(ITEM_SIZE * state.vminPx).height(ITEM_SIZE * state.vminPx)
     state.slider.height(ITEM_SIZE * state.vminPx)
     state.row.height(ITEM_SIZE * state.vminPx).css("margin", "#{2*state.vminPx}px 0")
-    
+
     state.panelsWrapper.css
-      top: -4 * state.vminPx
-      marginLeft: -(ITEM_SIZE/2 + 4) * state.vminPx
-      width: (ITEM_SIZE + 8) * state.vminPx
+      top: -3 * state.vminPx
+      marginLeft: -(ITEM_SIZE/2 + 3) * state.vminPx
+      width: (ITEM_SIZE + 6) * state.vminPx
     
     state.topSpacer.css
-      height: (ITEM_SIZE + 4) * state.vminPx
+      height: (ITEM_SIZE + 2) * state.vminPx
       borderWidth: 4 * state.vminPx
       borderBottomWidth: 0 * state.vminPx
-  
+      
   
   condCSS = (elm, prop, test, tVal, fVal = "")->
     elm.css prop, if test then tVal else fVal
@@ -247,7 +242,7 @@ $ ()->
   # SETUP #########################################################################################
   
   
-  setup = (rowElm, index)->
+  setup = (rowElm, j)->
     row = $ rowElm
     inputLayer = row.find "input-layer"
     
@@ -255,7 +250,6 @@ $ ()->
       blockNextClick: false
       currentItem: null
       e: null
-      index: index
       isPanelOpen: false
       isScrolling: false
       isSliding: false
@@ -300,7 +294,7 @@ $ ()->
     # Need to do this twice
     render resize state # Once now to avoid a flash
     setTimeout ()-> render resize state # Once later to make sure the panelsWrapper go to the right spot
-    setTimeout (()-> render togglePanel state, true), 500 if index == 2
+    setTimeout (()-> render togglePanel state, true), 500 if j == 2
   
   
   # INIT ##########################################################################################
