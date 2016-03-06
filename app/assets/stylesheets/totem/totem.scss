@@ -53,4 +53,16 @@
     z-index: 2;
   }
   
+  .closer {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+  }
+
+  .showingPanel .closer {
+    display: block;
+  }
 }

@@ -175,7 +175,12 @@ $ ()->
       height: (ITEM_SIZE + 2) * state.vminPx
       borderWidth: 4 * state.vminPx
       borderBottomWidth: 0 * state.vminPx
-      
+    
+    # Also needs to be set when opening the panel
+    if state.currentItem?
+      currentPanel = $ state.panels[state.currentItem.i]
+      state.closer.css
+        height: currentPanel.height() + 100
   
   condCSS = (elm, prop, test, tVal, fVal = "")->
     elm.css prop, if test then tVal else fVal
@@ -193,15 +198,23 @@ $ ()->
   renderPanelData = (state)->
     if state.isPanelOpen
       if not state.row.hasClass "showingPanel"
-        state.panels.hide()
-        $(state.panels[state.currentItem.i]).show()
-        state.row.addClass "showingPanel"
-        currentItemElm = state.currentItem.elm
 
+        state.panels.hide()
+        currentPanel = $ state.panels[state.currentItem.i]
+        currentPanel.show()
+
+        # currentItemElm = state.currentItem.elm
+
+        state.row.addClass "showingPanel"
         top = state.row.offset().top
         top -= (window.innerHeight - state.panelsWrapper.height())/2
         top -= 4 * state.vminPx + 1
         $("html,body").animate (scrollTop: top), 500
+        
+        # Also needs to be set when resizing
+        state.closer.css
+          height: currentPanel.height() + 100
+
 
     else
       state.row.removeClass "showingPanel"
@@ -248,6 +261,7 @@ $ ()->
     
     state =
       blockNextClick: false
+      closer: row.find ".closer"
       currentItem: null
       e: null
       isPanelOpen: false
@@ -289,7 +303,13 @@ $ ()->
     state.topSpacer.click (e)-> render click state, e.clientX
     state.panelsWrapper.find(".next.button").click (e)-> render slideByUnits state, 1
     state.panelsWrapper.find(".prev.button").click (e)-> render slideByUnits state, -1
+    state.closer.click (e)-> render togglePanel state, false
     
+    $(window).keyup (e)->
+      if state.isPanelOpen
+        render slideByUnits state, -1 if e.which is 37
+        render slideByUnits state, +1 if e.which is 39
+
     state.panels.hide() # This avoids a weird layout bug that blows out the bottom of the page
     # Need to do this twice
     render resize state # Once now to avoid a flash
