@@ -1,6 +1,9 @@
 class StaticController < ApplicationController
   def totem
-    @totem_rows = TotemRow.includes(items: [variation: [product: [:sizes, :infos]]]).order(:index)
+    @totem_rows = TotemRow.includes(items: [variation: [product: [:infos], builds: [:size]]]).order(:index)
+    @cart = [
+      { id: Build.first.id, name: Build.first.full_name }
+    ]
   end
   
   def locations

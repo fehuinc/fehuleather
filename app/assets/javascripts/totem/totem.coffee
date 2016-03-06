@@ -255,7 +255,7 @@ $ ()->
   # SETUP #########################################################################################
   
   
-  setup = (rowElm, j)->
+  setup = (rowElm, index)->
     row = $ rowElm
     inputLayer = row.find "input-layer"
     
@@ -314,7 +314,7 @@ $ ()->
     # Need to do this twice
     render resize state # Once now to avoid a flash
     setTimeout ()-> render resize state # Once later to make sure the panelsWrapper go to the right spot
-    setTimeout (()-> render togglePanel state, true), 500 if j == 2
+    setTimeout (()-> render togglePanel state, true), 500 if index == 2
   
   
   # INIT ##########################################################################################

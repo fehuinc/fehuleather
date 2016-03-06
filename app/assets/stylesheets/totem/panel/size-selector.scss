@@ -16,5 +16,9 @@ size-selector {
       color: white;
       background: hsl(145, 40%, 75%);
     }
+    
+    &:hover:not(.selected) {
+      background: $med;
+    }
   }
 }

@@ -6,8 +6,8 @@
 <div class="middle">
   <% if item.variation.product.sizes.count > 1 %>
     <size-selector>
-      <% item.variation.product.sizes.each do |size| %>
-        <div js-size><%= size.name %></div>
+      <% item.variation.builds.each do |build| %>
+        <div js-build="build.id"><%= build.size.name %></div>
       <% end %>
     </size-selector>
   <% end %>
@@ -27,9 +27,7 @@
       <div class="content"><%= info.content %></div>
     </div>
   <% end %>
-  <div>Shipping</div>
-  <div>Refunds</div>
-  <div>Uniqueness</div>
+  <div>Store Q&A</div>
 </info-selector>
 
 <info-display>
