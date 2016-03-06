@@ -276,7 +276,6 @@ $ ()->
         octave: 0
         screenX: 0
         x: 0
-        ypos: item.getAttribute "item-ypos"
       offsetX: 0
       offsetXPrevious: 0
       offsetXStart: 0

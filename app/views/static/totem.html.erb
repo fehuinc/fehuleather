@@ -9,7 +9,7 @@
     <clipping-layer>
       <sliding-layer>
         <% totem_row.items.each do |totem_item| %>
-          <totem-item item-ypos="<%= totem_item.real_ypos %>" item-name="<%= totem_item.real_name %>">
+          <totem-item item-name="<%= totem_item.real_name %>">
             <totem-image style="background-image: url('<%= totem_item.real_image %>')"></totem-image>
           </totem-item>
         <% end %>

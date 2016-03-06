@@ -2,7 +2,7 @@ class TotemItem < ActiveRecord::Base
   belongs_to :row, class_name: "TotemRow", inverse_of: :items
   belongs_to :variation
   
-  validates :index, :ypos, { numericality: { only_integer: true } }
+  validates :index, { numericality: { only_integer: true } }
   
   def is_product
     variation_id.present?
@@ -14,9 +14,5 @@ class TotemItem < ActiveRecord::Base
   
   def real_image
     variation_id ? variation.totem_image : image
-  end
-  
-  def real_ypos
-    variation_id ? variation.ypos : ypos
   end
 end
