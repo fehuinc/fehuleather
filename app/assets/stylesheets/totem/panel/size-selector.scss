@@ -7,10 +7,25 @@ size-selector {
   border-bottom: 1px solid $med;
   
   div {
+    position: relative;
     display: inline-block;
     padding: .5em;
     color: $dark;
     cursor: pointer;
+    
+    &.in-bag::before {
+      content: "★";
+      position: absolute;
+      top: -.5em;
+      left: -.5em;
+      width: 1.1em;
+      height: 1.1em;
+      line-height: 1.1em;
+      text-align: center;
+      border-radius: 100%;
+      transform: rotate(-36deg);
+      color: hsl(145, 40%, 75%);
+    }
     
     &.selected {
       color: white;

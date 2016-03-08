@@ -1,4 +1,8 @@
-Take ["Cart", "DOMContentLoaded"], (Cart)->
+Take ["CartDB", "DOMContentLoaded"], (CartDB)->
+  
+  addToCart = (state, buildID)->
+    CartDB.addItem(buildID)
+    return state
   
   setSelectedSize = (state, sizeElm)->
     state.selectedSize.elm?.removeClass "selected"
@@ -6,7 +10,26 @@ Take ["Cart", "DOMContentLoaded"], (Cart)->
     state.selectedSize =
       elm: sizeElm
       id: sizeElm.attr "js-build"
+    return state
   
+      
+  # RENDERING #####################################################################################
+  
+  
+  showIf = (elm, bool)->
+    if bool then elm.show() else elm.hide()
+  
+  
+  render = (state)->
+    showIf state.addToBag, !CartDB.hasItem state.selectedSize.id
+    showIf state.inTheBag, CartDB.hasItem state.selectedSize.id
+    
+    for b in state.sizeButtons
+      button = $ b
+      button.toggleClass "in-bag", CartDB.hasItem(button.attr "js-build")
+    
+    return state
+
   
   # SETUP #########################################################################################
   
@@ -16,12 +39,18 @@ Take ["Cart", "DOMContentLoaded"], (Cart)->
     
     state =
       selectedSize: {}
-      sizeButtons: panel.find("[js-build]")
+      sizeButtons: panel.find "[js-build]"
+      addToBag: panel.find ".add-to-bag"
+      inTheBag: panel.find ".in-the-bag"
     
+    # Init
+    state.sizeButtons.click (e)-> render setSelectedSize state, $(e.currentTarget)
+    state.addToBag.click (e)-> render addToCart state, state.selectedSize.id
+    render setSelectedSize state, state.sizeButtons.first() if state.sizeButtons.length > 0
+    # if "[js-build=13]"
+    #   render addToCart state, 13
+      
     
-    state.sizeButtons.click (e)-> setSelectedSize state, $(e.currentTarget)
-    setSelectedSize state, state.sizeButtons.first()
-  
-  
   # INIT ##########################################################################################
   setup panelElm, i for panelElm, i in $("totem-panel")
+  

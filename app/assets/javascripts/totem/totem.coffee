@@ -122,7 +122,7 @@ $ ()->
     unless state.isSliding or state.isScrolling
       xDelta = Math.abs state.touchCurrent.x - state.touchStart.x
       yDelta = Math.abs state.touchCurrent.y - state.touchStart.y
-      state.isSliding =   xDelta > 10 and xDelta > yDelta
+      state.isSliding =   xDelta > 10 and xDelta > yDelta and state.itemList.length > 1
       state.isScrolling = yDelta > 10 and xDelta < yDelta
     if state.isSliding
       state.offsetX = state.offsetXStart + state.touchCurrent.x - state.touchStart.x
@@ -197,14 +197,11 @@ $ ()->
   
   renderPanelData = (state)->
     if state.isPanelOpen
+      state.panels.hide()
+      currentPanel = $ state.panels[state.currentItem.i]
+      currentPanel.show()
+
       if not state.row.hasClass "showingPanel"
-
-        state.panels.hide()
-        currentPanel = $ state.panels[state.currentItem.i]
-        currentPanel.show()
-
-        # currentItemElm = state.currentItem.elm
-
         state.row.addClass "showingPanel"
         top = state.row.offset().top
         top -= (window.innerHeight - state.panelsWrapper.height())/2
@@ -294,12 +291,17 @@ $ ()->
       vminPx: 0
     
     $(window).resize ()-> render resize state
+    
     inputLayer.click (e)-> render click state, e.clientX
     inputLayer.on "touchstart", (e)-> render touchstart state, e
     inputLayer.on "touchmove", (e)-> render touchmove state, e
     inputLayer.on "touchend", (e)-> render touchend state, e
     
     state.topSpacer.click (e)-> render click state, e.clientX
+    state.topSpacer.on "touchstart", (e)-> render touchstart state, e
+    state.topSpacer.on "touchmove", (e)-> render touchmove state, e
+    state.topSpacer.on "touchend", (e)-> render touchend state, e
+    
     state.panelsWrapper.find(".next.button").click (e)-> render slideByUnits state, 1
     state.panelsWrapper.find(".prev.button").click (e)-> render slideByUnits state, -1
     state.closer.click (e)-> render togglePanel state, false
@@ -313,7 +315,7 @@ $ ()->
     # Need to do this twice
     render resize state # Once now to avoid a flash
     setTimeout ()-> render resize state # Once later to make sure the panelsWrapper go to the right spot
-    setTimeout (()-> render togglePanel state, true), 500 if index == 2
+    # setTimeout (()-> render togglePanel state, true), 100 if index == 2
   
   
   # INIT ##########################################################################################

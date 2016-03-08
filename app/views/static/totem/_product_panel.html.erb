@@ -7,17 +7,21 @@
   <% if item.variation.product.sizes.count > 1 %>
     <size-selector>
       <% item.variation.builds.each do |build| %>
-        <div js-build="build.id"><%= build.size.name %></div>
+        <div js-build="<%=build.id%>"><%= build.size.name %></div>
       <% end %>
     </size-selector>
+  <% else %>
+    <div class="one-size" js-build="<%=item.variation.builds.first%>"><%= item.variation.builds.first.size.name %></div>
   <% end %>
   
   <div class="price">$<span js-price>100</span></div>
   
-  <button>Yes Please!</button>
-  <purchase-status class="cart">
-    <div>It's in <a js-bag>The Bag</a></div>
-  </purchase-status>
+  <bag-selector class="perspective">
+    <div class="add-to-bag button">Yes Please!</div>
+    <div class="in-the-bag">
+      It's in <a js-bag-link href="#">The Bag</a>
+    </div>
+  </bag-selector>
 </div>
 
 <info-selector>

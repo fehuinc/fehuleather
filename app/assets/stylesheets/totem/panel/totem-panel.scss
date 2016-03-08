@@ -21,13 +21,28 @@ totem-panel {
   
   .middle {
     & > * {
+      display: inline-block;
       margin: .5vh .5vw;
     }
     
+    .one-size {
+    }
+    
     .price {
-      display: inline-block;
       padding: .5em 1em;
       border-bottom: 1px solid $med;
+    }
+    
+    bag-selector {
+      display: inline-block;
+      width: 8em;
+      margin: 1vh 0 0;
+      height: 2.4em;
+      text-align: center;
+      
+      .in-the-bag {
+        padding: .5em 0; // Make the effect on line height the same as the button
+      }
     }
   }
 }
