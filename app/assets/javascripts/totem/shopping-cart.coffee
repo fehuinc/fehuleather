@@ -6,24 +6,26 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
   
   
   hideCartIcon = ()->
-    document.scrollTop = document.body.scrollTop -= cartIconElm.height()
     cartIconElm.hide()
   
   showCartIcon = ()->
-    document.scrollTop = document.body.scrollTop += cartIconElm.height()
     cartIconElm.show()
   
   update = (cart, count)->
     if count > 0 then showCartIcon() else hideCartIcon()
   
-  toggleCartPanel = ()->
-    toggleCartPanel
+  toggleCartPanel = (bool)->
+    cartContentsElm.toggleClass("showing", bool)
   
   # INIT ###########################################################################################
+
+  Make "ShoppingCart", ShoppingCart =
+    toggle: toggleCartPanel
   
   CartDB.addCallback update
   cartIconElm.css "display", "block"
   cartIconElm.hide()
-  cartContentsElm.hide()
   cartIconElm.click (e)->
     toggleCartPanel()
+  
+  # toggleCartPanel()

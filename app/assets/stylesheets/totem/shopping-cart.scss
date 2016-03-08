@@ -4,47 +4,59 @@ $yellow: hsl(30, 50%, 95%);
 
 shopping-cart {
   position: relative;
-  // top: -2.5em;
-  
   display: none;
-  // height: 0;
+  top: -2.5em;
   text-align: center;
-  
   overflow: visible;
-  // z-index: 100;
+  z-index: 100;
+
+  @media (max-width: 550px) { top: -5em; }
+  
   
   .icon {
-    // position: absolute;
-    // left: 50%;
-    // top: -.2em;
+    position: absolute;
+    left: 50%;
+    top: -.2em;
     display: inline-block;
     cursor: pointer;
     padding: .5em;
     z-index: 101;
-    // transform: translate(-50%);
+    transform: translate(-50%);
     
     img {
       width: 32px;
       height: 24px;
+      
+      @media (max-width: 350px) {
+        width: 28px;
+        height: 21px;
+      }
     }
     
     &:hover {
       transition: transform 5s cubic-bezier(0, 1, 0, 1);
-      transform: scale(1.5);
+      transform: translate(-50%) scale(1.5);
     }
     
     &.showing {
       transition: transform 5s cubic-bezier(0, .8, 0, .8) .3s;
-      transform: scale(1.5);
+      transform: translate(-50%) scale(1.5);
     }
   }
   
-  .contents {
+  .contents-wrapper {
     position: absolute;
     display: block;
-    left: calc(50% - 16em);
-    width: 32em;
-    margin: -1em auto 0;
+    left: 0;
+    top: -1em;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .contents {
+    display: inline-block;
+    width: 100%;
+    max-width: 32em;
     padding: 3em 2em 1em;
     border: .4rem solid $blue;
     background: white;

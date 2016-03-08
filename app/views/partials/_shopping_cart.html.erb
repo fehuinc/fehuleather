@@ -1,19 +1,21 @@
 <shopping-cart>
   <div class="icon"><%= image_tag "bag.svg" %></div>
   
-  <div class="contents">
-    <h3>In The Bag</h3>
-    <div class="items">
-      <div class="item">
-        <div class="name" ng-class="{deleted:item.deleted}">{{item.name}}</div>
-        <div class="quantity"><input type="number" min="0" max="99"></div>
-        <div class="price">$</div>
-        <div class="remove"><div>x</div></div>
+  <div class="contents-wrapper">
+    <div class="contents">
+      <h3>In The Bag</h3>
+      <div class="items">
+        <div class="item">
+          <div class="name" ng-class="{deleted:item.deleted}">{{item.name}}</div>
+          <div class="quantity"><input type="number" min="0" max="99"></div>
+          <div class="price">$</div>
+          <div class="remove"><div>x</div></div>
+        </div>
       </div>
-    </div>
-    
-    <div class="perspective">
-      <a class="button" href="/checkout">Checkout Time</a>
+      
+      <div class="perspective">
+        <a class="button" href="/checkout">Checkout Time</a>
+      </div>
     </div>
   </div>
 </shopping-cart>

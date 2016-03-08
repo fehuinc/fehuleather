@@ -1,4 +1,4 @@
-Take ["CartDB", "DOMContentLoaded"], (CartDB)->
+Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
   
   addToCart = (state, buildID)->
     CartDB.addItem(buildID)
@@ -46,6 +46,11 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
     # Init
     state.sizeButtons.click (e)-> render setSelectedSize state, $(e.currentTarget)
     state.addToBag.click (e)-> render addToCart state, state.selectedSize.id
+    $("[js-bag-link]").click (e)->
+      time = Math.sqrt(document.body.scrollTop) * 20
+      $("html,body").animate (scrollTop: 0), time
+      setTimeout (()-> ShoppingCart.toggle(true)), time
+      
     render setSelectedSize state, state.sizeButtons.first() if state.sizeButtons.length > 0
     # if "[js-build=13]"
     #   render addToCart state, 13
