@@ -1,27 +1,19 @@
 <shopping-cart>
   <div class="icon"><%= image_tag "bag.svg" %></div>
   
-  <div class="contents" ng-class="{showing:cartShowing}">
+  <div class="contents">
     <h3>In The Bag</h3>
     <div class="items">
-      <div class="item" ng-repeat="item in cartItemsArray">
+      <div class="item">
         <div class="name" ng-class="{deleted:item.deleted}">{{item.name}}</div>
-
-        <div ng-hide="item.deleted" class="quantity"><input type="number" min="0" max="99" ng-model="item.quantity"></div>
-        <div ng-hide="item.deleted" class="price">${{item.quantity * item.cents / 100}}</div>
-        <div ng-hide="item.deleted" class="remove"><div ng-click="Cart.deleteItem(item, true)">x</div></div>
-        
-        <div ng-show="item.deleted" class="removed">:(</div>
-        <div ng-show="item.deleted" class="undo" ng-click="Cart.deleteItem(item, false)">Undo</div>
-        <div ng-show="item.deleted" class="spacer quantity"><input type="number"></div>
+        <div class="quantity"><input type="number" min="0" max="99"></div>
+        <div class="price">$</div>
+        <div class="remove"><div>x</div></div>
       </div>
     </div>
-    <div ng-hide="cartItemsArray.length">
-      Nothing yet — commence shopping spree!
-      <br>
-    </div>
-    <div class="perspective" ng-show="showCheckout()">
-      <a class="button" href="/checkout" ng-click="cartShowing = false">Checkout Time</a>
+    
+    <div class="perspective">
+      <a class="button" href="/checkout">Checkout Time</a>
     </div>
   </div>
 </shopping-cart>
