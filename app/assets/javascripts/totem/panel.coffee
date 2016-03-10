@@ -12,7 +12,11 @@ Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
       id: sizeElm.attr "js-build"
     return state
   
-      
+  
+  scrollToCart = (e)->
+    time = Math.sqrt(document.body.scrollTop) * 20
+    $("html,body").animate {scrollTop: 0}, time, 'swing', ()-> ShoppingCart.toggle true
+  
   # RENDERING #####################################################################################
   
   
@@ -46,11 +50,7 @@ Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
     # Init
     state.sizeButtons.click (e)-> render setSelectedSize state, $(e.currentTarget)
     state.addToBag.click (e)-> render addToCart state, state.selectedSize.id
-    $("[js-bag-link]").click (e)->
-      time = Math.sqrt(document.body.scrollTop) * 20
-      $("html,body").animate (scrollTop: 0), time
-      setTimeout (()-> ShoppingCart.toggle(true)), time
-      
+    panel.find("[js-bag-link]").click scrollToCart
     render setSelectedSize state, state.sizeButtons.first() if state.sizeButtons.length > 0
     # if "[js-build=13]"
     #   render addToCart state, 13

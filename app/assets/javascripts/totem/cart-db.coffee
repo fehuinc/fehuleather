@@ -2,6 +2,8 @@ $ ()->
   state = {}
   itemCount = 0
   callbacks = []
+  persistedVersion = 0
+  speculativeVersion = 0
   
   update = ()->
     itemCount = (k for k of state).length
