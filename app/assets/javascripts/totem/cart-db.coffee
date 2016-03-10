@@ -1,5 +1,6 @@
 $ ()->
-  state = {}
+  state = window.localStorage["state"] ?= {}
+  
   itemCount = 0
   callbacks = []
   persistedVersion = 0
