@@ -13,8 +13,11 @@ Take "LocalStorage", (LocalStorage)->
   recount = ()->
     state.buildCount = (k for k of state.builds).length
   
+  runCallback = (cb)->
+    cb state.builds, state.buildCount
+    
   runCallbacks = ()->
-    callback state.builds, state.buildCount for callback in callbacks
+    runCallback cb for cb in callbacks
   
   save = ()->
     LocalStorage.set LSKey, state
@@ -43,11 +46,15 @@ Take "LocalStorage", (LocalStorage)->
       save()
       runCallbacks()
     
-    getBuild: ()->
+    getCount: ()->
+      return state.buildCount
+    
+    getBuilds: ()->
       return state.builds
     
     addCallback: (cb)->
       callbacks.push cb
+      runCallback cb
     
     clear: ()->
       state = newState()

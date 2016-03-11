@@ -22,10 +22,8 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
   Make "ShoppingCart", ShoppingCart =
     toggle: toggleCartPanel
   
-  CartDB.addCallback update
+  CartDB.addCallback update # Runs immediately
   cartIconElm.css "display", "block"
   cartIconElm.hide() if CartDB.isEmpty()
   cartIconElm.click (e)->
     toggleCartPanel()
-  
-  toggleCartPanel()
