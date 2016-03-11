@@ -1,8 +1,3 @@
-<script>
-  FEHU = {}
-  FEHU.cart = <%= @cart.to_json.html_safe %>
-</script>
-
 <% @totem_rows.each do |totem_row| %>
   <totem-row class="unselectable">
     <div class="closer"></div>

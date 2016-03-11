@@ -10,6 +10,11 @@
   <meta name="description" content="Unique leather cuffs and other cute stuffs.">
   <meta name="keywords" content="fehu,leather,leather cuff,leather bracelet,leather belt,wrap cuff,handmade">
 
+  <script>
+    FEHU = {}
+    FEHU.imagePath = "<%= ENV['IMAGEPATH'] %>"
+  </script>
+
   <%= stylesheet_link_tag "application", media: "all" %>
   <%= javascript_include_tag "application", defer: "defer" %>
 

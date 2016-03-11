@@ -1,22 +1,54 @@
-$ ()->
-  state = window.localStorage["state"] ?= {}
-  
-  itemCount = 0
+Take "LocalStorage", (LocalStorage)->
+  state = null
   callbacks = []
-  persistedVersion = 0
-  speculativeVersion = 0
+  LSKey = "cart-db"
   
-  update = ()->
-    itemCount = (k for k of state).length
-    callback state, itemCount for callback in callbacks
+  # FUNCTIONS #####################################################################################
+  
+  
+  newState = ()->
+    buildCount: 0
+    builds: {}
+  
+  recount = ()->
+    state.buildCount = (k for k of state.builds).length
+  
+  runCallbacks = ()->
+    callback state.builds, state.buildCount for callback in callbacks
+  
+  save = ()->
+    LocalStorage.set LSKey, state
+    
+  
+  # INIT ##########################################################################################
+  
+  
+  state = LocalStorage.get(LSKey) or newState()
+  
+  
+  # API ###########################################################################################
+  
   
   Make "CartDB", CartDB =
-    hasItem: (buildID)->
-      return state[buildID]?
+    isEmpty: ()->
+      return state.buildCount is 0
+    
+    hasBuild: (build)->
+      return state.builds[build.id]?
       
-    addItem: (buildID)->
-      state[buildID] ?= 1
-      update()
+    addBuild: (build)->
+      b = state.builds[build.id] ?= build
+      b.quantity ?= 1
+      recount()
+      save()
+      runCallbacks()
+    
+    getBuild: ()->
+      return state.builds
     
     addCallback: (cb)->
       callbacks.push cb
+    
+    clear: ()->
+      state = newState()
+      save()

@@ -7,11 +7,11 @@
   <% if item.variation.product.sizes.count > 1 %>
     <size-selector>
       <% item.variation.builds.each do |build| %>
-        <div js-build="<%=build.id%>"><%= build.size.name %></div>
+        <div js-build="<%= build.to_json(methods: [:full_name], only: [:id, :price_retail]) %>"><%= build.size.name %></div>
       <% end %>
     </size-selector>
   <% else %>
-    <div class="one-size" js-build="<%=item.variation.builds.first%>"><%= item.variation.builds.first.size.name %></div>
+    <div class="one-size" js-build="<%= item.variation.builds.first.to_json(methods: [:full_name], only: [:id, :price_retail]) %>"><%= item.variation.builds.first.size.name %></div>
   <% end %>
   
   <div class="price">$<span js-price>100</span></div>
