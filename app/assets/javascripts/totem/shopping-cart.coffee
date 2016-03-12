@@ -27,3 +27,5 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
   cartIconElm.hide() if CartDB.isEmpty()
   cartIconElm.click (e)->
     toggleCartPanel()
+
+  toggleCartPanel()

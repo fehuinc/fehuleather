@@ -10,4 +10,8 @@ class Build < ActiveRecord::Base
   def full_name
     @full_name ||= "#{size.name} #{variation.name} #{product.name}"
   end
+  
+  def price_retail
+    variation.price_retail.fractional
+  end
 end
