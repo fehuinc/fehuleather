@@ -1,18 +1,19 @@
 Take ["CartDB", "DOMContentLoaded"], (CartDB)->
   
   showingIcon = false
-  cartIconElm = $ "shopping-cart"
-  cartContentsElm = cartIconElm.find ".contents"
+  shoppingCartElm = $ "shopping-cart"
+  cartIconElm = shoppingCartElm.find ".icon"
+  cartContentsElm = shoppingCartElm.find ".contents"
   
   
-  hideCartIcon = ()->
-    cartIconElm.hide()
+  hideCartAndIcon = ()->
+    shoppingCartElm.hide()
   
-  showCartIcon = ()->
-    cartIconElm.show()
+  showCartAndIcon = ()->
+    shoppingCartElm.show()
   
   update = (cart, count)->
-    if count > 0 then showCartIcon() else hideCartIcon()
+    if count > 0 then showCartAndIcon() else hideCartAndIcon()
   
   toggleCartPanel = (bool)->
     cartContentsElm.toggleClass("showing", bool)
@@ -23,8 +24,8 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
     toggle: toggleCartPanel
   
   CartDB.addCallback update # Runs immediately
-  cartIconElm.css "display", "block"
-  cartIconElm.hide() if CartDB.isEmpty()
+  shoppingCartElm.css "display", "block"
+  shoppingCartElm.hide() if CartDB.isEmpty()
   cartIconElm.click (e)->
     toggleCartPanel()
 

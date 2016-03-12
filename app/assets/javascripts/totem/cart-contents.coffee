@@ -4,8 +4,8 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
   
   makeHtml = (item)->
     console.log item
-    name     = "<div class='name'>#{item.full_name}</div>"
-    quantity = "<div class='quantity'><input type='number' min='0' max='99'></div>"
+    name     = "<div class='name'>#{item.short_name}</div>"
+    quantity = "<div class='quantity'><input type='number' min='0' max='99' value='#{item.quantity}'></div>"
     price    = "<div class='price'>$#{item.price_retail}</div>"
     remove   = "<div class='remove'><div>x</div></div>"
     html = "<div class='item'>\n\t#{name}\n\t#{quantity}\n\t#{price}\n\t#{remove}\n</div>"
@@ -18,6 +18,7 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
     if count > 0
       htmlItems = (makeHtml v for k,v of builds)
       container.html htmlItems.join "\n"
+      container.find(".quantity input") # ATTACH EVENT STUFF
       container.find(".remove") # ATTACH EVENT STUFF
     
     else

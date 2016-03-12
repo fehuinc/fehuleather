@@ -11,6 +11,14 @@ class Build < ActiveRecord::Base
     @full_name ||= "#{size.name} #{variation.name} #{product.name}"
   end
   
+  def short_name
+    @short_name ||= if variation.builds.count > 1
+      full_name
+    else
+      "#{variation.name} #{product.name}"
+    end
+  end
+  
   def price_retail
     variation.price_retail.fractional
   end

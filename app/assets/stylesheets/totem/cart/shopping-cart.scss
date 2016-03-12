@@ -1,0 +1,21 @@
+@import "vars";
+
+shopping-cart {
+  position: relative;
+  display: none;
+  top: -2.5em;
+  text-align: center;
+  overflow: visible;
+  z-index: 100;
+
+  @media (max-width: 550px) { top: -5em; }
+  
+  .contents-wrapper {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: -1em;
+    width: 100%;
+    text-align: center;
+  }
+}

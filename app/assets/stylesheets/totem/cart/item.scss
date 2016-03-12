@@ -1,0 +1,46 @@
+@import "vars";
+
+.item {
+  display: table-row;
+  
+  & > div {
+    display: table-cell;
+    padding: .2em 1vw;
+  }
+  
+  .name.deleted {
+    opacity: .5;
+  }
+  
+  .quantity input {
+    width: 3em;
+  }
+  
+  .remove {
+    padding: 0;
+
+    div {
+      position: relative;
+      top: -.1em;
+      width: 1.3em;
+      height: 1.3em;
+      margin-left: .4em;
+      line-height: 1.1em;
+      border-radius: 1.3em;
+      text-align: center;
+      background: $yellow;
+      color: rgba(#F00, 0.3);
+      cursor: pointer;
+    }
+  }
+  
+  .spacer {
+    visibility: hidden;
+    input { width: 0; }
+  }
+  
+  .undo {
+    color: rgba(#55A, 0.8);
+    cursor: pointer;
+  }
+}

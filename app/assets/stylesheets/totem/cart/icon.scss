@@ -1,0 +1,32 @@
+@import "vars";
+
+.icon {
+  position: absolute;
+  left: 50%;
+  top: -.2em;
+  display: inline-block;
+  cursor: pointer;
+  padding: .5em;
+  z-index: 101;
+  transform: translate(-50%);
+  
+  img {
+    width: 32px;
+    height: 24px;
+    
+    @media (max-width: 350px) {
+      width: 28px;
+      height: 21px;
+    }
+  }
+  
+  &:hover {
+    transition: transform 5s cubic-bezier(0, 1, 0, 1);
+    transform: translate(-50%) scale(1.5);
+  }
+  
+  &.showing {
+    transition: transform 5s cubic-bezier(0, .8, 0, .8) .3s;
+    transform: translate(-50%) scale(1.5);
+  }
+}
