@@ -38,10 +38,10 @@ Take "LocalStorage", (LocalStorage)->
     
     hasBuild: (build)->
       return state.builds[build.id]?
-      
-    addBuild: (build)->
+    
+    setBuild: (build, quantity = 1)->
       b = state.builds[build.id] ?= build
-      b.quantity ?= 1
+      b.quantity = quantity
       recount()
       save()
       runCallbacks()
@@ -51,6 +51,9 @@ Take "LocalStorage", (LocalStorage)->
     
     getBuilds: ()->
       return state.builds
+    
+    getBuildById: (id)->
+      return state.builds[id]
     
     addCallback: (cb)->
       callbacks.push cb

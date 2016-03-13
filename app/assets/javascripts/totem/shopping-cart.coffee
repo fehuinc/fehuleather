@@ -16,7 +16,15 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
     if count > 0 then showCartAndIcon() else hideCartAndIcon()
   
   toggleCartPanel = (bool)->
-    cartContentsElm.toggleClass("showing", bool)
+    $("body").toggleClass "showing-cart", bool
+    
+    if $("body").hasClass "showing-cart"
+      
+      $("modal-cover").on "click", ()->
+        console.log $ "modal-cover"
+        toggleCartPanel(false)
+    else
+      $("modal-cover").off "click", toggleCartPanel
   
   # INIT ###########################################################################################
 
@@ -28,5 +36,3 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
   shoppingCartElm.hide() if CartDB.isEmpty()
   cartIconElm.click (e)->
     toggleCartPanel()
-
-  toggleCartPanel()

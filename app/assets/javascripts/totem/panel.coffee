@@ -1,7 +1,7 @@
 Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
   
   addToCart = (state, build)->
-    CartDB.addBuild(build)
+    CartDB.setBuild(build)
     return state
   
   extractBuildData = (elm)->

@@ -1,5 +1,10 @@
 @import "vars";
 
+.showing-cart .contents {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .contents {
   display: inline-block;
   width: 100%;
@@ -14,11 +19,6 @@
   
   @media(max-width: 600px) {
     padding: 3em 2vw 1em;
-  }
-  
-  &.showing {
-    opacity: 1;
-    pointer-events: auto;
   }
   
   h3 {

@@ -1,6 +1,9 @@
 @import "vars";
+@import "libs/inherit";
 
 .icon {
+  @extend .unselectable;
+
   position: absolute;
   left: 50%;
   top: -.2em;
