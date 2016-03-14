@@ -40,24 +40,27 @@
   <div class="row three">
     <label class="shrink">
       Country
-      <select ng-model="shippingAddress.country"
-              ng-options="country for country in countries"></select>
+      <select ng-model="shippingAddress.country">
+        <option>Canada</option>
+        <option>United States</option>
+      </select>
     </label>
-
-    <label>
+    
+    <label class="province">
       {{shippingAddress.country == "United States" ? "State" : "Province"}}
       <input type="text" ng-model="shippingAddress.provinceState">
     </label>
     
-    <label>
+    <label class="postal">
       {{shippingAddress.country == "United States" ? "ZIP" : "Postal"}} Code
       <input type="text" ng-model="shippingAddress.postal">
     </label>
+    
   </div>
   
   <hr>
   
-  <div class="perspective">
-    <input type="submit" ng-click="submit()" value="Continue">
+  <div class="perspective center">
+    <a class="button" href="/payment">Continue</a>
   </div>
 </form>

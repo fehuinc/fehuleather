@@ -26,11 +26,11 @@
 }}
 
 @supports (backdrop-filter:blur(10px)) { html modal-cover {
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
   background: rgba(#FED, .6);
 }}
 @supports (-webkit-backdrop-filter:blur(10px)) { html modal-cover {
-  -webkit-backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(4px);
   background: rgba(#FED, .6);
 }}
 

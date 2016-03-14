@@ -3,28 +3,13 @@
 </section>
 
 <section>
-  <h3>The Goodies You'll Receive</h3>
-
-  <div class="items">
-    <div class="item" ng-repeat="item in cartItemsArray">
-      <div class="name">{{item.name}}</div>
-      <div class="quantity"><input type="number" min="0" max="99" ng-model="item.quantity"></div>
-      <div class="price">${{item.quantity * item.cents / 100}}</div>
-      <div class="remove"><div ng-click="Cart.removeItem(item)">x</div></div>
-    </div>
-    
-    <div class="item subtotal">
-      <div class="name">Total</div>
-      <div class="quantity">{{Cart.totalQuantity()}} items</div>
-      <div class="price">${{Cart.totalCents() / 100}}</div>
-      <div></div>
-    </div>
-  </div>
-
+  <h3>The Goodies</h3>
+  <div class="cart-items"></div>
+  <div class="cart-subtotal"></div>
 </section>
 
 <section>
-  <h3>The Place We'll Send Them</h3>
+  <h3>Their New Home</h3>
 
   <div class="address">
     

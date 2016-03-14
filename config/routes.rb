@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get "events" => "static#events"
     get "locations" => "static#locations"
     get "checkout" => "static#checkout"
+    get "payment" => "static#payment"
     get "press" => "static#press"
     get "catalog" => "static#catalog"
     

@@ -4,14 +4,12 @@
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: flex-start;
+    margin: 0 -.25em;
     
     & > * {
       flex: 1 1 auto;
-      padding-right: .5em;
-      
-      &:last-child {
-        padding-right: 0;
-      }
+      padding: .5em .25em;
+      margin: 0;
     }
   }
   
@@ -19,19 +17,9 @@
     width: 100%;
   }
   
-  label, .set {
-    margin: 0;
-  }
-  
   input, select {
     display: block;
-  }
-  
-  input {
     margin: .1em 0;
   }
   
-  select {
-    margin: .4em 0 .1em;
-  }
 }

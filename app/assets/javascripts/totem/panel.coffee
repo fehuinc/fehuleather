@@ -58,5 +58,4 @@ Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
     
     
   # INIT ##########################################################################################
-  setup panelElm, i for panelElm, i in $("totem-panel")
-  
+  setup panelElm, i for panelElm, i in $ "totem-panel"

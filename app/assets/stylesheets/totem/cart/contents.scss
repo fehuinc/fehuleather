@@ -12,7 +12,7 @@
   padding: 3em 2em 1em;
   border: .4rem solid $blue;
   background: white;
-  box-shadow: 0 0 2em white;
+  box-shadow: 0 0 3em 1em #FED;
   transition: opacity .2s ease-out;
   opacity: 0;
   pointer-events: none;
@@ -30,13 +30,6 @@
       margin: 0 .2em 0;
       vertical-align: -.3em;
     }
-  }
-  
-  .items {
-    display: table;
-    border-collapse: separate;
-    margin: 0 auto;
-    text-align: right;
   }
   
   .button {

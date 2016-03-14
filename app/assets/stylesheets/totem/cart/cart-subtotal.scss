@@ -1,0 +1,8 @@
+@import "vars";
+
+.cart-subtotal {
+  display: inline-block;
+  margin: 1em 0 .5em;
+  padding-bottom: .5em;
+  border-bottom: 1px solid $med;
+}
