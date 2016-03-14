@@ -9,9 +9,17 @@ Take "LocalStorage", (LocalStorage)->
   newState = ()->
     buildCount: 0
     builds: {}
+    quantity: 0
+    subtotalCents: 0
   
   recount = ()->
-    state.buildCount = (k for k of state.builds).length
+    state.buildCount = 0
+    state.quantity = 0
+    state.subtotalCents = 0
+    for k, item of state.builds
+      state.buildCount += 1
+      state.quantity += parseInt item.quantity
+      state.subtotalCents += item.price_retail * item.quantity
   
   runCallback = (cb)->
     cb state.builds, state.buildCount
@@ -27,7 +35,7 @@ Take "LocalStorage", (LocalStorage)->
   
   
   state = LocalStorage.get(LSKey) or newState()
-  
+  recount()
   
   # API ###########################################################################################
   
@@ -51,6 +59,12 @@ Take "LocalStorage", (LocalStorage)->
     
     getBuilds: ()->
       return state.builds
+    
+    getQuantity: ()->
+      return state.quantity
+    
+    getSubtotalCents: ()->
+      return state.subtotalCents
     
     getBuildById: (id)->
       return state.builds[id]

@@ -2,17 +2,21 @@ Rails.application.routes.draw do
   scope format: false do
     # MUST COME FIRST: Redirect apex requests to www
     match '(*any)', via: :all, constraints: { subdomain: '' }, to: redirect { |_, req| req.url.sub '//', '//www.' }
+
+    # Retail
+    root "static#totem"
+    get "checkout" => "static#checkout"
+    get "payment" => "static#payment"
+    get "confirmation" => "static#confirmation"
+    post "orders" => "orders#create"
     
     # Static
-    root "static#totem"
     get "about" => "static#about"
     get "events" => "static#events"
     get "locations" => "static#locations"
-    get "checkout" => "static#checkout"
-    get "payment" => "static#payment"
     get "press" => "static#press"
     get "catalog" => "static#catalog"
-    
+
     # Legacy routes
     get "/pages/story" => redirect("/about")
     get "/pages/events" => redirect("/events")
@@ -21,7 +25,7 @@ Rails.application.routes.draw do
     get "/pages/wholesale" => redirect("/merchant")
     get "/products/*ignore" => redirect("/")
     get "/collections/*ignore" => redirect("/")
-    
+
     # Wholesale
     get "logout" => "merchants#logout", as: "logout_merchant"
     

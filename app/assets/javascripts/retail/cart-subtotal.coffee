@@ -2,11 +2,8 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
 
   update = (state, builds, count)->
     if count > 0
-      q = 0
-      p = 0
-      for k, item of builds
-        q += parseInt item.quantity
-        p += item.price_retail * item.quantity
+      q = CartDB.getQuantity()
+      p = CartDB.getSubtotalCents()
       state.elm.html "<div class='subtotal'>#{q} items for $#{(p / 100)}</div>"
     else
       state.elm.empty()

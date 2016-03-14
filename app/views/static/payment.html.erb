@@ -8,7 +8,7 @@
   <div class="cart-subtotal"></div>
 </section>
 
-<section>
+<section ng-cloak>
   <h3>Their New Home</h3>
 
   <div class="address">
@@ -20,7 +20,7 @@
     
     <div class="field">
       <div class="fieldname">Email</div>
-      <div class="fieldvalue">{{shippingAddress.email}}</div>
+      <div class="fieldvalue email">{{shippingAddress.email}}</div>
     </div>
     
     <div class="field">
@@ -61,5 +61,8 @@
 </section>
 
 <section>
-  <form action="/submit-payment" method="POST" class="stripe"></form>
+  <%= form_for @order, class: "stripe" do |f| %>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <button>Pay with Card</button>
+  <% end %>
 </section>

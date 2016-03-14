@@ -3,6 +3,10 @@ class StaticController < ApplicationController
     @totem_rows = TotemRow.includes(items: [variation: [product: [:infos], builds: [:size, :variation, :product]]]).order(:index)
   end
   
+  def payment
+    @order = Order.new
+  end
+  
   def locations
     @locations = Location.all.order(:country, :province, :name)
   end
