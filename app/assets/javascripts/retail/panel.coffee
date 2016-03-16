@@ -55,6 +55,7 @@ Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
     state.sizeButtons.click (e)-> render setSelectedSize state, $(e.currentTarget)
     state.addToBag.click (e)-> render addToCart state, state.selectedSize.build
     panel.find("[js-bag-link]").click scrollToCart
+    CartDB.addCallback ()-> render state
     
     
   # INIT ##########################################################################################

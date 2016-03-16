@@ -17,7 +17,7 @@
     width: 100%;
   }
   
-  input, select {
+  input:not([type="checkbox"]), select {
     display: block;
     margin: .1em 0;
   }

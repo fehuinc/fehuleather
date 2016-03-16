@@ -19,4 +19,16 @@ shopping-cart {
     text-align: center;
     pointer-events: none;
   }
+  
+  .clear {
+    display: inline-block;
+    font-size: .8em;
+    margin-left: 2em;
+    cursor: pointer;
+    color: $dark;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

@@ -5,62 +5,124 @@
   <div class="close" ng-click="showEmailPopup = false">Close</div>
 </div>
 
-<form novalidate>
+<section ng-cloak>
   <h3>Shipping Address</h3>
   
-  <div class="row two">
-    <label>
-      Name
-      <input type="text" ng-model="shippingAddress.name">
-    </label>
-    
-    <label>
-      Email <div class="info-prompt" ng-click="showEmailPopup = !showEmailPopup">?</div>
-      <input type="email" ng-model="shippingAddress.email">
-    </label>
-  </div>
-  
-  <hr>
-  
-  <div class="row two">
-    <div class="set">
+  <form novalidate>
+    <div class="row two">
       <label>
-        Address
-        <input type="text" ng-model="shippingAddress.address1" placeholder="Line 1">
+        Name
+        <input type="text" ng-model="checkoutInfo.shippingAddress.name">
       </label>
-      <input type="text" ng-model="shippingAddress.address2" placeholder="Line 2">
+
+      <label>
+        Email <div class="info-prompt" ng-click="showEmailPopup = !showEmailPopup">?</div>
+        <input type="email" ng-model="checkoutInfo.shippingAddress.email">
+      </label>
     </div>
     
+    <hr>
+    
+    <div class="row two">
+      <div class="set">
+        <label>
+          Address
+          <input type="text" ng-model="checkoutInfo.shippingAddress.address1" placeholder="Line 1">
+        </label>
+        <input type="text" ng-model="checkoutInfo.shippingAddress.address2" placeholder="Line 2">
+      </div>
+      
+      <label>
+        City
+        <input type="text" ng-model="checkoutInfo.shippingAddress.city">
+      </label>
+    </div>
+    
+    <div class="row three">
+      <label class="shrink">
+        Country
+        <select ng-model="checkoutInfo.shippingAddress.country">
+          <option>Canada</option>
+          <option>United States</option>
+        </select>
+      </label>
+      
+      <label class="province">
+        {{checkoutInfo.shippingAddress.country == "United States" ? "State" : "Province"}}
+        <input type="text" ng-model="checkoutInfo.shippingAddress.provinceState">
+      </label>
+      
+      <label class="postal">
+        {{checkoutInfo.shippingAddress.country == "United States" ? "ZIP" : "Postal"}} Code
+        <input type="text" ng-model="checkoutInfo.shippingAddress.postal">
+      </label>
+      
+    </div>
+  </form>
+</section>
+
+<hr>
+
+<section ng-cloak>
+  <h3>Billing Address</h3>
+  
+  <div class="row">
     <label>
-      City
-      <input type="text" ng-model="shippingAddress.city">
+      <input type="checkbox" ng-model="checkoutInfo.billingAddress.sameAsShipping">
+      Same as shipping address
     </label>
   </div>
-  
-  <div class="row three">
-    <label class="shrink">
-      Country
-      <select ng-model="shippingAddress.country">
-        <option>Canada</option>
-        <option>United States</option>
-      </select>
-    </label>
+
+  <form novalidate ng-hide="checkoutInfo.billingAddress.sameAsShipping">
+    <div class="row">
+      <label>
+        Name
+        <input type="text" ng-model="checkoutInfo.billingAddress.name">
+      </label>
+    </div>
     
-    <label class="province">
-      {{shippingAddress.country == "United States" ? "State" : "Province"}}
-      <input type="text" ng-model="shippingAddress.provinceState">
-    </label>
+    <hr>
     
-    <label class="postal">
-      {{shippingAddress.country == "United States" ? "ZIP" : "Postal"}} Code
-      <input type="text" ng-model="shippingAddress.postal">
-    </label>
+    <div class="row two">
+      <div class="set">
+        <label>
+          Address
+          <input type="text" ng-model="checkoutInfo.billingAddress.address1" placeholder="Line 1">
+        </label>
+        <input type="text" ng-model="checkoutInfo.billingAddress.address2" placeholder="Line 2">
+      </div>
+      
+      <label>
+        City
+        <input type="text" ng-model="checkoutInfo.billingAddress.city">
+      </label>
+    </div>
     
-  </div>
-  
-  <hr>
-  
-  <div class="perspective center">
-    <a class="button" href="/payment">Continue</a>
-  </div>
-</form>
+    <div class="row three">
+      <label class="shrink">
+        Country
+        <select ng-model="checkoutInfo.billingAddress.country">
+          <option>Canada</option>
+          <option>United States</option>
+        </select>
+      </label>
+      
+      <label class="province">
+        {{checkoutInfo.billingAddress.country == "United States" ? "State" : "Province"}}
+        <input type="text" ng-model="checkoutInfo.billingAddress.provinceState">
+      </label>
+      
+      <label class="postal">
+        {{checkoutInfo.billingAddress.country == "United States" ? "ZIP" : "Postal"}} Code
+        <input type="text" ng-model="checkoutInfo.billingAddress.postal">
+      </label>
+      
+    </div>
+  </form>
+</section>
+
+<hr>
+
+<div class="perspective center">
+  <a class="button" href="/payment">Continue</a>
+</div>

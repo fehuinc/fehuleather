@@ -75,4 +75,6 @@ Take "LocalStorage", (LocalStorage)->
     
     clear: ()->
       state = newState()
+      recount()
       save()
+      runCallbacks()

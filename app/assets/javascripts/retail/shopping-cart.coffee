@@ -7,6 +7,7 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
   
   
   hideCartAndIcon = ()->
+    toggleCartPanel(false)
     shoppingCartElm.hide()
   
   showCartAndIcon = ()->
@@ -26,8 +27,10 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
     else
       $("modal-cover").off "click", toggleCartPanel
   
+  
   # INIT ###########################################################################################
-
+  
+  
   Make "ShoppingCart", ShoppingCart =
     toggle: toggleCartPanel
   
@@ -36,3 +39,6 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
   shoppingCartElm.hide() if CartDB.isEmpty()
   cartIconElm.click (e)->
     toggleCartPanel()
+  
+  shoppingCartElm.find(".clear").click ()->
+    CartDB.clear()

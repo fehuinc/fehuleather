@@ -16,7 +16,7 @@ angular.module "FehuApp", [
   # Services
   "FeatureDetect"
   "Storage"
-  "ShippingAddress"
+  "CheckoutInfo"
   
   # Wholesale
   "ItemEditor"

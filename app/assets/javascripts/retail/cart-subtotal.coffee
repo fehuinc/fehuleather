@@ -4,7 +4,8 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
     if count > 0
       q = CartDB.getQuantity()
       p = CartDB.getSubtotalCents()
-      state.elm.html "<div class='subtotal'>#{q} items for $#{(p / 100)}</div>"
+      plural = if q is 1 then "" else "s"
+      state.elm.html "<div class='subtotal'>#{q} item#{plural} for $#{(p / 100)}</div>"
     else
       state.elm.empty()
 

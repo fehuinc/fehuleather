@@ -6,58 +6,106 @@
   <h3>The Goodies</h3>
   <div class="cart-items"></div>
   <div class="cart-subtotal"></div>
+
+  <div class="confirmation">One more thing? <a href="/">Sure</a></div>
 </section>
 
 <section ng-cloak>
   <h3>Their New Home</h3>
 
-  <div class="address">
+  <div class="shipping address">
     
     <div class="field">
       <div class="fieldname">Name</div>
-      <div class="fieldvalue">{{shippingAddress.name}}</div>
+      <div class="fieldvalue">{{checkoutInfo.shippingAddress.name}}</div>
     </div>
     
     <div class="field">
       <div class="fieldname">Email</div>
-      <div class="fieldvalue email">{{shippingAddress.email}}</div>
+      <div class="fieldvalue email">{{checkoutInfo.shippingAddress.email}}</div>
     </div>
     
     <div class="field">
       <div class="fieldname">Address</div>
-      <div class="fieldvalue">{{shippingAddress.address1}}</div>
+      <div class="fieldvalue">{{checkoutInfo.shippingAddress.address1}}</div>
     </div>
     
-    <div class="field" ng-show="shippingAddress.address2">
+    <div class="field" ng-show="checkoutInfo.shippingAddress.address2">
       <div class="fieldname"> </div>
-      <div class="fieldvalue">{{shippingAddress.address2}}</div>
+      <div class="fieldvalue">{{checkoutInfo.shippingAddress.address2}}</div>
     </div>
     
     <div class="field">
       <div class="fieldname">City</div>
-      <div class="fieldvalue">{{shippingAddress.city}}</div>
+      <div class="fieldvalue">{{checkoutInfo.shippingAddress.city}}</div>
     </div>
     
     <div class="field">
-      <div class="fieldname">{{shippingAddress.country == "United States" ? "State" : "Province"}}</div>
-      <div class="fieldvalue">{{shippingAddress.provinceState}}</div>
+      <div class="fieldname">{{checkoutInfo.shippingAddress.country == "United States" ? "State" : "Province"}}</div>
+      <div class="fieldvalue">{{checkoutInfo.shippingAddress.provinceState}}</div>
     </div>
     
     <div class="field">
-      <div class="fieldname">{{shippingAddress.country == "United States" ? "ZIP" : "Postal"}} Code</div>
-      <div class="fieldvalue">{{shippingAddress.postal}}</div>
+      <div class="fieldname">{{checkoutInfo.shippingAddress.country == "United States" ? "ZIP" : "Postal"}} Code</div>
+      <div class="fieldvalue">{{checkoutInfo.shippingAddress.postal}}</div>
     </div>
 
     <div class="field">
       <div class="fieldname">Country</div>
-      <div class="fieldvalue">{{shippingAddress.country}}</div>
+      <div class="fieldvalue">{{checkoutInfo.shippingAddress.country}}</div>
     </div>
-
-    
   </div>
   
   <div class="confirmation">See a mistake? <a href="/checkout">Fix It</a></div>
+</section>
 
+<section ng-cloak ng-hide="checkoutInfo.billingAddress.sameAsShipping">
+  <h3>Brought To You By</h3>
+  
+  <div class="billing address">
+    
+    <div class="field">
+      <div class="fieldname">Name</div>
+      <div class="fieldvalue">{{checkoutInfo.billingAddress.name}}</div>
+    </div>
+    
+    <div class="field">
+      <div class="fieldname">Email</div>
+      <div class="fieldvalue email">{{checkoutInfo.billingAddress.email}}</div>
+    </div>
+    
+    <div class="field">
+      <div class="fieldname">Address</div>
+      <div class="fieldvalue">{{checkoutInfo.billingAddress.address1}}</div>
+    </div>
+    
+    <div class="field" ng-show="checkoutInfo.billingAddress.address2">
+      <div class="fieldname"> </div>
+      <div class="fieldvalue">{{checkoutInfo.billingAddress.address2}}</div>
+    </div>
+    
+    <div class="field">
+      <div class="fieldname">City</div>
+      <div class="fieldvalue">{{checkoutInfo.billingAddress.city}}</div>
+    </div>
+    
+    <div class="field">
+      <div class="fieldname">{{checkoutInfo.billingAddress.country == "United States" ? "State" : "Province"}}</div>
+      <div class="fieldvalue">{{checkoutInfo.billingAddress.provinceState}}</div>
+    </div>
+    
+    <div class="field">
+      <div class="fieldname">{{checkoutInfo.billingAddress.country == "United States" ? "ZIP" : "Postal"}} Code</div>
+      <div class="fieldvalue">{{checkoutInfo.billingAddress.postal}}</div>
+    </div>
+
+    <div class="field">
+      <div class="fieldname">Country</div>
+      <div class="fieldvalue">{{checkoutInfo.billingAddress.country}}</div>
+    </div>
+  </div>
+
+  <div class="confirmation">See a mistake? <a href="/checkout">Fix It</a></div>
 </section>
 
 <section>
