@@ -4,7 +4,7 @@ class StaticController < ApplicationController
   end
   
   def payment
-    @order = Order.new
+    
   end
   
   def locations

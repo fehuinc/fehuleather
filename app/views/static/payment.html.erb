@@ -61,7 +61,7 @@
 </section>
 
 <section>
-  <%= form_for @order, class: "stripe" do |f| %>
+  <%= form_tag :orders, class: "stripe" do |f| %>
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <button>Pay with Card</button>
   <% end %>
