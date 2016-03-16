@@ -10,6 +10,7 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
       # image: "<%= image_path 'logo-square-blue.png' %>"
       token: (token)->
         processing = false
+        form.append("<input type='hidden' name='token' value='#{token.id}'>")
         form.submit()
         
         # Use the token to create the charge with a server-side script.
