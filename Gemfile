@@ -28,9 +28,10 @@ gem "sass-rails"
 gem "uglifier"
 
 # SERVICE INTEGRATIONS
+gem "aws-sdk", "~> 2"
 gem "postmark-rails"
 gem "skylight"
-gem "aws-sdk", "~> 2"
+gem "stripe"
 
 # IMAGE UPLOADS
 gem "jquery-fileupload-rails"
