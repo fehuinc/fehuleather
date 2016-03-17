@@ -59,57 +59,16 @@
   <div class="confirmation">See a mistake? <a href="/checkout">Fix It</a></div>
 </section>
 
-<section ng-cloak ng-hide="checkoutInfo.billingAddress.sameAsShipping">
-  <h3>Brought To You By</h3>
-  
-  <div class="billing address">
-    
-    <div class="field">
-      <div class="fieldname">Name</div>
-      <div class="fieldvalue">{{checkoutInfo.billingAddress.name}}</div>
-    </div>
-    
-    <div class="field">
-      <div class="fieldname">Email</div>
-      <div class="fieldvalue email">{{checkoutInfo.billingAddress.email}}</div>
-    </div>
-    
-    <div class="field">
-      <div class="fieldname">Address</div>
-      <div class="fieldvalue">{{checkoutInfo.billingAddress.address1}}</div>
-    </div>
-    
-    <div class="field" ng-show="checkoutInfo.billingAddress.address2">
-      <div class="fieldname"> </div>
-      <div class="fieldvalue">{{checkoutInfo.billingAddress.address2}}</div>
-    </div>
-    
-    <div class="field">
-      <div class="fieldname">City</div>
-      <div class="fieldvalue">{{checkoutInfo.billingAddress.city}}</div>
-    </div>
-    
-    <div class="field">
-      <div class="fieldname">{{checkoutInfo.billingAddress.country == "United States" ? "State" : "Province"}}</div>
-      <div class="fieldvalue">{{checkoutInfo.billingAddress.provinceState}}</div>
-    </div>
-    
-    <div class="field">
-      <div class="fieldname">{{checkoutInfo.billingAddress.country == "United States" ? "ZIP" : "Postal"}} Code</div>
-      <div class="fieldvalue">{{checkoutInfo.billingAddress.postal}}</div>
-    </div>
-
-    <div class="field">
-      <div class="fieldname">Country</div>
-      <div class="fieldvalue">{{checkoutInfo.billingAddress.country}}</div>
-    </div>
-  </div>
-
-  <div class="confirmation">See a mistake? <a href="/checkout">Fix It</a></div>
+<section ng-cloak>
+  <h3>Leave Us A Note?</h3>
+  <textarea rows="3" ng-model="checkoutInfo.notes"></textarea>
 </section>
 
-<section>
+<section ng-cloak>
   <%= form_tag :orders, class: "stripe" do |f| %>
+    <input type="hidden" name="shippingAddress" value="{{checkoutInfo.shippingAddress | json}}">
+    <input type="hidden" name="notes" value="{{checkoutInfo.notes | json}}">
+    
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <button>Pay with Card</button>
   <% end %>

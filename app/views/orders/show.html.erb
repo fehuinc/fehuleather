@@ -1,1 +1,6 @@
 <h1>Token: <%= @token %></h1>
+
+<% @builds.each do |build| %>
+  <%= build.full_name %>
+  $<%= build.price_retail / 100 %>
+<% end %>

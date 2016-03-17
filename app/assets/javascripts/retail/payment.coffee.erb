@@ -4,12 +4,21 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
     form = $ "form.stripe"
     
     handler = StripeCheckout.configure
-      key: "<%= ENV['STRIPE_KEY'] %>"
+      key: "<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
       name: "Fehu Inc."
       image: "<%= image_path('logo-square-blue.png') if Rails.env == 'production' %>"
       token: (token)->
         processing = true
+        
+        builds = {}
+        for k,v of CartDB.getBuilds()
+          builds[v.id] = v.quantity
+        builds = JSON.stringify builds
+        
+        quantity = CartDB.getQuantity()
         form.append("<input type='hidden' name='token' value='#{token.id}'>")
+        form.append("<input type='hidden' name='builds' value='#{builds}'>")
+        form.append("<input type='hidden' name='quantity' value='#{quantity}'>")
         form.submit()
         
         # Use the token to create the charge with a server-side script.
@@ -18,8 +27,10 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
     $(".stripe button").click (e)->
       e.preventDefault()
       if not processing
+        quantity = CartDB.getQuantity()
+        plural = if quantity is 1 then "" else "s"
         handler.open
           amount: CartDB.getSubtotalCents()
-          description: CartDB.getQuantity() + " Items"
+          description: quantity + " Item" + plural
           email: $(".email").text()
-          currency: 'CAD'
+          currency: "CAD"

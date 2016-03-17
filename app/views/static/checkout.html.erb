@@ -6,8 +6,6 @@
 </div>
 
 <section ng-cloak>
-  <h3>Shipping Address</h3>
-  
   <form novalidate>
     <div class="row two">
       <label>
@@ -21,12 +19,10 @@
       </label>
     </div>
     
-    <hr>
-    
     <div class="row two">
       <div class="set">
         <label>
-          Address
+          Street Address
           <input type="text" ng-model="checkoutInfo.shippingAddress.address1" placeholder="Line 1">
         </label>
         <input type="text" ng-model="checkoutInfo.shippingAddress.address2" placeholder="Line 2">
@@ -61,68 +57,6 @@
   </form>
 </section>
 
-<hr>
-
-<section ng-cloak>
-  <h3>Billing Address</h3>
-  
-  <div class="row">
-    <label>
-      <input type="checkbox" ng-model="checkoutInfo.billingAddress.sameAsShipping">
-      Same as shipping address
-    </label>
-  </div>
-
-  <form novalidate ng-hide="checkoutInfo.billingAddress.sameAsShipping">
-    <div class="row">
-      <label>
-        Name
-        <input type="text" ng-model="checkoutInfo.billingAddress.name">
-      </label>
-    </div>
-    
-    <hr>
-    
-    <div class="row two">
-      <div class="set">
-        <label>
-          Address
-          <input type="text" ng-model="checkoutInfo.billingAddress.address1" placeholder="Line 1">
-        </label>
-        <input type="text" ng-model="checkoutInfo.billingAddress.address2" placeholder="Line 2">
-      </div>
-      
-      <label>
-        City
-        <input type="text" ng-model="checkoutInfo.billingAddress.city">
-      </label>
-    </div>
-    
-    <div class="row three">
-      <label class="shrink">
-        Country
-        <select ng-model="checkoutInfo.billingAddress.country">
-          <option>Canada</option>
-          <option>United States</option>
-        </select>
-      </label>
-      
-      <label class="province">
-        {{checkoutInfo.billingAddress.country == "United States" ? "State" : "Province"}}
-        <input type="text" ng-model="checkoutInfo.billingAddress.provinceState">
-      </label>
-      
-      <label class="postal">
-        {{checkoutInfo.billingAddress.country == "United States" ? "ZIP" : "Postal"}} Code
-        <input type="text" ng-model="checkoutInfo.billingAddress.postal">
-      </label>
-      
-    </div>
-  </form>
-</section>
-
-<hr>
-
-<div class="perspective center">
+<section class="perspective center">
   <a class="button" href="/payment">Continue</a>
-</div>
+</section>
