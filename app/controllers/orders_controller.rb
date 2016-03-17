@@ -1,5 +1,9 @@
 class OrdersController < ApplicationController
   
+  def show
+    @order = Order.find(params[:id])
+  end
+  
   def create
     builds_data = JSON.parse order_params[:builds] # From JS
     notes = order_params[:notes] # From Angular
@@ -12,13 +16,7 @@ class OrdersController < ApplicationController
     amount = builds.map(&:price_retail).reduce(0, :+) # In cents
     description = "#{quantity} Item #{quantity == 1 ? "" : "s"} from Fehu Inc."
     
-    # customer = Stripe::Customer.create(
-    #   email: shippingAddress["email"],
-    #   source: token
-    # )
-    
     charge = Stripe::Charge.create(
-      # customer: customer.id,
       source: token,
       amount: amount,
       description: description,
@@ -33,14 +31,18 @@ class OrdersController < ApplicationController
       order.items.new(
         build: build,
         build_name: build.build_name,
-        product_name: build.product_name,
-        price: build.price_retail,
-        quantity: builds_data[build.id].quantity
+        product_name: build.product.name,
+        price: build.variation.price_retail,
+        quantity: builds_data[build.id.to_s]
       )
     end
     
-    redirect_to order_path(order)
+    order.save!
     
+    # Email Freyja
+    
+    redirect_to order_path(order)
+  
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to payment_path

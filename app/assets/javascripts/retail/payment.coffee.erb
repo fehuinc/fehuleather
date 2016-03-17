@@ -19,11 +19,11 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
         form.append("<input type='hidden' name='token' value='#{token.id}'>")
         form.append("<input type='hidden' name='builds' value='#{builds}'>")
         form.append("<input type='hidden' name='quantity' value='#{quantity}'>")
-        form.submit()
         
-        # Use the token to create the charge with a server-side script.
-        # You can access the token ID with `token.id`
-    
+        CartDB.clear()
+        
+        form.submit()
+            
     $(".stripe button").click (e)->
       e.preventDefault()
       if not processing
