@@ -14,7 +14,13 @@
     <div class="one-size" js-build="<%= item.variation.builds.first.to_json(methods: [:short_name, :price_retail], only: [:id]) %>"><%= item.variation.builds.first.size.name %></div>
   <% end %>
   
-  <div class="price">$<span js-price>100</span></div>
+  <div class="price">
+    $<span js-price>100</span>
+    <currency-selector>
+      <img src="<%= asset_path("canada.svg") %>" class="cad hide">
+      <img src="<%= asset_path("usa-flag.svg") %>" class="usd hide">
+    </currency-selector>
+  </div>
   
   <bag-selector class="perspective">
     <div class="add-to-bag button">Yes Please!</div>

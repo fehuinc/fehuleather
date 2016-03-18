@@ -3,12 +3,14 @@ Take "LocalStorage", (LocalStorage)->
   callbacks = []
   LSKey = "cart-db"
   
+  
   # FUNCTIONS #####################################################################################
   
   
   newState = ()->
     buildCount: 0
     builds: {}
+    currency: "CAD"
     quantity: 0
     subtotalCents: 0
   
@@ -37,38 +39,11 @@ Take "LocalStorage", (LocalStorage)->
   state = LocalStorage.get(LSKey) or newState()
   recount()
   
+  
   # API ###########################################################################################
   
   
   Make "CartDB", CartDB =
-    isEmpty: ()->
-      return state.buildCount is 0
-    
-    hasBuild: (build)->
-      return state.builds[build.id]?
-    
-    setBuild: (build, quantity = 1)->
-      b = state.builds[build.id] ?= build
-      b.quantity = quantity
-      recount()
-      save()
-      runCallbacks()
-    
-    getCount: ()->
-      return state.buildCount
-    
-    getBuilds: ()->
-      return state.builds
-    
-    getQuantity: ()->
-      return state.quantity
-    
-    getSubtotalCents: ()->
-      return state.subtotalCents
-    
-    getBuildById: (id)->
-      return state.builds[id]
-    
     addCallback: (cb)->
       callbacks.push cb
       runCallback cb
@@ -76,5 +51,41 @@ Take "LocalStorage", (LocalStorage)->
     clear: ()->
       state = newState()
       recount()
+      save()
+      runCallbacks()
+
+    getBuildById: (id)->
+      return state.builds[id]
+          
+    getBuilds: ()->
+      return state.builds
+
+    getCount: ()->
+      return state.buildCount
+    
+    getCurrency: ()->
+      return state.currency
+    
+    getQuantity: ()->
+      return state.quantity
+    
+    getSubtotalCents: ()->
+      return state.subtotalCents
+    
+    hasBuild: (build)->
+      return state.builds[build.id]?
+    
+    isEmpty: ()->
+      return state.buildCount is 0
+    
+    setBuild: (build, quantity = 1)->
+      b = state.builds[build.id] ?= build
+      b.quantity = quantity
+      recount()
+      save()
+      runCallbacks()
+
+    toggleCurrency: ()->
+      state.currency = if state.currency == "CAD" then "USD" else "CAD"
       save()
       runCallbacks()

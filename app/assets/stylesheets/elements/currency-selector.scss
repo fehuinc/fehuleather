@@ -1,0 +1,18 @@
+currency-selector {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  
+  img {
+    vertical-align: baseline;
+  }
+  
+  img.hide {
+    display: none;
+  }
+  
+  img.cad {
+    width: 18px;
+    vertical-align: -3px;
+  }
+}
