@@ -5,7 +5,13 @@
     <div class="contents">
       <h3>In The Bag</h3>
       <div class="cart-items"></div>
-      <div class="cart-subtotal"></div>
+      <div class="cart-subtotal perspective">
+        <div cart-subtotal></div>
+        <currency-selector>
+          <img src="<%= asset_path("cad.svg") %>" class="cad hide">
+          <img src="<%= asset_path("usd.svg") %>" class="usd hide">
+        </currency-selector>
+      </div>
       <div class="clear">Remove All</div>
       <div class="perspective">
         <a class="button" href="/checkout">Checkout Time</a>

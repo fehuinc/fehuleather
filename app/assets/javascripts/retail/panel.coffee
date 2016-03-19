@@ -35,7 +35,7 @@ Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
       build = extractBuildData button
       button.toggleClass "in-bag", CartDB.hasBuild build
     
-    state.price.text Math.round state.selectedSize.build.retail_prices[CartDB.getCurrency()] / 100
+    state.price.text state.selectedSize.build.retail_prices[CartDB.getCurrency()]
     
     return state
 

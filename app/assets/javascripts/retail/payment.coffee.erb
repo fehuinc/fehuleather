@@ -30,7 +30,7 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
         quantity = CartDB.getQuantity()
         plural = if quantity is 1 then "" else "s"
         handler.open
-          amount: CartDB.getSubtotalCents()
+          amount: CartDB.getSubtotal()
           description: quantity + " Item" + plural
           email: $(".email").text()
           currency: "CAD"

@@ -3,9 +3,9 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
   update = (state, builds, count)->
     if count > 0
       q = CartDB.getQuantity()
-      p = CartDB.getSubtotalCents()
+      p = CartDB.getSubtotal()
       plural = if q is 1 then "" else "s"
-      state.elm.html "<div class='subtotal'>#{q} item#{plural} for $#{(p / 100)}</div>"
+      state.elm.html "<div class='subtotal'>#{q} item#{plural} for $#{p}</div>"
     else
       state.elm.empty()
 
@@ -19,4 +19,4 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
 
   # INIT ##########################################################################################
   
-  setup elm, i for elm, i in $ ".cart-subtotal"
+  setup elm, i for elm, i in $ "[cart-subtotal]"

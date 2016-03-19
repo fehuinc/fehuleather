@@ -71,8 +71,20 @@ class Initialize < ActiveRecord::Migration
       t.timestamps
     end
     
-    create_table :orders do |t|
-      t.belongs_to :merchant,          required: false, index: true
+    
+    
+    raise "FINISH THIS!"
+    
+    create_table :retail_order do |t|
+      t.uuid :uuid,                    default: 'uuid_generate_v4()'
+      t.text :notes
+      t.text :address
+      t.text :email
+      t.timestamps
+    end
+    
+    create_table :wholesale_order do |t|
+      t.belongs_to :merchant,          required: true, index: true
       t.uuid :uuid,                    default: 'uuid_generate_v4()'
       t.text :notes
       t.datetime :submitted

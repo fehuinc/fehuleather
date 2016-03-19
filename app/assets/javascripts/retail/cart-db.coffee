@@ -12,16 +12,16 @@ Take "LocalStorage", (LocalStorage)->
     builds: {}
     currency: "CAD"
     quantity: 0
-    subtotalCents: 0
+    subtotal: 0
   
   recount = ()->
     state.buildCount = 0
     state.quantity = 0
-    state.subtotalCents = 0
+    state.subtotal = 0
     for k, item of state.builds
       state.buildCount += 1
       state.quantity += parseInt item.quantity
-      state.subtotalCents += item.price_retail * item.quantity
+      state.subtotal += item.retail_prices[state.currency] * item.quantity
   
   runCallback = (cb)->
     cb state.builds, state.buildCount
@@ -69,8 +69,8 @@ Take "LocalStorage", (LocalStorage)->
     getQuantity: ()->
       return state.quantity
     
-    getSubtotalCents: ()->
-      return state.subtotalCents
+    getSubtotal: ()->
+      return state.subtotal
     
     hasBuild: (build)->
       return state.builds[build.id]?
@@ -87,6 +87,6 @@ Take "LocalStorage", (LocalStorage)->
 
     toggleCurrency: ()->
       state.currency = if state.currency == "CAD" then "USD" else "CAD"
-      console.log state.currency
+      recount()
       save()
       runCallbacks()

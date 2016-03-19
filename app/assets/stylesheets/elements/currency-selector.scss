@@ -1,6 +1,8 @@
 @import "vars";
+@import "libs/inherit";
 
 currency-selector {
+  @extend .unselectable;
   display: inline-block;
   padding: 2px 4px 1px;
   border-top-right-radius: 3px;

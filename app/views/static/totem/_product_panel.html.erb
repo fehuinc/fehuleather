@@ -14,7 +14,7 @@
     <div class="one-size" js-build="<%= item.variation.builds.first.to_json(methods: [:short_name, :retail_prices], only: [:id]) %>"><%= item.variation.builds.first.size.name %></div>
   <% end %>
   
-  <div class="price">
+  <div class="price perspective">
     $<span js-price></span>
     <currency-selector>
       <img src="<%= asset_path("cad.svg") %>" class="cad hide">

@@ -22,7 +22,6 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
     if $("body").hasClass "showing-cart"
       
       $("modal-cover").on "click", ()->
-        console.log $ "modal-cover"
         toggleCartPanel(false)
     else
       $("modal-cover").off "click", toggleCartPanel
