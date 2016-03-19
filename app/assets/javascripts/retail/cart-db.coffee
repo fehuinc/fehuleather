@@ -49,7 +49,9 @@ Take "LocalStorage", (LocalStorage)->
       runCallback cb
     
     clear: ()->
+      oldCurrency = state.currency
       state = newState()
+      state.currency = oldCurrency
       recount()
       save()
       runCallbacks()
