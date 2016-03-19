@@ -1,7 +1,7 @@
 # encoding : utf-8
 require 'money/bank/google_currency'
 
-Money::Bank::GoogleCurrency.ttl_in_seconds = 86400
+Money::Bank::GoogleCurrency.ttl_in_seconds = 60 * 60 * 24 * 7 * 2
 
 MoneyRails.configure do |config|
 

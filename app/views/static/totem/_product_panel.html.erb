@@ -1,21 +1,21 @@
 <div class="top">
   <div class="variation"><%=item.variation.name%></div>
-  <div class="product"><%=item.variation.product.name%></div>
+  <div class="product"><%=item.product.name%></div>
 </div>
 
 <div class="middle">
-  <% if item.variation.product.sizes.count > 1 %>
+  <% if item.product.sizes.count > 1 %>
     <size-selector>
       <% item.variation.builds.each do |build| %>
-        <div js-build="<%= build.to_json(methods: [:short_name, :price_retail], only: [:id]) %>"><%= build.size.name %></div>
+        <div js-build="<%= build.to_json(methods: [:short_name, :retail_prices], only: [:id]) %>"><%= build.size.name %></div>
       <% end %>
     </size-selector>
   <% else %>
-    <div class="one-size" js-build="<%= item.variation.builds.first.to_json(methods: [:short_name, :price_retail], only: [:id]) %>"><%= item.variation.builds.first.size.name %></div>
+    <div class="one-size" js-build="<%= item.variation.builds.first.to_json(methods: [:short_name, :retail_prices], only: [:id]) %>"><%= item.variation.builds.first.size.name %></div>
   <% end %>
   
   <div class="price">
-    $<span js-price>100</span>
+    $<span js-price></span>
     <currency-selector>
       <img src="<%= asset_path("cad.svg") %>" class="cad hide">
       <img src="<%= asset_path("usd.svg") %>" class="usd hide">
@@ -31,7 +31,7 @@
 </div>
 
 <info-selector>
-  <% item.variation.product.infos.each do |info| %>
+  <% item.product.infos.each do |info| %>
     <div>
       <div class="name"><%= info.name %></div>
       <div class="content"><%= info.content %></div>

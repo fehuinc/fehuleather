@@ -1,5 +1,5 @@
 class Build < ActiveRecord::Base
-  has_one :product, through: :variation # Will this work?
+  has_one :product, through: :variation
   belongs_to :variation
   belongs_to :size
   has_many :order_items
@@ -27,7 +27,15 @@ class Build < ActiveRecord::Base
     end
   end
   
-  def price_retail
-    variation.price_retail.fractional
+  def price_retail(currency = "CAD")
+    variation.price_retail.exchange_to(currency).fractional
+  end
+
+  def retail_prices
+    p = variation.price_retail
+    return {
+      "CAD" => p.fractional,
+      "USD" => p.exchange_to("USD").fractional
+    }
   end
 end

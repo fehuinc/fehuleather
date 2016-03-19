@@ -1,6 +1,6 @@
 class StaticController < ApplicationController
   def totem
-    @totem_rows = TotemRow.includes(items: [variation: [product: [:infos], builds: [:size, :variation, :product]]]).order(:index)
+    @totem_rows = TotemRow.includes(items: [product: [:infos], variation: [builds: [:size, :variation, :product]]]).order(:index)
   end
   
   def payment

@@ -7,8 +7,8 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
   
   CartDB.addCallback ()->
     if CartDB.getCurrency() is "CAD"
-      cad.addClass("hide")
-      usd.removeClass("hide")
-    else
       cad.removeClass("hide")
       usd.addClass("hide")
+    else
+      cad.addClass("hide")
+      usd.removeClass("hide")

@@ -87,5 +87,6 @@ Take "LocalStorage", (LocalStorage)->
 
     toggleCurrency: ()->
       state.currency = if state.currency == "CAD" then "USD" else "CAD"
+      console.log state.currency
       save()
       runCallbacks()

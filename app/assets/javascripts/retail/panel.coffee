@@ -35,6 +35,8 @@ Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
       build = extractBuildData button
       button.toggleClass "in-bag", CartDB.hasBuild build
     
+    state.price.text Math.round state.selectedSize.build.retail_prices[CartDB.getCurrency()] / 100
+    
     return state
 
   
@@ -49,6 +51,7 @@ Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
       sizeButtons: panel.find "[js-build]"
       addToBag: panel.find ".add-to-bag"
       inTheBag: panel.find ".in-the-bag"
+      price: panel.find "[js-price]"
     
     # Init
     render setSelectedSize state, state.sizeButtons.first()
