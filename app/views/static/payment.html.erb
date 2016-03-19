@@ -5,8 +5,13 @@
 <section>
   <h3>The Goodies</h3>
   <div class="cart-items"></div>
-  <div class="cart-subtotal"></div>
-
+  <div class="cart-subtotal perspective">
+    <div cart-subtotal></div>
+    <currency-selector>
+      <img src="<%= asset_path("cad.svg") %>" class="cad hide">
+      <img src="<%= asset_path("usd.svg") %>" class="usd hide">
+    </currency-selector>
+  </div>
   <div class="confirmation">One more thing? <a href="/">Sure</a></div>
 </section>
 
