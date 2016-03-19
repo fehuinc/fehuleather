@@ -1,4 +1,4 @@
-Take ["CartDB", "DOMContentLoaded"], (CartDB)->
+Take ["CartDB", "Validator", "DOMContentLoaded"], (CartDB, Validator)->
   makeItemHtml = (item)->
     name     = "<div class='name'>#{item.short_name}</div>"
     quantity = "<div class='quantity'><input type='number' min='0' max='99' value='#{item.quantity}'></div>"
@@ -24,7 +24,7 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
         elm = $(e.currentTarget)
         id = elm.parents("[build-id]").attr "build-id"
         build = CartDB.getBuildById(id)
-        CartDB.setBuild build, elm.val()
+        CartDB.setBuild build, Validator.quantity elm.val()
         
   update = (state, builds, count)->
     state.container.empty() # Detaches event listeners, too :)
