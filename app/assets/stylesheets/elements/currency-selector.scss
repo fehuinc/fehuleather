@@ -1,7 +1,22 @@
+@import "vars";
+
 currency-selector {
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  padding: 2px 4px 1px;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  cursor: pointer;
+  transition: transform .3s cubic-bezier(0.5, 2, 0.5, 2), background-color .2s;
+  
+  &:hover, &:focus {
+    transform: rotateX(-20deg) scaleY(1.15) translate3d(0, -3px, 5px);
+  }
+  
+  &:active, &.active {
+    transition: transform .25s cubic-bezier(0.3, -1, 0.7, 2), background-color .2s;
+    transform: rotateX(30deg) scale(.95, 1.1);
+  }
+
   
   img {
     vertical-align: baseline;
@@ -12,7 +27,7 @@ currency-selector {
   }
   
   img.cad {
-    width: 18px;
-    vertical-align: -3px;
+    width: 20px;
+    vertical-align: -5px;
   }
 }
