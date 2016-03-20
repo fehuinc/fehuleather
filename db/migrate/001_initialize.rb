@@ -5,6 +5,7 @@ class Initialize < ActiveRecord::Migration
     create_table :kingdoms do |t| # eg: belt, bracelet
       t.text :name,	                   null: false
       t.index :name,                   unique: true
+      t.timestamps
     end
     
     create_table :products do |t| # eg: wrap cuff, belt bag, nude raw ring
@@ -14,6 +15,7 @@ class Initialize < ActiveRecord::Migration
       t.monetize :price_retail
       t.monetize :price_wholesale
       t.index :name,                   unique: true
+      t.timestamps
     end
     
     create_table :variations do |t| # eg: yellow gilt cuff, cinnamon wrap cuff
@@ -25,11 +27,13 @@ class Initialize < ActiveRecord::Migration
       t.text :wholesale_image
       t.monetize :price_retail
       t.monetize :price_wholesale
+      t.timestamps
     end
         
     create_table :sizes do |t|
       t.belongs_to :product,           required: true, index: true
       t.text :name,                    null: false
+      t.timestamps
     end
     
     create_table :builds do |t|
@@ -37,17 +41,20 @@ class Initialize < ActiveRecord::Migration
       t.belongs_to :size,              required: true, index: true
       t.text :model
       t.integer :stock,                default: 0
+      t.timestamps
     end
     
     create_table :product_infos do |t| # eg: sizing, gifting, uniqueness, tips
       t.belongs_to :product,           required: true, index: true
       t.text :name,                    null: false
       t.text :content,                 null: false
+      t.timestamps
     end
     
     create_table :totem_rows do |t|
       t.integer :index,	               default: 0
       t.index :index
+      t.timestamps
     end
     
     create_table :totem_items do |t|
@@ -58,6 +65,7 @@ class Initialize < ActiveRecord::Migration
       t.text :content
       t.integer :index,	               default: 0
       t.index :index
+      t.timestamps
     end
     
     create_table :merchants do |t|
@@ -70,10 +78,6 @@ class Initialize < ActiveRecord::Migration
       t.index :email,                  unique: true
       t.timestamps
     end
-    
-    
-    
-    raise "FINISH THIS!"
     
     create_table :retail_order do |t|
       t.uuid :uuid,                    default: 'uuid_generate_v4()'
@@ -94,7 +98,7 @@ class Initialize < ActiveRecord::Migration
     end
     
     create_table :order_items do |t|
-      t.belongs_to :order,             required: true, index: true
+      t.belongs_to :order,             polymorphic: true, required: true, index: true
       
       # This is useful while the order is being created.
       # After the order has been submitted, we probably won't need it.
@@ -117,6 +121,7 @@ class Initialize < ActiveRecord::Migration
       t.text :province
       t.text :postal
       t.text :country
+      t.timestamps
     end
 
     create_table :events do |t|
@@ -126,6 +131,7 @@ class Initialize < ActiveRecord::Migration
       t.text :description
       t.integer :index,	               default: 0
       t.index :index
+      t.timestamps
     end
   end
 end

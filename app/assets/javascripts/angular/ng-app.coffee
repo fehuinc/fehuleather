@@ -20,6 +20,6 @@ angular.module "FehuApp", [
   
   # Wholesale
   "ItemEditor"
-  "Order"
+  "WholesaleOrder"
   "PreviewCtrl"
 ]

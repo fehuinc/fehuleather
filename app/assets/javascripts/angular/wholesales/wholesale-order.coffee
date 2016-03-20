@@ -1,6 +1,6 @@
-angular.module "Order", []
+angular.module "WholesaleOrder", []
 
-.service "Order", new Array "$http", "$rootScope", ($http, $rootScope)->
+.service "WholesaleOrder", new Array "$http", "$rootScope", ($http, $rootScope)->
   $rootScope.previewItems = {}
   $rootScope.previewItemsCount = 0
   
@@ -13,12 +13,12 @@ angular.module "Order", []
       image: editorItem.image
       quantity: editorItem.quantity
   
-  return Order =
+  return WholesaleOrder =
     
     initItems: (items)->
       for item in items
         $rootScope.previewItems[item.build_id] = item
-      Order.updateItemsCount()
+      WholesaleOrder.updateItemsCount()
     
     
     update: (editorItem)->
@@ -42,7 +42,7 @@ angular.module "Order", []
         
         .finally ()->
           $rootScope.updatingItems = false
-          Order.updateItemsCount()
+          WholesaleOrder.updateItemsCount()
 
 
     updateItemsCount: ()->

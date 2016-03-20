@@ -1,15 +1,15 @@
-class OrdersController < ApplicationController
+class RetailOrdersController < ApplicationController
   
   def show
-    @order = Order.find(params[:id])
+    @order = RetailOrder.find(params[:id])
   end
   
   def create
-    builds_data = JSON.parse order_params[:builds] # From JS
-    notes = order_params[:notes] # From Angular
-    quantity = order_params[:quantity].to_i # From JS
-    shippingAddress = JSON.parse order_params[:shippingAddress] # From Angular
-    token = order_params[:token] # From JS
+    builds_data = JSON.parse retail_order_params[:builds] # From JS
+    notes = retail_order_params[:notes] # From Angular
+    quantity = retail_order_params[:quantity].to_i # From JS
+    shippingAddress = JSON.parse retail_order_params[:shippingAddress] # From Angular
+    token = retail_order_params[:token] # From JS
     
     builds = builds_data.map { |id, q| Build.find(id) }
     
@@ -23,12 +23,12 @@ class OrdersController < ApplicationController
       currency: "CAD"
     )
     
-    order = Order.new(
+    retail_order = RetailOrder.new(
       notes: notes
     )
     
     builds.each do |build|
-      order.items.new(
+      retail_order.items.new(
         build: build,
         build_name: build.build_name,
         product_name: build.product.name,
@@ -37,11 +37,11 @@ class OrdersController < ApplicationController
       )
     end
     
-    order.save!
+    retail_order.save!
     
     # Email Freyja
     
-    redirect_to order_path(order)
+    redirect_to retail_order_path(retail_order)
   
   rescue Stripe::CardError => e
     flash[:error] = e.message
@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
   
 private
   
-  def order_params
+  def retail_order_params
     params.permit(:token, :builds, :shippingAddress, :notes)
   end
 

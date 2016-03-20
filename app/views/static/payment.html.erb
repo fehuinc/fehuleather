@@ -70,7 +70,7 @@
 </section>
 
 <section ng-cloak>
-  <%= form_tag :orders, class: "stripe" do |f| %>
+  <%= form_tag :retail_orders, class: "stripe" do |f| %>
     <input type="hidden" name="shippingAddress" value="{{checkoutInfo.shippingAddress | json}}">
     <input type="hidden" name="notes" value="{{checkoutInfo.notes | json}}">
     

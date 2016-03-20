@@ -1,6 +1,6 @@
 class Merchant < ActiveRecord::Base
-  has_many :orders, dependent: :destroy
-  belongs_to :current_order, class_name: "Order"
+  has_many :orders, dependent: :destroy, class_name: "WholesaleOrder"
+  belongs_to :current_order, class_name: "WholesaleOrder"
   
   validates :email, :phone_number, :store_name, :your_name, { presence: true }
   validates :email, { uniqueness: { case_sensitive: false } }

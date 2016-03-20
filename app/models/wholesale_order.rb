@@ -1,6 +1,6 @@
-class Order < ActiveRecord::Base
-  belongs_to :merchant # Optional — will be nil if this is a retail order
-  has_many :items, class_name: OrderItem, dependent: :destroy
+class WholesaleOrder < ActiveRecord::Base
+  belongs_to :merchant
+  has_many :items, as: :order, class_name: OrderItem, dependent: :destroy
   
   def item_for_build(build)
     items.where(build_id: build.id).first

@@ -1,6 +1,6 @@
 angular.module "ItemEditor", []
 
-.directive "itemEditor", new Array "Order", "$timeout", (Order, $timeout)->
+.directive "itemEditor", new Array "WholesaleOrder", "$timeout", (WholesaleOrder, $timeout)->
   scope: true
   controller: new Array "$scope", ($scope)->
     $scope.editorItem = {} # properties are set in the view
@@ -34,7 +34,7 @@ angular.module "ItemEditor", []
     $scope.updateQuantity = ()->
       $scope.editorItem.quantity = Math.max(0, $scope.editorItem.quantity)
       animate()
-      Order.update $scope.editorItem
+      WholesaleOrder.update $scope.editorItem
     
     $scope.changeQuantity = (delta)->
       $scope.editorItem.quantity += delta

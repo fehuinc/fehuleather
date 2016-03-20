@@ -20,10 +20,6 @@ Wholesale
   
   Made to order — no stocks
   
-  17 ring sizes are actually based on 4 real sizes
-    so in reality, there are 4 quantities for 17 order-able choices
-    this might not be feasible at the moment
-  
   Email Freyja when an order is delivered
     the body of the email is the linesheet
 
