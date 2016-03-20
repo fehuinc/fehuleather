@@ -1,1 +1,9 @@
 <h1>Admin::Orders</h1>
+
+<% @orders.each do |order| %>
+  <div class="order <%= order.class.to_s.downcase %>">
+    <%= order.created_at %>
+    <%= order.email %>
+    <%= order.address %>
+  </div>
+<% end %>
