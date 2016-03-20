@@ -79,7 +79,7 @@ class Initialize < ActiveRecord::Migration
       t.timestamps
     end
     
-    create_table :retail_order do |t|
+    create_table :retail_orders do |t|
       t.uuid :uuid,                    default: 'uuid_generate_v4()'
       t.text :notes
       t.text :address
@@ -87,7 +87,7 @@ class Initialize < ActiveRecord::Migration
       t.timestamps
     end
     
-    create_table :wholesale_order do |t|
+    create_table :wholesale_orders do |t|
       t.belongs_to :merchant,          required: true, index: true
       t.uuid :uuid,                    default: 'uuid_generate_v4()'
       t.text :notes

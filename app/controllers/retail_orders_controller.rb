@@ -29,6 +29,7 @@ class RetailOrdersController < ApplicationController
     
     builds.each do |build|
       retail_order.items.new(
+        order: retail_order, # must be specfied explicitly, because the association is polymorphic
         build: build,
         build_name: build.build_name,
         product_name: build.product.name,
