@@ -1,7 +1,7 @@
 class RetailOrdersController < ApplicationController
   
   def show
-    @order = RetailOrder.find(params[:id])
+    @order = RetailOrder.find_by_uuid(params[:id])
   end
   
   def create
@@ -42,6 +42,7 @@ class RetailOrdersController < ApplicationController
     end
     
     retail_order.save!
+    retail_order.reload
     
     # Email Freyja
     

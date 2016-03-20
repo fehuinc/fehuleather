@@ -29,6 +29,7 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
       if not processing
         quantity = CartDB.getQuantity()
         plural = if quantity is 1 then "" else "s"
+        console.log $(".email").text()
         handler.open
           amount: CartDB.getSubtotal() * 100
           description: quantity + " Item" + plural

@@ -1,6 +1,10 @@
 class RetailOrder < ActiveRecord::Base
   has_many :items, as: :order, class_name: OrderItem, dependent: :destroy
   
+  def to_param
+    uuid.parameterize
+  end
+  
   # def item_for_build(build)
   #   items.where(build_id: build.id).first
   # end
