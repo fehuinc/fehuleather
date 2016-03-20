@@ -72,6 +72,7 @@
 <section ng-cloak>
   <%= form_tag :retail_orders, class: "stripe" do |f| %>
     <input type="hidden" name="shippingAddress" value="{{checkoutInfo.shippingAddress | json}}">
+    <input type="hidden" name="email" value="{{checkoutInfo.email}}">
     <input type="hidden" name="notes" value="{{checkoutInfo.notes | json}}">
     
     <script src="https://checkout.stripe.com/checkout.js"></script>

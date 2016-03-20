@@ -9,6 +9,7 @@ class RetailOrdersController < ApplicationController
     notes = retail_order_params[:notes] # From Angular
     quantity = retail_order_params[:quantity].to_i # From JS
     shippingAddress = JSON.parse retail_order_params[:shippingAddress] # From Angular
+    email = retail_order_params[:email] # From Angular
     token = retail_order_params[:token] # From JS
     
     builds = builds_data.map { |id, q| Build.find(id) }
@@ -24,7 +25,9 @@ class RetailOrdersController < ApplicationController
     )
     
     retail_order = RetailOrder.new(
-      notes: notes
+      notes: notes,
+      address: shippingAddress,
+      email: email
     )
     
     builds.each do |build|
@@ -52,7 +55,7 @@ class RetailOrdersController < ApplicationController
 private
   
   def retail_order_params
-    params.permit(:token, :builds, :shippingAddress, :notes)
+    params.permit(:token, :builds, :shippingAddress, :email, :notes)
   end
 
 end
