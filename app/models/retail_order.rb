@@ -1,4 +1,5 @@
 class RetailOrder < ActiveRecord::Base
+  belongs_to :address, as: :order
   has_many :items, as: :order, class_name: OrderItem, dependent: :destroy
   
   def to_param

@@ -16,9 +16,12 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
         builds = JSON.stringify builds
         
         quantity = CartDB.getQuantity()
+        currency = CartDB.getCurrency()
+        
         form.append("<input type='hidden' name='token' value='#{token.id}'>")
         form.append("<input type='hidden' name='builds' value='#{builds}'>")
         form.append("<input type='hidden' name='quantity' value='#{quantity}'>")
+        form.append("<input type='hidden' name='currency' value='#{currency}'>")
         
         CartDB.clear()
         

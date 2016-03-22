@@ -5,34 +5,31 @@ class RetailOrdersController < ApplicationController
   end
   
   def create
-    builds_data = JSON.parse retail_order_params[:builds] # From JS
     notes = retail_order_params[:notes] # From Angular
-    quantity = retail_order_params[:quantity].to_i # From JS
-    shippingAddress = JSON.parse retail_order_params[:shippingAddress] # From Angular
-    email = retail_order_params[:email] # From Angular
-    token = retail_order_params[:token] # From JS
+
+    order = RetailOrder.new(
+      notes: notes
+    )
     
+    email = retail_order_params[:email] # From Angular
+    address = JSON.parse retail_order_params[:shippingAddress] # From Angular
+
+    order.address.new(
+      name: address.name
+      email: email
+      line1: address.line1
+      line2: address.line2
+      code: address.postal
+      region: address.province
+      country: address.country
+    )
+
+    builds_data = JSON.parse retail_order_params[:builds] # From JS
     builds = builds_data.map { |id, q| Build.find(id) }
     
-    amount = builds.map(&:price_retail).reduce(0, :+) # In cents
-    description = "#{quantity} Item #{quantity == 1 ? "" : "s"} from Fehu Inc."
-    
-    charge = Stripe::Charge.create(
-      source: token,
-      amount: amount,
-      description: description,
-      currency: "CAD"
-    )
-    
-    retail_order = RetailOrder.new(
-      notes: notes,
-      address: shippingAddress,
-      email: email
-    )
-    
     builds.each do |build|
-      retail_order.items.new(
-        order: retail_order, # must be specfied explicitly, because the association is polymorphic
+      order.items.new(
+        order: order, # must be specfied explicitly, because the association is polymorphic
         build: build,
         build_name: build.build_name,
         product_name: build.product.name,
@@ -41,12 +38,28 @@ class RetailOrdersController < ApplicationController
       )
     end
     
-    retail_order.save!
-    retail_order.reload
+    token = retail_order_params[:token] # From JS
+    amount = builds.map(&:price_retail).reduce(0, :+) # In cents
+    quantity = retail_order_params[:quantity] # From JS
+    description = "#{quantity} Item#{quantity == 1 ? "" : "s"} from Fehu Inc."
+    currency = retail_order_params[:currency] # From JS
+    
+    charge = Stripe::Charge.create(
+      source: token,
+      amount: amount,
+      description: description,
+      currency: currency
+    )
+    
+    order.transaction = charge.id
+    
+    order.save!
+    order.reload
     
     # Email Freyja
+    # Email the customer
     
-    redirect_to retail_order_path(retail_order)
+    redirect_to retail_order_path(order)
   
   rescue Stripe::CardError => e
     flash[:error] = e.message
