@@ -17,6 +17,19 @@ ActiveRecord::Schema.define(version: 1) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "merchant_id"
+    t.text     "name",        null: false
+    t.text     "email",       null: false
+    t.text     "line1",       null: false
+    t.text     "line2"
+    t.text     "code",        null: false
+    t.text     "region",      null: false
+    t.text     "country",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "builds", force: :cascade do |t|
     t.integer  "variation_id"
     t.integer  "size_id"
@@ -68,7 +81,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.text     "phone_number",     null: false
     t.text     "store_name",       null: false
     t.text     "your_name",        null: false
-    t.text     "encrypted_code"
+    t.text     "secret_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -117,10 +130,10 @@ ActiveRecord::Schema.define(version: 1) do
   add_index "products", ["name"], name: "index_products_on_name", unique: true, using: :btree
 
   create_table "retail_orders", force: :cascade do |t|
-    t.uuid     "uuid",       default: "uuid_generate_v4()"
+    t.integer  "address_id"
+    t.uuid     "uuid",        default: "uuid_generate_v4()"
     t.text     "notes"
-    t.text     "address"
-    t.text     "email"
+    t.text     "transaction"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -175,8 +188,10 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "wholesale_orders", force: :cascade do |t|
     t.integer  "merchant_id"
+    t.integer  "address_id"
     t.uuid     "uuid",        default: "uuid_generate_v4()"
     t.text     "notes"
+    t.text     "transaction"
     t.datetime "submitted"
     t.datetime "paid"
     t.datetime "shipped"

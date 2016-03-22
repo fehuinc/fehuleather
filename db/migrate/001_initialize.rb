@@ -4,8 +4,8 @@ class Initialize < ActiveRecord::Migration
     
     create_table :kingdoms do |t| # eg: belt, bracelet
       t.text :name,	                   null: false
-      t.index :name,                   unique: true
       t.timestamps
+      t.index :name,                   unique: true
     end
     
     create_table :products do |t| # eg: wrap cuff, belt bag, nude raw ring
@@ -14,8 +14,8 @@ class Initialize < ActiveRecord::Migration
       t.boolean :made_to_order,        default: false
       t.monetize :price_retail
       t.monetize :price_wholesale
-      t.index :name,                   unique: true
       t.timestamps
+      t.index :name,                   unique: true
     end
     
     create_table :variations do |t| # eg: yellow gilt cuff, cinnamon wrap cuff
@@ -53,8 +53,8 @@ class Initialize < ActiveRecord::Migration
     
     create_table :totem_rows do |t|
       t.integer :index,	               default: 0
-      t.index :index
       t.timestamps
+      t.index :index
     end
     
     create_table :totem_items do |t|
@@ -64,8 +64,8 @@ class Initialize < ActiveRecord::Migration
       t.text :image
       t.text :content
       t.integer :index,	               default: 0
-      t.index :index
       t.timestamps
+      t.index :index
     end
     
     create_table :merchants do |t|
@@ -74,23 +74,37 @@ class Initialize < ActiveRecord::Migration
       t.text :phone_number,            null: false
       t.text :store_name,              null: false
       t.text :your_name,               null: false
-      t.text :encrypted_code
+      t.text :secret_code                           # AKA: Password
+      t.timestamps
       t.index :email,                  unique: true
+    end
+    
+    create_table :addresses do |t|
+      t.references :merchant
+      t.text :name, 	                 null: false
+      t.text :email,	                 null: false
+      t.text :line1,                   null: false
+      t.text :line2
+      t.text :code,                    null: false # Zip/Postal
+      t.text :region,                  null: false # Province/State
+      t.text :country,                 null: false
       t.timestamps
     end
     
     create_table :retail_orders do |t|
+      t.references :address            # Not required. It should be safe to delete these, for PII reasons
       t.uuid :uuid,                    default: 'uuid_generate_v4()'
       t.text :notes
-      t.text :address
-      t.text :email
+      t.text :transaction
       t.timestamps
     end
     
     create_table :wholesale_orders do |t|
       t.belongs_to :merchant,          required: true, index: true
+      t.references :address,           required: true
       t.uuid :uuid,                    default: 'uuid_generate_v4()'
       t.text :notes
+      t.text :transaction
       t.datetime :submitted
       t.datetime :paid
       t.datetime :shipped
@@ -130,8 +144,8 @@ class Initialize < ActiveRecord::Migration
       t.text :location,	               null: false
       t.text :description
       t.integer :index,	               default: 0
-      t.index :index
       t.timestamps
+      t.index :index
     end
   end
 end
