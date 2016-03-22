@@ -1,8 +1,5 @@
 @import 'common/events';
 
 .events#index main {
-  max-width: none;
-  text-align: center;
-  
   @extend .common-events;
 }
