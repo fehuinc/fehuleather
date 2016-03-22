@@ -18,7 +18,7 @@ class Initialize < ActiveRecord::Migration
       t.index :name,                   unique: true
     end
     
-    create_table :variations do |t| # eg: yellow gilt cuff, cinnamon wrap cuff
+    create_table :variations do |t| # eg: yellow [gilt cuff], cinnamon [wrap cuff]
       t.belongs_to :product,           required: true, index: true
       t.text :name,                    null: false
       t.text :model
@@ -28,12 +28,14 @@ class Initialize < ActiveRecord::Migration
       t.monetize :price_retail
       t.monetize :price_wholesale
       t.timestamps
+      t.index :name
     end
         
     create_table :sizes do |t|
       t.belongs_to :product,           required: true, index: true
       t.text :name,                    null: false
       t.timestamps
+      t.index :name
     end
     
     create_table :builds do |t|
@@ -42,6 +44,7 @@ class Initialize < ActiveRecord::Migration
       t.text :model
       t.integer :stock,                default: 0
       t.timestamps
+      t.index :stock
     end
     
     create_table :product_infos do |t| # eg: sizing, gifting, uniqueness, tips
@@ -49,6 +52,7 @@ class Initialize < ActiveRecord::Migration
       t.text :name,                    null: false
       t.text :content,                 null: false
       t.timestamps
+      t.index :name
     end
     
     create_table :totem_rows do |t|
@@ -77,10 +81,11 @@ class Initialize < ActiveRecord::Migration
       t.text :secret_code                           # AKA: Password
       t.timestamps
       t.index :email,                  unique: true
+      t.index :store_name,             unique: true
     end
     
     create_table :addresses do |t|
-      t.references :merchant
+      t.references :merchant,          index: true
       t.text :name, 	                 null: false
       t.text :email,	                 null: false
       t.text :line1,                   null: false
@@ -143,9 +148,7 @@ class Initialize < ActiveRecord::Migration
       t.text :date,	                   null: false
       t.text :location,	               null: false
       t.text :description
-      t.integer :index,	               default: 0
       t.timestamps
-      t.index :index
     end
   end
 end

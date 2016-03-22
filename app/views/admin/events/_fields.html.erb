@@ -23,10 +23,6 @@
 <hr>
 
 <div class="row spread">
-  <div>
-    <%= f.number_field :index %>
-    <%= f.label :index, "Index" %>
-  </div>
   <% if edit %>
     <div class="perspective right">
       <deleter class="button" path="<%= admin_event_path(f.object) %>" redirect="<%= admin_events_path %>">

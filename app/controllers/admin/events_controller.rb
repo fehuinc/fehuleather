@@ -1,6 +1,6 @@
 class Admin::EventsController < ApplicationController
   def index
-    @events = Event.all.order(:index)
+    @events = Event.all.order(:date)
   end
   
   def new

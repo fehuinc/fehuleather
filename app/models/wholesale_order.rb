@@ -1,6 +1,6 @@
 class WholesaleOrder < ActiveRecord::Base
   belongs_to :merchant
-  belongs_to :address, as: :order
+  belongs_to :address
   has_many :items, as: :order, class_name: OrderItem, dependent: :destroy
   
   def address

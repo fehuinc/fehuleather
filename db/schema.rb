@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 1) do
     t.datetime "updated_at"
   end
 
+  add_index "addresses", ["merchant_id"], name: "index_addresses_on_merchant_id", using: :btree
+
   create_table "builds", force: :cascade do |t|
     t.integer  "variation_id"
     t.integer  "size_id"
@@ -40,19 +42,17 @@ ActiveRecord::Schema.define(version: 1) do
   end
 
   add_index "builds", ["size_id"], name: "index_builds_on_size_id", using: :btree
+  add_index "builds", ["stock"], name: "index_builds_on_stock", using: :btree
   add_index "builds", ["variation_id"], name: "index_builds_on_variation_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.text     "name",                    null: false
-    t.text     "date",                    null: false
-    t.text     "location",                null: false
+    t.text     "name",        null: false
+    t.text     "date",        null: false
+    t.text     "location",    null: false
     t.text     "description"
-    t.integer  "index",       default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "events", ["index"], name: "index_events_on_index", using: :btree
 
   create_table "kingdoms", force: :cascade do |t|
     t.text     "name",       null: false
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 1) do
   end
 
   add_index "merchants", ["email"], name: "index_merchants_on_email", unique: true, using: :btree
+  add_index "merchants", ["store_name"], name: "index_merchants_on_store_name", unique: true, using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
@@ -112,6 +113,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.datetime "updated_at"
   end
 
+  add_index "product_infos", ["name"], name: "index_product_infos_on_name", using: :btree
   add_index "product_infos", ["product_id"], name: "index_product_infos_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
@@ -145,6 +147,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.datetime "updated_at"
   end
 
+  add_index "sizes", ["name"], name: "index_sizes_on_name", using: :btree
   add_index "sizes", ["product_id"], name: "index_sizes_on_product_id", using: :btree
 
   create_table "totem_items", force: :cascade do |t|
@@ -184,6 +187,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.datetime "updated_at"
   end
 
+  add_index "variations", ["name"], name: "index_variations_on_name", using: :btree
   add_index "variations", ["product_id"], name: "index_variations_on_product_id", using: :btree
 
   create_table "wholesale_orders", force: :cascade do |t|

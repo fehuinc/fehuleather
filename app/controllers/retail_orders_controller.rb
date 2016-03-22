@@ -15,12 +15,12 @@ class RetailOrdersController < ApplicationController
     address = JSON.parse retail_order_params[:shippingAddress] # From Angular
 
     order.address.new(
-      name: address.name
-      email: email
-      line1: address.line1
-      line2: address.line2
-      code: address.postal
-      region: address.province
+      name: address.name,
+      email: email,
+      line1: address.line1,
+      line2: address.line2,
+      code: address.postal,
+      region: address.province,
       country: address.country
     )
 
