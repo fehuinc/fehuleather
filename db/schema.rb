@@ -133,9 +133,9 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "retail_orders", force: :cascade do |t|
     t.integer  "address_id"
-    t.uuid     "uuid",        default: "uuid_generate_v4()"
+    t.uuid     "uuid",       default: "uuid_generate_v4()"
     t.text     "notes"
-    t.text     "transaction"
+    t.text     "payment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.integer  "address_id"
     t.uuid     "uuid",        default: "uuid_generate_v4()"
     t.text     "notes"
-    t.text     "transaction"
+    t.text     "payment_id"
     t.datetime "submitted"
     t.datetime "paid"
     t.datetime "shipped"

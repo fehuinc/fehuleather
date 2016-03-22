@@ -100,7 +100,7 @@ class Initialize < ActiveRecord::Migration
       t.references :address            # Not required. It should be safe to delete these, for PII reasons
       t.uuid :uuid,                    default: 'uuid_generate_v4()'
       t.text :notes
-      t.text :transaction
+      t.text :payment_id
       t.timestamps
     end
     
@@ -109,7 +109,7 @@ class Initialize < ActiveRecord::Migration
       t.references :address,           required: true
       t.uuid :uuid,                    default: 'uuid_generate_v4()'
       t.text :notes
-      t.text :transaction
+      t.text :payment_id
       t.datetime :submitted
       t.datetime :paid
       t.datetime :shipped

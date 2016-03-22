@@ -7,23 +7,24 @@ class RetailOrdersController < ApplicationController
   def create
     notes = retail_order_params[:notes] # From Angular
 
-    order = RetailOrder.new(
-      notes: notes
+    email = retail_order_params[:email] # From Angular
+    address_data = JSON.parse retail_order_params[:shippingAddress] # From Angular
+    
+    address = Address.new(
+      name: address_data["name"],
+      email: email,
+      line1: address_data["line1"],
+      line2: address_data["line2"],
+      code: address_data["postal"],
+      region: address_data["province"],
+      country: address_data["country"]
     )
     
-    email = retail_order_params[:email] # From Angular
-    address = JSON.parse retail_order_params[:shippingAddress] # From Angular
-
-    order.address.new(
-      name: address.name,
-      email: email,
-      line1: address.line1,
-      line2: address.line2,
-      code: address.postal,
-      region: address.province,
-      country: address.country
+    order = RetailOrder.new(
+      notes: notes,
+      address: address
     )
-
+    
     builds_data = JSON.parse retail_order_params[:builds] # From JS
     builds = builds_data.map { |id, q| Build.find(id) }
     
@@ -51,7 +52,7 @@ class RetailOrdersController < ApplicationController
       currency: currency
     )
     
-    order.transaction = charge.id
+    order.payment_id = charge.id
     
     order.save!
     order.reload
@@ -69,7 +70,7 @@ class RetailOrdersController < ApplicationController
 private
   
   def retail_order_params
-    params.permit(:token, :builds, :shippingAddress, :email, :notes)
+    params.permit(:token, :builds, :shippingAddress, :email, :notes, :currency)
   end
 
 end
