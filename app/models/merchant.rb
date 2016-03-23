@@ -1,5 +1,5 @@
 class Merchant < ActiveRecord::Base
-  has_many :orders, polymorphic: true, dependent: :destroy, class_name: "WholesaleOrder"
+  has_many :orders, dependent: :destroy, class_name: "WholesaleOrder"
   belongs_to :current_order, class_name: "WholesaleOrder"
   
   validates :email, :phone_number, :store_name, :your_name, { presence: true }
