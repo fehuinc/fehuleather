@@ -1,13 +1,28 @@
 <h1>Your wish is our command.</h1>
 <p><%= time_ago_in_words(@order.created_at) %> ago, a troupe of forest creatures emerged from the earth, from the bark of trees, from the ponds. They chant their very own ever-changing incantation, known only as "The Rhyme Of The Order ID"</p>
-<p class="center"><em><%= @order.uuid %></em></p>
-<p>They collect seeds and nuts and twigs and berries for a potion. When the potion is ready, they'll pluck the following secret ingredient<%= @order.items.count > 1 or @order.items.first.quantity > 1 ? "s" : ""%> from the mystical Fehu tree:</p>
+<p class="center">
+  <em>
+    <%= rhyme_uuid @order.uuid %><br>
+    <%= @order.uuid %>
+  </em>
+</p>
+<p>They collect seeds and nuts and twigs and berries for a potion. When the potion is ready, they pluck the following secret ingredient<%= @plural %> from the mystical Fehu tree:</p>
 <ul>
 <% @order.items.each do |item| %>
   <li><%= item.quantity == 1 ? "a" : item.quantity + " of the" %> <%= item.build_name %> <%= item.product_name %></li>
 <% end %>
 </ul>
-<p>The secret ingredients will bundle themselves up into a square cardboard cocoon. Between the ringed branches of the Fehu tree, a portal will open, connecting the world of the forest to the inside of a Canada Post or USPS delivery van. Into this portal, the forest creatures will toss the cardboard cocoon with a fling of their little leggy limbs. Then the portal will close, and just 8 to 10 business days later, you will hear a knock at your door.</p>
+<p>Dipped into the potion, the ingredient<%= @plural %> bundle<%= @singular %> up into a square cardboard cocoon. Between the ringed branches of the Fehu tree, a portal will open, connecting the world of the forest to the inside of a <%= @order.address.country == "Canada" ? "Canada Post" : "USPS" %> delivery van. Into this portal, the forest creatures will toss the cardboard cocoon with a fling of their little leggy limbs. Then the portal will close, and just <%= @order.address.country == "Canada" ? "8 to 10 days" : "2 to 3 weeks" %> later, <%= @order.address.name %> will hear a knock at this door:</p>
+
+<p>
+  <%= @order.address.line1 %><br>
+  <% if @order.address.line2.present? %>
+    <%= @order.address.line2 %><br>
+  <% end %>
+  <%= @order.address.region %>
+  <%= @order.address.code %><br>
+  <%= @order.address.country %>
+</p>
 
 <hr>
 

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get "checkout" => "static#checkout"
     get "payment" => "static#payment"
     get "confirmation" => "static#confirmation"
-    resources "retail_orders", only: [:create, :show]
+    resources "orders", only: [:create, :show], controller: "retail_orders"
     
     # Static
     get "about" => "static#about"

@@ -2,6 +2,8 @@ class RetailOrdersController < ApplicationController
   
   def show
     @order = RetailOrder.find_by_uuid(params[:id])
+    @plural = @order.items.count > 1 or @order.items.first.quantity > 1 ? "s" : ""
+    @singular = @order.items.count > 1 or @order.items.first.quantity > 1 ? "" : "s"
   end
   
   def create
@@ -10,13 +12,13 @@ class RetailOrdersController < ApplicationController
     email = retail_order_params[:email] # From Angular
     address_data = JSON.parse retail_order_params[:shippingAddress] # From Angular
     
-    address = Address.new(
+    address = Address.create!(
       name: address_data["name"],
       email: email,
-      line1: address_data["line1"],
-      line2: address_data["line2"],
+      line1: address_data["address1"],
+      line2: address_data["address2"],
       code: address_data["postal"],
-      region: address_data["province"],
+      region: address_data["provinceState"],
       country: address_data["country"]
     )
     
@@ -60,7 +62,7 @@ class RetailOrdersController < ApplicationController
     # Email Freyja
     # Email the customer
     
-    redirect_to retail_order_path(order)
+    redirect_to order_path(order)
   
   rescue Stripe::CardError => e
     flash[:error] = e.message
