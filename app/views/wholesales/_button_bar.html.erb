@@ -1,5 +1,5 @@
 <button-bar class="perspective">
-  <% if style_action == "edit_product" %>
+  <% if body_id == "edit" && body_class == "product" %>
     <%= link_to "< All Products", edit_wholesale_path, class: "back button" %>
   <% end %>
   

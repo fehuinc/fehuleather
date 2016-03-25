@@ -1,18 +1,20 @@
-<h1>Your wish is our command.</h1>
-<p><%= time_ago_in_words(@order.created_at) %> ago, a troupe of forest creatures emerged from the earth, from the bark of trees, from the ponds. They chant their very own ever-changing incantation, known only as "The Rhyme Of The Order ID"</p>
+<h1><%= time_ago_in_words(@order.created_at) %> ago, it started.</h1>
+<p>A troupe of forest creatures emerge from the earth & the bark of trees, quietly chanting their very own ever-changing incantation, The Rhyme Of The Order ID:</p>
 <p class="center">
   <em>
     <%= rhyme_uuid @order.uuid %><br>
     <%= @order.uuid %>
   </em>
 </p>
-<p>They collect seeds and nuts and twigs and berries for a potion. When the potion is ready, they pluck the following secret ingredient<%= @plural %> from the mystical Fehu tree:</p>
+<p>They collect seeds and nuts and twigs and berries for a potion. When the potion is ready, they pluck the following secret ingredient<%= @many ? "s" : "" %> from the mystical Fehu tree:</p>
 <ul>
 <% @order.items.each do |item| %>
-  <li><%= item.quantity == 1 ? "a" : item.quantity + " of the" %> <%= item.build_name %> <%= item.product_name %></li>
+  <li><%= item.quantity == 1 ? "a" : "#{item.quantity} of the" %> <%= item.build_name %> <%= item.product_name %></li>
 <% end %>
 </ul>
-<p>Dipped into the potion, the ingredient<%= @plural %> bundle<%= @singular %> up into a square cardboard cocoon. Between the ringed branches of the Fehu tree, a portal will open, connecting the world of the forest to the inside of a <%= @order.address.country == "Canada" ? "Canada Post" : "USPS" %> delivery van. Into this portal, the forest creatures will toss the cardboard cocoon with a fling of their little leggy limbs. Then the portal will close, and just <%= @order.address.country == "Canada" ? "8 to 10 days" : "2 to 3 weeks" %> later, <%= @order.address.name %> will hear a knock at this door:</p>
+<p>Dipped into the potion, the ingredient<%= @many ? "s come" : " comes" %> alive just for a moment, and bundle<%= @many ? " themselves" : "s itself" %> up into a square cardboard cocoon. Between the ringed branches of the Fehu tree, a portal opens, connecting the world of the forest to the inside of a <%= @order.address.country == "Canada" ? "Canada Post" : "USPS" %> delivery van. Into this portal, the forest creatures toss the cardboard cocoon with a fling of their little leggy limbs.</p>
+
+<p>About <%= @order.address.country == "Canada" ? "ten days" : "three weeks" %> hence, <%= @order.address.name %> will hear a knock at this door:</p>
 
 <p>
   <%= @order.address.line1 %><br>

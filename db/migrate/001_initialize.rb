@@ -11,7 +11,7 @@ class Initialize < ActiveRecord::Migration
     create_table :products do |t| # eg: wrap cuff, belt bag, nude raw ring
       t.belongs_to :kingdom,           required: true, index: true
       t.text :name,                    null: false
-      t.boolean :made_to_order,        default: false
+      t.boolean :made_to_order,        null: false, default: false
       t.monetize :price_retail
       t.monetize :price_wholesale
       t.timestamps
@@ -43,6 +43,8 @@ class Initialize < ActiveRecord::Migration
       t.belongs_to :size,              required: true, index: true
       t.text :model
       t.integer :stock,                default: 0
+      t.boolean :show_retail,          null: false, default: true
+      t.boolean :show_wholesale,       null: false, default: true
       t.timestamps
       t.index :stock
     end

@@ -36,7 +36,9 @@ ActiveRecord::Schema.define(version: 1) do
     t.integer  "variation_id"
     t.integer  "size_id"
     t.text     "model"
-    t.integer  "stock",        default: 0
+    t.integer  "stock",          default: 0
+    t.boolean  "show_retail",    default: true, null: false
+    t.boolean  "show_wholesale", default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -119,7 +121,7 @@ ActiveRecord::Schema.define(version: 1) do
   create_table "products", force: :cascade do |t|
     t.integer  "kingdom_id"
     t.text     "name",                                     null: false
-    t.boolean  "made_to_order",            default: false
+    t.boolean  "made_to_order",            default: false, null: false
     t.integer  "price_retail_cents",       default: 0,     null: false
     t.string   "price_retail_currency",    default: "CAD", null: false
     t.integer  "price_wholesale_cents",    default: 0,     null: false

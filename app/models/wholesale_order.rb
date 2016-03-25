@@ -3,10 +3,6 @@ class WholesaleOrder < ActiveRecord::Base
   belongs_to :address
   has_many :items, as: :order, class_name: OrderItem, dependent: :destroy
   
-  def address
-    merchant.address
-  end
-  
   # def item_for_build(build)
   #   items.where(build_id: build.id).first
   # end

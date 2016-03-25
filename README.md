@@ -9,9 +9,6 @@ Totem Perf
   On desktop, we need 5 totem items
   On mobile, we need 3
   
-Automatic Currency Conversion — users choose their own country (perhaps, a little flag next to prices?)
-  http://stackoverflow.com/a/3843805/313576
-
 Wholesale
   Text block next to product hero image that Freyja can put [whatever] into — unstructured
   

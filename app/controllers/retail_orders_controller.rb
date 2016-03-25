@@ -2,8 +2,7 @@ class RetailOrdersController < ApplicationController
   
   def show
     @order = RetailOrder.find_by_uuid(params[:id])
-    @plural = @order.items.count > 1 or @order.items.first.quantity > 1 ? "s" : ""
-    @singular = @order.items.count > 1 or @order.items.first.quantity > 1 ? "" : "s"
+    @many = @order.items.count > 1 || @order.items.first.quantity > 1
   end
   
   def create
