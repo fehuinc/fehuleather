@@ -12,11 +12,7 @@ class WholesalesController < ApplicationController
   
   def edit
     @merchant = Merchant.find(session[:merchant_id])
-    @kingdoms = Kingdom.all
-                       .joins(:products)
-                       .distinct
-                       .where(products: { show_wholesale: true })
-                       .order(:name)
+    @kingdoms = Kingdom.order(:name)
   end
   
   
@@ -24,10 +20,6 @@ class WholesalesController < ApplicationController
     @merchant = Merchant.find(session[:merchant_id])
     @order = @merchant.current_order
     @product = Product.find(params[:id])
-    @builds = @product.builds
-                      .joins(:variants)
-                      .distinct
-                      .where(variants: { show_wholesale: true })
   end
   
   

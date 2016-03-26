@@ -1,6 +1,6 @@
-belts =     Kingdom.create! name: "Belts"
+# belts =     Kingdom.create! name: "Belts"
 bracelets = Kingdom.create! name: "Bracelets"
-hair =      Kingdom.create! name: "Hair"
+# hair =      Kingdom.create! name: "Hair"
 rings =     Kingdom.create! name: "Ring"
 
 
@@ -22,11 +22,11 @@ row.items.create! variation: BuildMaker.make_build_pair((wrap_cuff.variations.cr
 row = TotemRow.create! index: 1
 gilt_cuff = bracelets.products.create! name: "Gilt Cuff"
 gilt_cuff.sizes.create! name: "Adjustable"
-row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "White/Black",    totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/white-black.jpg", price_retail_cents: 10000), gilt_cuff.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "White/Brown",    totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/white-brown.jpg", price_retail_cents: 10000), gilt_cuff.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Yellow/Brown",   totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-brown.jpg", price_retail_cents: 10000), gilt_cuff.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Yellow/Black",   totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-black.jpg", price_retail_cents: 10000), gilt_cuff.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Yellow Stripes", totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-stripes.jpg", price_retail_cents: 10000), gilt_cuff.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "White/Black",    totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/white-black.jpg",    wholesale_image: ENV["IMAGEPATH"] + "gilt-cuff/wholesale/white-black.jpg",    price_retail_cents: 10000), gilt_cuff.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "White/Brown",    totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/white-brown.jpg",    wholesale_image: ENV["IMAGEPATH"] + "gilt-cuff/wholesale/white-brown.jpg",    price_retail_cents: 10000), gilt_cuff.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Yellow/Brown",   totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-brown.jpg",   wholesale_image: ENV["IMAGEPATH"] + "gilt-cuff/wholesale/yellow-brown.jpg",   price_retail_cents: 10000), gilt_cuff.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Yellow/Black",   totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-black.jpg",   wholesale_image: ENV["IMAGEPATH"] + "gilt-cuff/wholesale/yellow-black.jpg",   price_retail_cents: 10000), gilt_cuff.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Yellow Stripes", totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/yellow-stripes.jpg", wholesale_image: ENV["IMAGEPATH"] + "gilt-cuff/wholesale/yellow-stripes.jpg", price_retail_cents: 10000), gilt_cuff.sizes)
 
 
 # row = TotemRow.create! index: 2

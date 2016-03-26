@@ -2,7 +2,7 @@ class Product < ActiveRecord::Base
   belongs_to :kingdom
   has_many :infos, class_name: ProductInfo, dependent: :delete_all
   has_many :variations, dependent: :destroy
-  has_many :builds, through: :variation
+  has_many :builds, through: :variations
   has_many :sizes, dependent: :delete_all
   
   validates :kingdom, :name, { presence: true }
@@ -10,4 +10,13 @@ class Product < ActiveRecord::Base
   
   monetize :price_retail_cents
   monetize :price_wholesale_cents
+  
+  def totem_image
+    variations.first.totem_image
+  end
+
+  def wholesale_image
+    v = variations.first
+    v.wholesale_image or v.totem_image
+  end
 end
