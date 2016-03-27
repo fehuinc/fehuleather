@@ -19,7 +19,7 @@ class WholesalesController < ApplicationController
   def edit_product
     @merchant = Merchant.find(session[:merchant_id])
     @order = @merchant.current_order
-    @product = Product.find(params[:id])
+    @product = Product.includes(variations: [builds: [:size, :variation, :product]]).find(params[:id])
   end
   
   

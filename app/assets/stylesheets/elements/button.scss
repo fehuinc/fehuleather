@@ -1,4 +1,7 @@
+@import "libs/inherit";
+
 button, .button {
+  @extend .unselectable;
   display: inline-block;
   padding: .5em 1em;
   border: none;

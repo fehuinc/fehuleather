@@ -2,6 +2,7 @@
   .button-row {
     display: flex;
     flex-flow: row nowrap;
+    // width: 6em;
     
     .button {
       flex: 1 1 1%;
@@ -9,7 +10,6 @@
       border-radius: 0;
       border-bottom: 1px solid #706F6D;
       text-align: center;
-      font-size: 1.4em;
       line-height: 2rem;
       user-select: none;
       vertical-align: top;
@@ -27,13 +27,25 @@
     }
   }
   
-  input {
-    display: inline-block;
-    padding: .4em;
-    width: 6em;
-    text-align: center;
+  .input-row {
+    border: 1px solid #706F6D;
     border-bottom: 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    overflow: hidden; // Crops the top right corner
+    
+    span {
+      padding-left: .5em;
+    }
+    
+    input[type="number"] { // We need the [type] to override input.scss
+      display: inline-block;
+      padding: .5em 0;
+      width: 3em;
+      background: #F2F2F2;
+      text-align: center;
+      border: 0;
+      border-radius: 0;
+    }
   }
 }

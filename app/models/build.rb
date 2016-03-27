@@ -28,15 +28,15 @@ class Build < ActiveRecord::Base
   end
 
   def price_wholesale(currency = "CAD") # -> Cents
-    variation.price_wholesale.exchange_to(currency).fractional
+    (variation.price_wholesale + product.price_wholesale).exchange_to(currency).fractional
   end
   
   def price_retail(currency = "CAD") # -> Cents
-    variation.price_retail.exchange_to(currency).fractional
+    (variation.price_retail + product.price_retail).exchange_to(currency).fractional
   end
   
   def retail_prices # -> Dollars
-    p = variation.price_retail
+    p = variation.price_retail + product.price_retail
     return {
       CAD: p.as_ca_dollar.dollars.round,
       USD: p.as_us_dollar.dollars.round

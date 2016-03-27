@@ -1,34 +1,45 @@
-@import 'vars';
+@import "vars";
 
-.wholesales#edit wholesale-builder {
-  .kingdom {
-    margin-top: 2em;
+.wholesales#edit {
+  wholesale-builder {
+    display: inline-block;
+    margin-right: 3vw;
+    margin-bottom: 2em;
+    vertical-align: top;
     
-    h2 {
-      border-bottom: 2px solid $dkyellow;
-      padding: 0 0 .2em;
+    h1 {
+      text-align: right;
     }
-    
-    .product {
-      display: inline-block;
-      width: 10em;
-      margin: 0;
-      text-align: center;
-      text-decoration: none;
-      vertical-align: top;
-      cursor: pointer;
+
+    .kingdom {
+      margin-top: 2em;
       
-      img {
-        width: 100%;
+      h2 {
+        border-bottom: 2px solid $dkyellow;
+        padding: 0 0 .2em;
       }
       
-      span {
-        font-size: 1.25em;
-      }
-      
-      &:hover {
-        color: $dark;
-        text-decoration: underline;
+      .product {
+        display: inline-block;
+        width: 10em;
+        margin: 0;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: top;
+        cursor: pointer;
+        
+        img {
+          width: 100%;
+        }
+        
+        span {
+          font-size: 1.25em;
+        }
+        
+        &:hover {
+          color: $dark;
+          text-decoration: underline;
+        }
       }
     }
   }

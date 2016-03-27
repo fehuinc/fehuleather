@@ -1,10 +1,13 @@
+@import "vars";
+
 wholesale-preview {
   display: inline-block;
   // width: 20em;
-  margin-left: 3vw;
   margin-bottom: 2em;
   vertical-align: top;
   text-align: left;
+  padding-left: 3vw;
+  border-left: .4em solid $blue;
 
   h1 {
     text-align: left;
@@ -15,6 +18,8 @@ wholesale-preview {
     
     .preview {
       width: 6em;
+      height: 6em;
+      background: #FAFAFA;
     }
     
     .details {
