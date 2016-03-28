@@ -3,40 +3,40 @@ angular.module "ItemEditor", []
 .directive "itemEditor", new Array "WholesaleOrder", "$timeout", (WholesaleOrder, $timeout)->
   scope: true
   controller: new Array "$scope", ($scope)->
-    $scope.editorItem = {} # properties are set in the view
-
+    $scope.editorBuild = {} # properties are set in the view
+    
     # ANIMATION ###################################################################################
     animating = false
     
     doAnimate = ()->
-      diff = $scope.editorItem.quantity - $scope.editorItem.displayQuantity
+      diff = $scope.editorBuild.quantity - $scope.editorBuild.displayQuantity
       if diff > 0
-        $scope.editorItem.displayQuantity++
+        $scope.editorBuild.displayQuantity++
       else if diff < 0
-        $scope.editorItem.displayQuantity--
+        $scope.editorBuild.displayQuantity--
       
       if diff isnt 0
-        $timeout(doAnimate, 100 / Math.abs(diff))
+        $timeout(doAnimate, 200 / Math.abs(diff))
       else
         animating = false
         
     animate = ()->
       if not animating
         animating = true
-        $timeout(doAnimate, 10)
+        doAnimate()
     
     
     # SCOPE #######################################################################################
     
     $scope.setQuantity = (quantity)->
-      $scope.editorItem.displayQuantity = $scope.editorItem.quantity = quantity
+      $scope.editorBuild.displayQuantity = $scope.editorBuild.quantity = quantity
     
     $scope.updateQuantity = ()->
-      $scope.editorItem.quantity = Math.max(0, $scope.editorItem.quantity)
+      $scope.editorBuild.quantity = Math.max(0, $scope.editorBuild.quantity)
       animate()
-      WholesaleOrder.update $scope.editorItem
+      WholesaleOrder.update $scope.editorBuild
     
     $scope.changeQuantity = (delta)->
-      $scope.editorItem.quantity += delta
+      $scope.editorBuild.quantity += delta
       $scope.updateQuantity()
     

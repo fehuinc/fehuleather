@@ -1,51 +1,84 @@
 angular.module "WholesaleOrder", []
 
 .service "WholesaleOrder", new Array "$http", "$rootScope", ($http, $rootScope)->
-  $rootScope.previewItems = {}
+  $rootScope.previewItems = {} # Uses build id as key
+  $rootScope.sortedPreviewItems = []
   $rootScope.previewItemsCount = 0
   
-  createPreviewItem = (editorItem)->
+  ajaxQueue = {}
+  tempItemId = 1000000000
+  
+  sorter = (a, b)->
+    (a > b) - (b > a) # From Stack Overflow, of course
+  
+  render = ()->
+    $rootScope.sortedPreviewItems = (v for k, v of $rootScope.previewItems).sort (a, b)-> sorter a.item_id, b.item_id
+    $rootScope.previewItemsCount = $rootScope.sortedPreviewItems.length
+  
+  createPreviewItemFromOrderItem = (orderItem)->
     return previewItem =
-      build_id: editorItem.build_id
-      build_name: editorItem.build_name
-      product_name: editorItem.product_name
-      cents: editorItem.cents
-      image: editorItem.image
-      quantity: editorItem.quantity
+      item_id: orderItem.id
+      build_id: orderItem.build.id
+      product_id: orderItem.build.product.id
+      product_name: orderItem.build.product.name
+      size_name: orderItem.build.size.name
+      variation_name: orderItem.build.variation.name
+      price: orderItem.build.price_wholesale
+      image: orderItem.build.variation.wholesale_image
+      quantity: orderItem.quantity
+  
+  createPreviewItemFromEditorBuild = (editorBuild)->
+    return previewItem =
+      build_id: editorBuild.build_id
+      product_id: editorBuild.product_id
+      product_name: editorBuild.product_name
+      size_name: editorBuild.size_name
+      variation_name: editorBuild.variation_name
+      price: editorBuild.price
+      image: editorBuild.image
+  
+  updateQuantity = (editorBuild, newQuantity)->
+    if newQuantity > 0
+      $rootScope.previewItems[editorBuild.build_id] ?= createPreviewItemFromEditorBuild(editorBuild)
+      $rootScope.previewItems[editorBuild.build_id].item_id ?= tempItemId++
+      $rootScope.previewItems[editorBuild.build_id].quantity = newQuantity
+    else
+      delete $rootScope.previewItems[editorBuild.build_id]
+    render()
+  
+  ajaxUpdate = (editorBuild)->
+    $rootScope.updatingItems = true
+    
+    $http.patch "/wholesale/update_order/#{editorBuild.build_id}",
+      quantity: editorBuild.quantity
+    
+    .then (resp)->
+      updateQuantity editorBuild, resp.data
+      
+    .catch (resp)->
+      alert "An error has occurred. Please reload the page."
+      # document.body.parentNode.innerHTML = resp.data # DEBUG
+    
+    .finally ()->
+      $rootScope.updatingItems = false
+      for id, item of ajaxQueue
+        delete ajaxQueue[id]
+        return ajaxUpdate item
+  
+  
+  # PUBLIC API ####################################################################################
+  
   
   return WholesaleOrder =
     
-    initItems: (items)->
-      for item in items
-        $rootScope.previewItems[item.build_id] = item
-      WholesaleOrder.updateItemsCount()
+    initItems: (orderItems)->
+      for orderItem in orderItems
+        previewItem = createPreviewItemFromOrderItem orderItem
+        $rootScope.previewItems[previewItem.build_id] = previewItem
+      render()
     
-    
-    update: (editorItem)->
-      $rootScope.updatingItems = true
-      
-      $http.patch "/wholesale/update_order/#{editorItem.build_id}", quantity: editorItem.quantity
-        
-        .then (resp)->
-          newQuantity = resp.data
-          
-          alert "Something went wrong — sorry!" if newQuantity isnt editorItem.quantity
-          
-          if newQuantity > 0
-            $rootScope.previewItems[editorItem.build_id] ?= createPreviewItem(editorItem)
-            $rootScope.previewItems[editorItem.build_id].quantity = newQuantity
-          else
-            delete $rootScope.previewItems[editorItem.build_id]
-        
-        .catch (resp)->
-          document.body.parentNode.innerHTML = resp.data
-        
-        .finally ()->
-          $rootScope.updatingItems = false
-          WholesaleOrder.updateItemsCount()
-
-
-    updateItemsCount: ()->
-      $rootScope.previewItemsCount = 0
-      for k, v of $rootScope.previewItems
-        $rootScope.previewItemsCount++
+    update: (editorBuild)->
+      if not $rootScope.updatingItems
+        ajaxUpdate editorBuild
+      else
+        ajaxQueue[editorBuild.build_id] = editorBuild

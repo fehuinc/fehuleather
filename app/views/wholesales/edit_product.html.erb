@@ -28,10 +28,14 @@
     <h1>Add to Your Order</h1>
     <% @product.variations.each do |variation| %>
       <div class="variation">
-        <h2 class="variation-name">
-          <%= variation.name %>
-          <%= variation.price_wholesale %>
-        </h2>
+        <div class="info">
+          <span class="name">
+            <%= variation.name %>
+          </span>
+          <span class="price">
+            $<%= variation.price_wholesale("CAD")/100 %>
+          </span>
+        </div>
         <%= image_tag variation.wholesale_image, class: "variation-image" %>
         <div class="builds">
           <% variation.builds.each do |build| %>
@@ -40,20 +44,21 @@
                 <span class="size-name"><%= build.size.name %></span>
                 <div class="pill perspective">
                   <input type="number"
-                         ng-model="editorItem.displayQuantity"
-                         ng-change="setQuantity(editorItem.displayQuantity)">
+                         ng-model="editorBuild.displayQuantity"
+                         ng-change="setQuantity(editorBuild.displayQuantity)"
+                         ng-init="setQuantity(<%= current_order_quantity(@order, build) %>)">
                   <div class="button" ng-click="changeQuantity(-1)">-</div>
                   <div class="button" ng-click="changeQuantity(1)">+</div>
                   <div class="button five" ng-click="changeQuantity(5)">+5</div>
                 </div>
               </div>
-              <span ng-init="editorItem.build_id=<%= build.id %>"></span>
-              <span ng-init="editorItem.variation_name='<%= variation.name %>'"></span>
-              <span ng-init="editorItem.size_name='<%= build.size.name %>'"></span>
-              <span ng-init="editorItem.product_name='<%= @product.name %>'"></span>
-              <span ng-init="editorItem.cents=<%= build.price_wholesale %>"></span>
-              <span ng-init="editorItem.image='<%= variation.wholesale_image %>'"></span>
-              <span ng-init="setQuantity(<%= current_order_quantity(@order, build) %>)"></span>
+              <span ng-init="editorBuild.build_id=<%= build.id %>"></span>
+              <span ng-init="editorBuild.product_id='<%= @product.id %>'"></span>
+              <span ng-init="editorBuild.product_name='<%= @product.name %>'"></span>
+              <span ng-init="editorBuild.size_name='<%= build.size.name %>'"></span>
+              <span ng-init="editorBuild.variation_name='<%= variation.name %>'"></span>
+              <span ng-init="editorBuild.price=<%= build.price_wholesale("CAD") %>"></span>
+              <span ng-init="editorBuild.image='<%= variation.wholesale_image %>'"></span>
             </div>
           <% end %>
         </div>

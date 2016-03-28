@@ -8,13 +8,21 @@ wholesale-preview {
   text-align: left;
   padding-left: 3vw;
   border-left: .4em solid $blue;
-
+  
   h1 {
     text-align: left;
   }
   
   .item {
+    display: block;
+    text-decoration: none;
     animation: fade-in .5s .1s both;
+    
+    &:hover {
+      .details {
+        text-decoration: underline;
+      }
+    }
     
     .preview {
       width: 6em;

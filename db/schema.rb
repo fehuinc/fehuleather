@@ -176,15 +176,15 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "variations", force: :cascade do |t|
     t.integer  "product_id"
-    t.text     "name",                                     null: false
+    t.text     "name",                                      null: false
     t.text     "model"
     t.text     "description"
     t.text     "totem_image"
     t.text     "wholesale_image"
-    t.integer  "price_retail_cents",       default: 0,     null: false
-    t.string   "price_retail_currency",    default: "CAD", null: false
-    t.integer  "price_wholesale_cents",    default: 0,     null: false
-    t.string   "price_wholesale_currency", default: "CAD", null: false
+    t.integer  "adjust_retail_cents",       default: 0,     null: false
+    t.string   "adjust_retail_currency",    default: "CAD", null: false
+    t.integer  "adjust_wholesale_cents",    default: 0,     null: false
+    t.string   "adjust_wholesale_currency", default: "CAD", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

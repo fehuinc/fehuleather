@@ -25,8 +25,8 @@ class Initialize < ActiveRecord::Migration
       t.text :description
       t.text :totem_image
       t.text :wholesale_image
-      t.monetize :price_retail
-      t.monetize :price_wholesale
+      t.monetize :adjust_retail,       default: 0
+      t.monetize :adjust_wholesale,    default: 0
       t.timestamps
       t.index :name
     end

@@ -26,13 +26,13 @@ class Build < ActiveRecord::Base
       "#{variation.name}"
     end
   end
-
-  def price_wholesale(currency = "CAD") # -> Cents
-    (variation.price_wholesale + product.price_wholesale).exchange_to(currency).fractional
+  
+  def price_wholesale(currency = "CAD")
+    variation.price_wholesale(currency)
   end
   
-  def price_retail(currency = "CAD") # -> Cents
-    (variation.price_retail + product.price_retail).exchange_to(currency).fractional
+  def price_retail(currency = "CAD")
+    variation.price_retail(currency)
   end
   
   def retail_prices # -> Dollars
