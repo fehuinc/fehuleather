@@ -36,7 +36,7 @@ class Build < ActiveRecord::Base
   end
   
   def retail_prices # -> Dollars
-    p = variation.price_retail + product.price_retail
+    p = variation.adjust_retail + product.price_retail
     return {
       CAD: p.as_ca_dollar.dollars.round,
       USD: p.as_us_dollar.dollars.round
