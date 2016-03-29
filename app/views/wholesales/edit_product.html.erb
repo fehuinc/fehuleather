@@ -1,5 +1,3 @@
-<%= render "wholesales/button_bar" %>
-
 <div class="top">
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="20 40 160 140">
     <defs>
@@ -25,6 +23,7 @@
 
 <div class="split">
   <div class="variations">
+    <%= link_to "< All Products", edit_wholesale_path, class: "back button" %>
     <h1>Add to Your Order</h1>
     <% @product.variations.each do |variation| %>
       <div class="variation">
