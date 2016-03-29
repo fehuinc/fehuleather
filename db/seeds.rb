@@ -1,5 +1,5 @@
-# belts =     Kingdom.create! name: "Belts"
-bracelets = Kingdom.create! name: "Bracelets"
+# belts =     Kingdom.create! name: "Belt"
+bracelets = Kingdom.create! name: "Bracelet"
 # hair =      Kingdom.create! name: "Hair"
 rings =     Kingdom.create! name: "Ring"
 

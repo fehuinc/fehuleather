@@ -2,8 +2,8 @@
 
 wholesale-preview {
   display: inline-block;
-  width: 48vw;
   margin-bottom: 2em;
+  max-width: 30em;
   vertical-align: top;
   text-align: left;
   padding-left: 3vw;
@@ -14,7 +14,8 @@ wholesale-preview {
   }
   
   .item {
-    display: block;
+    display: inline-block;
+    margin-right: 2em;
     text-decoration: none;
     animation: fade-in .5s .1s both;
     
