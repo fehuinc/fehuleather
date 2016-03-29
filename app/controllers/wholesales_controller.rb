@@ -33,7 +33,9 @@ class WholesalesController < ApplicationController
   
   
   def checkout
-    @items_count = merchant.current_order.items.count
+    @merchant = Merchant.includes(current_order: [items: [build: [:variation]]]).find session[:merchant_id]
+    @order = @merchant.current_order
+    @items_count = @order.items.map(&:quantity).reduce(&:+)
   end
   
 end

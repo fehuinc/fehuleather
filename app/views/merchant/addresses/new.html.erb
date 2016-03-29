@@ -1,12 +1,7 @@
-<h1>Check Me Out</h1>
+<h1 class="page-title">Tell Us The Location of Your Secret Base<br><small>Or Else...</small></h1>
 
-<div class="info-popup" ng-show="showEmailPopup" ng-cloak>
-  We'll send you an email to confirm your order — and that's all. No spam, no nonsense.
-  <div class="close" ng-click="showEmailPopup = false">Close</div>
-</div>
-
-<section ng-cloak>
-  <form class="address-form" novalidate>
+<form class="address-form" novalidate ng-cloak>
+  <section>
     <div class="row two">
       <label>
         Name
@@ -14,7 +9,7 @@
       </label>
 
       <label>
-        Email <div class="info-prompt" ng-click="showEmailPopup = !showEmailPopup">?</div>
+        Email
         <input type="email" ng-model="checkoutInfo.email">
       </label>
     </div>
@@ -54,11 +49,9 @@
       </label>
       
     </div>
-  </form>
-  
-  <p>Your address is saved here until you close this browser tab.</p>
-</section>
+  </section>
 
-<section class="perspective center">
-  <a class="button" href="/payment">Continue</a>
-</section>
+  <section class="perspective center">
+    <input type="submit" value="Save Address">
+  </section>
+</form>

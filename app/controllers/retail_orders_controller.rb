@@ -16,6 +16,7 @@ class RetailOrdersController < ApplicationController
       email: email,
       line1: address_data["address1"],
       line2: address_data["address2"],
+      city: address_data["city"],
       code: address_data["postal"],
       region: address_data["provinceState"],
       country: address_data["country"]

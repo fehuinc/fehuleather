@@ -1,71 +1,44 @@
 <h1>It's Checkout Time</h1>
 
-<div class="info-popup" ng-show="showEmailPopup">
-  We'll send you an email to confirm your order — and that's all. No spam, no nonsense.
-  <div class="close" ng-click="showEmailPopup = false">Close</div>
-</div>
-
 <section>
-  <h3>You're about to order <%= link_to "#{items_count} Product".pluralize(items_count), edit_wholesale_path %>.</h3>
+  <h3>You're about to order <%= link_to "#{@items_count} item".pluralize(@items_count), edit_wholesale_path %>.</h3>
+  
+  <div class="little-preview">
+    <% @order.items.each do |item| %>
+      <% item.quantity.times do %>
+        <div>
+          <%= image_tag item.build.variation.wholesale_image %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </section>
 
-<section>
+<section ng-cloak>
   <label>
-    Preferred delivery date (optional)
+    Preferred delivery date (optional, best effort)
     <input type="text"></input>
   </label>
 </section>
 
-<section>
-  <form novalidate>
-    <h3>Shipping Address</h3>
-    
-    <div class="row two">
-      <label>
-        Name
-        <input type="text">
-      </label>
-      
-      <label>
-        Email <div class="info-prompt">?</div>
-        <input type="email">
-      </label>
-    </div>
-    
-    <hr>
-    
-    <div class="row two">
-      <div class="set">
-        <label>
-          Address
-          <input type="text" placeholder="Line 1">
-        </label>
-        <input type="text" placeholder="Line 2">
+<section ng-cloak>
+  <h2>Where should we ship it to?</h2>
+  
+  <div class="addresses">
+    <% @merchant.addresses.each do |address| %>
+      <div class="address">
+        <%= address.name %><br>
+        <%= address.line1 %><br>
+        <% if address.line2.present? %>
+          <%= address.line2 %><br>
+        <% end %>
+        <%= address.city %>, <%= address.region %><br>
+        <%= address.code %> <%= address.country %>
       </div>
-      
-      <label>
-        City
-        <input type="text">
-      </label>
-    </div>
-    
-    <div class="row three">
-      <label class="shrink">
-        Country
-        <select></select>
-      </label>
-
-      <label>
-        State/Province
-        <input type="text" ng-model="shippingAddress.provinceState">
-      </label>
-      
-      <label>
-        ZIP/Postal Code
-        <input type="text" ng-model="shippingAddress.postal">
-      </label>
-    </div>
-  </form>
+    <% end %>
+  </div>
+  
+  <h3><%= link_to "New Address", new_merchant_address_path %></h3>
 </section>
 
 <section>

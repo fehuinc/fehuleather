@@ -92,6 +92,7 @@ class Initialize < ActiveRecord::Migration
       t.text :email,	                 null: false
       t.text :line1,                   null: false
       t.text :line2
+      t.text :city,                    null: false
       t.text :code,                    null: false # Zip/Postal
       t.text :region,                  null: false # Province/State
       t.text :country,                 null: false

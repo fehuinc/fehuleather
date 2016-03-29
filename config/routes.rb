@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get "checkout" => "static#checkout"
     get "payment" => "static#payment"
     get "confirmation" => "static#confirmation"
-    resources "orders", only: [:create, :show], controller: "retail_orders"
+    resources :orders, only: [:create, :show], controller: "retail_orders"
     
     # Static
     get "about" => "static#about"
@@ -27,23 +27,27 @@ Rails.application.routes.draw do
     get "/collections/*ignore" => redirect("/")
 
     # Wholesale
-    get "logout" => "merchants#logout", as: "logout_merchant"
+    get "logout" => "merchant#logout", as: "logout_merchant"
     
     # Wholesale — public
     scope constraints: lambda { |request| request.session[:merchant_id].nil? || Merchant.find_by_id(request.session[:merchant_id]).nil? } do
       resource :merchant, only: [:new]
-      post "merchant/new" => "merchants#create", as: nil
-      get "merchant" => "merchants#login"
-      post "merchant" => "merchants#login"
-      get "merchant/*ignore" => "merchants#login"
+      post "merchant/new" => "merchant#create", as: nil
+      get "merchant" => "merchant#login"
+      post "merchant" => "merchant#login"
+      get "merchant/*ignore" => "merchant#login"
     end
     
     # Wholesale — private
     scope constraints: lambda { |request| !request.session[:merchant_id].nil? && !Merchant.find_by_id(request.session[:merchant_id]).nil? } do
-      get "merchant" => "merchants#index"
-      post "merchant" => "merchants#index"
-      get "merchant/edit" => "merchants#edit"
-      patch "merchant/edit" => "merchants#update"
+      get "merchant" => "merchant#index"
+      post "merchant" => "merchant#index"
+      get "merchant/edit" => "merchant#edit"
+      patch "merchant/edit" => "merchant#update"
+      
+      namespace :merchant do
+        resources :addresses, except: [:index, :show]
+      end
       
       resource :wholesale, only: [:new, :edit] do
         get "product/:id" => "wholesales#edit_product", as: "product"

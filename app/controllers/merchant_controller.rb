@@ -1,4 +1,4 @@
-class MerchantsController < ApplicationController
+class MerchantController < ApplicationController
   
   def logout
     merchant = Merchant.find_by_id(session[:merchant_id])
