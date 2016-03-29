@@ -1,6 +1,8 @@
 <wholesale-preview sticky="0">
-  <div ng-class="{invisible:previewItemsCount == 0}">
-    <%= link_to "Checkout >", checkout_wholesale_path, class: "button" %>
+  <div class="nav" ng-class="{invisible:previewItemsCount == 0}">
+    <span class="perspective">
+      <%= link_to "Checkout >", checkout_wholesale_path, class: "button" %>
+    </span>
   </div>
 
   <script>
@@ -10,7 +12,7 @@
   <h1>In Your Order</h1>
   <h3 class="appear" ng-hide="true">Loading...</h3>
   <h3 class="appear" ng-hide="previewItemsCount > 0">Nothing yet...</h3>
-  <div ng-cloak ng-controller="PreviewCtrl">
+  <div class="items" ng-cloak ng-controller="PreviewCtrl">
     <a class="item" ng-repeat="item in sortedPreviewItems" ng-href="/wholesale/product/{{item.product_id}}">
       <img class="preview" ng-src="{{item.image}}">
       <span class="details">

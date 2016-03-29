@@ -28,19 +28,27 @@
   }
   
   .variations {
+    width: 45vw;
     margin-right: 3vw;
+    text-align: right;
+    
+    h1 {
+      text-align: right;
+    }
   }
   
   .variation {
-    margin: 2em 0;
+    margin: 3em 0 0;
     
     .info {
+      margin-bottom: -.5em;
+
       .name {
-        font-size: 2em;
+        font-size: 1.6em;
       }
       
       .price {
-        font-size: 1.6em;
+        font-size: 1.4em;
         margin-left: 1em;
       }
     }

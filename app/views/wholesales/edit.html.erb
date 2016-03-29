@@ -1,8 +1,9 @@
-<%= render "wholesales/button_bar" %>
-
 <div class="split">
-
   <wholesale-builder>
+    <div class="nav perspective">
+      <a class="invisible button">I am invisible!</a>
+    </div>
+
     <h1>Add a Product to Your Order</h1>
     <div class="products">
       <% @kingdoms.each do |kingdom| %>
@@ -22,5 +23,3 @@
   <%= render "wholesales/wholesale_preview" %>
 
 </div>
-
-<%= render "wholesales/button_bar" %>

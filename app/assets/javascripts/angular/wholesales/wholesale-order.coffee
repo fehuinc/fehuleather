@@ -12,7 +12,7 @@ angular.module "WholesaleOrder", []
     (a > b) - (b > a) # From Stack Overflow, of course
   
   render = ()->
-    $rootScope.sortedPreviewItems = (v for k, v of $rootScope.previewItems).sort (a, b)-> sorter a.item_id, b.item_id
+    $rootScope.sortedPreviewItems = (v for k, v of $rootScope.previewItems).sort((a, b)-> sorter a.item_id, b.item_id).reverse()
     $rootScope.previewItemsCount = $rootScope.sortedPreviewItems.length
   
   createPreviewItemFromOrderItem = (orderItem)->

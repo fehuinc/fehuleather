@@ -23,7 +23,10 @@
 
 <div class="split">
   <div class="variations">
-    <%= link_to "< All Products", edit_wholesale_path, class: "back button" %>
+    <div class="nav perspective glass" sticky="0">
+      <%= link_to "< All Products", edit_wholesale_path, class: "back button" %>
+    </div>
+    
     <h1>Add to Your Order</h1>
     <% @product.variations.each do |variation| %>
       <div class="variation">
@@ -65,9 +68,5 @@
     <% end %>
   </div>
   
-  <div>
-    <%= render "wholesales/wholesale_preview" %>
-  </div>
+  <%= render "wholesales/wholesale_preview" %>
 </div>
-
-<%= render "wholesales/button_bar" %>
