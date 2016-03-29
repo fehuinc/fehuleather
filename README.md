@@ -10,11 +10,6 @@ Totem Perf
   On mobile, we need 3
   
 Wholesale
-  Text block next to product hero image that Freyja can put [whatever] into — unstructured
-  
-  Sizes can be a grid under each product build, with many number boxes for quantities
-  If possible, let them pick the overall total and leave the selection of sizes up to us
-  
   Made to order — no stocks
   
   Email Freyja when an order is delivered
