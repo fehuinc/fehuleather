@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     
     # Wholesale — public
     scope constraints: lambda { |request| request.session[:merchant_id].nil? || Merchant.find_by_id(request.session[:merchant_id]).nil? } do
-      resource :merchant, only: [:new]
+      get "merchant/new" => "merchant#new", as: "new_merchant"
       post "merchant/new" => "merchant#create", as: nil
       get "merchant" => "merchant#login"
       post "merchant" => "merchant#login"

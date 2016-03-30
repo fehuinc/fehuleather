@@ -1,0 +1,54 @@
+<section>
+  <div class="row two">
+    <%= f.label :name do %>
+      Name <%= f.text_field :name %>
+    <% end %>
+    
+    <%= f.label :email do %>
+      Email <%= f.email_field :email %>
+    <% end %>
+  </div>
+  
+  <div class="row two">
+    <div class="set">
+      <%= f.label :line1 do %>
+        Address <%= f.text_field :line1, placeholder: "Line 1" %>
+      <% end %>
+      <%= f.text_field :line2, placeholder: "Line 2" %>
+    </div>
+    
+    <%= f.label :city do %>
+      City <%= f.text_field :city %>
+    <% end %>
+  </div>
+  
+  <div class="row three">
+    <%= f.label :country do %>
+      Country <%= f.select :country do %>
+        <option>Canada</option>
+        <option>United States</option>
+      <% end %>
+    <% end %>
+
+    <%= f.label :region do %>
+      Province/State <%= f.text_field :region %>
+    <% end %>
+    
+    <%= f.label :code do %>
+      Postal/Zip Code <%= f.text_field :code %>
+    <% end %>
+    
+  </div>
+</section>
+
+<section class="perspective center">
+  <input type="submit" value="Save Address">
+  
+  <% if edit %>
+    <deleter class="button" path="<%= merchant_address_path(@address) %>" redirect="<%= checkout_wholesale_path %>">
+      Hold To Delete
+    </deleter>
+  <% end %>
+
+  <%= render 'partials/form_errors', model: f.object %>
+</section>

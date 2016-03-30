@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.text     "email",       null: false
     t.text     "line1",       null: false
     t.text     "line2"
+    t.text     "city",        null: false
     t.text     "code",        null: false
     t.text     "region",      null: false
     t.text     "country",     null: false

@@ -28,16 +28,20 @@
   }
   
   .variations {
-    margin-right: 3vw;
     text-align: right;
     
     h1 {
       text-align: right;
+      margin-right: 3vw;
+    }
+    
+    .nav {
+      padding-right: 3vw;
     }
   }
   
   .variation {
-    margin: 3em 0 0;
+    margin: 3em 3vw 0;
     
     .info {
       margin-bottom: -.5em;

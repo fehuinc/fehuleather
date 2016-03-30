@@ -15,18 +15,11 @@
 </section>
 
 <section ng-cloak>
-  <label>
-    Preferred delivery date (optional, best effort)
-    <input type="text"></input>
-  </label>
-</section>
-
-<section ng-cloak>
   <h2>Where should we ship it to?</h2>
   
   <div class="addresses">
     <% @merchant.addresses.each do |address| %>
-      <div class="address">
+      <div class="address" ng-click="shipTo = <%=address.id%>" ng-class="{selected:shipTo == <%=address.id%>}">
         <%= address.name %><br>
         <%= address.line1 %><br>
         <% if address.line2.present? %>
@@ -34,14 +27,28 @@
         <% end %>
         <%= address.city %>, <%= address.region %><br>
         <%= address.code %> <%= address.country %>
+        <div class="edit">
+          <%= link_to "Edit", edit_merchant_address_path(address) %>
+        </div>
       </div>
     <% end %>
   </div>
   
-  <h3><%= link_to "New Address", new_merchant_address_path %></h3>
+  <div class="perspective in-bl">
+    <%= link_to "New Address", new_merchant_address_path, class: "button" %>
+  </div>
 </section>
 
-<section>
-  <div class="button">Pay now</div>
-  <div class="button">Pay later</div>
+<section ng-cloak ng-show="shipTo != null">
+  <label>
+    Preferred delivery date (optional, best effort)
+    <input type="text"></input>
+  </label>
+</section>
+
+<section ng-cloak ng-show="shipTo">
+  <div class="perspective in-bl">
+    <div class="button">Pay now</div>
+    <div class="button">Pay later</div>
+  </div>
 </section>

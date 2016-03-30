@@ -2,10 +2,8 @@
 
 .wholesales#edit {
   wholesale-builder {
-    display: inline-block;
     margin-right: 3vw;
     margin-bottom: 2em;
-    vertical-align: top;
     text-align: right;
     
     h1 {
@@ -16,8 +14,7 @@
       margin-top: 2em;
       
       h2 {
-        border-bottom: 2px solid $dkyellow;
-        padding: 0 0 .2em;
+        padding: 0 0 .5em;
       }
       
       .product {
