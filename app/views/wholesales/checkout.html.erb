@@ -19,7 +19,7 @@
   
   <div class="addresses">
     <% @merchant.addresses.each do |address| %>
-      <div class="address" ng-click="shipTo = <%=address.id%>" ng-class="{selected:shipTo == <%=address.id%>}">
+      <div class="address" ng-click="shipTo = <%=address.id%>; email = '<%=address.email%>'" ng-class="{selected:shipTo == <%=address.id%>}">
         <div class="info">
           <%= address.name %><br>
           <%= address.line1 %><br>
@@ -44,13 +44,35 @@
 <section ng-cloak ng-show="shipTo != null">
   <label>
     Preferred delivery date (optional, best effort)
-    <input type="text"></input>
+    <input ng-model="preferredDate" type="text"></input>
+  </label>
+  <label>
+    Notes (optional)
+    <input ng-model="notes" type="text"></input>
   </label>
 </section>
 
 <section ng-cloak ng-show="shipTo">
-  <div class="perspective in-bl">
-    <div class="button">Pay now</div>
-    <div class="button">Pay later</div>
-  </div>
+  <%= form_tag submit_wholesale_path, class: "stripe" do |f| %>
+    
+    <input type="hidden" name="shippingAddressId" value="{{shipTo | json}}">
+    <input type="hidden" name="email" value="{{email}}">
+    <input type="hidden" name="subtotal" value="<%= @order.subtotal.to_i %>">
+    <input type="hidden" name="description" value="<%= "#{@items_count} Wholesale Item".pluralize(@items_count) %>">
+    <input type="hidden" name="notes" value="{{notes | json}}">
+    
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    
+    <div class="perspective in-bl">
+      <button>Pay Now</button>
+      <div ng-click="showPayLaterOptions = true" class="button">Pay later</div>
+    </div>
+  <% end %>
 </section>
+
+<div ng-cloak ng-show="showPayLaterOptions">
+  <p>
+    Other payment options should go here. They can choose their favourite,
+    and then we should submit a form to "complete" this order.
+  </p>
+</div>

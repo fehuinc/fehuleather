@@ -38,4 +38,57 @@ class WholesalesController < ApplicationController
     @items_count = @order.items.map(&:quantity).reduce(&:+)
   end
   
+  
+  def submit
+    @merchant = Merchant.find(session[:merchant_id])
+    @order = @merchant.current_order
+    
+    @order.notes = notes = wholesale_order_params[:notes] # From Angular
+    @order.address = Address.find wholesale_order_params[:shippingAddressId] # From Angular
+    
+    token = wholesale_order_params[:token] # From JS
+    amount = @order.subtotal.to_i # cents
+    description = wholesale_order_params[:description] # From HTML
+    currency = wholesale_order_params[:currency] # From Angular
+    
+    charge = Stripe::Charge.create(
+      source: token,
+      amount: amount,
+      description: description,
+      currency: currency
+    )
+    
+    @order.payment_id = charge.id
+    
+    @order.submitted = Time.now
+    @order.paid = Time.now
+    
+    @order.save!
+    @order.reload
+    
+    @merchant.current_order = nil
+    @merchant.save!
+    
+    # Email Freyja
+    # Email the customer
+    
+    redirect_to show_wholesale_path(@order)
+  
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to wholesale_checkout_path
+  end
+  
+  
+  def show
+    @order = WholesaleOrder.find_by_uuid(params[:id])
+    @many = @order.items.count > 1 || @order.items.first.quantity > 1
+  end
+  
+private
+  
+  def wholesale_order_params
+    params.permit(:token, :shippingAddressId, :notes, :currency, :description)
+  end
+  
 end

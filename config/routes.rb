@@ -53,6 +53,8 @@ Rails.application.routes.draw do
         get "product/:id" => "wholesales#edit_product", as: "product"
         patch "update_order/:build_id" => "wholesales#update_order"
         get "checkout" => "wholesales#checkout"
+        post "submit" => "wholesales#submit"
+        get "order/:id" => "wholesales#show", as: "show"
       end
     end
     

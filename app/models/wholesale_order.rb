@@ -2,6 +2,14 @@ class WholesaleOrder < ActiveRecord::Base
   belongs_to :merchant
   belongs_to :address
   has_many :items, as: :order, class_name: OrderItem, dependent: :destroy
+
+  def to_param
+    uuid.parameterize
+  end
+  
+  def subtotal
+    items.map { |i| i.price.fractional * i.quantity }.reduce(0, :+)
+  end
   
   def item_for_build(build)
     items.where(build_id: build.id).first

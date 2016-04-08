@@ -1,6 +1,6 @@
 @import "vars";
 
-.wholesales {
+.wholesales:not(#show) {
   main {
     max-width: none;
     min-width: 768px;
