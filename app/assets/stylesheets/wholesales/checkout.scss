@@ -20,7 +20,6 @@
     margin: 2em 0;
     
     .address {
-      @extend .unselectable;
       display: inline-block;
       margin: 1em;
       padding: 1em;
@@ -45,6 +44,10 @@
       
       &.selected {
         border-color: hsl(155, 50%, 70%);
+      }
+      
+      .info {
+        pointer-events: none;
       }
       
       .edit {

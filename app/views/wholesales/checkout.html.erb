@@ -20,13 +20,15 @@
   <div class="addresses">
     <% @merchant.addresses.each do |address| %>
       <div class="address" ng-click="shipTo = <%=address.id%>" ng-class="{selected:shipTo == <%=address.id%>}">
-        <%= address.name %><br>
-        <%= address.line1 %><br>
-        <% if address.line2.present? %>
-          <%= address.line2 %><br>
-        <% end %>
-        <%= address.city %>, <%= address.region %><br>
-        <%= address.code %> <%= address.country %>
+        <div class="info">
+          <%= address.name %><br>
+          <%= address.line1 %><br>
+          <% if address.line2.present? %>
+            <%= address.line2 %><br>
+          <% end %>
+          <%= address.city %>, <%= address.region %><br>
+          <%= address.code %> <%= address.country %>
+        </div>
         <div class="edit">
           <%= link_to "Edit", edit_merchant_address_path(address) %>
         </div>
