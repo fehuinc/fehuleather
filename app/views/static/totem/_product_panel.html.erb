@@ -6,12 +6,10 @@
 <div class="middle">
   <% if item.product.sizes.count > 1 %>
     <size-selector>
-      <% item.variation.builds.each do |build| %>
-        <div js-build="<%= build.to_json(methods: [:short_name, :retail_prices], only: [:id]) %>"><%= build.size.name %></div>
-      <% end %>
+      <%= item.variation.builds.map { |build| js_build_elm(build) }.join("\n").html_safe %>
     </size-selector>
   <% else %>
-    <div class="one-size" js-build="<%= item.variation.builds.first.to_json(methods: [:short_name, :retail_prices], only: [:id]) %>"><%= item.variation.builds.first.size.name %></div>
+    <%= js_build_elm(item.variation.builds.first) %>
   <% end %>
   
   <div class="price perspective">
