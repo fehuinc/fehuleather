@@ -11,6 +11,12 @@
     }
   }
   
+  .image {
+    img {
+      width: 4em;
+    }
+  }
+  
   &.deleted .name {
     opacity: .5;
   }

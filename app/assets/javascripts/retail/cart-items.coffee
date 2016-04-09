@@ -1,10 +1,11 @@
 Take ["CartDB", "Validator", "DOMContentLoaded"], (CartDB, Validator)->
   makeItemHtml = (item)->
+    image    = "<div class='image'><img src='#{item.variation.wholesale_image}'></div>"
     name     = "<div class='name'>#{item.short_name}</div>"
     quantity = "<div class='quantity'><input type='number' min='0' max='99' value='#{item.quantity}'></div>"
     price    = "<div class='price'>$#{item.retail_prices[CartDB.getCurrency()] *  item.quantity}</div>"
     deletedClass = if item.quantity > 0 then "" else "deleted"
-    return "<div class='item #{deletedClass}' build-id='#{item.id}'>\n\t#{name}\n\t#{quantity}\n\t#{price}\n</div>"
+    return "<div class='item #{deletedClass}' build-id='#{item.id}'>\n\t#{image}\n\t#{name}\n\t#{quantity}\n\t#{price}\n</div>"
   
   makeItemsHtml = (state, builds)->
     html = (makeItemHtml v for k,v of builds).join "\n"
