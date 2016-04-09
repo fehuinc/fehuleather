@@ -2,20 +2,6 @@
 
 Stinks. On Rails.
 
-# Todo
-
-Totem Perf
-  Hide rows that are out of the viewport
-  On desktop, we need 5 totem items
-  On mobile, we need 3
-  
-Wholesale
-  Made to order — no stocks
-  
-  Email Freyja when an order is delivered
-    the body of the email is the linesheet
-
-  
 ## Dev
 Here be the needed env vars:
 
