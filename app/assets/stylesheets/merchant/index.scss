@@ -9,11 +9,12 @@ $blue: hsl(200, 50%, 95%);
   
   .actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     max-width: none;
     
     a {
       display: inline-block;
+      margin: 0 .5em;
       padding: 1em;
       border: 1px solid $blue;
       background: $yellow;

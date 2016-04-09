@@ -55,6 +55,7 @@ Rails.application.routes.draw do
         get "checkout" => "wholesales#checkout"
         post "submit" => "wholesales#submit"
         get "order/:id" => "wholesales#show", as: "show"
+        get "orders" => "wholesales#index"
       end
     end
     

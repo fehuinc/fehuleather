@@ -7,7 +7,6 @@ $row-height: 3.3em;
   height: $row-height;
   line-height: $row-height;
   margin: 0 auto;
-  padding: 0 1em;
   letter-spacing: 2px;
   background: $color;
   border-bottom: 6px solid darken($color, 4%);
@@ -21,13 +20,18 @@ $row-height: 3.3em;
     
     a {
       display: inline-block;
-      margin-right: 2em;
+      padding: 0 1em;
       text-decoration: none;
       &:hover { text-decoration: underline; }
+    }
+    
+    a {
+      border-right: 6px solid rgba(white, 0.2);
     }
   }
   
   .right {
     float: right;
+    margin-right: 1em;
   }
 }

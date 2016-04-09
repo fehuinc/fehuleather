@@ -1,5 +1,12 @@
 class WholesalesController < ApplicationController
   
+  def index
+    @merchant = Merchant.find(session[:merchant_id])
+    @orders_by_date = @merchant.orders.includes(:items).sort_by(&:created_at).reverse.group_by do |order|
+      order.created_at.to_time.strftime("%B %d, %Y")
+    end
+  end
+  
   def new
     merchant = Merchant.find(session[:merchant_id])
     if merchant.current_order.nil?

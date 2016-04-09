@@ -6,9 +6,8 @@
   <% else %>
     <%= link_to "Edit Current Order", edit_wholesale_path %>
   <% end %>
-  <%= link_to "Quick Re-order", nil %>
-  <%= link_to "View Past Orders", nil %>
-  <%= link_to "Download/Print Line Sheet", nil %>
+  <%= link_to "Past Orders", orders_wholesale_path %>
+  <%= link_to "Catalog PDF",  catalog_path%>
 </section>
 
 <section>
@@ -39,7 +38,7 @@
         <label>
           Email Address
           <div class="info-prompt" toggler-toggle="Email">?</div>
-          <%= f.email_field :email, placeholder: "eg: its-me@example.com" %>
+          <%= f.email_field :email, placeholder: "eg: tyran@example.com" %>
         </label>
       </div>
         
