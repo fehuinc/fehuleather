@@ -2,7 +2,6 @@ angular.module "FehuApp", [
   # Components
   "Deleter"
   "Editable"
-  "Sticky"
   "StockQuantity"
   
   # Libs
@@ -13,7 +12,6 @@ angular.module "FehuApp", [
   "Locations"
   
   # Services
-  "FeatureDetect"
   "Storage"
   "CheckoutInfo"
   
