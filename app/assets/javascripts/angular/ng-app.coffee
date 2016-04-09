@@ -2,7 +2,6 @@ angular.module "FehuApp", [
   # Components
   "Deleter"
   "Editable"
-  "StockQuantity"
   
   # Libs
   "ngSanitize"
