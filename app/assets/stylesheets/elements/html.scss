@@ -1,4 +1,5 @@
 html {
+  line-height: 1.33; // Bugfix: Safari was using a super-small line-height for some reason
   font-family: caudex, serif;
   color: #706F6D;
   background-color: white;

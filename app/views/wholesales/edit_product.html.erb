@@ -12,7 +12,7 @@
   
   <div class="info">
     <div class="overview">
-      This is where an arbitrary text field should go. Freyja should be able to HTML up in this all she wants. That'd be pretty hoot!
+      <%= @product.wholesale_description.html_safe %>
     </div>
     <% @product.infos.each do |info| %>
       <h3><%= info.name %></h3>

@@ -5,11 +5,14 @@
   <%= f.text_field :name %>
 </div>
 
+<%= f.label :wholesale_description, "Wholesale Description (HTML)" %>
+<%= f.text_area :wholesale_description, rows: 4 %>
+
 <div class="row">
   <%= f.label :price_retail, "Retail Price" %>
-  <%= f.number_field :price_retail %>
+  <%= f.number_field :price_retail, step: 1 %>
   <%= f.label :price_wholesale, "Wholesale Price" %>
-  <%= f.number_field :price_wholesale %>
+  <%= f.number_field :price_wholesale, step: 1 %>
 </div>
 
 <div class="row spread">

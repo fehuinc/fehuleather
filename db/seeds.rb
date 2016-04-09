@@ -5,7 +5,9 @@ rings =     Kingdom.create! name: "Ring"
 
 
 row = TotemRow.create! index: 0
-wrap_cuff = bracelets.products.create! name: "Wrap Cuff", price_retail_cents: 6400, price_wholesale_cents: 3200
+wrap_cuff = bracelets.products.create! name: "Wrap Cuff", price_retail_cents: 6400, price_wholesale_cents: 3200, wholesale_description: "You should order about 100 of these for your store. That'd be <small>sooo</small> <em>HOOT!</em>."
+wrap_cuff.infos.create! name: "Sizing", content: "Not too big, not too small. Pretty good overall."
+wrap_cuff.infos.create! name: "Features", content: "Slices, dices."
 wrap_cuff.sizes.create! name: "Adjustable"
 row.items.create! variation: BuildMaker.make_build_pair((wrap_cuff.variations.create! name: "Pumpkin",     totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/pumpkin.jpg"),   wrap_cuff.sizes)
 # row.items.create! variation: BuildMaker.make_build_pair((wrap_cuff.variations.create! name: "Black",       totem_image: ENV["IMAGEPATH"] + "wrap-cuff/totem/black.jpg"),     wrap_cuff.sizes)
@@ -20,7 +22,9 @@ row.items.create! variation: BuildMaker.make_build_pair((wrap_cuff.variations.cr
 
 
 row = TotemRow.create! index: 1
-gilt_cuff = bracelets.products.create! name: "Gilt Cuff", price_retail_cents: 9600, price_wholesale_cents: 4800
+gilt_cuff = bracelets.products.create! name: "Gilt Cuff", price_retail_cents: 9600, price_wholesale_cents: 4800, wholesale_description: "You should order about 100 of these for your store. That'd be <small>sooo</small> <em>HOOT!</em>."
+gilt_cuff.infos.create! name: "Sizing", content: "Not too big, not too small. Pretty good overall."
+gilt_cuff.infos.create! name: "Features", content: "Slices, dices."
 gilt_cuff.sizes.create! name: "Adjustable"
 row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "White/Black",    totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/white-black.jpg",    wholesale_image: ENV["IMAGEPATH"] + "gilt-cuff/wholesale/white-black.jpg"),    gilt_cuff.sizes)
 row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "White/Brown",    totem_image: ENV["IMAGEPATH"] + "gilt-cuff/totem/white-brown.jpg",    wholesale_image: ENV["IMAGEPATH"] + "gilt-cuff/wholesale/white-brown.jpg"),    gilt_cuff.sizes)
@@ -30,7 +34,7 @@ row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.cr
 
 
 # row = TotemRow.create! index: 2
-# hair_cuff = hair.products.create! name: "Hair Cuff", price_retail_cents: 2500, price_wholesale_cents: 1000
+# hair_cuff = hair.products.create! name: "Hair Cuff", price_retail_cents: 2500, price_wholesale_cents: 1000, wholesale_description: "You should order about 100 of these for your store. That'd be <small>sooo</small> <em>HOOT!</em>."
 # hair_cuff.sizes.create! name: "Small"
 # hair_cuff.sizes.create! name: "Large"
 # row.items.create! variation: BuildMaker.make_build_pair((hair_cuff.variations.create! name: "Black",          totem_image: ENV["IMAGEPATH"] + "hair-cuff/totem/black.jpg"),          hair_cuff.sizes)
@@ -40,7 +44,9 @@ row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.cr
 
 
 row = TotemRow.create! index: 3
-wrap_ring = rings.products.create! name: "Wrap Ring", price_retail_cents: 2500, price_wholesale_cents: 1000
+wrap_ring = rings.products.create! name: "Wrap Ring", price_retail_cents: 2500, price_wholesale_cents: 1000, wholesale_description: "You should order about 100 of these for your store. That'd be <small>sooo</small> <em>HOOT!</em>."
+wrap_ring.infos.create! name: "Sizing", content: "Not too big, not too small. Pretty good overall."
+wrap_ring.infos.create! name: "Features", content: "Slices, dices."
 wrap_ring.sizes.create! name: "Tiny"
 wrap_ring.sizes.create! name: "Small"
 wrap_ring.sizes.create! name: "Medium"
@@ -49,7 +55,9 @@ row.items.create! variation: BuildMaker.make_build_pair((wrap_ring.variations.cr
 
 
 row = TotemRow.create! index: 4
-fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff", price_retail_cents: 6400, price_wholesale_cents: 2400
+fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff", price_retail_cents: 6400, price_wholesale_cents: 2400, wholesale_description: "You should order about 100 of these for your store. That'd be <small>sooo</small> <em>HOOT!</em>."
+fuzzy_cuff.infos.create! name: "Sizing", content: "Not too big, not too small. Pretty good overall."
+fuzzy_cuff.infos.create! name: "Features", content: "Slices, dices."
 fuzzy_cuff.sizes.create! name: "One Of A Kind"
 row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Painter", totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/painter.jpg"),  fuzzy_cuff.sizes)
 row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Mo",      totem_image: ENV["IMAGEPATH"] + "fuzzy-cuff/totem/mo.jpg"),       fuzzy_cuff.sizes)
@@ -66,7 +74,9 @@ row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.c
 
 
 row = TotemRow.create! index: 5
-cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet", price_retail_cents: 6400, price_wholesale_cents: 2400
+cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet", price_retail_cents: 6400, price_wholesale_cents: 2400, wholesale_description: "You should order about 100 of these for your store. That'd be <small>sooo</small> <em>HOOT!</em>."
+cc_bracelet.infos.create! name: "Sizing", content: "Not too big, not too small. Pretty good overall."
+cc_bracelet.infos.create! name: "Features", content: "Slices, dices."
 cc_bracelet.sizes.create! name: "Adjustable"
 # row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Basic",           totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/basic.jpg"),           cc_bracelet.sizes)
 # row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Amethyst",        totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-bracelet/totem/amethyst.jpg"),        cc_bracelet.sizes)
@@ -84,7 +94,7 @@ row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.
 #
 #
 # row = TotemRow.create! index: 6
-# cc_belt = belts.products.create! name: "Coffee & Crystals Belt", price_retail_cents: 6400, price_wholesale_cents: 2400
+# cc_belt = belts.products.create! name: "Coffee & Crystals Belt", price_retail_cents: 6400, price_wholesale_cents: 2400, wholesale_description: "You should order about 100 of these for your store. That'd be <small>sooo</small> <em>HOOT!</em>."
 # cc_bracelet.sizes.create! name: "Adjustable"
 # row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Basic",           totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/basic.jpg"),           cc_belt.sizes)
 # row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Amethyst",        totem_image: ENV["IMAGEPATH"] + "coffee-and-crystals-belt/totem/amethyst.jpg"),        cc_belt.sizes)
@@ -102,7 +112,7 @@ row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.
 #
 #
 # row = TotemRow.create! index: 7
-# volva_belt = belts.products.create! name: "Volva Belt", price_retail_cents: 6400, price_wholesale_cents: 2400
+# volva_belt = belts.products.create! name: "Volva Belt", price_retail_cents: 6400, price_wholesale_cents: 2400, wholesale_description: "You should order about 100 of these for your store. That'd be <small>sooo</small> <em>HOOT!</em>."
 # volva_belt.sizes.create! name: "Medium"
 # volva_belt.sizes.create! name: "Large"
 # row.items.create! variation: BuildMaker.make_build_pair((volva_belt.variations.create! name: "Rose",   totem_image: ENV["IMAGEPATH"] + "volva-belt/totem/rose.jpg"),   volva_belt.sizes)
@@ -112,7 +122,7 @@ row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.
 #
 #
 # row = TotemRow.create! index: 8
-# seven_belt = belts.products.create! name: "7 Belt", price_retail_cents: 6400, price_wholesale_cents: 2400
+# seven_belt = belts.products.create! name: "7 Belt", price_retail_cents: 6400, price_wholesale_cents: 2400, wholesale_description: "You should order about 100 of these for your store. That'd be <small>sooo</small> <em>HOOT!</em>."
 # seven_belt.sizes.create! name: "Small"
 # seven_belt.sizes.create! name: "Medium"
 # seven_belt.sizes.create! name: "Large"
@@ -123,7 +133,7 @@ row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.
 #
 #
 # row = TotemRow.create! index: 9
-# thirteen_belt = belts.products.create! name: "13 Belt", price_retail_cents: 6400, price_wholesale_cents: 2400
+# thirteen_belt = belts.products.create! name: "13 Belt", price_retail_cents: 6400, price_wholesale_cents: 2400, wholesale_description: "You should order about 100 of these for your store. That'd be <small>sooo</small> <em>HOOT!</em>."
 # seven_belt.sizes.create! name: "Medium"
 # seven_belt.sizes.create! name: "Large"
 # row.items.create! variation: BuildMaker.make_build_pair((thirteen_belt.variations.create! name: "Rose",   totem_image: ENV["IMAGEPATH"] + "13-belt/totem/rose.jpg"),   thirteen_belt.sizes)
