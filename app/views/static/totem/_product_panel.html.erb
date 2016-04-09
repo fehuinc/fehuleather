@@ -32,14 +32,14 @@
 
 <info-selector>
   <% item.product.infos.each do |info| %>
-    <div>
-      <div class="name"><%= info.name %></div>
-      <div class="content"><%= info.content %></div>
-    </div>
+    <div ng-click="showing = showing == <%=info.id%> ? null : <%=info.id%>"><%= info.name %></div>
   <% end %>
-  <div>Store Q&A</div>
+  <div ng-click="showing = showing == -1 ? null : -1">Store Q&A</div>
 </info-selector>
 
 <info-display>
-  <div>Info Content</div>
+  <% item.product.infos.each do |info| %>
+    <div ng-show="showing == <%=info.id%>"><%= info.content %></div>
+  <% end %>
+  <div ng-show="showing == -1">This is the Q&A</div>
 </info-display>
