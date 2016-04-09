@@ -1,7 +1,4 @@
 angular.module "FehuApp", [
-  # Components
-  "Editable"
-  
   # Libs
   "ngSanitize"
   "ngTouch"
