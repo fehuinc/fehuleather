@@ -1,6 +1,5 @@
 angular.module "FehuApp", [
   # Components
-  "Deleter"
   "Editable"
   
   # Libs
