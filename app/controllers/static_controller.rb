@@ -12,7 +12,7 @@ class StaticController < ApplicationController
   end
   
   def events
-    @events = Event.all.order(:index)
+    @events = Event.all
   end
   
   def not_found

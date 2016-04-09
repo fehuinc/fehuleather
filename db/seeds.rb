@@ -308,4 +308,4 @@ Location.create!(
 
 ## EVENTS #########################################################################################
 
-Event.create! name: "All Things Pretty", date: "April 30th to May 1st, 2016", location: "Red Deer, AB", description: "Booth #301"
+Event.create! name: "All Things Pretty", date: "April 30th to May 1st, 2016", location: "Red Deer, AB", description: "Booth #301<br><a href='https://www.facebook.com/events/1497049650622816/'>Facebook Event Page</a>"

@@ -10,7 +10,7 @@
       <h3 class="bar <%= bar_color %>"><%=event.name%></h3>
       <p><%=event.date%></p>
       <p><%=event.location%></p>
-      <p><%=event.description%></p>
+      <p><%=event.description.html_safe%></p>
     </div>
   <% end %>
 </section>
