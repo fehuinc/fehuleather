@@ -110,8 +110,10 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "product_infos", force: :cascade do |t|
     t.integer  "product_id"
-    t.text     "name",       null: false
-    t.text     "content",    null: false
+    t.text     "name",                          null: false
+    t.text     "content",                       null: false
+    t.boolean  "show_retail",    default: true, null: false
+    t.boolean  "show_wholesale", default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

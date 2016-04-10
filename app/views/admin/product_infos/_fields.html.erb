@@ -10,14 +10,15 @@
   <%= f.text_area :content, rows: 5 %>
 </div>
 
-<div class="perspective">
-  <%= f.submit "Save", class: "save" %>
-</div>
-
 <div class="row">
-  <div class="center">
-    <%= link_to "Er... cancel please!", edit_admin_product_path(@product) %>
-  </div>
+  <%= f.label :show_retail do %>
+    <%= f.check_box :show_retail %>
+    Show Retail
+  <% end %>
+  <%= f.label :show_wholesale do %>
+    <%= f.check_box :show_wholesale %>
+    Show Wholesale
+  <% end %>
 
   <% if edit %>
     <div class="perspective right">
@@ -26,4 +27,12 @@
       </deleter>
     </div>
   <% end %>
+</div>
+
+<div class="perspective">
+  <%= f.submit "Save", class: "save" %>
+</div>
+
+<div class="center">
+  <%= link_to "Er... cancel please!", edit_admin_product_path(@product) %>
 </div>

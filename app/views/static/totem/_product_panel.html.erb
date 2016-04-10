@@ -29,14 +29,14 @@
 </div>
 
 <info-selector>
-  <% item.product.infos.each do |info| %>
+  <% item.product.infos.where(show_retail: true).each do |info| %>
     <div ng-click="showing = showing == <%=info.id%> ? null : <%=info.id%>"><%= info.name %></div>
   <% end %>
   <div ng-click="showing = showing == -1 ? null : -1">Store Q&A</div>
 </info-selector>
 
 <info-display>
-  <% item.product.infos.each do |info| %>
+  <% item.product.infos.where(show_retail: true).each do |info| %>
     <div ng-show="showing == <%=info.id%>"><%= info.content %></div>
   <% end %>
   <div ng-show="showing == -1">This is the Q&A</div>

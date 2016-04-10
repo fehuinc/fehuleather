@@ -54,6 +54,8 @@ class Initialize < ActiveRecord::Migration
       t.belongs_to :product,           required: true, index: true
       t.text :name,                    null: false
       t.text :content,                 null: false
+      t.boolean :show_retail,          null: false, default: true
+      t.boolean :show_wholesale,       null: false, default: true
       t.timestamps
       t.index :name
     end
