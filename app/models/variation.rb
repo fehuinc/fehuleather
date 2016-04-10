@@ -3,8 +3,6 @@ class Variation < ActiveRecord::Base
   has_many :builds, dependent: :destroy
   has_many :totem_items, dependent: :destroy
   
-  accepts_nested_attributes_for :builds
-  
   validates :name, :product, { presence: true }
   
   monetize :adjust_retail_cents

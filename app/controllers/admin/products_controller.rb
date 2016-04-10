@@ -20,6 +20,7 @@ class Admin::ProductsController < ApplicationController
     @variations = @product.variations.order(:name)
     @sizes = @product.sizes.order(:name)
     @infos = @product.infos.order(:name)
+    @builds = @product.builds.includes(:variation).sort_by { |b| b.build_name }
   end
   
   def update

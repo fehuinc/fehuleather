@@ -1,6 +1,26 @@
 <h1><%= @product.name %></h1>
 
 <section>
+  <h2>Builds</h2>
+  <table>
+    <thead>
+      <td>Build</td>
+      <td>R</td>
+      <td>W</td>
+      <td>Stock</td>
+    </thead>
+    <% @builds.each do |build| %>
+      <tr>
+        <td><%= build.build_name %></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="number"></td>
+      </tr>
+    <% end %>
+  </table>
+</section>
+
+<section>
   <h2>Variations</h2>
   <div class="variations">
     <% @variations.each do |variation| %>

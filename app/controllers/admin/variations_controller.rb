@@ -42,14 +42,6 @@ class Admin::VariationsController < ApplicationController
     end
   end
   
-  # NOT SURE IF WE NEED THIS ANYWHERE ANYMORE
-  # def update_stock
-  #   build = Build.find params[:id]
-  #   build.stock = params[:quantity]
-  #   success = build.save
-  #   render json: success
-  # end
-
   def destroy
     render json: Variation.find(params[:id]).destroy!
   end
@@ -57,6 +49,6 @@ class Admin::VariationsController < ApplicationController
 private
   
   def standard_params
-    params.require(:variation).permit :name, :model, :description, :totem_image, :wholesale_image, :price_retail, :price_wholesale, builds_attributes: [:id, :stock]
+    params.require(:variation).permit :name, :model, :description, :totem_image, :wholesale_image, :price_retail, :price_wholesale
   end
 end
