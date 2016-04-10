@@ -308,4 +308,8 @@ Location.create!(
 
 ## EVENTS #########################################################################################
 
+Event.create! name: "Mane Event", date: "April 21st to 24th, 2016", location: "Red Deer, AB", description: "Westerner Park<br>4847A-19th Street<br>Red Deer, AB T4R 2N7"
 Event.create! name: "All Things Pretty", date: "April 30th to May 1st, 2016", location: "Red Deer, AB", description: "Booth #301<br><a href='https://www.facebook.com/events/1497049650622816/'>Facebook Event Page</a>"
+Event.create! name: "Spruce Meadows: National", date: "June 10th to 12th, 2016", location: "Calgary, AB", description: "18011 Spruce Meadows Way SW RR 9 LCD 8<br>Calgary, AB T2J 5G5"
+Event.create! name: "Spruce Meadows: North American", date: "July 8th to 10th, 2016", location: "Calgary, AB", description: "18011 Spruce Meadows Way SW RR 9 LCD 8<br>Calgary, AB T2J 5G5"
+Event.create! name: "Spruce Meadows: Masters", date: "September 7th to 11th, 2016", location: "Calgary, AB", description: "18011 Spruce Meadows Way SW RR 9 LCD 8<br>Calgary, AB T2J 5G5"
