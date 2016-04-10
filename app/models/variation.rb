@@ -19,4 +19,8 @@ class Variation < ActiveRecord::Base
   def full_name
     @full_name ||= "#{name} #{product.name}"
   end
+  
+  def show_wholesale
+    builds.where(show_wholesale: true).any?
+  end
 end

@@ -6,10 +6,13 @@
 <div class="middle">
   <% if item.product.sizes.count > 1 %>
     <size-selector>
-      <%= item.variation.builds.map { |build| js_build_elm(build) }.join("\n").html_safe %>
+      <%= item.variation.builds.where(show_retail: true).map { |build| js_build_elm(build) }.join("\n").html_safe %>
     </size-selector>
   <% else %>
-    <%= js_build_elm(item.variation.builds.first) %>
+    <%=
+      # No need to check show_retail - we know it's on, otherwise we wouldn't be rendering this panel
+      js_build_elm(item.variation.builds.first)
+    %>
   <% end %>
   
   <div class="price perspective">

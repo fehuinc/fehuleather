@@ -4,19 +4,29 @@
   <h2>Builds</h2>
   <table>
     <thead>
-      <td>Build</td>
-      <td>R</td>
-      <td>W</td>
-      <td>Stock</td>
+      <td default=true><a>Variation</a></td>
+      <td><a>Size</a></td>
+      <td><a>R</a></td>
+      <td><a>W</a></td>
+      <td><a>Stock</a></td>
     </thead>
-    <% @builds.each do |build| %>
-      <tr>
-        <td><%= build.build_name %></td>
-        <td><input type="checkbox"></td>
-        <td><input type="checkbox"></td>
-        <td><input type="number"></td>
-      </tr>
-    <% end %>
+    <tbody>
+      <% @builds.each do |build| %>
+        <tr js-build-editor="<%= build.id %>">
+          <td><%= build.variation.name %></td>
+          <td><%= build.size.name %></td>
+          <td>
+            <input type="checkbox" js-build-editor-retail <%= build.show_retail ? "checked" : "" %>>
+          </td>
+          <td>
+            <input type="checkbox" js-build-editor-wholesale <%= build.show_wholesale ? "checked" : "" %>>
+          </td>
+          <td>
+            <input type="number" js-build-editor-stock value="<%= build.stock %>" min="0" step="1">
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </section>
 

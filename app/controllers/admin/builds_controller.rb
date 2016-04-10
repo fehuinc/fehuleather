@@ -1,8 +1,8 @@
-class Admin::ProductsController < ApplicationController
-  def update_stock
+class Admin::BuildsController < ApplicationController
+  def ajax_update
     build = Build.find params[:id]
-    build.stock = params[:quantity]
+    build[params[:prop]] = params[:val]
     success = build.save
-    render json: success
+    render json: params
   end
 end

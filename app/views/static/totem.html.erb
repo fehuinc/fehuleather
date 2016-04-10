@@ -3,7 +3,7 @@
     <div class="closer"></div>
     <clipping-layer>
       <sliding-layer>
-        <% totem_row.items.each do |totem_item| %>
+        <% totem_row.items.select(&:show_retail).each do |totem_item| %>
           <totem-item item-name="<%= totem_item.real_name %>">
             <totem-image style="background-image: url('<%= totem_item.real_image %>')"></totem-image>
           </totem-item>

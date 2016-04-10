@@ -30,7 +30,7 @@
     </div>
     
     <h1>Add to Your Order</h1>
-    <% @product.variations.each do |variation| %>
+    <% @product.variations.select(&:show_wholesale).each do |variation| %>
       <div class="variation">
         <div class="info">
           <span class="name">
@@ -42,7 +42,7 @@
         </div>
         <%= image_tag variation.wholesale_image, class: "variation-image" %>
         <div class="builds">
-          <% variation.builds.each do |build| %>
+          <% variation.builds.where(show_wholesale: true).each do |build| %>
             <div class="build" item-editor>
               <div class="quantity">
                 <span class="size-name"><%= build.size.name %></span>

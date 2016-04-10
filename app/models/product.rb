@@ -19,4 +19,8 @@ class Product < ActiveRecord::Base
     v = variations.first
     v.wholesale_image or v.totem_image
   end
+  
+  def show_wholesale
+    builds.where(show_wholesale: true).any?
+  end
 end

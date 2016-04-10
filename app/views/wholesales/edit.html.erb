@@ -9,7 +9,7 @@
       <% @kingdoms.each do |kingdom| %>
         <div class="kingdom">
           <h2><%= kingdom.name %></h2>
-          <% kingdom.products.order(:name).each do |product| %>
+          <% kingdom.products.order(:name).select(&:show_wholesale).each do |product| %>
             <a class="product" href="<%= product_wholesale_path(product.id) %>">
               <img src="<%=product.wholesale_image%>">
               <span><%= product.name %></span>

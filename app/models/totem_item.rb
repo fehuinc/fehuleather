@@ -16,4 +16,14 @@ class TotemItem < ActiveRecord::Base
   def real_image
     variation_id ? variation.totem_image : image
   end
+  
+  def show_retail
+    if !variation_id
+      true
+    elsif variation.builds.where(show_retail: true).any?
+      true
+    else
+      false
+    end
+  end
 end
