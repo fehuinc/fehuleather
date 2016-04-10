@@ -20,6 +20,12 @@ input[type="checkbox"] {
   vertical-align: .05em;
 }
 
+input[type="radio"] {
+  width: auto;
+  margin-right: .3em;
+  vertical-align: baseline;
+}
+
 input[type="number"] {
   width: 5em;
   -moz-appearance: textfield;
