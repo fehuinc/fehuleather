@@ -1,7 +1,7 @@
 class Merchant::AddressesController < ApplicationController
   def new
     merchant = Merchant.find(session[:merchant_id])
-    @address = merchant.addresses.new
+    @address = merchant.addresses.new email: merchant.email, name: merchant.your_name
   end
   
   def create
