@@ -1,4 +1,6 @@
 class StaticController < ApplicationController
+  around_action :skip_bullet, only: :totem
+
   def totem
     @totem_rows = TotemRow.includes(items: [product: [:infos], variation: [builds: [:size, :variation, :product]]]).order(:index)
   end

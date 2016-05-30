@@ -26,4 +26,11 @@ private
   def mini_profiler
     Rack::MiniProfiler.authorize_request if Access.admin?(session)
   end
+  
+  def skip_bullet
+    Bullet.enable = false
+    yield
+  ensure
+    Bullet.enable = true
+  end
 end
