@@ -1,3 +1,5 @@
+@import "vars";
+
 html {
   line-height: 1.33; // Bugfix: Safari was using a super-small line-height for some reason
   font-family: caudex, serif;
@@ -6,7 +8,7 @@ html {
   
   text-size-adjust: none;
   touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba($dark, 0.2);
   
   @media (max-width: 450px) { font-size: 0.95em; }
   @media (max-width: 400px) { font-size: 0.9em; }
