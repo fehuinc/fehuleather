@@ -7,10 +7,22 @@ totem-panel {
   background: white;
   -webkit-font-smoothing: subpixel-antialiased;
   
+  .top, .middle, .bottom {
+    padding: .75vh 0;
+  }
+  
+  .top, .bottom {
+    background: linear-gradient(to right, white, hsl(200, 30%, 96%), hsl(200, 30%, 96%), white);
+  }
+  
+  .middle {
+    background: linear-gradient(to right, white, hsl(30, 30%, 96%), hsl(30, 30%, 96%), white);
+  }
+  
   .top {
     div {
       display: inline-block;
-      margin: 1.5vh .3vw 1vh;
+      margin: 0 .3vw;
       font-size: calc(1em + 1vmin);
     }
     
@@ -20,14 +32,11 @@ totem-panel {
   }
   
   .middle {
-    margin: 1.5vh 0;
-    
     // size-selector is defined in its own file
     
     price-selector {
       display: inline-block;
-      padding: .5em 1em calc(.5em - 1px);
-      padding-right: .5em;
+      padding: .5em .5em calc(.5em - 1px) 1em;
       margin: 0 .5em;
       border-bottom: 1px solid $med;
     }
@@ -35,7 +44,6 @@ totem-panel {
     bag-selector {
       display: inline-block;
       width: 8em;
-      margin: 1vh 0 0;
       height: 2.4em;
       text-align: center;
       vertical-align: bottom;

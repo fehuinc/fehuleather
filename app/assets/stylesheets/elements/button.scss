@@ -7,13 +7,14 @@ button, .button {
   border: none;
   border-radius: 5px;
   text-decoration: none;
+  font-weight: bold;
   color: white;
-  background-color: hsl(145, 40%, 75%);
+  background-color: hsl(155, 50%, 70%);
   cursor: pointer;
   transition: transform .3s cubic-bezier(0.5, 2, 0.5, 2), background-color .2s;
   
   &:hover, &:focus {
-    background-color: hsl(155, 50%, 70%);
+    background-color: hsl(165, 40%, 75%);
     transform: rotateX(-20deg) scaleY(1.15) translate3d(0, -3px, 5px);
   }
   
