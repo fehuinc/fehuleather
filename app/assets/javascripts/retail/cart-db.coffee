@@ -75,7 +75,7 @@ Take "LocalStorage", (LocalStorage)->
       return state.subtotal
     
     hasBuild: (build)->
-      return state.builds[build.id]?
+      return build? and state.builds[build.id]?
     
     isEmpty: ()->
       return state.buildCount is 0
