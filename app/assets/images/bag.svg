@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150">
-  <path fill="hsl(145, 40%, 75%)" stroke="none" d="
+  <path fill="hsl(30,10%,50%)" stroke="none" d="
   M 200 90
   L 200 0 0 0 0 90
   Q 0 114.8 17.5 132.4 35.1 150 60 150

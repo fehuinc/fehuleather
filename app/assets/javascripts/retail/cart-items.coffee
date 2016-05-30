@@ -1,6 +1,6 @@
 Take ["CartDB", "Validator", "DOMContentLoaded"], (CartDB, Validator)->
   makeItemHtml = (item)->
-    image    = "<div class='image'><img src='#{item.variation.wholesale_image}'></div>"
+    image    = "<div class='image'><img src='#{item.variation.wholesale_image or ''}'></div>"
     name     = "<div class='name'>#{item.short_name}</div>"
     quantity = "<div class='quantity'><input type='number' min='0' max='99' value='#{item.quantity}'></div>"
     price    = "<div class='price'>$#{item.retail_prices[CartDB.getCurrency()] *  item.quantity}</div>"

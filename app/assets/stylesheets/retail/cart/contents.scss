@@ -6,30 +6,34 @@
 }
 
 .contents {
+  position: relative;
   display: inline-block;
   width: 100%;
   max-width: 32em;
-  padding: 3em 2em 1em;
-  border: .4rem solid $blue;
+  padding: 1em 2em 1em;
+  border-top: 4em solid $blue;
   background: white;
-  box-shadow: 0 0 3em 1em #FED;
   transition: opacity .2s ease-out;
   opacity: 0;
   pointer-events: none;
   
   @media(max-width: 600px) {
-    padding: 3em 2vw 1em;
+    padding: 1em 2vw 1em;
   }
   
-  h3 {
+  h2 {
+    position: absolute;
     text-align: center;
-    margin-bottom: .5em;
     color: $dark;
-    
-    img {
-      margin: 0 .2em 0;
-      vertical-align: -.3em;
-    }
+    top: -1.9em;
+  }
+  
+  .its-in {
+    right: calc(50% + 1.3em);
+  }
+  
+  .the-bag {
+    left: calc(50% + 1.3em);
   }
   
   .button {
