@@ -4,6 +4,10 @@ html {
   color: #706F6D;
   background-color: white;
   
+  text-size-adjust: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  
   @media (max-width: 450px) { font-size: 0.95em; }
   @media (max-width: 400px) { font-size: 0.9em; }
 }
