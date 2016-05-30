@@ -6,7 +6,7 @@
 <% if feature_flag :retail %>
   <div class="middle">
     <% if item.product.sizes.count > 1 %>
-      <size-selector>
+      <size-selector class="multi">
         <%= item.variation.builds.where(show_retail: true).map { |build| js_build_elm(build) }.join("\n").html_safe %>
       </size-selector>
     <% else %>

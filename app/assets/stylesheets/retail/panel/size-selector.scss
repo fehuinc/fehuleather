@@ -11,8 +11,11 @@ size-selector {
     display: inline-block;
     padding: .5em;
     color: $dark;
+  }
+  
+  &.multi div {
     cursor: pointer;
-    
+
     &.in-bag::before {
       content: "★";
       position: absolute;
