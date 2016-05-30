@@ -4,13 +4,20 @@ size-selector {
   display: inline-block;
   text-align: center;
   padding: 0 1em;
-  border-bottom: 1px solid $med;
   
   div {
     position: relative;
     display: inline-block;
     padding: .5em;
     color: $dark;
+  }
+  
+  &.single {
+    border-bottom: 1px solid white;
+  }
+  
+  &.multi {
+    border-bottom: 1px solid $med;
   }
   
   &.multi div {
