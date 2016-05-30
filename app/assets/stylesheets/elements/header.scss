@@ -119,36 +119,36 @@ header {
     
   .D .out {
     background-color: darken($D, 7%);
-    border-bottom: .4rem solid white;//darken($D, 10%);
+    border-bottom: .4rem solid darken($D, 10%);
   }
   
   .C .in {
     background-color: $C;
-    border-bottom: .4rem solid white;//darken($C, 4%);
+    border-bottom: .4rem solid darken($C, 4%);
   }
   
   .C .out {
     background-color: darken($C, 7%);
-    border-bottom: .4rem solid white;//darken($C, 10%);
+    border-bottom: .4rem solid darken($C, 10%);
   }
   
   .B .in {
     background-color: $B;
-    border-bottom: .4rem solid white;//darken($B, 4%);
+    border-bottom: .4rem solid darken($B, 4%);
   }
   
   .B .out {
     background-color: darken($B, 7%);
-    border-bottom: .4rem solid white;//darken($B, 10%);
+    border-bottom: .4rem solid darken($B, 10%);
   }
   
   .A .in {
     background-color: $A;
-    border-bottom: .4rem solid white;//darken($A, 4%);
+    border-bottom: .4rem solid darken($A, 4%);
   }
   
   .A .out {
     background-color: darken($A, 7%);
-    border-bottom: .4rem solid white;//darken($A, 10%);
+    border-bottom: .4rem solid darken($A, 10%);
   }
 }
