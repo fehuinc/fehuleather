@@ -54,7 +54,7 @@ Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
       price: panel.find "[js-price]"
     
     # Init
-    render setSelectedSize state, state.sizeButtons.first()
+    render setSelectedSize state, state.sizeButtons.first() if state.sizeButtons.length # There are no size buttons if the retail feature flag is false
     state.sizeButtons.click (e)-> render setSelectedSize state, $(e.currentTarget)
     state.addToBag.click (e)-> render addToCart state, state.selectedSize.build
     panel.find("[js-bag-link]").click scrollToCart
