@@ -35,7 +35,7 @@ Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
       build = extractBuildData button
       button.toggleClass "in-bag", CartDB.hasBuild build
     
-    if state.selectedSize? # Will be undefined if retail feature flag is false
+    if state.selectedSize?.build? # Will be undefined if retail feature flag is false
       state.price.text state.selectedSize.build.retail_prices[CartDB.getCurrency()]
     
     return state
