@@ -28,9 +28,9 @@ private
   end
   
   def skip_bullet
-    Bullet.enable = false
+    Bullet.enable = false if Rails.env == "development"
     yield
   ensure
-    Bullet.enable = true
+    Bullet.enable = true if Rails.env == "development"
   end
 end
