@@ -3,37 +3,41 @@
   <div class="product"><%=item.product.name%></div>
 </div>
 
-<div class="middle">
-  <% if item.product.sizes.count > 1 %>
-    <size-selector>
-      <%= item.variation.builds.where(show_retail: true).map { |build| js_build_elm(build) }.join("\n").html_safe %>
-    </size-selector>
-  <% else %>
-    <%=
-      # No need to check show_retail - we know it's on, otherwise we wouldn't be rendering this panel
-      js_build_elm(item.variation.builds.first)
-    %>
-  <% end %>
-  
-  <div class="price perspective">
-    $<span js-price></span>
-    <currency-selector>
-      <img src="<%= asset_path("cad.svg") %>" class="cad hide">
-      <img src="<%= asset_path("usd.svg") %>" class="usd hide">
-    </currency-selector>
-  </div>
-  
-  <bag-selector class="perspective">
-    <% if feature_flag("store") %>
-      <div class="add-to-bag button">Yes Please!</div>
+<% if feature_flag(:store) %>
+  <div class="middle">
+    <% if item.product.sizes.count > 1 %>
+      <size-selector>
+        <%= item.variation.builds.where(show_retail: true).map { |build| js_build_elm(build) }.join("\n").html_safe %>
+      </size-selector>
     <% else %>
-      <div class="">(online store coming soon)</div>
+      <size-selector class="single">
+        <%=
+          # No need to check show_retail - we know it's on, otherwise we wouldn't be rendering this panel
+          js_build_elm(item.variation.builds.first)
+        %>
+      </size-selector>
     <% end %>
-    <div class="in-the-bag">
-      It's in <a js-bag-link>The Bag</a>
-    </div>
-  </bag-selector>
-</div>
+    
+    <price-selector class="perspective">
+      $<span js-price></span>
+      <currency-selector>
+        <img src="<%= asset_path("cad.svg") %>" class="cad hide">
+        <img src="<%= asset_path("usd.svg") %>" class="usd hide">
+      </currency-selector>
+    </price-selector>
+    
+      <bag-selector class="perspective">
+          <div class="add-to-bag button">Yes Please!</div>
+        <div class="in-the-bag">
+          It's in <a js-bag-link>The Bag</a>
+        </div>
+      </bag-selector>
+  </div>
+<% else %>
+  <div class="middle">
+    - online store launching this fall -
+  </div>
+<% end %>
 
 <info-selector>
   <% item.product.infos.where(show_retail: true).each do |info| %>

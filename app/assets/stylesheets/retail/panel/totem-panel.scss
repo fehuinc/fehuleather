@@ -10,7 +10,7 @@ totem-panel {
   .top {
     div {
       display: inline-block;
-      margin: 1vh .3vw;
+      margin: 1.5vh .3vw 1vh;
       font-size: calc(1em + 1vmin);
     }
     
@@ -20,13 +20,15 @@ totem-panel {
   }
   
   .middle {
-    & > * {
-      display: inline-block;
-      margin: .5vh .5vw;
-    }
+    margin: 1.5vh 0;
     
-    .price {
-      padding: 0 .2em 0 .5em;
+    // size-selector is defined in its own file
+    
+    price-selector {
+      display: inline-block;
+      padding: .5em 1em calc(.5em - 1px);
+      padding-right: .5em;
+      margin: 0 .5em;
       border-bottom: 1px solid $med;
     }
     
@@ -36,6 +38,7 @@ totem-panel {
       margin: 1vh 0 0;
       height: 2.4em;
       text-align: center;
+      vertical-align: bottom;
       
       .in-the-bag {
         padding: .5em 0; // Make the effect on line height the same as the button

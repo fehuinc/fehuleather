@@ -10,7 +10,7 @@ panels-wrapper {
   display: block;
   left: 50%;
   text-align: center;
-  box-shadow: 0 0 2px hsl(210, 100%, 20%), 0 8px 48px hsla(210, 50%, 15%, .5);
+  box-shadow: 0 0 2px 1px white, 0 6px 48px hsla(210, 40%, 10%, .7);
   opacity: 0;
   transition: opacity .3s linear;
   pointer-events: none;
@@ -21,5 +21,6 @@ panels-wrapper {
     width: 100%;
     border-color: white;
     border-style: solid;
+    box-shadow: 0 0 2px 1px white inset;
   }
 }
