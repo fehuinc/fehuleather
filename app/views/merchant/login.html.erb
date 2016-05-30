@@ -1,22 +1,31 @@
 <h1 class="page-title">Bring Some Fehu Into Your Store</h1>
 
-<p>In just a moment, you'll be able to browse our product listing and put together a purchase order. But first, we have a few formalities.</p>
+<% if feature_flag :wholesale %>
 
-<%= form_for @merchant, url: merchant_path, method: "post" do |f| %>
-  <div>
-    <label>
-      Please enter your primary email address.
-      <div class="info-prompt" toggler-toggle="popup">?</div>
-      <%= f.email_field :email, autofocus: true, placeholder: "eg: secret-identity@example.com" %>
-    </label>
+  <p>In just a moment, you'll be able to browse our product listing and put together a purchase order. But first, we have a few formalities.</p>
+
+  <%= form_for @merchant, url: merchant_path, method: "post" do |f| %>
+    <div>
+      <label>
+        Please enter your primary email address.
+        <div class="info-prompt" toggler-toggle="popup">?</div>
+        <%= f.email_field :email, autofocus: true, placeholder: "eg: secret-identity@example.com" %>
+      </label>
+    </div>
+    <%= render 'partials/form_errors', model: @merchant %>
+    <div class="perspective">
+      <%= f.submit "Continue" %>
+    </div>
+  <% end %>
+
+  <div class="info-popup" toggler-target="popup">
+    We'll store your account info under this email address. We'll also use it as the main contact address for your account.
+    <div class="close" toggler-hide="popup">Close</div>
   </div>
-  <%= render 'partials/form_errors', model: @merchant %>
-  <div class="perspective">
-    <%= f.submit "Continue" %>
-  </div>
+
+<% else %>
+  
+  <p>We're hard at work on a new wholesale system, so you can place your order right here on the website.</p>
+  <p>If you'd like to be notified when it launches, give us a shout at: <em>freyja@fehuleather.com</em></p>
+  
 <% end %>
-
-<div class="info-popup" toggler-target="popup">
-  We'll store your account info under this email address. We'll also use it as the main contact address for your account.
-  <div class="close" toggler-hide="popup">Close</div>
-</div>

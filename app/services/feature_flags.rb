@@ -1,7 +1,8 @@
 class FeatureFlags
   def self.check key
     case key
-    when :store then false
+    when :retail then false
+    when :wholesale then false
     else false
     end
   end

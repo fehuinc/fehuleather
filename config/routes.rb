@@ -5,10 +5,12 @@ Rails.application.routes.draw do
 
     # Retail
     root "static#totem"
-    get "checkout" => "static#checkout"
-    get "payment" => "static#payment"
-    get "confirmation" => "static#confirmation"
-    resources :orders, only: [:create, :show], controller: "retail_orders"
+    if FeatureFlags.check :retail
+      get "checkout" => "static#checkout"
+      get "payment" => "static#payment"
+      get "confirmation" => "static#confirmation"
+      resources :orders, only: [:create, :show], controller: "retail_orders"
+    end
     
     # Static
     get "about" => "static#about"
@@ -26,39 +28,45 @@ Rails.application.routes.draw do
     get "/products/*ignore" => redirect("/")
     get "/collections/*ignore" => redirect("/")
 
+    
     # Wholesale
-    get "logout" => "merchant#logout", as: "logout_merchant"
+    if FeatureFlags.check :wholesale
+      get "logout" => "merchant#logout", as: "logout_merchant"
+    end
     
     # Wholesale — public
     scope constraints: lambda { |request| request.session[:merchant_id].nil? || Merchant.find_by_id(request.session[:merchant_id]).nil? } do
-      get "merchant/new" => "merchant#new", as: "new_merchant"
-      post "merchant/new" => "merchant#create", as: nil
+      if FeatureFlags.check :wholesale
+        get "merchant/new" => "merchant#new", as: "new_merchant"
+        post "merchant/new" => "merchant#create", as: nil
+        post "merchant" => "merchant#login"
+      end
       get "merchant" => "merchant#login"
-      post "merchant" => "merchant#login"
       get "merchant/*ignore" => "merchant#login"
     end
     
     # Wholesale — private
-    scope constraints: lambda { |request| !request.session[:merchant_id].nil? && !Merchant.find_by_id(request.session[:merchant_id]).nil? } do
-      get "merchant" => "merchant#index"
-      post "merchant" => "merchant#index"
-      get "merchant/edit" => "merchant#edit"
-      patch "merchant/edit" => "merchant#update"
-      
-      namespace :merchant do
-        resources :addresses, except: [:index, :show]
-      end
-      
-      resource :wholesale, only: [:new, :edit] do
-        get "product/:id" => "wholesales#edit_product", as: "product"
-        patch "update_order/:build_id" => "wholesales#update_order"
-        get "checkout" => "wholesales#checkout"
-        post "submit" => "wholesales#submit"
-        get "order/:id" => "wholesales#show", as: "show"
-        get "orders" => "wholesales#index"
+    if FeatureFlags.check :wholesale
+      scope constraints: lambda { |request| !request.session[:merchant_id].nil? && !Merchant.find_by_id(request.session[:merchant_id]).nil? } do
+        get "merchant" => "merchant#index"
+        post "merchant" => "merchant#index"
+        get "merchant/edit" => "merchant#edit"
+        patch "merchant/edit" => "merchant#update"
+        
+        namespace :merchant do
+          resources :addresses, except: [:index, :show]
+        end
+        
+        resource :wholesale, only: [:new, :edit] do
+          get "product/:id" => "wholesales#edit_product", as: "product"
+          patch "update_order/:build_id" => "wholesales#update_order"
+          get "checkout" => "wholesales#checkout"
+          post "submit" => "wholesales#submit"
+          get "order/:id" => "wholesales#show", as: "show"
+          get "orders" => "wholesales#index"
+        end
       end
     end
-    
     
     # Admin
     get "stink" => "stink#stink"

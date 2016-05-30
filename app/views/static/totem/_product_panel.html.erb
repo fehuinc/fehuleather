@@ -3,7 +3,7 @@
   <div class="product"><%=item.product.name%></div>
 </div>
 
-<% if feature_flag(:store) %>
+<% if feature_flag :retail %>
   <div class="middle">
     <% if item.product.sizes.count > 1 %>
       <size-selector>
