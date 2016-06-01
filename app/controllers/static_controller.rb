@@ -16,9 +16,9 @@ class StaticController < ApplicationController
   def events
     @events = Event.all
   end
-  
+
   def not_found
-    if Rails.env == "production"
+    if Rails.env == "production" and !ExceptionBlacklist.path_on_404_blacklist(request.original_fullpath)
       ExceptionNotifier.notify_exception(Exception.new("404: #{request.original_fullpath}"), env: request.env)
     end
     render :err, status: 404
