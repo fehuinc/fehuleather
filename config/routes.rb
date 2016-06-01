@@ -18,7 +18,8 @@ Rails.application.routes.draw do
     get "locations" => "static#locations"
     get "press" => "static#press"
     get "catalog" => "static#catalog"
-
+    get "robots.txt" => "static#robots"
+    
     # Legacy routes
     get "/pages/story" => redirect("/about")
     get "/pages/events" => redirect("/events")

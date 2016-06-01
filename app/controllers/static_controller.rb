@@ -23,4 +23,12 @@ class StaticController < ApplicationController
     end
     render :err, status: 404
   end
+
+  def robots
+    if ENV['NO_ROBOTS'] == "true"
+      render plain: "User-agent: *\nDisallow: /\n"
+    else
+      render plain: "User-agent: *\nDisallow:\n"
+    end
+  end
 end
