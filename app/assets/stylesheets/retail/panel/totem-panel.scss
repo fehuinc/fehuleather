@@ -9,23 +9,18 @@ totem-panel {
   border-bottom-right-radius: 4px;
   -webkit-font-smoothing: subpixel-antialiased;
   
-  .top, .middle, .bottom {
-    padding: .75vh 0;
-  }
-  
   .top {
-    div {
-      display: inline-block;
-      margin: 0 .3vw;
-      font-size: calc(1em + 1vmin);
-    }
+    padding: 1.25vh 0 .75vh;
+    color: $dark;
+    font-size: calc(1em + 1.2vmin);
     
     .variation {
-      color: $dark;
+      font-weight: bold;
     }
   }
   
   .middle {
+    padding: .75vh 0;
     // size-selector is defined in its own file
     
     price-selector {
@@ -46,5 +41,9 @@ totem-panel {
         padding: .5em 0; // Make the effect on line height the same as the button
       }
     }
+  }
+  
+  .bottom {
+    padding: .75vh 0 0;
   }
 }

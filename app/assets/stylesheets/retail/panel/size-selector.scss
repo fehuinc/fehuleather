@@ -3,7 +3,6 @@
 size-selector {
   display: inline-block;
   text-align: center;
-  padding: 0 1em;
   
   div {
     position: relative;
@@ -17,6 +16,7 @@ size-selector {
   }
   
   &.multi {
+    padding: 0 1em;
     border-bottom: 1px solid $med;
   }
   

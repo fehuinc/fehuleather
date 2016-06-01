@@ -167,13 +167,13 @@ $ ()->
     state.row.height(ITEM_SIZE * state.vminPx).css("margin", "#{2*state.vminPx}px 0")
 
     state.panelsWrapper.css
-      top: -3 * state.vminPx
-      marginLeft: -(ITEM_SIZE/2 + 3) * state.vminPx
-      width: (ITEM_SIZE + 6) * state.vminPx
+      top: -2.5 * state.vminPx
+      marginLeft: -(ITEM_SIZE/2 + 2.5) * state.vminPx
+      width: (ITEM_SIZE + 5) * state.vminPx
     
     state.topSpacer.css
       height: (ITEM_SIZE + 2) * state.vminPx
-      borderWidth: 4 * state.vminPx
+      borderWidth: 3 * state.vminPx
       borderBottomWidth: 0 * state.vminPx
     
     # Also needs to be set when opening the panel

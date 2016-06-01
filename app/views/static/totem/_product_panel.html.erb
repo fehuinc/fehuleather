@@ -1,6 +1,6 @@
 <div class="top">
-  <div class="variation"><%=item.variation.name%></div>
-  <div class="product"><%=item.product.name%></div>
+  <span class="variation"><%=item.variation.name%></span>
+  <span class="product"><%=item.product.name%></span>
 </div>
 
 <% if feature_flag :retail %>
@@ -42,9 +42,9 @@
 <div class="bottom">
   <info-selector>
     <% item.product.infos.where(show_retail: true).each do |info| %>
-      <div ng-click="showing = showing == <%=info.id%> ? null : <%=info.id%>"><%= info.name %></div>
+      <div ng-click="showing = showing == <%=info.id%> ? null : <%=info.id%>" ng-class="{active:showing == <%=info.id%>}"><%= info.name %></div>
     <% end %>
-    <div ng-click="showing = showing == -1 ? null : -1">Store Q&A</div>
+    <div ng-click="showing = showing == -1 ? null : -1" ng-class="{active:showing == -1}">Store Q&A</div>
   </info-selector>
 
   <info-display>

@@ -6,24 +6,24 @@ info-selector {
   
   div {
     display: inline-block;
-    margin: .25em 0;
-    padding: .25em;
-    border: 1px solid transparent;
+    padding: .4em .5em .3em;
     font-weight: bold;
     cursor: pointer;
     
     &.active {
-      border: 1px solid $blue;
-      background: $yellow;
+      background: $blue;
       color: $dark;
     }
   }
 }
 
 info-display {
+  display: block;
+  background: $blue;
+  
   div {
     display: inline-block;
     text-align: left;
-    margin: .5em;
+    padding: 1em;
   }
 }
