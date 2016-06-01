@@ -7,3 +7,6 @@
 .sass-cache/
 /public/product-images/
 /public/uploads/
+
+# Ignore rspec results
+/spec/examples.txt

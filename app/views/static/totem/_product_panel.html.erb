@@ -39,18 +39,20 @@
   </div>
 <% end %>
 
-<div class="bottom">
-  <info-selector>
-    <% item.product.infos.where(show_retail: true).each do |info| %>
-      <div ng-click="showing = showing == <%=info.id%> ? null : <%=info.id%>" ng-class="{active:showing == <%=info.id%>}"><%= info.name %></div>
-    <% end %>
-    <div ng-click="showing = showing == -1 ? null : -1" ng-class="{active:showing == -1}">Store Q&A</div>
-  </info-selector>
+<% if feature_flag :retail %>
+  <div class="bottom">
+    <info-selector>
+      <% item.product.infos.where(show_retail: true).each do |info| %>
+        <div ng-click="showing = showing == <%=info.id%> ? null : <%=info.id%>" ng-class="{active:showing == <%=info.id%>}"><%= info.name %></div>
+      <% end %>
+      <div ng-click="showing = showing == -1 ? null : -1" ng-class="{active:showing == -1}">Store Q&A</div>
+    </info-selector>
 
-  <info-display>
-    <% item.product.infos.where(show_retail: true).each do |info| %>
-      <div ng-show="showing == <%=info.id%>"><%= info.content %></div>
-    <% end %>
-    <div ng-show="showing == -1">This is the Q&A</div>
-  </info-display>
-</div>
+    <info-display>
+      <% item.product.infos.where(show_retail: true).each do |info| %>
+        <div ng-show="showing == <%=info.id%>"><%= info.content %></div>
+      <% end %>
+      <div ng-show="showing == -1">This is the Q&A</div>
+    </info-display>
+  </div>
+<% end %>
