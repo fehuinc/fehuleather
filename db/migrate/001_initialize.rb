@@ -153,6 +153,7 @@ class Initialize < ActiveRecord::Migration
       t.text :name,	                   null: false
       t.text :date,	                   null: false
       t.text :location,	               null: false
+      t.text :website
       t.text :description
       t.timestamps
     end

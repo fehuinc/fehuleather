@@ -20,11 +20,18 @@ class Admin::ProductsController < ApplicationController
     @variations = @product.variations.order(:name)
     @sizes = @product.sizes.order(:name)
     @infos = @product.infos.order(:name)
-    @builds = @product.builds.includes(:variation).sort_by { |b| b.build_name }
+    @builds = @product.builds.includes(:variation, :size).sort_by { |b| b.build_name }
   end
   
   def update
     @product = Product.find params[:id]
+    
+    # These are all needed in case the update fails
+    @variations = @product.variations.order(:name)
+    @sizes = @product.sizes.order(:name)
+    @infos = @product.infos.order(:name)
+    @builds = @product.builds.includes(:variation, :size).sort_by { |b| b.build_name }
+    
     if @product.update! standard_params
       flash[:notice] = "Saved"
       redirect_to edit_admin_product_path @product

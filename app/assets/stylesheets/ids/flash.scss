@@ -12,4 +12,6 @@
   cursor: pointer;
   transform: translate(-50%);
   animation: rainbow-background 1.3s linear infinite;
+  
+  .error { background-color: transparent; } // override the .error used on forms
 }

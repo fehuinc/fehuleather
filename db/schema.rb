@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.text     "name",        null: false
     t.text     "date",        null: false
     t.text     "location",    null: false
+    t.text     "website"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
