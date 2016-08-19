@@ -72,10 +72,3 @@ WEB_CONCURRENCY=3
 heroku pg:reset DATABASE --app fehu --confirm fehu
 heroku run rake db:migrate db:seed --app fehu
 ```
-
-### Maintenance Mode
-```bash
-heroku maintenance:on
-# Later...
-heroku maintenance:off
-```
