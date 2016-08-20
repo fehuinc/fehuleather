@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   rescue_from Exception, with: :server_error if Rails.env == "production"
   before_action :block_robots if ENV["NO_ROBOTS"] == "true"
+  before_action :set_xsrf_token_cookie
   before_action :mini_profiler
-  
   
 private
   
@@ -11,6 +11,21 @@ private
   def require_merchant
     redirect_to :wholesale unless session[:merchant_email].present?
   end
+  
+  
+  # Extracted from: https://github.com/jsanders/angular_rails_csrf/blob/master/lib/angular_rails_csrf/concern.rb
+  def set_xsrf_token_cookie
+    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  end
+  
+  def verified_request?
+    if respond_to?(:valid_authenticity_token?, true)
+      super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
+    else
+      super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
+    end
+  end
+  
   
   def server_error(exception)
     case exception

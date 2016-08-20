@@ -2,7 +2,7 @@ source "https://rubygems.org"
 ruby "2.3.1"
 
 # FRAMEWORK
-gem "rails", "~> 4.2.7.1"
+gem "rails", "5.0.0.1"
 
 # DB — Must come before SERVER
 gem "pg"
@@ -14,13 +14,7 @@ gem "rack-cors", :require => "rack/cors"
 gem "rack-mini-profiler" # Must come after DB
 gem "rack-timeout"
 
-# AUTH
-# gem "bcrypt-ruby", :require => "bcrypt"
-# gem "bcrypt", "~> 3.1.7" # ActiveModel has_secure_password
-# gem "sorcery", "~> 0.9.0" # Minor verson updates break backwards compatability, see upgrading: http://rubydoc.info/gems/sorcery
-
 # ASSETS & UI
-gem "angular_rails_csrf"
 gem "autoprefixer-rails"
 gem "coffee-rails"
 gem "jquery-rails"
