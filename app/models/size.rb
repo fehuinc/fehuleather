@@ -1,4 +1,4 @@
-class Size < ActiveRecord::Base
+class Size < ApplicationRecord
   belongs_to :product
   has_many :builds
 

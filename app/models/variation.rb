@@ -1,4 +1,4 @@
-class Variation < ActiveRecord::Base
+class Variation < ApplicationRecord
   belongs_to :product
   has_many :builds, dependent: :destroy
   has_many :totem_items, dependent: :destroy

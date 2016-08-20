@@ -1,4 +1,4 @@
-class WholesaleOrder < ActiveRecord::Base
+class WholesaleOrder < ApplicationRecord
   belongs_to :merchant
   belongs_to :address
   has_many :items, as: :order, class_name: OrderItem, dependent: :destroy

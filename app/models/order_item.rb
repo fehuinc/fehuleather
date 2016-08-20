@@ -1,4 +1,4 @@
-class OrderItem < ActiveRecord::Base
+class OrderItem < ApplicationRecord
   # ASSUMPTIONS
   ## When an order is open, we use the associated build
   ## After an order is submitted, we only used the stored name and price

@@ -1,4 +1,4 @@
-class Build < ActiveRecord::Base
+class Build < ApplicationRecord
   has_one :product, through: :variation
   belongs_to :variation
   belongs_to :size

@@ -1,4 +1,4 @@
-class Product < ActiveRecord::Base
+class Product < ApplicationRecord
   belongs_to :kingdom
   has_many :infos, class_name: ProductInfo, dependent: :delete_all
   has_many :variations, dependent: :destroy

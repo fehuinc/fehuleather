@@ -1,4 +1,4 @@
-class Address < ActiveRecord::Base
+class Address < ApplicationRecord
   # No Order associations, because we should never need to look up any Order by Address!
   belongs_to :merchant # Optional
   
