@@ -19,22 +19,29 @@ heroku run rake db:migrate db:seed --app fehu
 ### Env
 Name | Dev | Prod
 -----|-----|-----
-ASSET_HOST               |  http://www.rails-fehu.dev  |  https://d2z3gzdp2lgn3a.cloudfront.net
-DATABASE_URL             |     |  Heroku Postgres secret
+ASSET_HOST               |     |  https://d2z3gzdp2lgn3a.cloudfront.net
+AWS_ACCESS_KEY_ID        |  (AWS secret)  |  (AWS secret)
+AWS_REGION               |  us-east-1  |  us-east-1
+AWS_SECRET_ACCESS_KEY    |  (AWS secret)  |  (AWS secret)
+DATABASE_URL             |     |  (Heroku Postgres secret)
 DOMAIN                   |  www.frails.dev  |  www.fehuleather.com
 ERROR_PAGE_URL           |     |  https://d8bjlz07mgiyc.cloudfront.net/rails/static/error.html
+FEATURE_RETAIL           |  false  |  false
+FEATURE_WHOLESALE        |  false  |  false
 IMAGEPATH                |  /product-images/  |  https://d8bjlz07mgiyc.cloudfront.net/rails/products/
 MAINTENANCE_PAGE_URL     |     |  https://d8bjlz07mgiyc.cloudfront.net/rails/static/maintenance.html
 MAX_THREADS              |     |  1
 MIN_THREADS              |     |  1
 PORT                     |  3000  |  3000
-POSTMARK_API_KEY         |  Postmark secret  |  Postmark secret
+POSTMARK_API_KEY         |  (Postmark secret)  |  (Postmark secret)
 RACK_ENV                 |  development  |
 RAILS_ENV                |  development  |
+S3_BUCKET                |  (AWS secret)  |  (AWS secret)
 S3_PATH                  |  https://d8bjlz07mgiyc.cloudfront.net  |  https://d8bjlz07mgiyc.cloudfront.net
-SECRET_KEY_BASE          |  rake secret  |  rake secret
-SKYLIGHT_AUTHENTICATION  |  Skylight secret  |  Skylight secret
-STINKCODE                |  s  |  rake secret
-STINKNAME                |  rake secret  |  rake secret
-STRIPE_KEY               |  Stripe secret  |  Stripe secret
+SECRET_KEY_BASE          |  (rails secret)  |  (rails secret)
+SKYLIGHT_AUTHENTICATION  |  (Skylight secret)  |  (Skylight secret)
+STINKCODE                |  s  |  (rails secret)
+STINKNAME                |  (rails secret)  |  (rails secret)
+STRIPE_PUBLISHABLE_KEY   |  (Stripe secret)  |  (Stripe secret)
+STRIPE_SECRET_KEY        |  (Stripe secret)  |  (Stripe secret)
 WEB_CONCURRENCY          |     |  3
