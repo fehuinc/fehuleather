@@ -66,6 +66,9 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
+  
+  # Enable HSTS when using subdomains
+  # config.ssl_options = { hsts: { subdomains: true } } # NEW
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -80,7 +83,7 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "fehu_rails_#{Rails.env}"
-  config.action_mailer.perform_caching = false
+  config.action_mailer.perform_caching = true
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
