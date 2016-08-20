@@ -76,7 +76,6 @@ Rails.application.routes.draw do
     
     scope constraints: lambda { |request| request.session[:stinker] == ENV["STINKNAME"] } do
       namespace :admin do
-        root "kingdoms#index"
         put "builds/:id" => "builds#ajax_update"
         
         get "totem" => "totem_rows#index", as: "totem"
