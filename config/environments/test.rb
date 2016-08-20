@@ -35,12 +35,6 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
   
-  # Ivan added:
-  # Specify what domain to use for mailer URLs and assets (like images)
-  config.action_mailer.default_url_options = { host: "rails-fehu.dev" }
-  config.action_mailer.asset_host = "rails-fehu.dev"
-  # NOTE(Ivan): rake rails:update wants me to remove these
-
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
