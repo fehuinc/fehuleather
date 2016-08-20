@@ -45,7 +45,7 @@ Rails.application.configure do
   config.action_mailer.asset_host = ENV["DOMAIN"]
   
   # Print deprecation notices to the Rails logger.
-  config.active_support.deprecation = :raise # Ivan changed, was :log
+  config.active_support.deprecation = :log
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
