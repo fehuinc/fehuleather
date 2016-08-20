@@ -10,20 +10,7 @@
   form {
     max-width: none;
     font-size: 1.1em;
-    margin: 1.2em 0;
-    
-    label {
-      display: inline-block;
-    }
-    
-    input {
-      margin-left: .2em;
-      width: auto;
-    }
-    
-    select {
-      margin-left: 1.5em;
-    }
+    margin: -.6em 0 1.4em;
   }
   
   .empty {
@@ -40,14 +27,13 @@
     display: flex;
     justify-content: flex-start;
     align-items: stretch;
-    text-align: left;
     
     .province-name {
       flex: 0 0 5vw;
       min-width: 1.5em;
-      max-width: 3em;
+      max-width: 2.7em;
       margin: 0;
-      padding: 1em 0;
+      padding: .8em 0;
       display: inline-block;
       span {
         writing-mode: vertical-rl;
@@ -60,7 +46,7 @@
       
       .location {
         display: inline-block;
-        margin: 1em 1.5em;
+        margin: 1.3em;
         
         address {
           margin: .3em 0;
@@ -68,6 +54,11 @@
           pre {
             margin: 0;
           }
+        }
+
+        a {
+          display: inline-block;
+          margin-top: .2em;
         }
         
         .perspective {

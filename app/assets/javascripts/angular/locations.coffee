@@ -3,7 +3,8 @@ angular.module "Locations", []
 .controller "LocationsCtrl", new Array "$scope", ($scope)->
   $scope.locations = FEHU.locations
   $scope.countries = {}
-  $scope.allProvinces = "Canada"
+  $scope.searchProvinces = []
+  $scope.allProvinces = "Show All"
   $scope.searchProvince = $scope.allProvinces
   
   for location in $scope.locations
@@ -11,7 +12,10 @@ angular.module "Locations", []
     province = country[location.province] ?= []
     province.push(location)
   
-  $scope.searchProvinces = (province for province of $scope.countries["Canada"])
+  for name, country of $scope.countries
+    for province of country
+      $scope.searchProvinces.push province
+  
   $scope.searchProvinces = $scope.searchProvinces.sort()
   $scope.searchProvinces.unshift($scope.allProvinces)
   
