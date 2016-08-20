@@ -26,8 +26,8 @@ AWS_SECRET_ACCESS_KEY    |  (AWS secret)  |  (AWS secret)
 DATABASE_URL             |     |  (Heroku Postgres secret)
 DOMAIN                   |  www.frails.dev  |  www.fehuleather.com
 ERROR_PAGE_URL           |     |  https://d8bjlz07mgiyc.cloudfront.net/rails/static/error.html
-FEATURE_RETAIL           |  false  |  false
-FEATURE_WHOLESALE        |  false  |  false
+FEATURE_RETAIL           |  true  |  false
+FEATURE_WHOLESALE        |  true  |  false
 IMAGEPATH                |  /product-images/  |  https://d8bjlz07mgiyc.cloudfront.net/rails/products/
 MAINTENANCE_PAGE_URL     |     |  https://d8bjlz07mgiyc.cloudfront.net/rails/static/maintenance.html
 MAX_THREADS              |     |  1
