@@ -2,7 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Configure CORS
-  config.middleware.insert_before 0, "Rack::Cors" do
+  config.middleware.insert_before 0, Rack::Cors do
     allow do
       origins ["https://www.fehuleather.com", "https://fehu-staging.herokuapp.com", "http://www.frails.dev"]
       resource "*", :headers => :any, :methods => [:get, :head, :options]
