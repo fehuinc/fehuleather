@@ -1,4 +1,4 @@
-threads ENV.fetch("RAILS_MIN_THREADS").to_i, ENV.fetch("RAILS_MAX_THREADS").to_i
+threads ENV.fetch("RAILS_THREADS").to_i, ENV.fetch("RAILS_THREADS").to_i
 port ENV.fetch("PORT", 3000)
 environment ENV.fetch("RAILS_ENV")
 

@@ -37,8 +37,7 @@ POSTMARK_API_KEY        | (Postmark secret)                    | (Postmark secre
 RACK_TIMEOUT            | 5                                    | 5                                                                  | 27
 RAILS_ENV               | development                          | (Set by Heroku)                                                    | (Set by Heroku)
 RAILS_LOG_TO_STDOUT     |                                      | (Set by Heroku)                                                    | (Set by Heroku)
-RAILS_MAX_THREADS       | 1                                    | 1                                                                  | 1
-RAILS_MIN_THREADS       | 1                                    | 1                                                                  | 1
+RAILS_THREADS           | 1                                    | 1                                                                  | 1
 S3_BUCKET               | (AWS secret)                         | (AWS secret)                                                       | (AWS secret)
 S3_PATH                 | https://d8bjlz07mgiyc.cloudfront.net | https://d8bjlz07mgiyc.cloudfront.net                               | https://d8bjlz07mgiyc.cloudfront.net
 SECRET_KEY_BASE         | (rails secret)                       | (rails secret)                                                     | (rails secret)
