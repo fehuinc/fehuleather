@@ -74,7 +74,7 @@ Rails.application.routes.draw do
     post "stink" => "stink#stink_in"
     delete "stink" => "stink#stink_out"
     
-    scope constraints: lambda { |request| request.session[:stinker] == ENV["STINKNAME"] } do
+    scope constraints: lambda { |request| request.session[:stinker] == ENV.fetch("STINKNAME") } do
       namespace :admin do
         put "builds/:id" => "builds#ajax_update"
         

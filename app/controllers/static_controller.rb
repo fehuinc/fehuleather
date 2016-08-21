@@ -25,7 +25,7 @@ class StaticController < ApplicationController
   end
 
   def robots
-    if ENV['NO_ROBOTS'] == "true"
+    if ENV.fetch("NO_ROBOTS") == "true"
       render plain: "User-agent: *\nDisallow: /\n"
     else
       render plain: "User-agent: *\nDisallow:\n"

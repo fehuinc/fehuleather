@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   rescue_from Exception, with: :server_error if Rails.env == "production"
-  before_action :block_robots if ENV["NO_ROBOTS"] == "true"
+  before_action :block_robots if ENV.fetch("NO_ROBOTS") == "true"
   before_action :set_xsrf_token_cookie
   before_action :mini_profiler
   
