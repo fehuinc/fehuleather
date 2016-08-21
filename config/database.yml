@@ -1,6 +1,7 @@
 default: &default
   adapter: postgresql
-  pool: <%= ENV["DB_POOL"] || ENV["MAX_THREADS"] || 5 %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS").to_i %>
+  reaping_frequency: 60
   timeout: 5000
 
 development:
@@ -9,7 +10,7 @@ development:
 
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  url: <%= ENV.fetch("DATABASE_URL", nil) %>
   database: fehu_prod
 
 # Warning: The database defined as "test" will be erased and
