@@ -15,7 +15,9 @@
       </div>
       <div class="clear">Remove All</div>
       <div class="perspective">
-        <a class="button" href="/checkout">Checkout Time</a>
+        <% if FeatureFlags.check :retail %>
+          <a class="button" href="/checkout">Checkout Time</a>
+        <% end %>
       </div>
     </div>
   </div>
