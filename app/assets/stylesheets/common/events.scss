@@ -11,6 +11,7 @@
     vertical-align: top;
     max-width: 30rem;
     margin: 0 2em;
+    background: #F8F8F8;
   }
 
   h3 {
@@ -20,5 +21,10 @@
   p {
     display: inline-block;
     margin: .5em;
+  }
+  
+  .book-us {
+    display: inline-block;
+    padding: .5em 1em 0;
   }
 }
