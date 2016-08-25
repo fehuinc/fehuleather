@@ -19,7 +19,11 @@ class WholesalesController < ApplicationController
   
   def edit
     @merchant = Merchant.find(session[:merchant_id])
-    @kingdoms = Kingdom.order(:name)
+    @kingdoms = Kingdom.order(:name).select { |kingdom|
+      kingdom.products.any? { |product|
+        product.builds.any?(&:show_wholesale)
+      }
+    }
   end
   
   
