@@ -17,15 +17,16 @@
     padding: 0 1em;
     text-decoration: none;
     &:hover { text-decoration: underline; }
-    &.right { float: right; }
     @media (max-width: 900px) { padding: 0 .2em; }
   }
   
   .nav {
     display: inline-block; // Stops "log out" from wrapping
-    
-    a {
-      border-right: 3px solid rgba(white, 0.13);
-    }
+    a { border-right: 3px solid rgba(white, 0.13); }
+  }
+  
+  a.right {
+    float: right;
+    border-left: 3px solid rgba(white, 0.13);
   }
 }
