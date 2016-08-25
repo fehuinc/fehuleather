@@ -7,7 +7,7 @@
     <% @order.items.each do |item| %>
       <% item.quantity.times do %>
         <div>
-          <%= image_tag item.build.variation.wholesale_image %>
+          <%= image_tag item.build.variation.wholesale_image if item.build.variation.wholesale_image %>
         </div>
       <% end %>
     <% end %>

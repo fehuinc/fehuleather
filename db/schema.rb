@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -29,9 +28,8 @@ ActiveRecord::Schema.define(version: 1) do
     t.text     "country",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["merchant_id"], name: "index_addresses_on_merchant_id", using: :btree
   end
-
-  add_index "addresses", ["merchant_id"], name: "index_addresses_on_merchant_id", using: :btree
 
   create_table "builds", force: :cascade do |t|
     t.integer  "variation_id"
@@ -42,11 +40,10 @@ ActiveRecord::Schema.define(version: 1) do
     t.boolean  "show_wholesale", default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["size_id"], name: "index_builds_on_size_id", using: :btree
+    t.index ["stock"], name: "index_builds_on_stock", using: :btree
+    t.index ["variation_id"], name: "index_builds_on_variation_id", using: :btree
   end
-
-  add_index "builds", ["size_id"], name: "index_builds_on_size_id", using: :btree
-  add_index "builds", ["stock"], name: "index_builds_on_stock", using: :btree
-  add_index "builds", ["variation_id"], name: "index_builds_on_variation_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.text     "name",        null: false
@@ -62,12 +59,11 @@ ActiveRecord::Schema.define(version: 1) do
     t.text     "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["name"], name: "index_kingdoms_on_name", unique: true, using: :btree
   end
 
-  add_index "kingdoms", ["name"], name: "index_kingdoms_on_name", unique: true, using: :btree
-
   create_table "locations", force: :cascade do |t|
-    t.text     "name",       null: false
+    t.text     "name",                      null: false
     t.text     "url"
     t.text     "phone"
     t.text     "address"
@@ -75,6 +71,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.text     "province"
     t.text     "postal"
     t.text     "country"
+    t.boolean  "visible",    default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -88,14 +85,13 @@ ActiveRecord::Schema.define(version: 1) do
     t.text     "secret_code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["email"], name: "index_merchants_on_email", unique: true, using: :btree
+    t.index ["store_name"], name: "index_merchants_on_store_name", unique: true, using: :btree
   end
 
-  add_index "merchants", ["email"], name: "index_merchants_on_email", unique: true, using: :btree
-  add_index "merchants", ["store_name"], name: "index_merchants_on_store_name", unique: true, using: :btree
-
   create_table "order_items", force: :cascade do |t|
-    t.integer  "order_id"
     t.string   "order_type"
+    t.integer  "order_id"
     t.integer  "build_id"
     t.text     "build_name",                     null: false
     t.text     "product_name",                   null: false
@@ -104,10 +100,9 @@ ActiveRecord::Schema.define(version: 1) do
     t.integer  "quantity",                       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["build_id"], name: "index_order_items_on_build_id", using: :btree
+    t.index ["order_type", "order_id"], name: "index_order_items_on_order_type_and_order_id", using: :btree
   end
-
-  add_index "order_items", ["build_id"], name: "index_order_items_on_build_id", using: :btree
-  add_index "order_items", ["order_type", "order_id"], name: "index_order_items_on_order_type_and_order_id", using: :btree
 
   create_table "product_infos", force: :cascade do |t|
     t.integer  "product_id"
@@ -117,10 +112,9 @@ ActiveRecord::Schema.define(version: 1) do
     t.boolean  "show_wholesale", default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["name"], name: "index_product_infos_on_name", using: :btree
+    t.index ["product_id"], name: "index_product_infos_on_product_id", using: :btree
   end
-
-  add_index "product_infos", ["name"], name: "index_product_infos_on_name", using: :btree
-  add_index "product_infos", ["product_id"], name: "index_product_infos_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.integer  "kingdom_id"
@@ -133,14 +127,13 @@ ActiveRecord::Schema.define(version: 1) do
     t.string   "price_wholesale_currency", default: "CAD", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["kingdom_id"], name: "index_products_on_kingdom_id", using: :btree
+    t.index ["name"], name: "index_products_on_name", unique: true, using: :btree
   end
-
-  add_index "products", ["kingdom_id"], name: "index_products_on_kingdom_id", using: :btree
-  add_index "products", ["name"], name: "index_products_on_name", unique: true, using: :btree
 
   create_table "retail_orders", force: :cascade do |t|
     t.integer  "address_id"
-    t.uuid     "uuid",       default: "uuid_generate_v4()"
+    t.uuid     "uuid",       default: -> { "uuid_generate_v4()" }
     t.text     "notes"
     t.text     "payment_id"
     t.datetime "created_at"
@@ -152,10 +145,9 @@ ActiveRecord::Schema.define(version: 1) do
     t.text     "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["name"], name: "index_sizes_on_name", using: :btree
+    t.index ["product_id"], name: "index_sizes_on_product_id", using: :btree
   end
-
-  add_index "sizes", ["name"], name: "index_sizes_on_name", using: :btree
-  add_index "sizes", ["product_id"], name: "index_sizes_on_product_id", using: :btree
 
   create_table "totem_items", force: :cascade do |t|
     t.integer  "totem_row_id"
@@ -166,18 +158,16 @@ ActiveRecord::Schema.define(version: 1) do
     t.integer  "index",        default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["index"], name: "index_totem_items_on_index", using: :btree
+    t.index ["totem_row_id"], name: "index_totem_items_on_totem_row_id", using: :btree
   end
-
-  add_index "totem_items", ["index"], name: "index_totem_items_on_index", using: :btree
-  add_index "totem_items", ["totem_row_id"], name: "index_totem_items_on_totem_row_id", using: :btree
 
   create_table "totem_rows", force: :cascade do |t|
     t.integer  "index",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["index"], name: "index_totem_rows_on_index", using: :btree
   end
-
-  add_index "totem_rows", ["index"], name: "index_totem_rows_on_index", using: :btree
 
   create_table "variations", force: :cascade do |t|
     t.integer  "product_id"
@@ -192,15 +182,14 @@ ActiveRecord::Schema.define(version: 1) do
     t.string   "adjust_wholesale_currency", default: "CAD", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["name"], name: "index_variations_on_name", using: :btree
+    t.index ["product_id"], name: "index_variations_on_product_id", using: :btree
   end
-
-  add_index "variations", ["name"], name: "index_variations_on_name", using: :btree
-  add_index "variations", ["product_id"], name: "index_variations_on_product_id", using: :btree
 
   create_table "wholesale_orders", force: :cascade do |t|
     t.integer  "merchant_id"
     t.integer  "address_id"
-    t.uuid     "uuid",        default: "uuid_generate_v4()"
+    t.uuid     "uuid",        default: -> { "uuid_generate_v4()" }
     t.text     "notes"
     t.text     "payment_id"
     t.datetime "submitted"
@@ -208,8 +197,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.datetime "shipped"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["merchant_id"], name: "index_wholesale_orders_on_merchant_id", using: :btree
   end
-
-  add_index "wholesale_orders", ["merchant_id"], name: "index_wholesale_orders_on_merchant_id", using: :btree
 
 end

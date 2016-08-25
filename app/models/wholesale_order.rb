@@ -1,6 +1,6 @@
 class WholesaleOrder < ApplicationRecord
   belongs_to :merchant
-  belongs_to :address
+  belongs_to :address, optional: true
   has_many :items, as: :order, class_name: OrderItem, dependent: :destroy
 
   def to_param

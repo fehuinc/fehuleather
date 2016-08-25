@@ -1,6 +1,6 @@
 <div class="perspective image-uploader" data-presigned-post="<%= presigned_post %>">
   <div class="preview">
-    <%= image_tag f.object[field] %>
+    <img src="<%=f.object[field]%>">
   </div>
   <div class="inputs">
     <%= f.label field, name %>

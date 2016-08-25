@@ -1,6 +1,6 @@
 class Admin::LocationsController < ApplicationController
   def index
-    @locations = Location.all.order(:country, :province, :name)
+    @locations = Location.order(:country, :province, :name)
   end
   
   def new
@@ -35,6 +35,6 @@ class Admin::LocationsController < ApplicationController
 private
   
   def standard_params
-    params.require(:location).permit :name, :url, :phone, :address, :city, :province, :postal, :country
+    params.require(:location).permit :name, :url, :phone, :address, :city, :province, :postal, :country, :visible
   end
 end

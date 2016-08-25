@@ -146,6 +146,7 @@ class Initialize < ActiveRecord::Migration
       t.text :province
       t.text :postal
       t.text :country
+      t.boolean :visible,              null: false, default: true
       t.timestamps
     end
 

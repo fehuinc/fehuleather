@@ -25,6 +25,7 @@ AWS_KEY                 |                                      | (AWS Secret)   
 AWS_REGION              | us-east-1                            | us-west-2                                                          | us-west-2
 AWS_SECRET              |                                      | (AWS Secret)                                                       | (AWS secret)
 AWS_SECRET_ACCESS_KEY   | (AWS secret)                         | (AWS secret)                                                       | (AWS secret)
+BULLET                  | false                                | (unused)                                                           | (unused)
 DATABASE_URL            |                                      | (Set by Heroku)                                                    | (Set by Heroku)
 DOMAIN                  | www.frails.dev                       | https://fehu-staging.herokuapp.com                                 | https://www.fehuleather.com
 ERROR_PAGE_URL          |                                      | https://d8bjlz07mgiyc.cloudfront.net/rails/static/error.html       | https://d8bjlz07mgiyc.cloudfront.net/rails/static/error.html
@@ -32,6 +33,7 @@ FEATURE_RETAIL          | true                                 | false          
 FEATURE_WHOLESALE       | true                                 | false                                                              | false
 IMAGEPATH               | /product-images/                     | https://d8bjlz07mgiyc.cloudfront.net/rails/products/               | https://d8bjlz07mgiyc.cloudfront.net/rails/products/
 MAINTENANCE_PAGE_URL    |                                      | https://d8bjlz07mgiyc.cloudfront.net/rails/static/maintenance.html | https://d8bjlz07mgiyc.cloudfront.net/rails/static/maintenance.html
+MINI_PROFILER           | false                                | (unused)                                                           | (unused)
 NO_ROBOTS               | false                                | true                                                               | false
 POSTMARK_API_KEY        | (Postmark secret)                    | (Postmark secret)                                                  | (Postmark secret)
 RACK_TIMEOUT            | 5                                    | 5                                                                  | 27

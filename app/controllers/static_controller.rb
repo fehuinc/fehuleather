@@ -10,7 +10,7 @@ class StaticController < ApplicationController
   end
   
   def locations
-    @locations = Location.all.order(:country, :province, :name)
+    @locations = Location.where(visible: true).order(:country, :province, :name)
   end
   
   def events

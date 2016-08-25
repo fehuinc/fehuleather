@@ -302,6 +302,4 @@ Location.create!(
 
 ## EVENTS #########################################################################################
 
-Event.create! name: "Spruce Meadows: National",       date: "June 10th to 12th, 2016",     location: "Calgary, AB", website: "http://www.sprucemeadows.com/tournaments/ex_maps.jsp?id=23", description: "18011 Spruce Meadows Way SW RR 9 LCD 8<br>Calgary, AB T2J 5G5"
-Event.create! name: "Spruce Meadows: North American", date: "July 8th to 10th, 2016",      location: "Calgary, AB", website: "http://www.sprucemeadows.com/tournaments/ex_maps.jsp?id=27", description: "18011 Spruce Meadows Way SW RR 9 LCD 8<br>Calgary, AB T2J 5G5"
 Event.create! name: "Spruce Meadows: Masters",        date: "September 7th to 11th, 2016", location: "Calgary, AB", website: "http://www.sprucemeadows.com/tournaments/ex_maps.jsp?id=29", description: "18011 Spruce Meadows Way SW RR 9 LCD 8<br>Calgary, AB T2J 5G5"

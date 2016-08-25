@@ -40,7 +40,7 @@
             $<%= variation.price_wholesale("CAD")/100 %>
           </span>
         </div>
-        <%= image_tag variation.wholesale_image, class: "variation-image" %>
+        <%= image_tag variation.wholesale_image, class: "variation-image" if variation.wholesale_image %>
         <div class="builds">
           <% variation.builds.where(show_wholesale: true).each do |build| %>
             <div class="build" item-editor>

@@ -6,7 +6,9 @@
   <% else %>
     <%= link_to "Edit Current Order", edit_wholesale_path %>
   <% end %>
-  <%= link_to "Past Orders", orders_wholesale_path %>
+  <% if @merchant.orders.count > 1 or (@merchant.orders.count == 1 and !@merchant.current_order) %>
+    <%= link_to "Past Orders", orders_wholesale_path %>
+  <% end %>
   <%= link_to "Catalog PDF",  catalog_path%>
 </section>
 

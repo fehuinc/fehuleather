@@ -2,4 +2,8 @@
 
 .locations#index main {
   @extend .common-locations;
+  
+  .notVisible {
+    opacity: 0.5;
+  }
 }

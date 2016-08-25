@@ -29,7 +29,7 @@
           <span>{{provinceName}}</span>
         </h2>
         <div class="locations-block">
-          <div class="location" ng-repeat="location in filteredLocations = (locationList | filter:search)">
+          <div class="location" ng-class="{notVisible:!location.visible}" ng-repeat="location in filteredLocations = (locationList | filter:search)">
             <h3 class="name">{{location.name}}</h3>
             <address>
               <pre>{{location.address}}</pre>
