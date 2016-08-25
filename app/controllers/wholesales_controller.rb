@@ -38,7 +38,7 @@ class WholesalesController < ApplicationController
     merchant = Merchant.find session[:merchant_id]
     order = merchant.current_order
     build = Build.find params[:build_id]
-    result = order.update_item_from_build build, params[:quantity], true
+    result = order.update_item_from_build build, params[:quantity], "CAD", true
     render json: result
   end
   

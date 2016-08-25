@@ -68,7 +68,7 @@ Rails.application.configure do
 
   # Configure Bullet
   config.after_initialize do
-    Bullet.enable = ENV["BULLET"] == "true"
+    Bullet.enable = ENV["BULLET"] == false
     Bullet.add_footer = true     # bottom left
     Bullet.alert = false         # pop up a JavaScript alert in the browser
     Bullet.bullet_logger = false # log to the Bullet log file (/log/bullet.log)

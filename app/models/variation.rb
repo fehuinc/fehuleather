@@ -8,12 +8,20 @@ class Variation < ApplicationRecord
   monetize :adjust_retail_cents
   monetize :adjust_wholesale_cents
   
-  def price_retail(currency = "CAD")
-    (product.price_retail + adjust_retail).exchange_to(currency).fractional
+  def price_retail_raw
+    product.price_retail + adjust_retail
   end
   
-  def price_wholesale(currency = "CAD")
-    (product.price_wholesale + adjust_wholesale).exchange_to(currency).fractional
+  def price_wholesale_raw
+    product.price_wholesale + adjust_wholesale
+  end
+  
+  def price_retail_render(currency)
+    price_retail_raw.exchange_to(currency).fractional
+  end
+  
+  def price_wholesale_render(currency)
+    price_retail_raw.exchange_to(currency).fractional
   end
   
   def full_name

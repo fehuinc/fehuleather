@@ -7,7 +7,7 @@ class RetailOrdersController < ApplicationController
   
   def create
     notes = retail_order_params[:notes] # From Angular
-
+    
     email = retail_order_params[:email] # From Angular
     address_data = JSON.parse retail_order_params[:shippingAddress] # From Angular
     
@@ -29,6 +29,7 @@ class RetailOrdersController < ApplicationController
     
     builds_data = JSON.parse retail_order_params[:builds] # From JS
     builds = builds_data.map { |id, q| Build.find(id) }
+    currency = retail_order_params[:currency] # From JS
     
     builds.each do |build|
       order.items.new(
@@ -36,7 +37,7 @@ class RetailOrdersController < ApplicationController
         build: build,
         build_name: build.build_name,
         product_name: build.product.name,
-        price: build.variation.price_retail,
+        price: build.price_retail(currency),
         quantity: builds_data[build.id.to_s]
       )
     end
@@ -45,7 +46,6 @@ class RetailOrdersController < ApplicationController
     amount = builds.map(&:price_retail).reduce(0, :+) # In cents
     quantity = retail_order_params[:quantity] # From JS
     description = "#{quantity} Item#{quantity == 1 ? "" : "s"} from Fehu Inc."
-    currency = retail_order_params[:currency] # From JS
     
     charge = Stripe::Charge.create(
       source: token,

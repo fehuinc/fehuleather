@@ -1,0 +1,31 @@
+.headers {
+  $row-height: 3.3em;
+  
+  width: 3rem * 22;
+  max-width: 100%;
+  height: $row-height;
+  line-height: $row-height;
+  margin: 0 auto;
+  letter-spacing: 2px;
+  
+  @media (max-width: 1000px) { height: auto; overflow-x: hidden; }
+  @media (max-width: 800px) { line-height: 2.5; }
+  @media (max-width: 600px) { letter-spacing: 0; }
+  
+  a {
+    display: inline-block;
+    padding: 0 1em;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+    &.right { float: right; }
+    @media (max-width: 900px) { padding: 0 .2em; }
+  }
+  
+  .nav {
+    display: inline-block; // Stops "log out" from wrapping
+    
+    a {
+      border-right: 3px solid rgba(white, 0.13);
+    }
+  }
+}

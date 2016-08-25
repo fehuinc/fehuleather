@@ -6,7 +6,7 @@ module WholesalePreviewHelper
       include: {
         build: {
           only: [:id],
-          methods: [:price_wholesale],
+          methods: [:wholesale_prices],
           include: {
             product: { only: [:name, :id] },
             size: { only: :name },

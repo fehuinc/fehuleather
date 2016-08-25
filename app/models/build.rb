@@ -27,16 +27,24 @@ class Build < ApplicationRecord
     end
   end
   
-  def price_wholesale(currency = "CAD")
-    variation.price_wholesale(currency)
+  def price_wholesale_render(currency)
+    variation.price_wholesale_render(currency)
   end
   
-  def price_retail(currency = "CAD")
-    variation.price_retail(currency)
+  def price_retail_render(currency)
+    variation.price_retail_render(currency)
   end
   
   def retail_prices # -> Dollars
-    p = variation.adjust_retail + product.price_retail
+    p = variation.price_retail_raw
+    return {
+      CAD: p.as_ca_dollar.dollars.round,
+      USD: p.as_us_dollar.dollars.round
+    }
+  end
+
+  def wholesale_prices # -> Dollars
+    p = variation.price_wholesale_raw
     return {
       CAD: p.as_ca_dollar.dollars.round,
       USD: p.as_us_dollar.dollars.round

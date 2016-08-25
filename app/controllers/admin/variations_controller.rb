@@ -49,6 +49,6 @@ class Admin::VariationsController < ApplicationController
 private
   
   def standard_params
-    params.require(:variation).permit :name, :model, :description, :totem_image, :wholesale_image, :price_retail, :price_wholesale
+    params.require(:variation).permit :name, :model, :description, :totem_image, :wholesale_image, :adjust_retail, :adjust_wholesale
   end
 end

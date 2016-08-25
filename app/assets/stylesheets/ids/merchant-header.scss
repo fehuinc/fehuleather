@@ -1,37 +1,6 @@
-$color: hsl(280, 0%, 80%);
-$row-height: 3.3em;
-
 #merchant-header {
-  width: 3rem * 22;
-  max-width: 100%;
-  height: $row-height;
-  line-height: $row-height;
-  margin: 0 auto;
-  letter-spacing: 2px;
-  background: $color;
+  $color: hsl(280, 0%, 80%);
+  
   border-bottom: 6px solid darken($color, 4%);
-  
-  @media (max-width: 1000px) { height: auto; overflow-x: hidden; }
-  @media (max-width: 800px) { line-height: 2.5; }
-  @media (max-width: 600px) { letter-spacing: 0; }
-  
-  .nav {
-    display: inline-block; // Stops "log out" from wrapping
-    
-    a {
-      display: inline-block;
-      padding: 0 1em;
-      text-decoration: none;
-      &:hover { text-decoration: underline; }
-    }
-    
-    a {
-      border-right: 6px solid rgba(white, 0.2);
-    }
-  }
-  
-  .right {
-    float: right;
-    margin-right: 1em;
-  }
+  background: $color;
 }
