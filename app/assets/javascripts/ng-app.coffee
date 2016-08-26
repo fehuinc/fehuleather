@@ -5,6 +5,7 @@ angular.module "FehuApp", [
   
   # Pages
   "Locations"
+  "Checkout"
   
   # Services
   "Storage"

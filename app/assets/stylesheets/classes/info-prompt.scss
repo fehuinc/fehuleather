@@ -24,6 +24,7 @@
   background: white;
   box-shadow: 0 0 1em white, 0 0 2em white;
   z-index: 1000;
+  cursor: pointer;
   
   @media (max-width: 24em) {
     width: 100%;
@@ -34,6 +35,5 @@
   .close {
     margin-top: .5em;
     text-align: center;
-    cursor: pointer;
   }
 }

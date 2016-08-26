@@ -13,6 +13,10 @@ input, textarea {
     border: 1px solid hsl(185, 35%, 50%);
     box-shadow: 0 0 2px 1px hsla(185, 35%, 50%, .3);
   }
+  
+  &.ng-touched {
+    &.ng-invalid { border: 1px solid hsl(0, 75%, 50%); }
+  }
 }
 
 input[type="checkbox"] {

@@ -1,21 +1,16 @@
 <h1>Check Me Out</h1>
 
-<div class="info-popup" ng-show="showEmailPopup" ng-click="showEmailPopup = false" ng-cloak>
-  We'll send you an email to confirm your order — and that's all. No spam, no nonsense.
-  <div class="close">Close</div>
-</div>
-
 <section ng-cloak>
-  <form class="address-form" novalidate>
+  <form class="address-form" ng-controller="Checkout" name="checkoutForm" ng-submit="submit()" novalidate>
     <div class="row two">
       <label>
         Name
-        <input type="text" ng-model="checkoutInfo.shippingAddress.name">
+        <input type="text" ng-model="checkoutInfo.shippingAddress.name" required>
       </label>
 
       <label>
         Email <div class="info-prompt" ng-click="showEmailPopup = !showEmailPopup">?</div>
-        <input type="email" ng-model="checkoutInfo.email">
+        <input type="email" ng-model="checkoutInfo.email" required>
       </label>
     </div>
     
@@ -23,14 +18,14 @@
       <div class="set">
         <label>
           Address
-          <input type="text" ng-model="checkoutInfo.shippingAddress.address1" placeholder="Line 1">
+          <input type="text" ng-model="checkoutInfo.shippingAddress.address1" placeholder="Line 1" required>
         </label>
         <input type="text" ng-model="checkoutInfo.shippingAddress.address2" placeholder="Line 2">
       </div>
       
       <label>
         City
-        <input type="text" ng-model="checkoutInfo.shippingAddress.city">
+        <input type="text" ng-model="checkoutInfo.shippingAddress.city" required>
       </label>
     </div>
     
@@ -45,22 +40,25 @@
       
       <label class="province">
         {{checkoutInfo.shippingAddress.country == "United States" ? "State" : "Province"}}
-        <input type="text" ng-model="checkoutInfo.shippingAddress.provinceState">
+        <input type="text" ng-model="checkoutInfo.shippingAddress.provinceState" required>
       </label>
       
       <label class="postal">
         {{checkoutInfo.shippingAddress.country == "United States" ? "ZIP" : "Postal"}} Code
-        <input type="text" ng-model="checkoutInfo.shippingAddress.postal">
+        <input type="text" ng-model="checkoutInfo.shippingAddress.postal" required>
       </label>
       
     </div>
-  </form>
   
-  <p>Your address is saved here until you close this browser tab.</p>
-</section>
-
-<section class="center">
-  <div class="perspective in-bl">
-    <a class="button" href="/payment">Continue</a>
-  </div>
+    <div class="center">
+      <div class="perspective in-bl">
+        <input type="submit" class="button" value="Continue" ng-disabled="checkoutForm.$invalid">
+      </div>
+    </div>
+    
+    <div class="info-popup" ng-show="showEmailPopup" ng-click="showEmailPopup = false" ng-cloak>
+      We'll send you an email to confirm your order — and that's all. No spam, no nonsense.
+      <div class="close">Close</div>
+    </div>
+  </form>
 </section>

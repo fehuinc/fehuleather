@@ -6,4 +6,3 @@ angular.module "CheckoutInfo", []
       country: "Canada"
   
   SessionStorage.bind($rootScope, "checkoutInfo", defaultCheckoutInfo)
-  

@@ -25,5 +25,10 @@
   input[type="submit"] {
     display: inline-block;
     width: auto;
+    margin-bottom: 1em;
+  }
+  
+  .subtle {
+    opacity: 0.5;
   }
 }
