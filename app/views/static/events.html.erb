@@ -10,9 +10,7 @@
       <h3 class="bar <%= bar_color %>"><%=event.name%></h3>
       <p><%=event.date%></p>
       <p><%=event.location%></p>
-      <% if event.website.present? %>
-        <p><a href="<%=event.website%>">Website</a></p>
-      <% end %>
+      <% if event.website %><p><a href="<%=event.website%>">Website</a></p><% end %>
       <p><%=event.description.html_safe%></p>
     </div>
   <% end %>

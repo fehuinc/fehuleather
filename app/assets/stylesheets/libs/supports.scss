@@ -18,11 +18,11 @@
 
 @supports (backdrop-filter:blur(10px)) { html modal-cover {
   backdrop-filter: blur(4px);
-  background: rgba(#FFF7F2, .6);
+  background: rgba(#FBF3EA, .5);
 }}
 @supports (-webkit-backdrop-filter:blur(10px)) { html modal-cover {
   -webkit-backdrop-filter: blur(4px);
-  background: rgba(#FFF7F2, .6);
+  background: rgba(#FBF3EA, .5);
 }}
 
 /* Don't over-specify the selector — we want this to be overridable */
