@@ -19,7 +19,7 @@ class Admin::VariationsController < ApplicationController
   def edit
     @variation = Variation.includes(builds: [:size]).find(params[:id])
     @product = @variation.product
-    variations = @product.variations.order(:name)
+    variations = @product.variations.order(:name).to_a
     index = variations.index(@variation)
     @next = variations[(index+1)%variations.length]
     @prev = variations[(index-1+variations.length)%variations.length]
@@ -28,7 +28,7 @@ class Admin::VariationsController < ApplicationController
   def update
     @variation = Variation.includes(builds: [:size]).find(params[:id])
     @product = @variation.product
-    variations = @product.variations.order(:name)
+    variations = @product.variations.order(:name).to_a
     index = variations.index(@variation)
     @next = variations[(index+1)%variations.length]
     @prev = variations[(index-1+variations.length)%variations.length]

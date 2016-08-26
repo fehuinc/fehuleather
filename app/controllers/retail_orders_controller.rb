@@ -37,13 +37,13 @@ class RetailOrdersController < ApplicationController
         build: build,
         build_name: build.build_name,
         product_name: build.product.name,
-        price: build.price_retail(currency),
+        price: build.price_retail_render(currency),
         quantity: builds_data[build.id.to_s]
       )
     end
     
     token = retail_order_params[:token] # From JS
-    amount = builds.map(&:price_retail).reduce(0, :+) # In cents
+    amount = order.items.map(&:price).reduce(0, :+).to_i # In cents
     quantity = retail_order_params[:quantity] # From JS
     description = "#{quantity} Item#{quantity == 1 ? "" : "s"} from Fehu Inc."
     

@@ -33,15 +33,6 @@
 <hr>
 
 <% if edit %>
-  <div class="builds">
-    <%= f.fields_for :builds do |b| %>
-      <span class="name"><%= b.object.size.name %></span>
-      <%= b.number_field :stock %>
-    <% end %>
-  </div>
-  
-  <hr>
-
   <div class="row">
     <div class="perspective right">
       <deleter class="button" path="<%= admin_variation_path(@variation) %>" redirect="<%= edit_admin_product_path(@product) %>">

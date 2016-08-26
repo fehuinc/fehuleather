@@ -25,7 +25,6 @@ AWS_KEY                 |                                      | (AWS Secret)   
 AWS_REGION              | us-east-1                            | us-west-2                                                          | us-west-2
 AWS_SECRET              |                                      | (AWS Secret)                                                       | (AWS secret)
 AWS_SECRET_ACCESS_KEY   | (AWS secret)                         | (AWS secret)                                                       | (AWS secret)
-BULLET                  | false                                | (unused)                                                           | (unused)
 DATABASE_URL            |                                      | (Set by Heroku)                                                    | (Set by Heroku)
 DOMAIN                  | www.frails.dev                       | https://fehu-staging.herokuapp.com                                 | https://www.fehuleather.com
 ERROR_PAGE_URL          |                                      | https://d8bjlz07mgiyc.cloudfront.net/rails/static/error.html       | https://d8bjlz07mgiyc.cloudfront.net/rails/static/error.html

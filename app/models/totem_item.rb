@@ -1,6 +1,6 @@
 class TotemItem < ApplicationRecord
   belongs_to :row, class_name: "TotemRow", inverse_of: :items
-  belongs_to :variation
+  belongs_to :variation, optional: true
   has_one :product, through: :variation
   
   validates :index, { numericality: { only_integer: true } }
@@ -10,7 +10,7 @@ class TotemItem < ApplicationRecord
   end
   
   def real_name
-    variation_id ? variation.product.name : name
+    variation_id ? variation.list_name : name
   end
   
   def real_image

@@ -28,6 +28,10 @@ class Variation < ApplicationRecord
     @full_name ||= "#{name} #{product.name}"
   end
   
+  def list_name
+    @list_name ||= "#{product.name} · #{name}"
+  end
+  
   def show_wholesale
     builds.where(show_wholesale: true).any?
   end
