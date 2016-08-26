@@ -10,12 +10,17 @@ totem-panel {
   -webkit-font-smoothing: subpixel-antialiased;
   
   .top {
-    padding: 1.25vh 0 .75vh;
+    padding: 1.25vh 1.25vh .75vh;
     color: $dark;
     font-size: calc(1em + 1.2vmin);
     
     .variation {
+      display: inline-block;
       font-weight: bold;
+    }
+    
+    .product {
+      display: inline-block;
     }
   }
   
@@ -36,10 +41,9 @@ totem-panel {
       height: 2.4em;
       text-align: center;
       vertical-align: bottom;
+      margin-top: .5em;
       
-      .in-the-bag {
-        padding: .5em 0; // Make the effect on line height the same as the button
-      }
+      .in-the-bag { padding: .5em 0; } // Make the effect on line height the same as the button
     }
   }
   

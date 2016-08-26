@@ -7,20 +7,26 @@
       float: left;
       max-width: 49%;
       
+      @media (max-width: 500px) {
+        h3 { font-size: 1.2em; }
+        .description { font-size: .8em; }
+      }
+      
+      @media (max-width: 400px) {
+        h3 { font-size: 1em; }
+        .description { font-size: .7em; }
+        .email { font-size: .8em; }
+      }
+      
       img {
         width: 100%;
         border-radius: 100%;
-        border: 8px solid #F2F5F7;
+        border: 8px solid #F8F8F8;
         margin-bottom: 1em;
       }
       
-      p, h3 {
-        text-align: center;
-      }
-      
-      span {
-        display: inline-block;
-      }
+      p, h3 { text-align: center; }
+      span { display: inline-block; }
     }
     
     .ivan {
