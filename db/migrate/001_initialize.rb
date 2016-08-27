@@ -43,7 +43,7 @@ class Initialize < ActiveRecord::Migration
       t.belongs_to :variation,         required: true, index: true
       t.belongs_to :size,              required: true, index: true
       t.text :model
-      t.integer :stock,                default: 0
+      t.integer :stock,                default: 1
       t.boolean :show_retail,          null: false, default: true
       t.boolean :show_wholesale,       null: false, default: true
       t.timestamps
