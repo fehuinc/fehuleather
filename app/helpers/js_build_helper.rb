@@ -1,7 +1,7 @@
 module JsBuildHelper
   def js_build_elm(build, classes = "")
     json = build.to_json(
-      only: [:id],
+      only: [:id, :stock],
       methods: [:short_name, :retail_prices],
       include: {
         variation: {

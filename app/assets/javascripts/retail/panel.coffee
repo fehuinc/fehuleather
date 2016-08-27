@@ -27,7 +27,7 @@ Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
     if bool then elm.show() else elm.hide()
   
   render = (state)->
-    showIf state.addToBag, not CartDB.hasBuild state.selectedSize.build
+    showIf state.addToBag, not CartDB.hasBuild(state.selectedSize.build) and state.selectedSize.build.stock > 0
     showIf state.inTheBag,     CartDB.hasBuild state.selectedSize.build
     
     for b in state.sizeButtons

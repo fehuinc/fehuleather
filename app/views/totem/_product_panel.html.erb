@@ -26,20 +26,12 @@
       </currency-selector>
     </price-selector>
     
-      <bag-selector class="perspective">
-          <div class="add-to-bag button">Yes Please!</div>
-        <div class="in-the-bag">
-          It's in <a js-bag-link>The Bag</a>
-        </div>
-      </bag-selector>
+    <bag-selector class="perspective">
+      <div class="add-to-bag button">Yes Please!</div>
+      <div class="in-the-bag">It's in <a js-bag-link>The Bag</a></div>
+    </bag-selector>
   </div>
-<% else %>
-  <div class="middle">
-    - online store launching this fall -
-  </div>
-<% end %>
 
-<% if feature_flag :retail %>
   <div class="bottom">
     <info-selector>
       <% item.product.infos.where(show_retail: true).each do |info| %>
@@ -56,5 +48,9 @@
     </info-display>
     
     <div class="padding" ng-show="showing == null"></div>
+  </div>
+<% else %>
+  <div class="middle">
+    - online store launching this fall -
   </div>
 <% end %>
