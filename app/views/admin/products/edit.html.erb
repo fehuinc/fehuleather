@@ -35,11 +35,11 @@
   <h2>Variations</h2>
   <div class="variations">
     <% @variations.each do |variation| %>
-      <div class="variation hide-edit">
-        (Image Goes Here)
-        <%= variation.name %>
-        <%= link_to "Edit", edit_admin_variation_path(variation), class: "edit" %></h3>
-      </div>
+      <%= link_to edit_admin_variation_path(variation), class: "variation" do %>
+        <img src="<%=@product.totem_image%>">
+        <img src="<%=@product.wholesale_image%>">
+        <span><%= variation.name %></span>
+      <% end %>
     <% end %>
   </div>
   <div class="new-variation">

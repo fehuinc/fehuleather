@@ -13,7 +13,10 @@
   
   .image {
     img {
-      width: 4em;
+      width: 3.1em;
+      height: 3.1em;
+      margin-top: -.5em;
+      background: #F8F8F8;
     }
   }
   
@@ -23,21 +26,9 @@
   
   .quantity input {
     width: 2.2em;
-    border-radius: 0;
     text-align: center;
   }
-  
-  &:first-of-type .quantity input {
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-  }
-  
-  &:last-of-type .quantity input {
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-   }
-
-  
+    
   .price {
     min-width: 3.2em;
     text-align: left;

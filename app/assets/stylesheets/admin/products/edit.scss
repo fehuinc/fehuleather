@@ -31,4 +31,11 @@
       }
     }
   }
+  
+  .variation {
+    display: block;
+    text-decoration: none;
+    &:hover span { text-decoration: underline; }
+    img { width: 3.1em; }
+  }
 }
