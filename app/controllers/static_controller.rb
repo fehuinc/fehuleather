@@ -1,14 +1,5 @@
 class StaticController < ApplicationController
-  around_action :skip_bullet, only: :totem
 
-  def totem
-    @totem_rows = TotemRow.includes(items: [product: [:infos], variation: [builds: [:size, :variation, :product]]]).order(:index)
-  end
-  
-  def payment
-    
-  end
-  
   def locations
     @locations = Location.where(visible: true).order(:country, :province, :name)
   end
@@ -31,4 +22,29 @@ class StaticController < ApplicationController
       render plain: "User-agent: *\nDisallow:\n"
     end
   end
+  
+  def stink
+    if Access.admin?(session)
+      redirect_to :admin_kingdoms
+    else
+      render :stink
+    end
+  end
+  
+  def stink_in
+    if Access.is_admin_password(params[:password])
+      Access.become_admin!(session)
+      redirect_to :admin_kingdoms
+    else
+      @stink_status = "You're not very stinky."
+      render :stink
+    end
+  end
+  
+  def stink_out
+    Access.unbecome_admin!(session)
+    reset_session
+    redirect_to :root
+  end
+
 end

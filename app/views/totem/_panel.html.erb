@@ -1,0 +1,7 @@
+<totem-panel>
+  <% if item.is_product %>
+    <%= render "totem/product_panel", item: item %>
+  <% else %>
+    <%= render "totem/custom_panel", item: item %>
+  <% end %>
+</totem-panel>

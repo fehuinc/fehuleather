@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     match '(*any)', via: :all, constraints: { subdomain: '' }, to: redirect { |_, req| req.url.sub '//', '//www.' }
 
     # Retail
-    root "static#totem"
+    root "totem#index"
+    
     if FeatureFlags.check :retail
       get "checkout" => "static#checkout"
       get "payment" => "static#payment"
@@ -19,7 +20,11 @@ Rails.application.routes.draw do
     get "press" => "static#press"
     get "catalog" => "static#catalog"
     get "robots.txt" => "static#robots"
-    
+    # Static — Admin
+    get "stink" => "static#stink"
+    post "stink" => "static#stink_in"
+    delete "stink" => "static#stink_out"
+
     # Legacy routes
     get "/pages/story" => redirect("/about")
     get "/pages/events" => redirect("/events")
@@ -70,10 +75,6 @@ Rails.application.routes.draw do
     end
     
     # Admin
-    get "stink" => "stink#stink"
-    post "stink" => "stink#stink_in"
-    delete "stink" => "stink#stink_out"
-    
     scope constraints: lambda { |request| request.session[:stinker] == ENV.fetch("STINKNAME") } do
       namespace :admin do
         put "builds/:id" => "builds#ajax_update"
