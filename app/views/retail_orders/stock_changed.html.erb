@@ -1,0 +1,31 @@
+<div id="stock-changed">
+  <script>
+    FEHU.stocks = <%= raw @builds %>
+  </script>
+
+  <h1 class="page-title">Sorry: Someone beat you <br show-400> to the punch!</h1>
+
+  <div class="messages">
+    <p>Some of the items in your bag have already sold.</p>
+    <p>We have not completed the order or charged your card.</p>
+    <p>Here's your updated bag:</p>
+  </div>
+
+  <br>
+
+  <div class="cart">
+    <div class="cart-items"></div>
+    <div class="cart-subtotal perspective">
+      <div cart-subtotal></div>
+      <currency-selector>
+        <img src="<%= asset_path("cad.svg") %>" class="cad hide">
+        <img src="<%= asset_path("usd.svg") %>" class="usd hide">
+      </currency-selector>
+    </div>
+  </div>
+
+  <div class="perspective">
+    <a class="button alt" href="/">Continue Shopping</a>
+    <a class="button" href="/checkout">Checkout</a>
+  </div>
+</div>

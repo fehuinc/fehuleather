@@ -23,8 +23,6 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
         form.append("<input type='hidden' name='quantity' value='#{quantity}'>")
         form.append("<input type='hidden' name='currency' value='#{currency}'>")
         
-        CartDB.clear()
-        
         form.submit()
             
     $(".stripe button").click (e)->

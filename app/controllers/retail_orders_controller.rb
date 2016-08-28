@@ -1,4 +1,5 @@
 class RetailOrdersController < ApplicationController
+  class StockChangedError < Exception; end
   
   def show
     @order = RetailOrder.find_by_uuid(params[:id])
@@ -11,7 +12,7 @@ class RetailOrdersController < ApplicationController
     email = retail_order_params[:email] # From Angular
     address_data = JSON.parse retail_order_params[:shippingAddress] # From Angular
     
-    address = Address.create!(
+    address = Address.new(
       name: address_data["name"],
       email: email,
       line1: address_data["address1"],
@@ -32,13 +33,17 @@ class RetailOrdersController < ApplicationController
     currency = retail_order_params[:currency] # From JS
     
     builds.each do |build|
+      quantity = builds_data[build.id.to_s]
+      
+      raise StockChangedError.new if quantity > build.stock
+      
       order.items.new(
         order: order, # must be specfied explicitly, because the association is polymorphic
         build: build,
         build_name: build.build_name,
         product_name: build.product.name,
         price: build.price_retail_render(currency),
-        quantity: builds_data[build.id.to_s]
+        quantity: quantity
       )
     end
     
@@ -47,6 +52,7 @@ class RetailOrdersController < ApplicationController
     quantity = retail_order_params[:quantity] # From JS
     description = "#{quantity} Item#{quantity == 1 ? "" : "s"} from Fehu Inc."
     
+    # Does this raise errors if it fails?
     charge = Stripe::Charge.create(
       source: token,
       amount: amount,
@@ -56,6 +62,8 @@ class RetailOrdersController < ApplicationController
     
     order.payment_id = charge.id
     
+    # By now, we're assuming the order is successful. We can now persist new stuff to the DB.
+    
     order.save!
     order.reload
     
@@ -63,6 +71,10 @@ class RetailOrdersController < ApplicationController
     # Email the customer
     
     redirect_to order_path(order)
+  
+  rescue StockChangedError
+    @builds = builds.to_json(only: [:id, :stock])
+    render :stock_changed
   
   rescue Stripe::CardError => e
     flash[:error] = e.message

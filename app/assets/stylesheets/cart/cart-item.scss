@@ -11,15 +11,6 @@
     }
   }
   
-  .image {
-    img {
-      width: 3.1em;
-      height: 3.1em;
-      margin-top: -.5em;
-      background: #F8F8F8;
-    }
-  }
-  
   &.deleted .name {
     opacity: .5;
   }
@@ -32,5 +23,14 @@
   .price {
     min-width: 3.2em;
     text-align: left;
+  }
+
+  .image {
+    img {
+      width: 3.1em;
+      height: 3.1em;
+      margin-top: -.5em;
+      background: #F8F8F8;
+    }
   }
 }

@@ -43,7 +43,13 @@ totem-panel {
       vertical-align: bottom;
       margin-top: .5em;
       
-      .in-the-bag { padding: .5em 0; } // Make the effect on line height the same as the button
+      .in-the-bag, .out-of-stock { padding: .5em 0; } // Make the effect on line height the same as the button
+      
+      .out-of-stock {
+        color: #999;
+        background-color: #F8F8F8;
+        border-radius: 5px;
+      }
     }
   }
   

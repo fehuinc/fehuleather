@@ -1,5 +1,5 @@
 class StaticController < ApplicationController
-
+  
   def locations
     @locations = Location.where(visible: true).order(:country, :province, :name)
   end

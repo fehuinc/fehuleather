@@ -6,13 +6,20 @@ Take "LocalStorage", (LocalStorage)->
   
   # FUNCTIONS #####################################################################################
   
-  
   newState = ()->
     buildCount: 0
     builds: {}
     currency: "CAD"
     quantity: 0
     subtotal: 0
+  
+  updateQuantity = (build, quantity)->
+    b = state.builds[build.id] ?= build
+    b.quantity = Math.max 0, Math.min build.stock, Math.round quantity
+  
+  trim = ()->
+    for k, item of state.builds when item.quantity <= 0
+      delete state.builds[k]
   
   recount = ()->
     state.buildCount = 0
@@ -31,17 +38,14 @@ Take "LocalStorage", (LocalStorage)->
   
   save = ()->
     LocalStorage.set LSKey, state
-    
   
-  # INIT ##########################################################################################
-  
-  
-  state = LocalStorage.get(LSKey) or newState()
-  recount()
+  recountSaveRun = ()->
+    recount()
+    save()
+    runCallbacks()
   
   
   # API ###########################################################################################
-  
   
   Make "CartDB", CartDB =
     addCallback: (cb)->
@@ -52,9 +56,7 @@ Take "LocalStorage", (LocalStorage)->
       oldCurrency = state.currency
       state = newState()
       state.currency = oldCurrency
-      recount()
-      save()
-      runCallbacks()
+      recountSaveRun()
 
     getBuildById: (id)->
       return state.builds[id]
@@ -80,15 +82,18 @@ Take "LocalStorage", (LocalStorage)->
     isEmpty: ()->
       return state.buildCount is 0
     
-    setBuild: (build, quantity = 1)->
-      b = state.builds[build.id] ?= build
-      b.quantity = quantity
-      recount()
-      save()
-      runCallbacks()
-
+    setBuild: (build, quantity)->
+      updateQuantity build, quantity
+      recountSaveRun()
+    
     toggleCurrency: ()->
       state.currency = if state.currency == "CAD" then "USD" else "CAD"
-      recount()
-      save()
-      runCallbacks()
+      recountSaveRun()
+
+
+  # INIT ##########################################################################################
+  
+  state = LocalStorage.get(LSKey) or newState()
+  trim()
+  recount()
+  save()

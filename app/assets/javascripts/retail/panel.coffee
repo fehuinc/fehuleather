@@ -1,7 +1,7 @@
 Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
   
   addToCart = (state, build)->
-    CartDB.setBuild(build)
+    CartDB.setBuild build, 1
     return state
   
   extractBuildData = (elm)->
@@ -27,8 +27,11 @@ Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
     if bool then elm.show() else elm.hide()
   
   render = (state)->
-    showIf state.addToBag, not CartDB.hasBuild(state.selectedSize.build) and state.selectedSize.build.stock > 0
-    showIf state.inTheBag,     CartDB.hasBuild state.selectedSize.build
+    inStock = state.selectedSize.build.stock > 0
+    inCart = CartDB.hasBuild state.selectedSize.build
+    showIf state.addToBag, inStock and not inCart
+    showIf state.inTheBag, inCart
+    showIf state.outOfStock, not inStock and not inCart # If it's gone out of stock since they added it, we'll deal with that during checkout
     
     for b in state.sizeButtons
       button = $ b
@@ -52,6 +55,7 @@ Take ["CartDB", "ShoppingCart", "DOMContentLoaded"], (CartDB, ShoppingCart)->
       sizeButtons: panel.find "[js-build]"
       addToBag: panel.find ".add-to-bag"
       inTheBag: panel.find ".in-the-bag"
+      outOfStock: panel.find ".out-of-stock"
       price: panel.find "[js-price]"
     
     # Init

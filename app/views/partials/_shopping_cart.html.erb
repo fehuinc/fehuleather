@@ -1,11 +1,18 @@
 <shopping-cart>
+  <div class="info-popup" ng-show="showStockPopup" ng-click="showStockPopup = false" ng-cloak>
+    This is the stock popup.
+    <div class="close">Close</div>
+  </div>
+  
   <div class="icon"><%= image_tag "bag.svg" %></div>
   
   <div class="contents-wrapper">
     <div class="contents">
-      <h2 class="its-in" >It's In</h2>
-      <h2 class="the-bag" >The Bag</h2>
-      <div class="cart-items"></div>
+      <h2 class="its-in">It's In</h2>
+      <h2 class="the-bag">The Bag</h2>
+      <div class="cart-items">
+        <!-- Cart items are created by javascripts/retail/cart-items.coffee -->
+      </div>
       <div class="cart-subtotal perspective">
         <div cart-subtotal></div>
         <currency-selector>
