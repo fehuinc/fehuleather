@@ -33,7 +33,7 @@ class RetailOrdersController < ApplicationController
     currency = retail_order_params[:currency] # From JS
     
     # If the cart is empty.. well.. let's just assume the stock changed?
-    raise StockChangedError.new unless builds.map(&:quantity).reduce(0, :+).to_i > 0
+    raise StockChangedError.new unless builds_data.keys.map(&:to_i).reduce(0, :+) > 0
     
     builds.each do |build|
       quantity = builds_data[build.id.to_s]
@@ -66,6 +66,10 @@ class RetailOrdersController < ApplicationController
     order.payment_id = charge.id
     
     # By now, we're assuming the order is successful. We can now persist new stuff to the DB.
+
+    order.items.each do |item|
+      item.build.stock -= item.quantity
+    end
     
     order.save!
     order.reload
@@ -73,7 +77,7 @@ class RetailOrdersController < ApplicationController
     # Email Freyja
     # Email the customer
     
-    redirect_to order_path(order)
+    redirect_to order_complete_path(order)
   
   rescue StockChangedError
     @builds = builds.to_json(only: [:id, :stock])

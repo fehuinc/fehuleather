@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     if FeatureFlags.check :retail
       get "checkout" => "static#checkout"
       get "payment" => "static#payment"
+      get "order-complete/:id" => "retail_orders#order_complete", as: "order_complete"
       resources :orders, only: [:create, :show], controller: "retail_orders"
     end
     

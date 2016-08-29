@@ -55,6 +55,6 @@ private
     Bullet.enable = false if Rails.env == "development"
     yield
   ensure
-    Bullet.enable = true if Rails.env == "development"
+    Bullet.enable = true if Rails.env == "development" and ENV["BULLET"] == "true"
   end
 end
