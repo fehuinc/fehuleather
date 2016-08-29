@@ -32,6 +32,9 @@ class RetailOrdersController < ApplicationController
     builds = builds_data.map { |id, q| Build.find(id) }
     currency = retail_order_params[:currency] # From JS
     
+    # If the cart is empty.. well.. let's just assume the stock changed?
+    raise StockChangedError.new unless builds.map(&:quantity).reduce(0, :+).to_i > 0
+    
     builds.each do |build|
       quantity = builds_data[build.id.to_s]
       
