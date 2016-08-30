@@ -5,15 +5,15 @@ Stinks. On Rails.
 ### Erase & Rebuild DB
 ```bash
 # Dev
-pg_ctl restart -m fast && rake db:drop db:create db:migrate db:seed
+pg_ctl restart -m fast && rails db:drop db:create db:migrate db:seed
 
 # Staging
 heroku pg:reset DATABASE --remote staging --confirm fehu-staging
-heroku run rake db:migrate db:seed --remote staging
+heroku run rails db:migrate db:seed --remote staging
 
 # Prod
 heroku pg:reset DATABASE --app fehu --confirm fehu
-heroku run rake db:migrate db:seed --app fehu
+heroku run rails db:migrate db:seed --app fehu
 ```
 
 ### Env
