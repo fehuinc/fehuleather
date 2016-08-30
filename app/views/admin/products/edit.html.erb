@@ -51,8 +51,8 @@
   <h2>Sizes</h2>
   <div class="sizes">
     <% @sizes.each do |size| %>
-      <div class="size hide-edit">
-        <%= size.name %> <%= link_to "Edit", edit_admin_size_path(size), class: "edit" %></h3>
+      <div class="size">
+        <%= link_to size.name, edit_admin_size_path(size), class: "edit" %></h3>
       </div>
     <% end %>
   </div>
@@ -64,8 +64,8 @@
 <section>
   <h2>Info</h2>
   <% @infos.each do |info| %>
-    <div class="info hide-edit">
-      <%= info.name %> <%= link_to "Edit", edit_admin_product_info_path(info), class: "edit" %></h3>
+    <div class="info">
+      <%= link_to info.name, edit_admin_product_info_path(info), class: "edit" %></h3>
     </div>
   <% end %>
   <div class="new-info">
