@@ -33,4 +33,22 @@
       float: right;
     }
   }
+  
+  .inspirations {
+    div {
+      margin: 1em 0 2em;
+    }
+    p {
+      display: inline-block;
+      width: calc(99% - 6em);
+      vertical-align: top;
+      margin-left: .5em;
+    }
+    img {
+      width: 5em;
+      height: 5em;
+      border-radius: 5em;
+      vertical-align: top;
+    }
+  }
 }
