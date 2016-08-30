@@ -21,7 +21,7 @@ class Variation < ApplicationRecord
   end
   
   def price_wholesale_render(currency)
-    price_retail_raw.exchange_to(currency).fractional
+    price_wholesale_raw.exchange_to(currency).fractional
   end
   
   def full_name

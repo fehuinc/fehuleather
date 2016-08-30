@@ -38,7 +38,8 @@ class WholesalesController < ApplicationController
     merchant = Merchant.find session[:merchant_id]
     order = merchant.current_order
     build = Build.find params[:build_id]
-    result = order.update_item_from_build build, params[:quantity], "CAD", true
+    currency = nil # Temporarily disabled
+    result = order.update_item_from_build build, params[:quantity], currency
     render json: result
   end
   
@@ -46,6 +47,7 @@ class WholesalesController < ApplicationController
   def checkout
     @merchant = Merchant.includes(current_order: [items: [build: [:variation]]]).find session[:merchant_id]
     @order = @merchant.current_order
+    @subtotal = @order.subtotal("CAD").to_i # TODO: Add currency
     @items_count = @order.items.map(&:quantity).reduce(&:+)
   end
   
@@ -58,7 +60,7 @@ class WholesalesController < ApplicationController
     @order.address = Address.find wholesale_order_params[:shippingAddressId] # From Angular
     
     token = wholesale_order_params[:token] # From JS
-    amount = @order.subtotal.to_i # cents
+    amount = @order.subtotal("CAD").to_i # cents TODO: Add currency
     description = wholesale_order_params[:description] # From HTML
     currency = wholesale_order_params[:currency] # From Angular
     

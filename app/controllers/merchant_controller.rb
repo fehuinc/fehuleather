@@ -4,7 +4,7 @@ class MerchantController < ApplicationController
     merchant = Merchant.find_by_id(session[:merchant_id])
     session[:merchant_email] = merchant.email if merchant.present? # Make future login easier
     session[:merchant_id] = nil
-    redirect_to merchant_path
+    redirect_to root_path
   end
   
   

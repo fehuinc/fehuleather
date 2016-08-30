@@ -27,12 +27,12 @@ class Build < ApplicationRecord
     end
   end
   
-  def price_wholesale_render(currency)
-    variation.price_wholesale_render(currency)
-  end
-  
   def price_retail_render(currency)
     variation.price_retail_render(currency)
+  end
+
+  def price_wholesale_render(currency)
+    variation.price_wholesale_render(currency)
   end
   
   def retail_prices # -> Dollars

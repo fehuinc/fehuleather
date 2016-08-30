@@ -61,7 +61,7 @@
               <span ng-init="editorBuild.product_name='<%= @product.name %>'"></span>
               <span ng-init="editorBuild.size_name='<%= build.size.name %>'"></span>
               <span ng-init="editorBuild.variation_name='<%= variation.name %>'"></span>
-              <span ng-init="editorBuild.price=<%= build.price_wholesale_render("CAD") %>"></span>
+              <span ng-init="editorBuild.prices=<%= build.wholesale_prices.to_json %>"></span>
               <span ng-init="editorBuild.image='<%= variation.wholesale_image %>'"></span>
             </div>
           <% end %>

@@ -16,7 +16,6 @@
 
 <section ng-cloak>
   <h2>Where should we ship it to?</h2>
-  
   <div class="addresses">
     <% @merchant.addresses.each do |address| %>
       <div class="address" ng-click="shipTo = <%=address.id%>; email = '<%=address.email%>'" ng-class="{selected:shipTo == <%=address.id%>}">
@@ -36,7 +35,7 @@
     <% end %>
   </div>
   
-  <div class="perspective in-bl">
+  <div class="perspective center">
     <%= link_to "New Address", new_merchant_address_path, class: "button" %>
   </div>
 </section>
@@ -88,7 +87,7 @@
     
     <input type="hidden" name="shippingAddressId" value="{{shipTo | json}}">
     <input type="hidden" name="email" value="{{email}}">
-    <input type="hidden" name="subtotal" value="<%= @order.subtotal.to_i %>">
+    <input type="hidden" name="subtotal" value="<%= @subtotal %>">
     <input type="hidden" name="description" value="<%= "#{@items_count} Wholesale Item".pluralize(@items_count) %>">
     <input type="hidden" name="notes" value="{{notes | json}}">
     

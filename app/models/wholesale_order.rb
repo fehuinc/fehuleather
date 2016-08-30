@@ -7,30 +7,30 @@ class WholesaleOrder < ApplicationRecord
     uuid.parameterize
   end
   
-  def subtotal
-    items.map { |i| i.price.fractional * i.quantity }.reduce(0, :+)
+  def subtotal(currency)
+    items.map { |i| i.build.price_wholesale_render(currency) * i.quantity }.reduce(0, :+)
   end
   
   def item_for_build(build)
     items.where(build_id: build.id).first
   end
   
-  def create_item_for_build(build, currency, isWholesale)
+  def create_item_for_build(build, currency)
     item = items.new(
       build_id: build.id,
       build: build,
       build_name: build.build_name,
       product_name: build.product.name,
-      price: isWholesale ? build.price_wholesale(currency) : build.price_retail(currency),
+      #price: build.price_wholesale_render(currency) Should we do the price later, once we know the currency?
       quantity: 0
     )
     item.save!
     item
   end
   
-  def update_item_from_build(build, quantity, currency, isWholesale)
+  def update_item_from_build(build, quantity, currency)
     if quantity > 0
-      item = item_for_build(build) || create_item_for_build(build, currency, isWholesale)
+      item = item_for_build(build) || create_item_for_build(build, currency)
       item.quantity = quantity
       item.save! # Will error if this fails, which is what we want
       item.quantity

@@ -23,7 +23,7 @@ angular.module "WholesaleOrder", []
       product_name: orderItem.build.product.name
       size_name: orderItem.build.size.name
       variation_name: orderItem.build.variation.name
-      price: orderItem.build.price_wholesale
+      prices: orderItem.build.wholesale_prices
       image: orderItem.build.variation.wholesale_image
       quantity: orderItem.quantity
   
@@ -34,7 +34,7 @@ angular.module "WholesaleOrder", []
       product_name: editorBuild.product_name
       size_name: editorBuild.size_name
       variation_name: editorBuild.variation_name
-      price: editorBuild.price
+      prices: editorBuild.prices
       image: editorBuild.image
   
   updateQuantity = (editorBuild, newQuantity)->
