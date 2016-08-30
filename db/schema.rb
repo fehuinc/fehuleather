@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.integer  "variation_id"
     t.integer  "size_id"
     t.text     "model"
-    t.integer  "stock",          default: 0
+    t.integer  "stock",          default: 1
     t.boolean  "show_retail",    default: true, null: false
     t.boolean  "show_wholesale", default: true, null: false
     t.datetime "created_at"
