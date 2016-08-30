@@ -1,0 +1,26 @@
+Hi there.
+
+This is Ivan from Fehu Inc. As you've probably guessed, this electronic letter confirms that we've received your order of this choice pick of leather goodness:
+
+<% @order.items.each do |item| %>
+  <%= item.quantity == 1 ? "a" : "#{item.quantity} of the" %> <%= item.build_name %> <%= item.product_name %>
+<% end %>
+
+In a few weeks, it will show up on your doorstep. Or your friend's doorstep. Or your step-cousin's aunt's high school science teacher's doorstep. Whoever it might be, they live here:
+
+<%= @order.address.line1 %>
+<%= @order.address.line2 if @order.address.line2.present? %>
+<%= @order.address.region %>
+<%= @order.address.code %>
+<%= @order.address.country %>
+
+They're in for a delightful leather treat.
+
+Now, if you would like to talk you can just reply to this email. I'd be quite happy to hear from you, to answer your questions, and to test out your new cookie recipe.
+
+With resounding consonance,
+
+Ivan Reese
+Fehu Inc.
+
+Lovingly crafted at home in Calgary, Alberta and in cyberspace at www.fehuleather.com
