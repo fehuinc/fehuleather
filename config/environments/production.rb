@@ -120,7 +120,7 @@ Rails.application.configure do
   Rails.application.config.middleware.use ExceptionNotification::Rack,
     email: {
       email_prefix: "Heroku Error: ",
-      sender_address: %{Fehu <freyja@fehuleather.com>},
+      sender_address: %{Fehu <ivan@fehuleather.com>},
       exception_recipients: %w{ivanreese@gmail.com},
       email_format: :html
     }

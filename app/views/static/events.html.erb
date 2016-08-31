@@ -1,21 +1,21 @@
 <h1 class="page-title">We Are Coming At You Live</h1>
 
 <section>
-  <% if @events.empty? %>
-    No upcoming events.
-  <% end %>
-  
   <% @events.each do |event| %>
     <div class="event">
       <h3 class="bar <%= bar_color %>"><%=event.name%></h3>
       <p><%=event.date%></p>
+      <p class="description"><%=event.description.html_safe%></p>
       <p><%=event.location%></p>
       <% if event.website %><p><a href="<%=event.website%>">Website</a></p><% end %>
-      <p><%=event.description.html_safe%></p>
     </div>
+  <% end %>
+
+  <% if @events.empty? %>
+    No upcoming events.
   <% end %>
 </section>
 
 <section class="book-us">
-  <p>Want to book us for an event? Get in touch:<br><em>freyja@fehuleather.com</em></p>
+  <p>Want to book us for an event? Get in touch:<br><em>ivan@fehuleather.com</em></p>
 </section>
