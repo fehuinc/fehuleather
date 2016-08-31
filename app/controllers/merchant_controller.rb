@@ -87,7 +87,7 @@ class MerchantController < ApplicationController
       redirect_to merchant_path
     
     else
-      render :edit
+      render :index
     
     end
   end

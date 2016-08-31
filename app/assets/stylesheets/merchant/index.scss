@@ -2,7 +2,7 @@ $dark: #456;
 $yellow: hsl(30, 30%, 98%);
 $blue: hsl(200, 50%, 95%);
 
-.merchant#index {
+.merchant#index, .merchant#edit {
   main {
     max-width: 50rem;
   }

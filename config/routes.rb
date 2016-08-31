@@ -55,8 +55,7 @@ Rails.application.routes.draw do
       scope constraints: lambda { |request| !request.session[:merchant_id].nil? && !Merchant.find_by_id(request.session[:merchant_id]).nil? } do
         get "merchant" => "merchant#index"
         post "merchant" => "merchant#index"
-        get "merchant/edit" => "merchant#edit"
-        patch "merchant/edit" => "merchant#update"
+        patch "merchant" => "merchant#update"
         
         namespace :merchant do
           resources :addresses, except: [:index, :show]

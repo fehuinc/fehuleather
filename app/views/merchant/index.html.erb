@@ -13,7 +13,7 @@
 </section>
 
 <section>
-  <%= form_for @merchant, url: merchant_edit_path do |f| %>
+  <%= form_for @merchant, url: merchant_path do |f| %>
     <p>Need to update your contact info?</p>
     
     <%= render 'partials/form_errors', model: @merchant %>
