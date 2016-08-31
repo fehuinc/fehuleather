@@ -11,4 +11,14 @@ class OrderMailer < ActionMailer::Base
     mail to: "ivan@fehuleather.com", subject: "A Retail Stink!"
   end
   
+  def customer_wholesale_order(order)
+    @order = order
+    mail to: order.address.email, subject: "Your Order from Fehu"
+  end
+  
+  def admin_wholesale_order(order)
+    @order = order
+    mail to: "ivan@fehuleather.com", subject: "A Retail Stink!"
+  end
+  
 end

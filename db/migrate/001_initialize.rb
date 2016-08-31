@@ -103,7 +103,7 @@ class Initialize < ActiveRecord::Migration
     end
     
     create_table :retail_orders do |t|
-      t.references :address            # Not required. It should be safe to delete these, for PII reasons
+      t.references :address            # Not required. It should be safe to delete the order address after a while, for PII reasons
       t.uuid :uuid,                    default: 'uuid_generate_v4()'
       t.text :notes
       t.text :payment_id
@@ -114,7 +114,7 @@ class Initialize < ActiveRecord::Migration
       t.belongs_to :merchant,          required: true, index: true
       t.references :address,           required: true
       t.uuid :uuid,                    default: 'uuid_generate_v4()'
-      t.text :notes
+      t.text :orderInfo
       t.text :payment_id
       t.datetime :submitted
       t.datetime :paid

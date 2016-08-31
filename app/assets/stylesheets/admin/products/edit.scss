@@ -33,9 +33,19 @@
   }
   
   .variation {
-    display: block;
+    display: flex;
+    align-items: center;
     text-decoration: none;
     &:hover span { text-decoration: underline; }
-    img { width: 3.1em; }
+    
+    img {
+      width: 3.1em;
+      height: 3.1em;
+      background-color: #F8F8F8;
+    }
+    
+    span {
+      padding-left: .5em;
+    }
   }
 }

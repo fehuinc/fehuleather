@@ -39,6 +39,12 @@
     <% end %>
     
   </div>
+
+  <% if f.object.errors.any? %>
+    <div id="form-errors" class="center">
+      Please complete the fields marked in red.
+    </div>
+  <% end %>
 </section>
 
 <section class="perspective center">
@@ -49,6 +55,4 @@
       Hold To Delete
     </deleter>
   <% end %>
-
-  <%= render 'partials/form_errors', model: f.object %>
 </section>

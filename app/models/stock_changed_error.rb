@@ -1,0 +1,2 @@
+class StockChangedError < Exception
+end

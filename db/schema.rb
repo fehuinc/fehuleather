@@ -190,7 +190,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.integer  "merchant_id"
     t.integer  "address_id"
     t.uuid     "uuid",        default: -> { "uuid_generate_v4()" }
-    t.text     "notes"
+    t.text     "orderInfo"
     t.text     "payment_id"
     t.datetime "submitted"
     t.datetime "paid"

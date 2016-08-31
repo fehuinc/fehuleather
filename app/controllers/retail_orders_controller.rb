@@ -1,5 +1,4 @@
 class RetailOrdersController < ApplicationController
-  class StockChangedError < Exception; end
   
   def show
     @order = RetailOrder.find_by_uuid(params[:id])

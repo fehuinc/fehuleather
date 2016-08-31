@@ -17,7 +17,7 @@ class Product < ApplicationRecord
 
   def wholesale_image
     v = variations.first
-    v.wholesale_image or v.totem_image
+    v.wholesale_image
   end
   
   def show_wholesale

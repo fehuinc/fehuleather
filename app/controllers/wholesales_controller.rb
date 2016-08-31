@@ -53,16 +53,25 @@ class WholesalesController < ApplicationController
   
   
   def submit
-    @merchant = Merchant.find(session[:merchant_id])
-    @order = @merchant.current_order
-    
-    @order.notes = notes = wholesale_order_params[:notes] # From Angular
-    @order.address = Address.find wholesale_order_params[:shippingAddressId] # From Angular
-    
+    merchant = Merchant.find(session[:merchant_id])
+    order = setup_order merchant
+    # By now, we're assuming the order is successful. We can now persist new stuff to the DB.
+    complete_order order, merchant
+    redirect_to show_wholesale_path order
+  
+  rescue StockChangedError
+    @order = merchant.current_order
+    render :stock_changed
+  end
+  
+  
+  def submit_cc
+    merchant = Merchant.find(session[:merchant_id])
+    order = setup_order merchant
     token = wholesale_order_params[:token] # From JS
-    amount = @order.subtotal("CAD").to_i # cents TODO: Add currency
+    amount = order.subtotal("CAD").to_i # cents TODO: Add currency
     description = wholesale_order_params[:description] # From HTML
-    currency = wholesale_order_params[:currency] # From Angular
+    currency = "CAD" # wholesale_order_params[:currency] # From Angular
     
     charge = Stripe::Charge.create(
       source: token,
@@ -71,22 +80,17 @@ class WholesalesController < ApplicationController
       currency: currency
     )
     
-    @order.payment_id = charge.id
+    order.payment_id = charge.id
+    order.paid = Time.now
     
-    @order.submitted = Time.now
-    @order.paid = Time.now
-    
-    @order.save!
-    @order.reload
-    
-    @merchant.current_order = nil
-    @merchant.save!
-    
-    # Email Freyja
-    # Email the customer
-    
-    redirect_to show_wholesale_path(@order)
+    # By now, we're assuming the order is successful. We can now persist new stuff to the DB.
+    complete_order order, merchant
+    redirect_to show_wholesale_path(order)
   
+  rescue StockChangedError
+    @order = merchant.current_order
+    render :stock_changed
+
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to wholesale_checkout_path
@@ -98,10 +102,41 @@ class WholesalesController < ApplicationController
     @many = @order.items.count > 1 || @order.items.first.quantity > 1
   end
   
+  
 private
   
+  
   def wholesale_order_params
-    params.permit(:token, :shippingAddressId, :notes, :currency, :description)
+    params.permit(:token, :shippingAddressId, :orderInfo, :currency, :description)
   end
   
+  
+  def setup_order merchant
+    order = merchant.current_order
+    order.orderInfo = wholesale_order_params[:orderInfo] # From Angular
+    order.address = Address.find wholesale_order_params[:shippingAddressId] # From Angular
+    
+    raise StockChangedError.new if order.items.count == 0
+    order.items.each { |item| raise StockChangedError.new if item.quantity > item.build.stock }
+    
+    order
+  end
+  
+  
+  def complete_order order, merchant
+    order.submitted = Time.now
+    
+    order.items.each do |item|
+      item.build.stock -= item.quantity
+    end
+    
+    order.save!
+    order.reload
+    
+    merchant.current_order = nil
+    merchant.save!
+    
+    # TODO: OrderMailer.customer_wholesale_order(order).deliver_now
+    OrderMailer.admin_wholesale_order(order).deliver_now
+  end
 end
