@@ -6,23 +6,41 @@
     <div class="order <%= order.class.to_s %>">
       <div class="type"><%= order.class.to_s.slice(0) %></div>
       <div class="name"><%= order.address.name %></div>
-      <div class="email"><%= order.address.email %></div>
       <div class="line1"><%= order.address.line1 %></div>
       <% if order.address.line2.present? %>
         <div class="line2"><%= order.address.line2 %></div>
       <% end %>
-      <div class="region"><%= order.address.region %></div>
+      <div>
+        <span class="city"><%= order.address.city %></span>,
+        <span class="region"><%= order.address.region %></span>
+      </div>
       <div class="code"><%= order.address.code %></div>
       <div class="country"><%= order.address.country %></div>
+      <div class="email"><%= order.address.email %></div>
       <table class="items">
         <% order.items.each do |item| %>
         <tr class="item">
           <td class="quantity"><%= item.quantity %></div>
           <td class="build"><%= item.build_name %></div>
           <td class="product"><%= item.product_name %></div>
+          <td>
+            <label>
+              <input type="checkbox" name="<%=item.id%>">
+              Ready To Go
+            </label>
+          </td>
         </tr>
         <% end %>
       </table>
+      <div>
+        <label>
+          Tracking Number
+          <input type="text">
+        </label>
+        <div class="perspective">
+          <input type="submit" value="Mark As Shipped">
+        </div>
+      </div>
     </div>
   <% end %>
 <% end %>
