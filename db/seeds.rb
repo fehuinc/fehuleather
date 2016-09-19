@@ -1,49 +1,44 @@
 bracelets = Kingdom.create! name: "Bracelet"
 belts = Kingdom.create! name: "Belt"
 
-# row = TotemRow.create! index: 0
-# fuzzy_cuff = bracelets.products.create! name: "Fuzzy Cuff", price_retail_cents: 6400, price_wholesale_cents: 2400, wholesale_description: "You should order about 100 of these for your store. That'd be <small>sooo</small> <em>HOOT!</em>."
-# fuzzy_cuff.infos.create! name: "Sizing", content: "Not too big, not too small. Pretty good overall."
-# fuzzy_cuff.infos.create! name: "Features", content: "Slices, dices."
-# fuzzy_cuff.sizes.create! name: "One Of A Kind"
-# row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Painter", totem_image: ENV.fetch("IMAGEPATH") + "fuzzy-cuff/totem/painter.jpg"),  fuzzy_cuff.sizes)
-# row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Mo",      totem_image: ENV.fetch("IMAGEPATH") + "fuzzy-cuff/totem/mo.jpg"),       fuzzy_cuff.sizes)
-# row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Spook",   totem_image: ENV.fetch("IMAGEPATH") + "fuzzy-cuff/totem/spook.jpg"),    fuzzy_cuff.sizes)
-# row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Duster",  totem_image: ENV.fetch("IMAGEPATH") + "fuzzy-cuff/totem/duster.jpg"),   fuzzy_cuff.sizes)
-# row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Grumble", totem_image: ENV.fetch("IMAGEPATH") + "fuzzy-cuff/totem/grumble.jpg"),  fuzzy_cuff.sizes)
-# row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Tippy",   totem_image: ENV.fetch("IMAGEPATH") + "fuzzy-cuff/totem/tippy.jpg"),    fuzzy_cuff.sizes)
-# row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Wizen",   totem_image: ENV.fetch("IMAGEPATH") + "fuzzy-cuff/totem/wizen.jpg"),    fuzzy_cuff.sizes)
-# row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Chief",   totem_image: ENV.fetch("IMAGEPATH") + "fuzzy-cuff/totem/chief.jpg"),    fuzzy_cuff.sizes)
-# row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Fluffle", totem_image: ENV.fetch("IMAGEPATH") + "fuzzy-cuff/totem/fluffle.jpg"),  fuzzy_cuff.sizes)
-# row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Wiley",   totem_image: ENV.fetch("IMAGEPATH") + "fuzzy-cuff/totem/wiley.jpg"),    fuzzy_cuff.sizes)
-# row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Bean",    totem_image: ENV.fetch("IMAGEPATH") + "fuzzy-cuff/totem/bean.jpg"),     fuzzy_cuff.sizes)
-# row.items.create! variation: BuildMaker.make_build_pair((fuzzy_cuff.variations.create! name: "Hunt",    totem_image: ENV.fetch("IMAGEPATH") + "fuzzy-cuff/totem/hunt.jpg"),     fuzzy_cuff.sizes)
-
-row = TotemRow.create! index: 1
-cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet", price_retail_cents: 6400, price_wholesale_cents: 2400, wholesale_description: "You should order about 100 of these for your store. That'd be <small>sooo</small> <em>HOOT!</em>."
+row = TotemRow.create! index: 0
+cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet", price_retail_cents: 9800, price_wholesale_cents: 3400
 cc_bracelet.infos.create! name: "Sizing", content: "Not too big, not too small. Pretty good overall."
 cc_bracelet.infos.create! name: "Features", content: "Slices, dices."
 cc_bracelet.sizes.create! name: "Adjustable"
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "1", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/1.jpg"),         cc_bracelet.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "2", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/2.jpg"),          cc_bracelet.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "3", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/3.jpg"),    cc_bracelet.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "4", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/4.jpg"),       cc_bracelet.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "5", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/5.jpg"),          cc_bracelet.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "6", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/6.jpg"),    cc_bracelet.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "7", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/7.jpg"),    cc_bracelet.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Angelite", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/angelite.jpg"), cc_bracelet.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Basic", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/basic.jpg", adjust_retail_cents: -3400, adjust_wholesale_cents: -1200), cc_bracelet.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Hypersthene", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/hypersthene.jpg"), cc_bracelet.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Labradorite", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/labradorite.jpg"), cc_bracelet.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Pyrite", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/pyrite.jpg"), cc_bracelet.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Tourmaline", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/tourmaline.jpg"), cc_bracelet.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Lapis", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/lapis.jpg"), cc_bracelet.sizes)
 
-row = TotemRow.create! index: 2
-cc_belt = belts.products.create! name: "Coffee & Crystals Belt", price_retail_cents: 6400, price_wholesale_cents: 2400, wholesale_description: "You should order about 100 of these for your store. That'd be <small>sooo</small> <em>HOOT!</em>."
+row = TotemRow.create! index: 1
+cc_belt = belts.products.create! name: "Coffee & Crystals Belt", price_retail_cents: 21900, price_wholesale_cents: 8000
 cc_belt.infos.create! name: "Sizing", content: "Not too big, not too small. Pretty good overall."
 cc_belt.infos.create! name: "Features", content: "Slices, dices."
 cc_belt.sizes.create! name: "Adjustable"
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "1", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/1.jpg"),         cc_belt.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "2", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/2.jpg"),          cc_belt.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "3", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/3.jpg"),    cc_belt.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "4", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/4.jpg"),       cc_belt.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "5", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/5.jpg"),          cc_belt.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "6", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/6.jpg"),    cc_belt.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "7", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/7.jpg"),    cc_belt.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Angelite", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/angelite.jpg"), cc_belt.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Basic", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/basic.jpg", adjust_retail_cents: -13500, adjust_wholesale_cents: -4800), cc_belt.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Hypersthene", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/hypersthene.jpg"), cc_belt.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Labradorite", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/labradorite.jpg"), cc_belt.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Pyrite", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/pyrite.jpg"), cc_belt.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Tourmaline", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/tourmaline.jpg"), cc_belt.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Lapis", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/lapis.jpg"), cc_belt.sizes)
+
+row = TotemRow.create! index: 2
+gilt_cuff = bracelets.products.create! name: "Gilt Cuff", price_retail_cents: 8400, price_wholesale_cents: 3200
+gilt_cuff.infos.create! name: "Sizing", content: "Not too big, not too small. Pretty good overall."
+gilt_cuff.infos.create! name: "Features", content: "Slices, dices."
+gilt_cuff.sizes.create! name: "Adjustable"
+row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Taupe with Yellow Gold", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/yellow-taupe.jpg"), gilt_cuff.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Taupe with White Gold", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/white-taupe.jpg"), gilt_cuff.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Brown with Yellow Gold", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/yellow-brown.jpg"), gilt_cuff.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Brown with White Gold", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/white-brown.jpg"), gilt_cuff.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Black with Yellow Gold", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/yellow-black.jpg"), gilt_cuff.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Black with White Gold", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/white-black.jpg"), gilt_cuff.sizes)
+row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Black with Yellow Gold Stripes", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/stripes-black.jpg"), gilt_cuff.sizes)
 
 
 ## LOCATIONS ######################################################################################

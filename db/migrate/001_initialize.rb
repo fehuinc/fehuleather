@@ -12,7 +12,7 @@ class Initialize < ActiveRecord::Migration
       t.belongs_to :kingdom,           required: true, index: true
       t.text :name,                    null: false
       t.boolean :made_to_order,        null: false, default: false
-      t.text :wholesale_description
+      t.text :wholesale_description,   default: ""
       t.monetize :price_retail
       t.monetize :price_wholesale
       t.timestamps
@@ -23,7 +23,6 @@ class Initialize < ActiveRecord::Migration
       t.belongs_to :product,           required: true, index: true
       t.text :name,                    null: false
       t.text :model
-      t.text :description
       t.text :totem_image
       t.text :wholesale_image
       t.monetize :adjust_retail,       default: 0
