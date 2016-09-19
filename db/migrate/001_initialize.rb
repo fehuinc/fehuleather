@@ -2,14 +2,7 @@ class Initialize < ActiveRecord::Migration
   def change
     enable_extension 'uuid-ossp'
     
-    create_table :kingdoms do |t| # eg: belt, bracelet
-      t.text :name,	                   null: false
-      t.timestamps
-      t.index :name,                   unique: true
-    end
-    
     create_table :products do |t| # eg: wrap cuff, belt bag, nude raw ring
-      t.belongs_to :kingdom,           required: true, index: true
       t.text :name,                    null: false
       t.boolean :made_to_order,        null: false, default: false
       t.text :wholesale_description,   default: ""

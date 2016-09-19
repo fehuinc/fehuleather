@@ -1,8 +1,5 @@
-bracelets = Kingdom.create! name: "Bracelet"
-belts = Kingdom.create! name: "Belt"
-
 row = TotemRow.create! index: 0
-cc_bracelet = bracelets.products.create! name: "Coffee & Crystals Bracelet", price_retail_cents: 9800, price_wholesale_cents: 3400
+cc_bracelet = Product.create! name: "Coffee & Crystals Bracelet", price_retail_cents: 9800, price_wholesale_cents: 3400
 cc_bracelet.infos.create! name: "Sizing", content: "Not too big, not too small. Pretty good overall."
 cc_bracelet.infos.create! name: "Features", content: "Slices, dices."
 cc_bracelet.sizes.create! name: "Adjustable"
@@ -15,7 +12,7 @@ row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.
 row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Lapis", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/lapis.jpg"), cc_bracelet.sizes)
 
 row = TotemRow.create! index: 1
-cc_belt = belts.products.create! name: "Coffee & Crystals Belt", price_retail_cents: 21900, price_wholesale_cents: 8000
+cc_belt = Product.create! name: "Coffee & Crystals Belt", price_retail_cents: 21900, price_wholesale_cents: 8000
 cc_belt.infos.create! name: "Sizing", content: "Not too big, not too small. Pretty good overall."
 cc_belt.infos.create! name: "Features", content: "Slices, dices."
 cc_belt.sizes.create! name: "Adjustable"
@@ -28,7 +25,7 @@ row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.crea
 row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Lapis", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/lapis.jpg"), cc_belt.sizes)
 
 row = TotemRow.create! index: 2
-gilt_cuff = bracelets.products.create! name: "Gilt Cuff", price_retail_cents: 8400, price_wholesale_cents: 3200
+gilt_cuff = Product.create! name: "Gilt Cuff", price_retail_cents: 8400, price_wholesale_cents: 3200
 gilt_cuff.infos.create! name: "Sizing", content: "Not too big, not too small. Pretty good overall."
 gilt_cuff.infos.create! name: "Features", content: "Slices, dices."
 gilt_cuff.sizes.create! name: "Adjustable"
@@ -207,7 +204,6 @@ Location.create!(
 
 ## EVENTS #########################################################################################
 
-Event.create! name: "Spruce Meadows: Masters", date: "Sep 7-11", location: "Spruce Meadows, 18011 Spruce Meadows Way SW, Calgary, AB", website: "http://www.sprucemeadows.com/tournaments/ex_maps.jsp?id=29", description: "The eyes of the world are focused on Spruce Meadows as the best athletes from the world's top show jumping nations compete for prize money and international acclaim during the Spruce Meadows 'Masters'. Family entertainment and shopping opportunities are available for guests from Wednesday to Sunday."
 Event.create! name: "Etsy: Made In Canada - Calgary Market", date: "Sep 23-24", location: "Genesis Wellness Center, Calgary, AB", website: "https://www.etsy.com/ca/local/event/41783220462/etsy-made-in-canada-calgary-market-september-23", description: "Two day pop-up market featuring handmade and vintage Etsy shops from Calgary, Alberta and surrounding area."
 Event.create! name: "All Things Pretty Market Goes Country", date: "Oct 1-2", location: "Lacombe, AB", website: "https://www.facebook.com/events/220711668278745/", description: "Join us at The Big Red Barn in Lacombe, AB again for our Fall Market! Vintage, Shabby Chic, Handmade, Sewn, Antique, Farm Grown, Curated, Designed, and Created goods 50+ Indoor and Outdoor vendors, food trucks, fresh and local produce."
 Event.create! name: "All Things Pretty Christmas Market", date: "Nov 18-19", location: "Red Deer, AB", website: "https://www.facebook.com/events/1087080984687616/", description: "The All Things Pretty Market brings you our Christmas Edition! Handcrafters, Designers, Shabby Chicers, Jewelers, Curators, Sewers, Growers and Creators all together in one place for you to shop and experience the most unique event in Central Alberta."

@@ -7,17 +7,6 @@
 </h2>
 
 <section ng-controller="LocationsCtrl">
-  <form>
-    <label>
-      <span>City</span>
-      <input type="text" ng-model="search.city">
-    </label>
-    <select ng-model="searchProvince" ng-options="value for value in searchProvinces"></select>
-  </form>
-  
-  <div ng-show="!(locations | filter:search).length && (searchProvince == allProvinces)">Nobody here :(</div>
-  <div ng-show="!(countries['Canada'][searchProvince] | filter:search).length && (searchProvince != allProvinces)">Nobody here :(</div>
-  
   <div class="locations">
     <div class="country" ng-repeat="(countryName, provinceObj) in countries">
       <div class="province"
@@ -37,7 +26,7 @@
               <pre>{{location.postal}}</pre>
               <pre ng-show="location.country != 'Canada'">{{location.country}}</pre>
             </address>
-            <a ng-href="http://{{location.url}}" ng-show="location.url">Website</a>
+            <a class="website" ng-href="http://{{location.url}}" ng-show="location.url">Website</a>
             <div class="perspective">
               <a href="/admin/locations/{{location.id}}/edit" class="button">Edit</a>
             </div>

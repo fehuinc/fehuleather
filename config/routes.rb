@@ -83,10 +83,7 @@ Rails.application.routes.draw do
           resources :totem_items, shallow: true
         end
         
-        resources :kingdoms, except: [:show] do
-          resources :products, only: [:new, :create]
-        end
-        resources :products, only: [:edit, :update, :destroy] do
+        resources :products, except: [:show] do
           resources :product_infos, only: [:new, :create]
           resources :variations, only: [:new, :create]
           resources :sizes, only: [:new, :create]

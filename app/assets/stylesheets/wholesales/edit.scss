@@ -10,34 +10,30 @@
       text-align: right;
     }
 
-    .kingdom {
-      margin-top: 2em;
+    h2 {
+      padding: 0 0 .5em;
+    }
+    
+    .product {
+      display: inline-block;
+      width: 10em;
+      margin: 0;
+      text-align: center;
+      text-decoration: none;
+      vertical-align: top;
+      cursor: pointer;
       
-      h2 {
-        padding: 0 0 .5em;
+      img {
+        width: 100%;
       }
       
-      .product {
-        display: inline-block;
-        width: 10em;
-        margin: 0;
-        text-align: center;
-        text-decoration: none;
-        vertical-align: top;
-        cursor: pointer;
-        
-        img {
-          width: 100%;
-        }
-        
-        span {
-          font-size: 1.25em;
-        }
-        
-        &:hover {
-          color: $dark;
-          text-decoration: underline;
-        }
+      span {
+        font-size: 1.25em;
+      }
+      
+      &:hover {
+        color: $dark;
+        text-decoration: underline;
       }
     }
   }

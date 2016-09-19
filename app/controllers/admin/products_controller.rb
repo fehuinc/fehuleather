@@ -1,12 +1,14 @@
 class Admin::ProductsController < ApplicationController
+  def index
+    @products = Product.order(:name)
+  end
+  
   def new
-    @kingdom = Kingdom.find params[:kingdom_id]
-    @product = @kingdom.products.new
+    @product = Products.new
   end
   
   def create
-    @kingdom = Kingdom.find params[:kingdom_id]
-    @product = @kingdom.products.new standard_params
+    @product = Products.new standard_params
     if @product.save
       flash[:notice] = "Saved"
       redirect_to edit_admin_product_path(@product)

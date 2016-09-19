@@ -25,7 +25,7 @@ class StaticController < ApplicationController
   
   def stink
     if Access.admin?(session)
-      redirect_to :admin_kingdoms
+      redirect_to :admin_products
     else
       render :stink
     end
@@ -34,7 +34,7 @@ class StaticController < ApplicationController
   def stink_in
     if Access.is_admin_password(params[:password])
       Access.become_admin!(session)
-      redirect_to :admin_kingdoms
+      redirect_to :admin_products
     else
       @stink_status = "You're not very stinky."
       render :stink

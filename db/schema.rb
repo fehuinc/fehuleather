@@ -55,13 +55,6 @@ ActiveRecord::Schema.define(version: 1) do
     t.datetime "updated_at"
   end
 
-  create_table "kingdoms", force: :cascade do |t|
-    t.text     "name",       null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["name"], name: "index_kingdoms_on_name", unique: true, using: :btree
-  end
-
   create_table "locations", force: :cascade do |t|
     t.text     "name",                      null: false
     t.text     "url"
@@ -117,7 +110,6 @@ ActiveRecord::Schema.define(version: 1) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer  "kingdom_id"
     t.text     "name",                                     null: false
     t.boolean  "made_to_order",            default: false, null: false
     t.text     "wholesale_description",    default: ""
@@ -127,7 +119,6 @@ ActiveRecord::Schema.define(version: 1) do
     t.string   "price_wholesale_currency", default: "CAD", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["kingdom_id"], name: "index_products_on_kingdom_id", using: :btree
     t.index ["name"], name: "index_products_on_name", unique: true, using: :btree
   end
 
