@@ -11,20 +11,30 @@ info-selector {
     cursor: pointer;
     
     &.active {
-      background: $blue;
+      background: $med;
       color: $dark;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
     }
   }
 }
 
 info-display {
   display: block;
-  background: $blue;
   
   div {
-    display: inline-block;
     text-align: left;
     padding: 1em;
+    margin: 0 3vmin 3vmin;
+    border-top: 4px solid $med;
+    background: #F8F8F8;
+  }
+  
+  h4 { margin-bottom: 0; }
+  p { margin-top: 0; }
+  
+  p + h4 {
+    margin-top: 1em;
   }
 }
 

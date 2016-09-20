@@ -45,7 +45,19 @@
       <% item.product.infos.where(show_retail: true).each do |info| %>
         <div ng-show="showing == <%=info.id%>"><%= info.content %></div>
       <% end %>
-      <div ng-show="showing == -1">This is the Q&A</div>
+      <div ng-show="showing == -1">
+        <h4>Payment</h4>
+        <p>We accept Visa, MasterCard, American Express, and really good backrubs.</p>
+        
+        <h4>Shipping</h4>
+        <p>We ship to Canada and the US. It takes a week or two. We'll cover the cost.</p>
+        
+        <h4>Returns & Refunds</h4>
+        <p>If for any reason you are unhappy with your purchase, please <a href="/about">let us know</a>. We will do our utmost to make it right — refund, replacement, or special arrangement.</p>
+        
+        <h4>HEEEEELP!!!!!!</h4>
+        <p>If you have any other questions, don't hesitate to <a href="/about">get in touch</a>.</p>
+      </div>
     </info-display>
     
     <div class="padding" ng-show="showing == null"></div>
