@@ -45,6 +45,10 @@ totem-panel {
       
       .in-the-bag, .out-of-stock { padding: .5em 0; } // Make the effect on line height the same as the button
       
+      .in-the-bag a {
+        text-decoration: underline;
+      }
+      
       .out-of-stock {
         color: #999;
         background-color: #F8F8F8;

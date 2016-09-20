@@ -2,13 +2,14 @@
   perspective: 1000px;
   perspective-origin: center;
   text-align: center;
-  & > * {
+
+  & > a {
     display: inline-block;
     width: auto;
     margin: 0 .5rem;
   }
   
-  a {
+  a:not(.button) {
     text-decoration: none;
     &:hover { text-decoration: underline; }
   }

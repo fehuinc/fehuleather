@@ -97,6 +97,7 @@ Rails.application.routes.draw do
         resources :events, except: [:show]
         resources :locations, except: [:show]
         resources :orders, except: [:show]
+        get "wholesale" => "wholesale#index", as: "wholesale"
       end
     end
     

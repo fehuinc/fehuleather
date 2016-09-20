@@ -12,6 +12,7 @@
   padding: .5em;
   z-index: 101;
   transform: translate(-50%);
+  transition: transform .5s cubic-bezier(0.2, 0, 0, 1);
   
   img {
     width: 32px;
