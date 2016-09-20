@@ -31,8 +31,5 @@
 
 <div class="perspective">
   <%= f.submit "Save", class: "save" %>
-</div>
-
-<div class="center">
-  <%= link_to "Er... cancel please!", edit_admin_product_path(@product) %>
+  <%= link_to "Back", edit_admin_product_path(@product) %>
 </div>

@@ -38,10 +38,5 @@
 
 <div class="perspective">
   <%= f.submit "Save", class: "save" %>
-</div>
-
-<div class="row spread">
-  <%= link_to(@prev.name.titlecase, edit_admin_variation_path(@prev)) if edit %>
-  <%= link_to("Er... cancel please!", edit_admin_product_path(@product)) %>
-  <%= link_to(@next.name.titlecase, edit_admin_variation_path(@next)) if edit %>
+  <%= link_to "Back", edit_admin_product_path(@product) %>
 </div>

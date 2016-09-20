@@ -1,4 +1,15 @@
 .perspective {
   perspective: 1000px;
   perspective-origin: center;
+  text-align: center;
+  & > * {
+    display: inline-block;
+    width: auto;
+    margin: 0 .5rem;
+  }
+  
+  a {
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
 }

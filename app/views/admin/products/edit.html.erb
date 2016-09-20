@@ -36,8 +36,8 @@
   <div class="variations">
     <% @variations.each do |variation| %>
       <%= link_to edit_admin_variation_path(variation), class: "variation" do %>
-        <img src="<%=@product.totem_image%>">
-        <img src="<%=@product.wholesale_image%>">
+        <img src="<%=variation.totem_image%>">
+        <img src="<%=variation.wholesale_image%>">
         <span><%= variation.name %></span>
       <% end %>
     <% end %>
