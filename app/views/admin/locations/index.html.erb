@@ -6,7 +6,7 @@
   <%= link_to "New Location", new_admin_location_path, class: "button" %>
 </h2>
 
-<section ng-controller="LocationsCtrl">
+<section ng-cloak ng-controller="LocationsCtrl">
   <div class="locations">
     <div class="country" ng-repeat="(countryName, provinceObj) in countries">
       <div class="province"

@@ -36,16 +36,16 @@
   <div class="bottom">
     <info-selector>
       <% item.product.infos.where(show_retail: true).each do |info| %>
-        <div ng-click="showing = showing == <%=info.id%> ? null : <%=info.id%>" ng-class="{active:showing == <%=info.id%>}"><%= info.name %></div>
+        <div ng-cloak ng-click="showing = showing == <%=info.id%> ? null : <%=info.id%>" ng-class="{active:showing == <%=info.id%>}"><%= info.name %></div>
       <% end %>
-      <div ng-click="showing = showing == -1 ? null : -1" ng-class="{active:showing == -1}">Store Q&A</div>
+      <div ng-cloak ng-click="showing = showing == -1 ? null : -1" ng-class="{active:showing == -1}">Store Q&A</div>
     </info-selector>
 
     <info-display>
       <% item.product.infos.where(show_retail: true).each do |info| %>
-        <div ng-show="showing == <%=info.id%>"><%= info.content %></div>
+        <div ng-cloak ng-show="showing == <%=info.id%>"><%= info.content %></div>
       <% end %>
-      <div ng-show="showing == -1">
+      <div ng-cloak ng-show="showing == -1">
         <h4>Payment</h4>
         <p>We accept Visa, MasterCard, American Express, and really good back rubs.</p>
         

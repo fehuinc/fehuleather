@@ -43,7 +43,7 @@
         <%= image_tag variation.wholesale_image, class: "variation-image" if variation.wholesale_image %>
         <div class="builds">
           <% variation.builds.where(show_wholesale: true).each do |build| %>
-            <div class="build" item-editor>
+            <div ng-cloak class="build" item-editor>
               <div class="quantity">
                 <span class="size-name"><%= build.size.name %></span>
                 <div class="pill perspective">

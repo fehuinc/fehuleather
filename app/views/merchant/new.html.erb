@@ -19,7 +19,7 @@
   <div>
     <label>
       Your Name
-      <div class="info-prompt" ng-click="showOwnerNamePopup = !showOwnerNamePopup">?</div>
+      <div class="info-prompt" ng-cloak ng-click="showOwnerNamePopup = !showOwnerNamePopup">?</div>
       <%= f.text_field :your_name, placeholder: "eg: Tyr Annosaurus" %>
     </label>
   </div>
@@ -27,7 +27,7 @@
   <div>
     <label>
       Store Name
-      <div class="info-prompt" ng-click="showStoreNamePopup = !showStoreNamePopup">?</div>
+      <div class="info-prompt" ng-cloak ng-click="showStoreNamePopup = !showStoreNamePopup">?</div>
       <%= f.text_field :store_name, placeholder: "eg: Tiny Arms Apparel" %>
     </label>
   </div>
@@ -35,7 +35,7 @@
   <div>
     <label>
       Phone Number
-      <div class="info-prompt" ng-click="showOwnerPhonePopup = !showOwnerPhonePopup">?</div>
+      <div class="info-prompt" ng-cloak ng-click="showOwnerPhonePopup = !showOwnerPhonePopup">?</div>
       <%= f.text_field :phone_number, placeholder: "eg: (006) 500-0000" %>
     </label>
   </div>
@@ -50,17 +50,17 @@
 
 <% end %>
 
-<div class="info-popup" ng-show="showStoreNamePopup">
+<div class="info-popup" ng-cloak ng-show="showStoreNamePopup">
   If you represent multiple stores or locations, just enter the name of the overall brand.
   <div class="close" ng-click="showStoreNamePopup = false">Close</div>
 </div>
 
-<div class="info-popup" ng-show="showOwnerNamePopup">
+<div class="info-popup" ng-cloak ng-show="showOwnerNamePopup">
   If we need to follow up with you about this order, it helps to know who placed the order.
   <div class="close" ng-click="showOwnerNamePopup = false">Close</div>
 </div>
 
-<div class="info-popup" ng-show="showOwnerPhonePopup">
+<div class="info-popup" ng-cloak ng-show="showOwnerPhonePopup">
   We will try to reach you by email. If that fails, we'll try this number.
   <div class="close" ng-click="showOwnerPhonePopup = false">Close</div>
 </div>
