@@ -35,4 +35,8 @@ class Variation < ApplicationRecord
   def show_wholesale
     builds.where(show_wholesale: true).any?
   end
+  
+  def sold_out
+    !builds.any? { |b| b.stock > 0 }
+  end
 end

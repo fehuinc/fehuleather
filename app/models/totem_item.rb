@@ -26,4 +26,8 @@ class TotemItem < ApplicationRecord
       false
     end
   end
+  
+  def sold_out
+    is_product && variation.sold_out
+  end
 end

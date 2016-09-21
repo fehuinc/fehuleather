@@ -8,6 +8,7 @@
         <div class="totem-item">
           <%= item.index %>
           <%= link_to item.real_name, edit_admin_totem_item_path(item) %>
+          <% if item.sold_out %><span class="red-text">SOLD OUT</span><% end %>
         </div>
       <% end %>
       <div class="perspective">
