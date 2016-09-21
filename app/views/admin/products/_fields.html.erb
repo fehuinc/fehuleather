@@ -16,9 +16,6 @@
 </div>
 
 <div class="row spread">
-  <%= f.label :made_to_order do %>
-    <%= f.check_box :made_to_order %> Made To Order
-  <% end %>
   <% if edit %>
     <div class="perspective right">
       <deleter class="button" path="<%= admin_product_path(@product) %>" redirect="<%= admin_products_path %>">

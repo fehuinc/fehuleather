@@ -111,7 +111,6 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "products", force: :cascade do |t|
     t.text     "name",                                     null: false
-    t.boolean  "made_to_order",            default: false, null: false
     t.text     "wholesale_description",    default: ""
     t.integer  "price_retail_cents",       default: 0,     null: false
     t.string   "price_retail_currency",    default: "CAD", null: false

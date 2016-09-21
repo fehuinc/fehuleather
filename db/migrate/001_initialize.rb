@@ -4,7 +4,6 @@ class Initialize < ActiveRecord::Migration
     
     create_table :products do |t| # eg: wrap cuff, belt bag, nude raw ring
       t.text :name,                    null: false
-      t.boolean :made_to_order,        null: false, default: false
       t.text :wholesale_description,   default: ""
       t.monetize :price_retail
       t.monetize :price_wholesale
