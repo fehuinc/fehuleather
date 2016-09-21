@@ -19,7 +19,7 @@ heroku run rails db:migrate db:seed --app fehu
 ### Env
 Name | Dev | Staging | Prod
 -----|-----|---------|-----
-ASSET_HOST              |                                      | https://d1u99obtriaki8.cloudfront.net                              | https://d2z3gzdp2lgn3a.cloudfront.net
+ASSET_HOST              | http://www.frails.dev                | https://d1u99obtriaki8.cloudfront.net                              | https://d2z3gzdp2lgn3a.cloudfront.net
 AWS_ACCESS_KEY_ID       | (AWS secret)                         | (AWS secret)                                                       | (AWS secret)
 AWS_KEY                 |                                      | (AWS Secret)                                                       | (AWS secret)
 AWS_REGION              | us-east-1                            | us-west-2                                                          | us-west-2

@@ -24,6 +24,18 @@
 
   <link rel="apple-touch-icon" href="<%=image_path "favicon.png"%>">
   <link rel="shortcut icon" href="<%=image_path "favicon.png"%>">
+  
+  <meta property="og:site_name" content="Fehu">
+  <meta property="og:title" content="Unique leather cuffs and other cute stuffs.">
+  <meta property="og:description" content="Vegetable tanned leather, dyed with plants, cut and sewn by hand in Calgary, Canada.">
+  <meta property="og:url" content="<%= ENV.fetch('DOMAIN') %>">
+  <meta property="og:image" content="<%=image_path "ogimage.png"%>">
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="315">
+  <meta property="og:image:secure_url" content="<%=image_path "ogimage.png"%>"
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@fehuleather">
 
   <%= csrf_meta_tags %>
 </head>
