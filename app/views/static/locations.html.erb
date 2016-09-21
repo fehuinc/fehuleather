@@ -1,3 +1,6 @@
+<% content_for :title do "Locations - Fehu Inc." end %>
+<% content_for :description do "Find some Fehu leather in your area." end %>
+
 <script>
   FEHU.locations = <%= raw @locations.to_json %>
 </script>

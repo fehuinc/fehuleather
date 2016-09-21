@@ -1,3 +1,6 @@
+<% content_for :title do "Wholesale - Fehu Inc." end %>
+<% content_for :description do "Invite some lovely Fehu leather into your store." end %>
+
 <h1 class="page-title">Tell Us The Location of Your Secret Base<br><small>Or Else...</small></h1>
 
 <%= form_for ["merchant", @address], html: { class: "address-form", novalidate: "novalidate", "ng-cloak": "ng-cloak" } do |f| %>
