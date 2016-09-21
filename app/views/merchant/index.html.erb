@@ -9,7 +9,8 @@
   <% if @merchant.orders.count > 1 or (@merchant.orders.count == 1 and !@merchant.current_order) %>
     <%= link_to "Past Orders", orders_wholesale_path %>
   <% end %>
-  <%= link_to "Catalog PDF",  catalog_path%>
+  <a href="<%=ENV.fetch("S3_PATH")%>/rails/catalog/fehu-spring-2016.pdf">Catalog (PDF)</a>
+  <a href="<%=ENV.fetch("S3_PATH")%>/rails/catalog/fehu-line-sheet-canada-spring-2016.pdf">Line Sheet (PDF)</a>
 </section>
 
 <section>
