@@ -37,6 +37,16 @@ row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.cr
 row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Black with White Gold", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/white-black.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/white-black.jpg"), gilt_cuff.sizes)
 row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Black with Yellow Gold Stripes", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/stripes-black.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/stripes-black.jpg"), gilt_cuff.sizes)
 
+bunch_bracelet = Product.create! name: "Bunch Bracelet", price_retail_cents: 8400, price_wholesale_cents: 3200
+bunch_bracelet.infos.create! name: "Sizing", content: "Not too big, not too small. Pretty good overall."
+bunch_bracelet.infos.create! name: "Features", content: "Slices, dices."
+bunch_bracelet.sizes.create! name: "Adjustable"
+BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Moss Green", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/moss-green.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/moss-green.jpg"), bunch_bracelet.sizes)
+BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Raw", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/raw.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/raw.jpg"), bunch_bracelet.sizes)
+BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Black", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/black.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/black.jpg"), bunch_bracelet.sizes)
+BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Dark Brown", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/dark-brown.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/dark-brown.jpg"), bunch_bracelet.sizes)
+BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Gray", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/gray.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/gray.jpg"), bunch_bracelet.sizes)
+
 
 ## LOCATIONS ######################################################################################
 
