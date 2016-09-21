@@ -3,6 +3,7 @@
 /db/*.sqlite3-journal
 /log/*.log
 /tmp
+.byebug_history
 .env
 .sass-cache/
 /public/product-images/

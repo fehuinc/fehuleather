@@ -12,7 +12,10 @@ class StaticController < ApplicationController
     if Rails.env == "production" and !ExceptionBlacklist.path_on_404_blacklist(request.original_fullpath)
       ExceptionNotifier.notify_exception(Exception.new("404: #{request.original_fullpath}"), env: request.env)
     end
-    render :err, status: 404
+    respond_to do |format|
+      format.html { render :err, status: :not_found }
+      format.json { head :not_found }
+    end
   end
 
   def robots
