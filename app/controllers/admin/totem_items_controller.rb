@@ -45,6 +45,8 @@ private
   end
   
   def select_variations
-    [[nil, "None"]].concat Variation.includes(:product).map { |g| [g.id, g.full_name] }
+    [[nil, "None"]].concat Variation.includes(:product).select { |variation|
+      variation.product.sizes.any? # This avoids an error if you forget to add a size to the product
+    }.map { |g| [g.id, g.full_name] }
   end
 end

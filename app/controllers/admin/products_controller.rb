@@ -4,11 +4,11 @@ class Admin::ProductsController < ApplicationController
   end
   
   def new
-    @product = Products.new
+    @product = Product.new
   end
   
   def create
-    @product = Products.new standard_params
+    @product = Product.new standard_params
     if @product.save
       flash[:notice] = "Saved"
       redirect_to edit_admin_product_path(@product)
