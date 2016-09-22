@@ -33,29 +33,30 @@
   <div class="more-info-toggle" ng-click="moreInfo = true">More Info</div>
   <div class="more-info" ng-class="{showing:moreInfo}">
     <div class="content">
-      <h4>Payment</h4>
-      <p>We accept Visa, MasterCard, American Express, and really good back rubs.</p>
-      
-      <h4>Shipping</h4>
-      <p>We ship to Canada and the US. It takes a week or two. We'll cover the cost.</p>
-      
-      <h4>Returns & Refunds</h4>
-      <p>If for any reason you are unhappy with your purchase, please <a href="/about">let us know</a>. We will do our utmost to make it right — refund, replacement, or special arrangement.</p>
-      
-      <h4>HEEEEELP!!!!!!</h4>
-      <p>If you have any other questions, don't hesitate to <a href="/about">get in touch</a>.</p>
-
-      <h4>Payment</h4>
-      <p>We accept Visa, MasterCard, American Express, and really good back rubs.</p>
-      
-      <h4>Shipping</h4>
-      <p>We ship to Canada and the US. It takes a week or two. We'll cover the cost.</p>
-      
-      <h4>Returns & Refunds</h4>
-      <p>If for any reason you are unhappy with your purchase, please <a href="/about">let us know</a>. We will do our utmost to make it right — refund, replacement, or special arrangement.</p>
-      
-      <h4>HEEEEELP!!!!!!</h4>
-      <p>If you have any other questions, don't hesitate to <a href="/about">get in touch</a>.</p>
+      <h3><%= item.variation.full_name %></h3>
+      <% if item.variation.description_retail.length > 0 %>
+        <div class="variation-info">
+          <%= item.variation.description_retail.html_safe %>
+        </div>
+      <% end %>
+      <% if item.product.description_retail.length > 0 %>
+        <div class="product-info">
+          <%= item.product.description_retail.html_safe %>
+        </div>
+      <% end %>
+      <div class="shop-info">
+        <h4>Payment</h4>
+        <p>We accept Visa, MasterCard, American Express, and really good back rubs.</p>
+        
+        <h4>Shipping</h4>
+        <p>We ship to Canada and the US. It takes a week or two. We'll cover the cost.</p>
+        
+        <h4>Returns & Refunds</h4>
+        <p>If for any reason you are unhappy with your purchase, please <a href="/about">let us know</a>. We will do our utmost to make it right — refund, replacement, or special arrangement.</p>
+        
+        <h4>HEEEEELP!!!!!!</h4>
+        <p>If you have any other questions, don't hesitate to <a href="/about">get in touch</a>.</p>
+      </div>
     </div>
     <div class="cool perspective">
       <div class="button" ng-click="moreInfo = false">Cool</div>

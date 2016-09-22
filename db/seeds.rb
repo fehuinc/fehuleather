@@ -1,50 +1,318 @@
 row = TotemRow.create! index: 0
-cc_bracelet = Product.create! name: "Coffee & Crystals Bracelet", price_retail_cents: 9800, price_wholesale_cents: 3400
+cc_bracelet = Product.create! name: "Coffee & Crystals Bracelet",
+                              price_retail_cents: 98 * 100,
+                              price_wholesale_cents: 34 * 100,
+                              description_retail: "<h4>Life with a Coffee and Crystals Bracelet</h4>\n<p>Our bracelets are made from the same type of leather as saddles. They take about a week to break in, gradually moulding to the wrist and becoming buttery soft. The raw leather darkens to a rich coffee with time.</p>\n\n<h4>Sizing</h4>\n<p>A Coffee & Crystals bracelet may be adjusted to fit any size wrist, and can be worn snugly-tight or slacked off.</p>\n\n<h4>Uniqueness</h4>\n<p>Every Coffee & Crystals bracelet is individually hand cut, hand dyed, and hand sewn. Your Coffee & Crystals bracelet will be one of a kind, similar to but distinguishable from the bracelet photos featured up above.</p>",
+                              description_wholesale: "<h4>Life with a Coffee and Crystals Bracelet</h4>\n<p>Our bracelets are made from the same type of leather as saddles. They take about a week to break in, gradually moulding to the wrist and becoming buttery soft. The raw leather darkens to a rich coffee with time.</p>\n\n<h4>Sizing</h4>\n<p>A Coffee & Crystals bracelet may be adjusted to fit any size wrist, and can be worn snugly-tight or slacked off.</p>\n\n<h4>Uniqueness</h4>\n<p>Every Coffee & Crystals bracelet is individually hand cut, hand dyed, and hand sewn. Your Coffee & Crystals bracelet will be one of a kind, similar to but distinguishable from the bracelet photos featured up above.</p>"
 cc_bracelet.sizes.create! name: "Adjustable"
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Angelite", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/angelite.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/angelite.jpg"), cc_bracelet.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Basic", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/basic.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/basic.jpg", adjust_retail_cents: -3400, adjust_wholesale_cents: -1200), cc_bracelet.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Hypersthene", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/hypersthene.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/hypersthene.jpg"), cc_bracelet.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Labradorite", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/labradorite.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/labradorite.jpg"), cc_bracelet.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Pyrite", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/pyrite.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/pyrite.jpg"), cc_bracelet.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Tourmaline", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/tourmaline.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/tourmaline.jpg"), cc_bracelet.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_bracelet.variations.create! name: "Lapis", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/lapis.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/lapis.jpg"), cc_bracelet.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_bracelet.variations.create!(
+    name: "Angelite",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/angelite.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/angelite.jpg",
+    description_retail: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and angelite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and angelite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
+  cc_bracelet.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_bracelet.variations.create!(
+    name: "Stitch",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/basic.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/basic.jpg",
+    description_retail: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather stitched together with three large cross stitches. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather stitched together with three large cross stitches. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    adjust_retail_cents: -34 * 100,
+    adjust_wholesale_cents: -12 * 100),
+  cc_bracelet.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_bracelet.variations.create!(
+    name: "Hypersthene",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/hypersthene.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/hypersthene.jpg",
+    description_retail: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and hypersthene gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and hypersthene gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
+  cc_bracelet.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_bracelet.variations.create!(
+    name: "Labradorite",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/labradorite.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/labradorite.jpg",
+    description_retail: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and labradorite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and labradorite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
+  cc_bracelet.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_bracelet.variations.create!(
+    name: "Pyrite",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/pyrite.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/pyrite.jpg",
+    description_retail: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
+  cc_bracelet.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_bracelet.variations.create!(
+    name: "Tourmaline",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/tourmaline.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/tourmaline.jpg",
+    description_retail: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and tourmaline gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and tourmaline gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
+  cc_bracelet.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_bracelet.variations.create!(
+    name: "Lapis",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/lapis.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/lapis.jpg",
+    description_retail: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and lapis gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "The Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and lapis gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
+  cc_bracelet.sizes)
+
+
 
 row = TotemRow.create! index: 1
-cc_belt = Product.create! name: "Coffee & Crystals Belt", price_retail_cents: 21900, price_wholesale_cents: 8000
+cc_belt = Product.create! name: "Coffee & Crystals Belt",
+                          price_retail_cents: 219 * 100,
+                          price_wholesale_cents: 80 * 100,
+                          description_retail: "<h4>Life with a Coffee and Crystals Belt</h4>\n<p>Our belts are made from the same type of leather as saddles. They take about a week to break in, gradually becoming buttery soft. The raw leather darkens to a rich coffee with time.</p>\n\n<h4>Sizing</h4>\n<p>A Coffee & Crystals belt may be adjusted to fit any size waist, double wrapping on smaller waists.</p>\n\n<h4>Uniqueness</h4>\n<p>Every Coffee & Crystals belt is individually hand cut, hand dyed, and hand sewn. Your Coffee & Crystals belt will be one of a kind, similar to but distinguishable from the belt photos featured up above.</p>",
+                          description_wholesale: "<h4>Life with a Coffee and Crystals Belt</h4>\n<p>Our belts are made from the same type of leather as saddles. They take about a week to break in, gradually becoming buttery soft. The raw leather darkens to a rich coffee with time.</p>\n\n<h4>Sizing</h4>\n<p>A Coffee & Crystals belt may be adjusted to fit any size waist, double wrapping on smaller waists.</p>\n\n<h4>Uniqueness</h4>\n<p>Every Coffee & Crystals belt is individually hand cut, hand dyed, and hand sewn. Your Coffee & Crystals belt will be one of a kind, similar to but distinguishable from the belt photos featured up above.</p>"
 cc_belt.sizes.create! name: "Adjustable"
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Angelite", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/angelite.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/angelite.jpg"), cc_belt.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Basic", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/basic.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/basic.jpg", adjust_retail_cents: -13500, adjust_wholesale_cents: -4800), cc_belt.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Hypersthene", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/hypersthene.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/hypersthene.jpg"), cc_belt.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Labradorite", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/labradorite.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/labradorite.jpg"), cc_belt.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Pyrite", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/pyrite.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/pyrite.jpg"), cc_belt.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Tourmaline", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/tourmaline.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/tourmaline.jpg"), cc_belt.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((cc_belt.variations.create! name: "Lapis", totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/lapis.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/lapis.jpg"), cc_belt.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_belt.variations.create!(
+    name: "Angelite",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/angelite.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/angelite.jpg",
+    description_retail: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather and natural angelite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you. Take a peak at the bracelet pics to get a better idea of how the gemstones will look. The belts include 3 gemstone clusters for a total of 15 beads.",
+    description_wholesale: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather and natural angelite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you. Take a peak at the bracelet pics to get a better idea of how the gemstones will look. The belts include 3 gemstone clusters for a total of 15 beads."),
+  cc_belt.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_belt.variations.create!(
+    name: "Stitch",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/basic.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/basic.jpg",
+    description_retail: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather stitched together with three large cross stitches. The leather is marbled with coffee. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather stitched together with three large cross stitches. The leather is marbled with coffee. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    adjust_retail_cents: -135 * 100,
+    adjust_wholesale_cents: -48 * 100),
+  cc_belt.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_belt.variations.create!(
+    name: "Hypersthene",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/hypersthene.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/hypersthene.jpg",
+    description_retail: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather and natural hypersthene gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you. Take a peak at the bracelet pics to get a better idea of how the gemstones will look. The belts include 3 gemstone clusters for a total of 15 beads.",
+    description_wholesale: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather and natural hypersthene gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you. Take a peak at the bracelet pics to get a better idea of how the gemstones will look. The belts include 3 gemstone clusters for a total of 15 beads."),
+  cc_belt.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_belt.variations.create!(
+    name: "Labradorite",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/labradorite.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/labradorite.jpg",
+    description_retail: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather and natural labradorite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you. Take a peak at the bracelet pics to get a better idea of how the gemstones will look. The belts include 3 gemstone clusters for a total of 15 beads.",
+    description_wholesale: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather and natural labradorite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you. Take a peak at the bracelet pics to get a better idea of how the gemstones will look. The belts include 3 gemstone clusters for a total of 15 beads."),
+  cc_belt.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_belt.variations.create!(
+    name: "Pyrite",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/pyrite.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/pyrite.jpg",
+    description_retail: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather and natural pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you. Take a peak at the bracelet pics to get a better idea of how the gemstones will look. The belts include 3 gemstone clusters for a total of 15 beads.",
+    description_wholesale: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather and natural pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you. Take a peak at the bracelet pics to get a better idea of how the gemstones will look. The belts include 3 gemstone clusters for a total of 15 beads."),
+  cc_belt.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_belt.variations.create!(
+    name: "Tourmaline",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/tourmaline.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/tourmaline.jpg",
+    description_retail: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather and natural tourmaline gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you. Take a peak at the bracelet pics to get a better idea of how the gemstones will look. The belts include 3 gemstone clusters for a total of 15 beads.",
+    description_wholesale: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather and natural tourmaline gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you. Take a peak at the bracelet pics to get a better idea of how the gemstones will look. The belts include 3 gemstone clusters for a total of 15 beads."),
+  cc_belt.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  cc_belt.variations.create!(
+    name: "Lapis",
+    totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/lapis.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/lapis.jpg",
+    description_retail: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather and natural lapis gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you. Take a peak at the bracelet pics to get a better idea of how the gemstones will look. The belts include 3 gemstone clusters for a total of 15 beads.",
+    description_wholesale: "The Coffee & Crystals Leather Belt is made from full-grain vegetable tanned leather and natural lapis gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you. Take a peak at the bracelet pics to get a better idea of how the gemstones will look. The belts include 3 gemstone clusters for a total of 15 beads."),
+  cc_belt.sizes)
+
+
 
 row = TotemRow.create! index: 2
-gilt_cuff = Product.create! name: "Gilt Cuff", price_retail_cents: 8400, price_wholesale_cents: 3200
+gilt_cuff = Product.create! name: "Gilt Cuff",
+                            price_retail_cents: 84 * 100,
+                            price_wholesale_cents: 32 * 100,
+                            description_retail: "<h4>Life with a Wrap Cuff</h4>\n<p>Our bracelets are made from the same type of leather as saddles. They take about a week to break in, gradually moulding to the wrist and becoming buttery soft. </p>\n\n<h4>Sizing</h4>\n<p>Our wrap cuff is fully adjustable, fitting comfortably between six and eight inches, with a width of about an inch and a half.</p>\n\n<h4>Uniqueness</h4>\n<p>Every wrap cuff is individually hand cut, hand dyed, and hand finished. Your wrap cuff will be one of a kind, similar to but distinguishable from the cuff photos featured up above.</p>",
+                            description_wholesale: "<h4>Life with a Wrap Cuff</h4>\n<p>Our bracelets are made from the same type of leather as saddles. They take about a week to break in, gradually moulding to the wrist and becoming buttery soft. </p>\n\n<h4>Sizing</h4>\n<p>Our wrap cuff is fully adjustable, fitting comfortably between six and eight inches, with a width of about an inch and a half.</p>\n\n<h4>Uniqueness</h4>\n<p>Every wrap cuff is individually hand cut, hand dyed, and hand finished. Your wrap cuff will be one of a kind, similar to but distinguishable from the cuff photos featured up above.</p>"
 gilt_cuff.sizes.create! name: "Adjustable"
-row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Taupe with Yellow Gold", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/yellow-taupe.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/yellow-taupe.jpg"), gilt_cuff.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Taupe with White Gold", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/white-taupe.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/white-taupe.jpg"), gilt_cuff.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Brown with Yellow Gold", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/yellow-brown.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/yellow-brown.jpg"), gilt_cuff.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Brown with White Gold", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/white-brown.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/white-brown.jpg"), gilt_cuff.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Black with Yellow Gold", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/yellow-black.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/yellow-black.jpg"), gilt_cuff.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Black with White Gold", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/white-black.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/white-black.jpg"), gilt_cuff.sizes)
-row.items.create! variation: BuildMaker.make_build_pair((gilt_cuff.variations.create! name: "Black with Yellow Gold Stripes", totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/stripes-black.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/stripes-black.jpg"), gilt_cuff.sizes)
 
-bunch_bracelet = Product.create! name: "Bunch Bracelet", price_retail_cents: 8400, price_wholesale_cents: 3200
+row.items.create! variation: BuildMaker.make_build_pair(
+  gilt_cuff.variations.create!(
+    name: "Taupe with Yellow Gold",
+    totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/yellow-taupe.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/yellow-taupe.jpg",
+    description_retail: "This taupe leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm grey. The 23 carat yellow gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "This taupe leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm grey. The 23 carat yellow gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
+  gilt_cuff.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  gilt_cuff.variations.create!(
+    name: "Taupe with White Gold",
+    totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/white-taupe.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/white-taupe.jpg",
+    description_retail: "This taupe leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm grey. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "This taupe leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm grey. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
+  gilt_cuff.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  gilt_cuff.variations.create!(
+    name: "Brown with Yellow Gold",
+    totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/yellow-brown.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/yellow-brown.jpg",
+    description_retail: "This brown leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm brown. The 23 carat yellow gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "This brown leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm brown. The 23 carat yellow gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
+  gilt_cuff.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  gilt_cuff.variations.create!(
+    name: "Brown with White Gold",
+    totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/white-brown.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/white-brown.jpg",
+    description_retail: "This brown leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm brown. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "This brown leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm brown. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
+  gilt_cuff.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  gilt_cuff.variations.create!(
+    name: "Black with Yellow Gold",
+    totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/yellow-black.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/yellow-black.jpg",
+    description_retail: "This black leather bracelet is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 22 carat gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "This black leather bracelet is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 22 carat gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
+  gilt_cuff.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  gilt_cuff.variations.create!(
+    name: "Black with White Gold",
+    totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/white-black.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/white-black.jpg",
+    description_retail: "This black leather bracelet is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "This black leather bracelet is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
+  gilt_cuff.sizes)
+
+row.items.create! variation: BuildMaker.make_build_pair(
+  gilt_cuff.variations.create!(
+    name: "Black with Yellow Gold Stripes",
+    totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/stripes-black.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/stripes-black.jpg",
+    description_retail: "This black leather bracelet with gold stripes is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 22 carat gold stripes have been embossed using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "This black leather bracelet with gold stripes is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 22 carat gold stripes have been embossed using the same techniques as the Florentine book binders of years past."),
+  gilt_cuff.sizes)
+
+
+
+bunch_bracelet = Product.create! name: "Bunch Bracelet",
+                                 price_retail_cents: 84 * 100,
+                                 price_wholesale_cents: 32 * 100,
+                                 description_retail: "The Bunch Bracelet is made from full-grain vegetable tanned leather cut into thin strips, hand dyed using plant extracts. The front of the bracelet features 7 strips, while the back closes with a simple slip knot.",
+                                 description_wholesale: "The Bunch Bracelet is made from full-grain vegetable tanned leather cut into thin strips, hand dyed using plant extracts. The front of the bracelet features 7 strips, while the back closes with a simple slip knot."
 bunch_bracelet.sizes.create! name: "Adjustable"
-BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Moss Green", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/moss-green.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/moss-green.jpg"), bunch_bracelet.sizes)
-BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Black", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/black.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/black.jpg"), bunch_bracelet.sizes)
-BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Brown", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/brown.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/brown.jpg"), bunch_bracelet.sizes)
-BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Dark Brown", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/dark-brown.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/dark-brown.jpg"), bunch_bracelet.sizes)
-BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Dark Grey", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/dark-grey.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/dark-grey.jpg"), bunch_bracelet.sizes)
-BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Light Grey", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/light-grey.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/light-grey.jpg"), bunch_bracelet.sizes)
-BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Mauve", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/mauve.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/mauve.jpg"), bunch_bracelet.sizes)
-BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Nude", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/nude.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/nude.jpg"), bunch_bracelet.sizes)
-BuildMaker.make_build_pair((bunch_bracelet.variations.create! name: "Yellow", totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/yellow.jpg", wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/yellow.jpg"), bunch_bracelet.sizes)
+
+BuildMaker.make_build_pair(
+  bunch_bracelet.variations.create!(
+    name: "Moss Green",
+    totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/moss-green.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/moss-green.jpg",
+    description_retail: "",
+    description_wholesale: ""),
+  bunch_bracelet.sizes)
+
+BuildMaker.make_build_pair(
+  bunch_bracelet.variations.create!(
+    name: "Black",
+    totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/black.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/black.jpg",
+    description_retail: "",
+    description_wholesale: ""),
+  bunch_bracelet.sizes)
+
+BuildMaker.make_build_pair(
+  bunch_bracelet.variations.create!(
+    name: "Brown",
+    totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/brown.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/brown.jpg",
+    description_retail: "",
+    description_wholesale: ""),
+  bunch_bracelet.sizes)
+
+BuildMaker.make_build_pair(
+  bunch_bracelet.variations.create!(
+    name: "Dark Brown",
+    totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/dark-brown.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/dark-brown.jpg",
+    description_retail: "",
+    description_wholesale: ""),
+  bunch_bracelet.sizes)
+
+BuildMaker.make_build_pair(
+  bunch_bracelet.variations.create!(
+    name: "Dark Grey",
+    totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/dark-grey.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/dark-grey.jpg",
+    description_retail: "",
+    description_wholesale: ""),
+  bunch_bracelet.sizes)
+
+BuildMaker.make_build_pair(
+  bunch_bracelet.variations.create!(
+    name: "Light Grey",
+    totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/light-grey.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/light-grey.jpg",
+    description_retail: "",
+    description_wholesale: ""),
+  bunch_bracelet.sizes)
+
+BuildMaker.make_build_pair(
+  bunch_bracelet.variations.create!(
+    name: "Mauve",
+    totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/mauve.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/mauve.jpg",
+    description_retail: "",
+    description_wholesale: ""),
+  bunch_bracelet.sizes)
+
+BuildMaker.make_build_pair(
+  bunch_bracelet.variations.create!(
+    name: "Nude",
+    totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/nude.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/nude.jpg",
+    description_retail: "",
+    description_wholesale: ""),
+  bunch_bracelet.sizes)
+
+BuildMaker.make_build_pair(
+  bunch_bracelet.variations.create!(
+    name: "Yellow",
+    totem_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/totem/yellow.jpg",
+    wholesale_image: ENV.fetch("IMAGEPATH") + "bunch-bracelet/wholesale/yellow.jpg",
+    description_retail: "",
+    description_wholesale: ""),
+  bunch_bracelet.sizes)
+
 
 
 ## LOCATIONS ######################################################################################
+
 
 Location.create!(
       name: "Make at Granville Island",
