@@ -9,11 +9,14 @@
 
 <ul>
 <% @order.items.each do |item| %>
-  <li><%= item.quantity == 1 ? "a" : "#{item.quantity} of the" %> <%= item.build_name %> <%= item.product_name %></li>
+  <li>
+    <%= item.quantity %> • <%= item.build_name %> <%= item.product_name %>
+    <% if item.sold_out %> • <span class="red-text">(Now Sold Out)</span><% end %>
+  </li>
 <% end %>
 </ul>
 
-<p>The leather treats will be traveling here:</p>
+<p>The treats will be traveling here:</p>
 
 <p>
   <%= @order.address.line1 %><br>
