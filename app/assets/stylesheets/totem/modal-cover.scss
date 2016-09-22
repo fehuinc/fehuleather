@@ -6,7 +6,7 @@ modal-cover {
   width: 100%;
   height: 100%;
   background: rgba(#FBF5F0, .8);
-  z-index: 50;
+  z-index: 99; // Behind shopping-cart
   cursor: pointer;
 }
 

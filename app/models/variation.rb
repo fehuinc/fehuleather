@@ -39,4 +39,8 @@ class Variation < ApplicationRecord
   def sold_out
     !builds.any? { |b| b.stock > 0 }
   end
+  
+  def totem_builds_js
+    self.where(show_retail: true).map { |build| js_build_elm(build) }.join("\n")
+  end
 end

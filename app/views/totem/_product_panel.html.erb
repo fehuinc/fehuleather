@@ -3,61 +3,62 @@
   <span class="product"><%=item.product.name%></span>
 </div>
 
-<% if feature_flag :retail %>
-  <div class="middle">
-    <% if item.product.sizes.count > 1 %>
-      <size-selector class="multi">
-        <%= item.variation.builds.where(show_retail: true).map { |build| js_build_elm(build) }.join("\n").html_safe %>
-      </size-selector>
-    <% else %>
-      <size-selector class="single">
-        <%=
-          # No need to check show_retail - we know it's on, otherwise we wouldn't be rendering this panel
-          js_build_elm(item.variation.builds.first)
-        %>
-      </size-selector>
-    <% end %>
-    
-    <price-selector class="perspective">
-      $<span js-price></span>
-      <currency-selector>
-        <img src="<%= asset_path("cad.svg") %>" class="cad hide">
-        <img src="<%= asset_path("usd.svg") %>" class="usd hide">
-      </currency-selector>
-    </price-selector>
-    
-    <bag-selector class="perspective">
-      <div class="add-to-bag button">Yes Please!</div>
-      <div class="out-of-stock">Out Of Stock</div>
-      <div class="in-the-bag">It's in <a js-bag-link>The Bag</a></div>
-    </bag-selector>
-  </div>
+<div class="middle">
+  <% if item.product.sizes.count > 1 %>
+    <size-selector class="multi">
+      <%= item.variation.totem_builds_js.html_safe %>
+    </size-selector>
+  <% else %>
+    <size-selector class="single">
+      <%= js_build_elm(item.variation.builds.first) %>
+    </size-selector>
+  <% end %>
+  
+  <price-selector class="perspective">
+    $<span js-price></span>
+    <currency-selector>
+      <img src="<%= asset_path("cad.svg") %>" class="cad hide">
+      <img src="<%= asset_path("usd.svg") %>" class="usd hide">
+    </currency-selector>
+  </price-selector>
+  
+  <bag-selector class="perspective">
+    <div class="add-to-bag button">Yes Please!</div>
+    <div class="out-of-stock">Out Of Stock</div>
+    <div class="in-the-bag">It's in <a js-bag-link>The Bag</a></div>
+  </bag-selector>
+</div>
 
-  <div class="bottom">
-    <info-selector>
-      <div ng-cloak ng-click="showing = showing == -1 ? null : -1" ng-class="{active:showing == -1}">Store Q&A</div>
-    </info-selector>
+<div class="bottom">
+  <div class="more-info-toggle" ng-click="moreInfo = true">More Info</div>
+  <div class="more-info" ng-class="{showing:moreInfo}">
+    <div class="content">
+      <h4>Payment</h4>
+      <p>We accept Visa, MasterCard, American Express, and really good back rubs.</p>
+      
+      <h4>Shipping</h4>
+      <p>We ship to Canada and the US. It takes a week or two. We'll cover the cost.</p>
+      
+      <h4>Returns & Refunds</h4>
+      <p>If for any reason you are unhappy with your purchase, please <a href="/about">let us know</a>. We will do our utmost to make it right — refund, replacement, or special arrangement.</p>
+      
+      <h4>HEEEEELP!!!!!!</h4>
+      <p>If you have any other questions, don't hesitate to <a href="/about">get in touch</a>.</p>
 
-    <info-display>
-      <div ng-cloak ng-show="showing == -1">
-        <h4>Payment</h4>
-        <p>We accept Visa, MasterCard, American Express, and really good back rubs.</p>
-        
-        <h4>Shipping</h4>
-        <p>We ship to Canada and the US. It takes a week or two. We'll cover the cost.</p>
-        
-        <h4>Returns & Refunds</h4>
-        <p>If for any reason you are unhappy with your purchase, please <a href="/about">let us know</a>. We will do our utmost to make it right — refund, replacement, or special arrangement.</p>
-        
-        <h4>HEEEEELP!!!!!!</h4>
-        <p>If you have any other questions, don't hesitate to <a href="/about">get in touch</a>.</p>
-      </div>
-    </info-display>
-    
-    <div class="padding" ng-show="showing == null"></div>
+      <h4>Payment</h4>
+      <p>We accept Visa, MasterCard, American Express, and really good back rubs.</p>
+      
+      <h4>Shipping</h4>
+      <p>We ship to Canada and the US. It takes a week or two. We'll cover the cost.</p>
+      
+      <h4>Returns & Refunds</h4>
+      <p>If for any reason you are unhappy with your purchase, please <a href="/about">let us know</a>. We will do our utmost to make it right — refund, replacement, or special arrangement.</p>
+      
+      <h4>HEEEEELP!!!!!!</h4>
+      <p>If you have any other questions, don't hesitate to <a href="/about">get in touch</a>.</p>
+    </div>
+    <div class="cool perspective">
+      <div class="button" ng-click="moreInfo = false">Cool</div>
+    </div>
   </div>
-<% else %>
-  <div class="middle">
-    - online store launching this fall -
-  </div>
-<% end %>
+</div>
