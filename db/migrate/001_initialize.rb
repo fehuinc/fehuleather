@@ -2,27 +2,30 @@ class Initialize < ActiveRecord::Migration
   def change
     enable_extension 'uuid-ossp'
     
-    create_table :products do |t| # eg: wrap cuff, belt bag, nude raw ring
+    create_table :products do |t|
       t.text :name,                    null: false
-      t.text :wholesale_description,   default: ""
+      t.text :description_retail,      default: ""
+      t.text :description_wholesale,   default: ""
       t.monetize :price_retail
       t.monetize :price_wholesale
       t.timestamps
       t.index :name,                   unique: true
     end
     
-    create_table :variations do |t| # eg: yellow [gilt cuff], cinnamon [wrap cuff]
+    create_table :variations do |t|
       t.belongs_to :product,           required: true, index: true
       t.text :name,                    null: false
       t.text :model
       t.text :totem_image
       t.text :wholesale_image
+      t.text :description_retail,      default: ""
+      t.text :description_wholesale,   default: ""
       t.monetize :adjust_retail,       default: 0
       t.monetize :adjust_wholesale,    default: 0
       t.timestamps
       t.index :name
     end
-        
+    
     create_table :sizes do |t|
       t.belongs_to :product,           required: true, index: true
       t.text :name,                    null: false
@@ -39,16 +42,6 @@ class Initialize < ActiveRecord::Migration
       t.boolean :show_wholesale,       null: false, default: true
       t.timestamps
       t.index :stock
-    end
-    
-    create_table :product_infos do |t| # eg: sizing, gifting, uniqueness, tips
-      t.belongs_to :product,           required: true, index: true
-      t.text :name,                    null: false
-      t.text :content,                 null: false
-      t.boolean :show_retail,          null: false, default: true
-      t.boolean :show_wholesale,       null: false, default: true
-      t.timestamps
-      t.index :name
     end
     
     create_table :totem_rows do |t|

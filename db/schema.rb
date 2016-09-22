@@ -97,21 +97,10 @@ ActiveRecord::Schema.define(version: 1) do
     t.index ["order_type", "order_id"], name: "index_order_items_on_order_type_and_order_id", using: :btree
   end
 
-  create_table "product_infos", force: :cascade do |t|
-    t.integer  "product_id"
-    t.text     "name",                          null: false
-    t.text     "content",                       null: false
-    t.boolean  "show_retail",    default: true, null: false
-    t.boolean  "show_wholesale", default: true, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["name"], name: "index_product_infos_on_name", using: :btree
-    t.index ["product_id"], name: "index_product_infos_on_product_id", using: :btree
-  end
-
   create_table "products", force: :cascade do |t|
     t.text     "name",                                     null: false
-    t.text     "wholesale_description",    default: ""
+    t.text     "description_retail",       default: ""
+    t.text     "description_wholesale",    default: ""
     t.integer  "price_retail_cents",       default: 0,     null: false
     t.string   "price_retail_currency",    default: "CAD", null: false
     t.integer  "price_wholesale_cents",    default: 0,     null: false
@@ -165,6 +154,8 @@ ActiveRecord::Schema.define(version: 1) do
     t.text     "model"
     t.text     "totem_image"
     t.text     "wholesale_image"
+    t.text     "description_retail",        default: ""
+    t.text     "description_wholesale",     default: ""
     t.integer  "adjust_retail_cents",       default: 0,     null: false
     t.string   "adjust_retail_currency",    default: "CAD", null: false
     t.integer  "adjust_wholesale_cents",    default: 0,     null: false

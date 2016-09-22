@@ -12,12 +12,8 @@
   
   <div class="info">
     <div class="overview">
-      <%= @product.wholesale_description.html_safe %>
+      <%= @product.description_wholesale.html_safe %>
     </div>
-    <% @product.infos.where(show_wholesale: true).each do |info| %>
-      <h3><%= info.name %></h3>
-      <p><%= info.content %></p>
-    <% end %>
   </div>
 </div>
 

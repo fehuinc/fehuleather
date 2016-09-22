@@ -62,18 +62,6 @@
 </section>
 
 <section>
-  <h2>Info</h2>
-  <% @infos.each do |info| %>
-    <div class="info">
-      <%= link_to info.name, edit_admin_product_info_path(info), class: "edit" %></h3>
-    </div>
-  <% end %>
-  <div class="new-info">
-    <%= link_to "New Info", new_admin_product_product_info_path(@product), class: "button" %>
-  </div>
-</section>
-
-<section>
   <h2>Basics</h2>
   <%= form_for [:admin, @product] do |f| %>
     <%= render "admin/products/fields", f: f, edit: true %>

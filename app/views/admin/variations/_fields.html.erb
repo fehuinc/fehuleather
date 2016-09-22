@@ -13,6 +13,16 @@
 </div>
 
 <div class="row">
+  <%= f.label :description_retail, "Retail Description" %>
+  <%= f.text_area :description_retail, rows: 3 %>
+</div>
+
+<div class="row">
+  <%= f.label :description_wholesale, "Wholesale Description" %>
+  <%= f.text_area :description_wholesale, rows: 3 %>
+</div>
+
+<div class="row">
   <%= f.label :adjust_retail, "Retail Price Adjustment (CAD)" %>
   <%= f.number_field :adjust_retail %>
   <%= f.label :adjust_wholesale, "Wholesale Price Adjustment (CAD)" %>
@@ -37,6 +47,6 @@
 <% end %>
 
 <div class="perspective">
-  <%= f.submit "Save", class: "save" %>
-  <%= link_to "Back", edit_admin_product_path(@product) %>
+  <%= f.submit "Save", class: "save", data: { disable_with: "Saving" } %>
+  <%= link_to "Back", edit_admin_product_path(@product), class: "back" %>
 </div>

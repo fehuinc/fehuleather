@@ -21,7 +21,6 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find params[:id]
     @variations = @product.variations.order(:name)
     @sizes = @product.sizes.order(:name)
-    @infos = @product.infos.order(:name)
     @builds = @product.builds.includes(:variation, :size).sort_by { |b| b.build_name }
   end
   
@@ -31,7 +30,6 @@ class Admin::ProductsController < ApplicationController
     # These are all needed in case the update fails
     @variations = @product.variations.order(:name)
     @sizes = @product.sizes.order(:name)
-    @infos = @product.infos.order(:name)
     @builds = @product.builds.includes(:variation, :size).sort_by { |b| b.build_name }
     
     if @product.update! standard_params
@@ -53,7 +51,7 @@ class Admin::ProductsController < ApplicationController
 private
   
   def standard_params
-    params.require(:product).permit :name, :price_retail, :price_wholesale, :wholesale_description
+    params.require(:product).permit :name, :price_retail, :price_wholesale, :description_retail, :description_wholesale
   end
 
 end

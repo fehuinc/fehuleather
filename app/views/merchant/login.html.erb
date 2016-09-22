@@ -17,7 +17,7 @@
     </div>
     <%= render 'partials/form_errors', model: @merchant %>
     <div class="perspective">
-      <%= f.submit "Continue" %>
+      <%= f.submit "Continue", data: { disable_with: "Saving" } %>
     </div>
   <% end %>
 

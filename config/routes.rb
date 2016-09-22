@@ -84,7 +84,6 @@ Rails.application.routes.draw do
         end
         
         resources :products, except: [:show] do
-          resources :product_infos, only: [:new, :create]
           resources :variations, only: [:new, :create]
           resources :sizes, only: [:new, :create]
         end
@@ -93,7 +92,6 @@ Rails.application.routes.draw do
         end
         resources :builds, only: [:edit, :update, :destroy]
         resources :sizes, only: [:edit, :update, :destroy]
-        resources :product_infos, only: [:edit, :update, :destroy]
         resources :events, except: [:show]
         resources :locations, except: [:show]
         resources :orders, except: [:show]

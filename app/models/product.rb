@@ -1,5 +1,4 @@
 class Product < ApplicationRecord
-  has_many :infos, class_name: ProductInfo, dependent: :delete_all
   has_many :variations, dependent: :destroy
   has_many :builds, through: :variations
   has_many :sizes, dependent: :delete_all

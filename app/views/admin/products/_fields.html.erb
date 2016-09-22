@@ -5,8 +5,15 @@
   <%= f.text_field :name %>
 </div>
 
-<%= f.label :wholesale_description, "Wholesale Description (HTML)" %>
-<%= f.text_area :wholesale_description, rows: 4 %>
+<div class="row">
+  <%= f.label :description_retail, "Retail Description" %>
+  <%= f.text_area :description_retail, rows: 3 %>
+</div>
+
+<div class="row">
+  <%= f.label :description_wholesale, "Wholesale Description" %>
+  <%= f.text_area :description_wholesale, rows: 3 %>
+</div>
 
 <div class="row">
   <%= f.label :price_retail, "Retail Price" %>
@@ -26,6 +33,6 @@
 </div>
 
 <div class="perspective">
-  <%= f.submit "Save", class: "save" %>
-  <%= link_to "Back", admin_products_path %>
+  <%= f.submit "Save", class: "save", data: { disable_with: "Saving" } %>
+  <%= link_to "Back", admin_products_path, class: "back" %>
 </div>
