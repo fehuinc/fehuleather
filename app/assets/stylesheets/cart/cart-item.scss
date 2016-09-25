@@ -11,6 +11,10 @@
     }
   }
   
+  &.tax div {
+    padding-top: .2em;
+  }
+  
   &.deleted .name {
     opacity: .5;
   }

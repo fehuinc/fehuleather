@@ -5,7 +5,7 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
       q = CartDB.getQuantity()
       p = CartDB.getSubtotal()
       plural = if q is 1 then "" else "s"
-      state.elm.html "<div class='subtotal'>#{q} item#{plural} for $#{p}</div>"
+      state.elm.html "<div class='subtotal'>#{q} item#{plural} for $#{p.toFixed(2)}</div>"
     else
       state.elm.empty()
 

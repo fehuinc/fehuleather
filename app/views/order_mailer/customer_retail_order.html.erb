@@ -9,7 +9,9 @@
 
 <ul>
 <% @order.items.each do |item| %>
-  <li><%= item.quantity == 1 ? "a" : "#{item.quantity} of the" %> <%= item.build_name %> <%= item.product_name %></li>
+  <li>
+    <%= item.quantity %> • <%= item.build_name %> <%= item.product_name %>
+  </li>
 <% end %>
 </ul>
 

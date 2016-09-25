@@ -83,7 +83,7 @@ class RetailOrdersController < ApplicationController
     render :stock_changed
   
   rescue Stripe::CardError => e
-    flash[:error] = e.message
+    flash[:error] = e.message # Todo: this is a crappy way to handle card errors
     redirect_to payment_path
   end
   

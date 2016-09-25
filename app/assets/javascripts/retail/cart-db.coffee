@@ -12,6 +12,7 @@ Take "LocalStorage", (LocalStorage)->
     currency: "CAD"
     quantity: 0
     subtotal: 0
+    tax: 0
   
   updateQuantity = (build, quantity)->
     b = state.builds[build.id] ?= build
@@ -29,6 +30,11 @@ Take "LocalStorage", (LocalStorage)->
       state.buildCount += 1
       state.quantity += parseInt item.quantity
       state.subtotal += item.retail_prices[state.currency] * item.quantity
+    state.tax = if state.currency is "CAD"
+      Math.round(state.subtotal * 5)/100
+    else
+      0
+    state.subtotal += state.tax
   
   runCallback = (cb)->
     cb state.builds, state.buildCount
@@ -75,6 +81,9 @@ Take "LocalStorage", (LocalStorage)->
     
     getSubtotal: ()->
       return state.subtotal
+    
+    getTax: ()->
+      return state.tax
     
     hasBuild: (build)->
       return build? and state.builds[build.id]?

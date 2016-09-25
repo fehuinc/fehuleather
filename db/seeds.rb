@@ -222,8 +222,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
 
 
 bunch_bracelet = Product.create! name: "Bunch Bracelet",
-                                 price_retail_cents: 84 * 100,
-                                 price_wholesale_cents: 32 * 100,
+                                 price_retail_cents: 22 * 100,
+                                 price_wholesale_cents: 9 * 100,
                                  description_retail: "The Bunch Bracelet is made from full-grain vegetable tanned leather cut into thin strips, hand dyed using plant extracts. The front of the bracelet features 7 strips, while the back closes with a simple slip knot.",
                                  description_wholesale: "The Bunch Bracelet is made from full-grain vegetable tanned leather cut into thin strips, hand dyed using plant extracts. The front of the bracelet features 7 strips, while the back closes with a simple slip knot."
 bunch_bracelet.sizes.create! name: "Adjustable"
