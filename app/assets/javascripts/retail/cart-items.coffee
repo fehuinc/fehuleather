@@ -2,16 +2,16 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB, Validator)->
   makeItemHtml = (build)->
     deletedClass = if build.quantity > 0 then "" else "deleted"
     name     = "<div class='name'>#{build.short_name}</div>"
+    image    = "<div class='image'><img src='#{build.variation.wholesale_image or ''}'></div>"
     quantity = "<div class='quantity'><input type='number' min='0' max='#{build.stock}' step='1' value='#{build.quantity}'></div>"
     price    = "<div class='price'>$#{build.retail_prices[CartDB.getCurrency()] *  build.quantity}</div>"
-    image    = "<div class='image'><img src='#{build.variation.wholesale_image or ''}'></div>"
-    return "<div class='item #{deletedClass}' build-id='#{build.id}'>#{name}#{quantity}#{price}#{image}</div>"
+    return "<div class='item #{deletedClass}' build-id='#{build.id}'>#{name}#{image}#{quantity}#{price}</div>"
   
   makeItemsHtml = (state, builds)->
     rows = (makeItemHtml build for k, build of builds)
     
     taxRow = if CartDB.getCurrency() is "CAD"
-      "<div class='name'>5% GST</div><div class='quantity'> </div><div class='price'>$#{CartDB.getTax().toFixed(2)}</div>"
+      "<div class='name'>5% GST</div><div class='image'></div><div class='quantity'></div><div class='price'>$#{CartDB.getTax().toFixed(2)}</div>"
     else
       "<div class='name'><i>There may be duties</i></div>"
     rows.push "<div class='tax item'>#{taxRow}</div>"
