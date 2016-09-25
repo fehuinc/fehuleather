@@ -6,7 +6,7 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
     handler = StripeCheckout.configure
       key: "<%= ENV.fetch('STRIPE_PUBLISHABLE_KEY') %>"
       name: "Fehu Inc."
-      image: "<%= image_path('logo-square-blue.png') if Rails.env == 'production' %>"
+      image: "<%= image_path('logo-square-on-white.png') if Rails.env == 'production' %>"
       token: (token)->
         processing = true
         
