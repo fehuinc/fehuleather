@@ -2,13 +2,13 @@ class ExceptionBlacklist
   def self.path_on_404_blacklist(path)
     # Temporarily nonexistent
     return true if path.start_with? "/blog"
-    return true if path.start_with? "/checkout"
 
     # Noisy subsystems
     return true if path.start_with? "/assets/application-"
     
     # Nonsense requests
     return true if path.start_with? "/.well-known"
+    return true if path.start_with? "/apple-touch-icon"
     return true if path.start_with? "/magazine/js"
     return true if path.start_with? "/admin"
     return true if path.start_with? "/apple-app-site-association"
