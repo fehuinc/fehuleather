@@ -8,6 +8,7 @@ class ExceptionBlacklist
     
     # Nonsense requests
     return true if path.start_with? "/.well-known"
+    return true if path.start_with? "/favicon.ico"
     return true if path.start_with? "/apple-touch-icon"
     return true if path.start_with? "/magazine/js"
     return true if path.start_with? "/admin"
