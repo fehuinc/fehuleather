@@ -21,8 +21,9 @@
   .content {
     height: calc(100% - 3em);
     padding: 5vmin 7vmin 0;
-    overflow: auto;
     text-align: left;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
   h3 { margin: 0; }
