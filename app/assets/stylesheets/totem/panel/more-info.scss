@@ -18,15 +18,9 @@
   transition: opacity .6s;
   pointer-events: none;
   
-  &.showing {
-    opacity: 1;
-    transition: opacity .2s;
-    pointer-events: auto;
-  }
-  
   .content {
-    height: calc(100% - 4em);
-    padding: 8vmin;
+    height: calc(100% - 3em);
+    padding: 5vmin 7vmin 0;
     overflow: auto;
     text-align: left;
   }
@@ -41,12 +35,18 @@
   }
   
   .cool {
-    height: 4em;
-    line-height: 4em;
+    height: 3em;
+    line-height: 3em;
     vertical-align: middle;
   }
   
   ::-webkit-scrollbar { width: 8px; }
   ::-webkit-scrollbar-track {}
   ::-webkit-scrollbar-thumb { background-color: #CCC; }
+}
+
+.showingMoreInfo.showingPanel .more-info {
+  opacity: 1;
+  transition: opacity .2s;
+  pointer-events: auto;
 }

@@ -1,6 +1,6 @@
 <div class="top">
-  <span class="variation"><%=item.variation.name%></span>
-  <span class="product"><%=item.product.name%></span>
+  <div class="variation"><%=item.variation.name%></div>
+  <div class="product"><%=item.product.name%></div>
 </div>
 
 <div class="middle">
@@ -31,7 +31,7 @@
 
 <div class="bottom">
   <div class="more-info-toggle" ng-click="moreInfo = true">More Info</div>
-  <div class="more-info" ng-class="{showing:moreInfo}">
+  <div class="more-info">
     <div class="content">
       <h3><%= item.variation.full_name %></h3>
       <% if item.variation.description_retail.length > 0 %>

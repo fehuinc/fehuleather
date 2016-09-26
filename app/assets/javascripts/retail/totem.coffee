@@ -85,8 +85,8 @@ $ ()->
       state.vminPx = Math.min(window.innerWidth/100, 5)
     
     # If the screen is too large.. let's keep it reasonable
-    if state.vminPx > 10
-      state.vminPx = 10
+    if state.vminPx > 9
+      state.vminPx = 9
     
     state.tileSizePx = TILE_SIZE * state.vminPx
     state.sliderWidthPx = state.itemList.length * state.tileSizePx
@@ -141,19 +141,14 @@ $ ()->
       totalDeltaUnits = (state.touchStart.x - state.touchCurrent.x) / state.tileSizePx
       
       if velPx >= 0 and Math.round(totalDeltaUnits) >= 0
-        console.log "A"
         slideByUnits state, -1
       else if velPx <= 0 and Math.round(totalDeltaUnits) <= 0
-        console.log "B"
         slideByUnits state, 1
       # else if velPx > 0 and totalDeltaUnits > 0.1
-      #   console.log "C"
       #   slideByUnits state, -1
       # else if velPx < 0 and totalDeltaUnits < 0.1
-      #   console.log "D"
       #   slideByUnits state, 1
       else
-        console.log "E"
         updateSliderOffset state
       state.isTransitioning = true
     else if not state.isScrolling
