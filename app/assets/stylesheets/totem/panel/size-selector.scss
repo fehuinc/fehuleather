@@ -13,11 +13,13 @@ size-selector {
   
   &.single {
     border-bottom: 1px solid white;
+    @media (max-width: 500px) { display: none; }
   }
   
   &.multi {
     padding: 0 1em;
     border-bottom: 1px solid $med;
+    @media (max-width: 500px) { display: block; }
   }
   
   &.multi div {
