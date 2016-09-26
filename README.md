@@ -2,6 +2,10 @@
 
 Stinks. On Rails.
 
+### Sizes:
+Totem: sips -Z 800 *.jpg
+Wholesale: sips -Z 200 *.jpg
+
 ### Erase & Rebuild DB
 ```bash
 # Dev
