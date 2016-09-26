@@ -29,9 +29,9 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
       e.preventDefault()
       if not processing
         
-        $("html,body").animate {scrollTop: 0}, 600, "swing"
-        $("main").fadeOut "slow"
-        $("footer").fadeOut "slow"
+        # $("html,body").animate {scrollTop: 0}, 600, "swing"
+        # $("main").fadeOut "slow"
+        # $("footer").fadeOut "slow"
         
         quantity = CartDB.getQuantity()
         plural = if quantity is 1 then "" else "s"
@@ -41,6 +41,6 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
           description: quantity + " Item" + plural
           email: $(".email").text()
           currency: CartDB.getCurrency()
-          closed: ()->
-            $("main").show()
-            $("footer").show()
+          # closed: ()->
+          #   $("main").show()
+          #   $("footer").show()
