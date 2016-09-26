@@ -32,7 +32,6 @@ AWS_SECRET_ACCESS_KEY   | (AWS secret)                         | (AWS secret)   
 DATABASE_URL            |                                      | (Set by Heroku)                                                    | (Set by Heroku)
 DOMAIN                  | www.frails.dev                       | https://fehu-staging.herokuapp.com                                 | https://www.fehuleather.com
 ERROR_PAGE_URL          |                                      | https://d8bjlz07mgiyc.cloudfront.net/rails/static/error.html       | https://d8bjlz07mgiyc.cloudfront.net/rails/static/error.html
-FEATURE_RETAIL          | true                                 | false                                                              | false
 FEATURE_WHOLESALE       | true                                 | false                                                              | false
 IMAGEPATH               | /product-images/                     | https://d8bjlz07mgiyc.cloudfront.net/rails/products/               | https://d8bjlz07mgiyc.cloudfront.net/rails/products/
 MAINTENANCE_PAGE_URL    |                                      | https://d8bjlz07mgiyc.cloudfront.net/rails/static/maintenance.html | https://d8bjlz07mgiyc.cloudfront.net/rails/static/maintenance.html
