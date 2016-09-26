@@ -19,7 +19,7 @@ size-selector {
   &.multi {
     padding: 0 1em;
     border-bottom: 1px solid $med;
-    @media (max-width: 500px) { display: block; }
+    @media (max-width: 800px) { display: block; }
   }
   
   &.multi div {

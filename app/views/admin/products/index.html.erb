@@ -1,7 +1,7 @@
 <h1>Stinky Products</h1>
 
 <div class="center">
-  <div class="in-bl left">
+  <div class="inbl left">
     <% @products.each do |product| %>
       <h3><%= link_to product.name, edit_admin_product_path(product) %></h3>
     <% end %>
