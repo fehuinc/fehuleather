@@ -28,7 +28,7 @@
   totem-item {
     display: block;
     margin-left: calc(50vw - 41vmin); // Replaced by JS
-    transition: opacity .2s cubic-bezier(.2,.2,.3,.9);
+    transition: opacity .5s cubic-bezier(.2,.2,.3,.9);
     opacity: 0;
     
     // This lets us stack all the images in the same spot, without using position:absolute because that breaks inherting parent transforms
