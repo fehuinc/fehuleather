@@ -236,11 +236,7 @@ $ ()->
       x1 = y1 = 0
       y1 = .3 + Math.max 0, (vel/dist)/50
     
-    condCSS state.slider, "-webkit-transition", state.isTransitioning, "-webkit-transform #{time}s cubic-bezier(#{x1},#{y1},#{x2},#{y2})"
-    condCSS state.slider, "-ms-transition", state.isTransitioning, "-ms-transform #{time}s cubic-bezier(#{x1},#{y1},#{x2},#{y2})"
     condCSS state.slider, "transition", state.isTransitioning, "transform #{time}s cubic-bezier(#{x1},#{y1},#{x2},#{y2})"
-    state.slider.css "-webkit-transform", "translate(#{state.offsetX}px)"
-    state.slider.css "-ms-transform", "translate(#{state.offsetX}px)"
     state.slider.css "transform", "translate(#{state.offsetX}px)"
   
     
