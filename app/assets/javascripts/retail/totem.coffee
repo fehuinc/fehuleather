@@ -144,9 +144,9 @@ $ ()->
         slideByUnits state, -1
       else if velPx < -state.tileSizePx/50 and Math.round(totalDeltaUnits) <= 0
         slideByUnits state, 1
-      else if velPx > 0 and totalDeltaUnits > 0.2
+      else if velPx >= 0 and totalDeltaUnits > 0.1
         slideByUnits state, -1
-      else if velPx < 0 and totalDeltaUnits < 0.2
+      else if velPx <= 0 and totalDeltaUnits < 0.1
         slideByUnits state, 1
       else
         updateSliderOffset state
