@@ -15,6 +15,7 @@ panels-wrapper {
   transition: opacity .3s linear;
   pointer-events: none;
   z-index: 3;
+  -webkit-tap-highlight-color: rgba($dark, 0.2);
   
   top-spacer {
     display: block;
