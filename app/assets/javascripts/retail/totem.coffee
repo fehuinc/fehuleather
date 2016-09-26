@@ -146,12 +146,12 @@ $ ()->
       else if velPx < -state.tileSizePx/50 and Math.round(totalDeltaUnits) <= 0
         console.log "B"
         slideByUnits state, 1
-      else if velPx >= 0 and totalDeltaUnits > 0.1
-        console.log "C"
-        slideByUnits state, -1
-      else if velPx <= 0 and totalDeltaUnits < 0.1
-        console.log "D"
-        slideByUnits state, 1
+      # else if velPx > 0 and totalDeltaUnits > 0.1
+      #   console.log "C"
+      #   slideByUnits state, -1
+      # else if velPx < 0 and totalDeltaUnits < 0.1
+      #   console.log "D"
+      #   slideByUnits state, 1
       else
         console.log "E"
         updateSliderOffset state
