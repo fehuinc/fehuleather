@@ -11,8 +11,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Angelite",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/angelite.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/angelite.jpg",
-    description_retail: "<h3 class='product-name'>Angelite Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and angelite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
-    description_wholesale: "<h3 class='product-name'>Angelite Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and angelite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
+    description_retail: "<h3>Angelite Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and angelite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "<h3>Angelite Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and angelite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
   cc_bracelet.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -20,8 +20,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Stitch",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/basic.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/basic.jpg",
-    description_retail: "<h3 class='product-name'>Stitch Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather stitched together with three large cross stitches. Perfect for wearing on long, dusty trails or wherever life takes you.",
-    description_wholesale: "<h3 class='product-name'>Stitch Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather stitched together with three large cross stitches. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_retail: "<h3>Stitch Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather stitched together with three large cross stitches. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "<h3>Stitch Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather stitched together with three large cross stitches. Perfect for wearing on long, dusty trails or wherever life takes you.",
     adjust_retail_cents: -34 * 100,
     adjust_wholesale_cents: -12 * 100),
   cc_bracelet.sizes)
@@ -31,8 +31,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Hypersthene",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/hypersthene.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/hypersthene.jpg",
-    description_retail: "<h3 class='product-name'>Hypersthene Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and hypersthene gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
-    description_wholesale: "<h3 class='product-name'>Hypersthene Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and hypersthene gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
+    description_retail: "<h3>Hypersthene Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and hypersthene gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "<h3>Hypersthene Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and hypersthene gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
   cc_bracelet.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -40,8 +40,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Labradorite",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/labradorite.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/labradorite.jpg",
-    description_retail: "<h3 class='product-name'>Labradorite Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and labradorite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
-    description_wholesale: "<h3 class='product-name'>Labradorite Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and labradorite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
+    description_retail: "<h3>Labradorite Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and labradorite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "<h3>Labradorite Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and labradorite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
   cc_bracelet.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -49,8 +49,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Pyrite",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/pyrite.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/pyrite.jpg",
-    description_retail: "<h3 class='product-name'>Pyrite Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
-    description_wholesale: "<h3 class='product-name'>Pyrite Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
+    description_retail: "<h3>Pyrite Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "<h3>Pyrite Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
   cc_bracelet.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -58,8 +58,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Tourmaline",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/tourmaline.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/tourmaline.jpg",
-    description_retail: "<h3 class='product-name'>Tourmaline Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and tourmaline gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
-    description_wholesale: "<h3 class='product-name'>Tourmaline Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and tourmaline gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
+    description_retail: "<h3>Tourmaline Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and tourmaline gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "<h3>Tourmaline Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and tourmaline gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
   cc_bracelet.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -67,8 +67,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Lapis",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/totem/lapis.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-bracelet/wholesale/lapis.jpg",
-    description_retail: "<h3 class='product-name'>Lapis Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and lapis gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
-    description_wholesale: "<h3 class='product-name'>Lapis Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and lapis gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
+    description_retail: "<h3>Lapis Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and lapis gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "<h3>Lapis Coffee & Crystals Bracelet</h3>\nThe Coffee & Crystals Bracelet is made from full-grain vegetable tanned leather and lapis gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. Perfect for wearing on long, dusty trails or wherever life takes you."),
   cc_bracelet.sizes)
 
 
@@ -86,8 +86,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Angelite",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/angelite.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/angelite.jpg",
-    description_retail: "<h3 class='product-name'>Pyrite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural angelite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.",
-    description_wholesale: "<h3 class='product-name'>Pyrite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural angelite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
+    description_retail: "<h3>Pyrite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural angelite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.",
+    description_wholesale: "<h3>Pyrite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural angelite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
   cc_belt.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -95,8 +95,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Stitch",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/basic.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/basic.jpg",
-    description_retail: "<h3 class='product-name'>Stitch Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather stitched together with three large cross stitches. The leather is marbled with coffee. Perfect for wearing on long, dusty trails or wherever life takes you.",
-    description_wholesale: "<h3 class='product-name'>Stitch Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather stitched together with three large cross stitches. The leather is marbled with coffee. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_retail: "<h3>Stitch Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather stitched together with three large cross stitches. The leather is marbled with coffee. Perfect for wearing on long, dusty trails or wherever life takes you.",
+    description_wholesale: "<h3>Stitch Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather stitched together with three large cross stitches. The leather is marbled with coffee. Perfect for wearing on long, dusty trails or wherever life takes you.",
     adjust_retail_cents: -135 * 100,
     adjust_wholesale_cents: -48 * 100),
   cc_belt.sizes)
@@ -106,8 +106,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Hypersthene",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/hypersthene.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/hypersthene.jpg",
-    description_retail: "<h3 class='product-name'>Hypersthene Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural hypersthene gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.",
-    description_wholesale: "<h3 class='product-name'>Hypersthene Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural hypersthene gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
+    description_retail: "<h3>Hypersthene Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural hypersthene gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.",
+    description_wholesale: "<h3>Hypersthene Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural hypersthene gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
   cc_belt.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -115,8 +115,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Labradorite",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/labradorite.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/labradorite.jpg",
-    description_retail: "<h3 class='product-name'>Labradorite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural labradorite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.",
-    description_wholesale: "<h3 class='product-name'>Labradorite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural labradorite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
+    description_retail: "<h3>Labradorite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural labradorite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.",
+    description_wholesale: "<h3>Labradorite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural labradorite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
   cc_belt.sizes)
 
 # row.items.create! variation: BuildMaker.make_build_pair(
@@ -124,8 +124,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
 #     name: "Pyrite",
 #     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/pyrite.jpg",
 #     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/pyrite.jpg",
-#     description_retail: "<img class='mast' src='#{ENV.fetch("IMAGEPATH")}coffee-and-crystals-belt/info/pyrite/mast.jpg'>\n<h3 class='product-name'>Pyrite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.\n<img src='#{ENV.fetch("IMAGEPATH")}coffee-and-crystals-belt/info/pyrite/wearing.jpg'>",
-#     description_wholesale: "<h3 class='product-name'>Pyrite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
+#     description_retail: "<img class='mast' src='#{ENV.fetch("IMAGEPATH")}coffee-and-crystals-belt/info/pyrite/mast.jpg'>\n<h3>Pyrite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.\n<img src='#{ENV.fetch("IMAGEPATH")}coffee-and-crystals-belt/info/pyrite/wearing.jpg'>",
+#     description_wholesale: "<h3>Pyrite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
 #   cc_belt.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -133,8 +133,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Pyrite",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/pyrite.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/pyrite.jpg",
-    description_retail: "<h3 class='product-name'>Pyrite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.",
-    description_wholesale: "<h3 class='product-name'>Pyrite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
+    description_retail: "<h3>Pyrite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.",
+    description_wholesale: "<h3>Pyrite Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural pyrite gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
   cc_belt.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -142,8 +142,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Tourmaline",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/tourmaline.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/tourmaline.jpg",
-    description_retail: "<h3 class='product-name'>Tourmaline Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural tourmaline gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.",
-    description_wholesale: "<h3 class='product-name'>Tourmaline Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural tourmaline gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
+    description_retail: "<h3>Tourmaline Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural tourmaline gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.",
+    description_wholesale: "<h3>Tourmaline Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural tourmaline gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
   cc_belt.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -151,8 +151,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Lapis",
     totem_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/totem/lapis.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "coffee-and-crystals-belt/wholesale/lapis.jpg",
-    description_retail: "<h3 class='product-name'>Lapis Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural lapis gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.",
-    description_wholesale: "<h3 class='product-name'>Lapis Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural lapis gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
+    description_retail: "<h3>Lapis Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural lapis gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads.",
+    description_wholesale: "<h3>Lapis Coffee & Crystals Belt</h3>\nA belt made from full-grain vegetable tanned leather and natural lapis gemstones. The leather is marbled with coffee, and I hand-sew the gemstones. The belts include 3 gemstone clusters for a total of 15 beads."),
   cc_belt.sizes)
 
 
@@ -170,8 +170,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Taupe with Yellow Gold",
     totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/yellow-taupe.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/yellow-taupe.jpg",
-    description_retail: "<h3 class='product-name'>Taupe with Yellow Gold Gilt Cuff</h3>\nThis taupe leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm grey. The 23 carat yellow gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
-    description_wholesale: "<h3 class='product-name'>Taupe with Yellow Gold Gilt Cuff</h3>\nThis taupe leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm grey. The 23 carat yellow gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
+    description_retail: "<h3>Taupe with Yellow Gold Gilt Cuff</h3>\nThis taupe leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm grey. The 23 carat yellow gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "<h3>Taupe with Yellow Gold Gilt Cuff</h3>\nThis taupe leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm grey. The 23 carat yellow gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
   gilt_cuff.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -179,8 +179,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Taupe with White Gold",
     totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/white-taupe.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/white-taupe.jpg",
-    description_retail: "<h3 class='product-name'>Taupe with White Gold Gilt Cuff</h3>\nThis taupe leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm grey. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
-    description_wholesale: "<h3 class='product-name'>Taupe with White Gold Gilt Cuff</h3>\nThis taupe leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm grey. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
+    description_retail: "<h3>Taupe with White Gold Gilt Cuff</h3>\nThis taupe leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm grey. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "<h3>Taupe with White Gold Gilt Cuff</h3>\nThis taupe leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm grey. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
   gilt_cuff.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -188,8 +188,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Brown with Yellow Gold",
     totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/yellow-brown.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/yellow-brown.jpg",
-    description_retail: "<h3 class='product-name'>Brown with Yellow Gold Gilt Cuff</h3>\nThis brown leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm brown. The 23 carat yellow gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
-    description_wholesale: "<h3 class='product-name'>Brown with Yellow Gold Gilt Cuff</h3>\nThis brown leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm brown. The 23 carat yellow gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
+    description_retail: "<h3>Brown with Yellow Gold Gilt Cuff</h3>\nThis brown leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm brown. The 23 carat yellow gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "<h3>Brown with Yellow Gold Gilt Cuff</h3>\nThis brown leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm brown. The 23 carat yellow gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
   gilt_cuff.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -197,8 +197,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Brown with White Gold",
     totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/white-brown.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/white-brown.jpg",
-    description_retail: "<h3 class='product-name'>Brown with White Gold Gilt Cuff</h3>\nThis brown leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm brown. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
-    description_wholesale: "<h3 class='product-name'>Brown with White Gold Gilt Cuff</h3>\nThis brown leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm brown. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
+    description_retail: "<h3>Brown with White Gold Gilt Cuff</h3>\nThis brown leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm brown. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "<h3>Brown with White Gold Gilt Cuff</h3>\nThis brown leather bracelet is made from full-grain vegetable tanned leather, hand dyed with plant extracts to a warm brown. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
   gilt_cuff.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -206,8 +206,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Black with Yellow Gold",
     totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/yellow-black.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/yellow-black.jpg",
-    description_retail: "<h3 class='product-name'>Black with Yellow Gold Gilt Cuff</h3>\nThis black leather bracelet is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 22 carat gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
-    description_wholesale: "<h3 class='product-name'>Black with Yellow Gold Gilt Cuff</h3>\nThis black leather bracelet is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 22 carat gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
+    description_retail: "<h3>Black with Yellow Gold Gilt Cuff</h3>\nThis black leather bracelet is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 22 carat gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "<h3>Black with Yellow Gold Gilt Cuff</h3>\nThis black leather bracelet is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 22 carat gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
   gilt_cuff.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -215,8 +215,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Black with White Gold",
     totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/white-black.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/white-black.jpg",
-    description_retail: "<h3 class='product-name'>Black with White Gold Gilt Cuff</h3>\nThis black leather bracelet is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
-    description_wholesale: "<h3 class='product-name'>Black with White Gold Gilt Cuff</h3>\nThis black leather bracelet is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
+    description_retail: "<h3>Black with White Gold Gilt Cuff</h3>\nThis black leather bracelet is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "<h3>Black with White Gold Gilt Cuff</h3>\nThis black leather bracelet is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 18 carat white gold marbling has been applied using the same techniques as the Florentine book binders of years past."),
   gilt_cuff.sizes)
 
 row.items.create! variation: BuildMaker.make_build_pair(
@@ -224,8 +224,8 @@ row.items.create! variation: BuildMaker.make_build_pair(
     name: "Black with Yellow Gold Stripes",
     totem_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/totem/stripes-black.jpg",
     wholesale_image: ENV.fetch("IMAGEPATH") + "gilt-cuff/wholesale/stripes-black.jpg",
-    description_retail: "<h3 class='product-name'>Black with Yellow Gold Stripes Gilt Cuff</h3>\nThis black leather bracelet with gold stripes is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 22 carat gold stripes have been embossed using the same techniques as the Florentine book binders of years past.",
-    description_wholesale: "<h3 class='product-name'>Black with Yellow Gold Stripes Gilt Cuff</h3>\nThis black leather bracelet with gold stripes is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 22 carat gold stripes have been embossed using the same techniques as the Florentine book binders of years past."),
+    description_retail: "<h3>Black with Yellow Gold Stripes Gilt Cuff</h3>\nThis black leather bracelet with gold stripes is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 22 carat gold stripes have been embossed using the same techniques as the Florentine book binders of years past.",
+    description_wholesale: "<h3>Black with Yellow Gold Stripes Gilt Cuff</h3>\nThis black leather bracelet with gold stripes is made from full-grain vegetable tanned leather, hand dyed to a cool (blue) black. The black colour \"Vinegar Black\" is a recipe from an 18th century harness makers manual. The 22 carat gold stripes have been embossed using the same techniques as the Florentine book binders of years past."),
   gilt_cuff.sizes)
 
 
