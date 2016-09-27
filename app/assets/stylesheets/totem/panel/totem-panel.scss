@@ -11,17 +11,18 @@ totem-panel {
   -webkit-tap-highlight-color: rgba($dark, 0.2);
   
   .top {
-    padding: 1.25vh 1.25vh .75vh;
+    padding: .5rem 0 0;
     color: $dark;
-    font-size: calc(1em + 1.2vmin);
+    font-size: calc(.9em + 1vmin);
     
     .variation {
       font-weight: bold;
+      font-size: calc(1em + 1.2vmin);
     }
   }
   
   .middle {
-    padding: .75vh 0;
+    padding: 1rem 0;
     // size-selector is defined in its own file
     
     price-selector {
@@ -54,6 +55,6 @@ totem-panel {
   }
   
   .bottom {
-    padding: .75vh 0 0;
+    padding: .6em 0 .9em;
   }
 }
