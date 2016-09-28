@@ -1,0 +1,2 @@
+class CartEmptyError < Exception
+end

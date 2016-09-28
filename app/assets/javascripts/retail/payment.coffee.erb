@@ -16,11 +16,13 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
         builds = JSON.stringify builds
         
         quantity = CartDB.getQuantity()
+        amount_cents = CartDB.getSubtotal() * 100
         currency = CartDB.getCurrency()
         
         form.append("<input type='hidden' name='token' value='#{token.id}'>")
         form.append("<input type='hidden' name='builds' value='#{builds}'>")
         form.append("<input type='hidden' name='quantity' value='#{quantity}'>")
+        form.append("<input type='hidden' name='amount_cents' value='#{amount_cents}'>")
         form.append("<input type='hidden' name='currency' value='#{currency}'>")
         
         form.submit()
@@ -35,9 +37,10 @@ Take ["CartDB", "DOMContentLoaded"], (CartDB)->
         
         quantity = CartDB.getQuantity()
         plural = if quantity is 1 then "" else "s"
+        amount_cents = CartDB.getSubtotal() * 100
         
         handler.open
-          amount: CartDB.getSubtotal() * 100
+          amount: amount_cents
           description: quantity + " Item" + plural
           email: $(".email").text()
           currency: CartDB.getCurrency()

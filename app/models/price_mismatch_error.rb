@@ -1,0 +1,2 @@
+class PriceMismatchError < Exception
+end

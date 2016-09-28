@@ -1,0 +1,2 @@
+class QuantityMismatchError < Exception
+end
