@@ -49,13 +49,13 @@
   <%= render "partials/merchant_header" if merchant? %>
   <%= render "partials/admin_header" if admin? %>
   
-  <!--[if gt IE 10]><!-->
+  <!--[if gt IE 9]><!-->
   <main>
     <%= yield %>
   </main>
   <!--<![endif]-->
 
-  <!--[if lte IE 10]>
+  <!--[if lte IE 9]>
     <%= render "partials/ie" %>
   <![endif]-->
 
