@@ -16,8 +16,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
   <script>
-    FEHU = {}
-    FEHU.imagePath = "<%= ENV.fetch('IMAGEPATH') %>"
+    FEHU = {};
+    FEHU.imagePath = "<%= ENV.fetch('IMAGEPATH') %>";
   </script>
 
   <%= stylesheet_link_tag "application", media: "all" %>
@@ -53,12 +53,16 @@
   <main>
     <%= yield %>
   </main>
-  <!--<![endif]-->
 
+  <div class="modernizr">
+    <%= render "partials/ie" %>
+  </div>
+  <!--<![endif]-->
+  
   <!--[if lte IE 9]>
     <%= render "partials/ie" %>
   <![endif]-->
-
+  
   <%= render "partials/footer" %>
   <% if Rails.env == "production" %>
     <script>
