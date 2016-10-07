@@ -22,5 +22,7 @@ class ExceptionBlacklist
     return true if path.start_with? "/z3/"
     return true if path.include? ".php"
     return true if path.include? "fckeditor"
+    
+    return false
   end
 end
