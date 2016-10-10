@@ -1,1 +1,1 @@
-Rack::Timeout.timeout = ENV.fetch("RACK_TIMEOUT", 20).to_i # seconds
+Rack::Timeout.service_timeout = ENV.fetch("RACK_TIMEOUT", 20).to_i # seconds
