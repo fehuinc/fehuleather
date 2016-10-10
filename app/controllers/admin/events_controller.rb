@@ -1,6 +1,6 @@
 class Admin::EventsController < ApplicationController
   def index
-    @events = Event.all
+    @events = Event.order(updated_at: :desc)
   end
   
   def new
@@ -21,7 +21,9 @@ class Admin::EventsController < ApplicationController
   end
   
   def update
-    if @model = Event.find(params[:id]).update(standard_params)
+    @model = Event.find(params[:id])
+    if @model.update(standard_params)
+      @model.touch
       redirect_to admin_events_path
     else
       render :edit

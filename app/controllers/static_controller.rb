@@ -5,7 +5,7 @@ class StaticController < ApplicationController
   end
   
   def events
-    @events = Event.all
+    @events = Event.order(updated_at: :desc)
   end
 
   def not_found
