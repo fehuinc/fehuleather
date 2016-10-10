@@ -7,8 +7,8 @@
   <% @events.each do |event| %>
     <div class="event">
       <h3 class="bar <%= bar_color %>"><%=event.name%></h3>
-      <p><%=event.date%></p>
-      <p><%=event.location%></p>
+      <p><%=event.date.html_safe%></p>
+      <p><%=event.location.html_safe%></p>
       <p class="description"><%=event.description.html_safe%></p>
       <% if event.website %><p><a href="<%=event.website%>">Website</a></p><% end %>
     </div>
