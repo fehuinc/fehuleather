@@ -14,6 +14,7 @@ private
   
   
   # Extracted from: https://github.com/jsanders/angular_rails_csrf/blob/master/lib/angular_rails_csrf/concern.rb
+  # See also: http://stackoverflow.com/questions/7600347/rails-api-design-without-disabling-csrf-protection
   def set_xsrf_token_cookie
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
