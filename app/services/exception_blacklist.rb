@@ -24,6 +24,7 @@ class ExceptionBlacklist
     return true if path.include? ".sql"
     return true if path.include? ".zip"
     return true if path.include? ".tar"
+    return true if path.include? ".tgz"
     return true if path.include? "fckeditor"
     
     return false
