@@ -13,8 +13,8 @@ class StaticController < ApplicationController
       ExceptionNotifier.notify_exception(Exception.new("404: #{request.original_fullpath}"), env: request.env)
     end
     respond_to do |format|
-      format.json { head :not_found }
-      format.any { render :err, status: :not_found }
+      format.html { render :err, status: :not_found }
+      format.any { head :not_found }
     end
   end
 
