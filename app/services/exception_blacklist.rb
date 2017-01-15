@@ -21,6 +21,9 @@ class ExceptionBlacklist
     return true if path.start_with? "/wp-"
     return true if path.start_with? "/z3/"
     return true if path.include? ".php"
+    return true if path.include? ".sql"
+    return true if path.include? ".zip"
+    return true if path.include? ".tar"
     return true if path.include? "fckeditor"
     
     return false
