@@ -2,7 +2,7 @@ source "https://rubygems.org"
 ruby "2.4.0"
 
 # FRAMEWORK
-gem "rails", "5.0.1"
+gem "rails", "~> 5.0.0"
 
 # DB — Must come before SERVER
 gem "pg"
@@ -24,7 +24,6 @@ gem "uglifier"
 # SERVICE INTEGRATIONS
 gem "aws-sdk", "~> 2"
 gem "postmark-rails"
-gem "skylight"
 gem "stripe"
 
 # IMAGE UPLOADS
@@ -53,5 +52,5 @@ end
 
 group :production do
   gem "exception_notification"
-  gem "rails_12factor"
+  gem "skylight"
 end
