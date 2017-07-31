@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     get "stink" => "static#stink"
     post "stink" => "static#stink_in"
     delete "stink" => "static#stink_out"
+    
+    # Tips
+    get "tips/double-wrap-belt" => redirect("tips/double-wrap-belt.pdf")
 
     # Legacy routes
     get "/pages/story" => redirect("/about")
