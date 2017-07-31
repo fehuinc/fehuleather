@@ -1,5 +1,8 @@
 class ExceptionBlacklist
   def self.path_on_404_blacklist(path)
+    # We are currently in a stable state — no need to receive 404 reports
+    return true
+    
     # Noisy subsystems
     return true if path.start_with? "/assets/application-"
     
