@@ -2,7 +2,7 @@ source "https://rubygems.org"
 ruby "2.5.0"
 
 # FRAMEWORK
-gem "rails", "~> 5.0.0"
+gem "rails", "~> 5.1.4"
 
 # DB — Must come before SERVER
 gem "pg"
