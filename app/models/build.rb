@@ -1,16 +1,16 @@
 class Build < ApplicationRecord
-  has_one :product, through: :variation
   belongs_to :variation
+  has_one :product, through: :variation
   belongs_to :size
   has_many :order_items
-  
+
   validates :variation, :size, { presence: true }
   validates :stock, { numericality: { only_integer: true } }
-  
+
   def full_name
     @full_name ||= "#{size.name} #{variation.name} #{product.name}"
   end
-  
+
   def short_name
     @short_name ||= if variation.builds.count > 1
       full_name
@@ -18,7 +18,7 @@ class Build < ApplicationRecord
       "#{variation.name} #{product.name}"
     end
   end
-  
+
   def build_name
     @short_name ||= if variation.builds.count > 1
       "#{size.name} #{variation.name}"
@@ -26,7 +26,7 @@ class Build < ApplicationRecord
       "#{variation.name}"
     end
   end
-  
+
   def price_retail_render(currency)
     variation.price_retail_render(currency)
   end
@@ -34,7 +34,7 @@ class Build < ApplicationRecord
   def price_wholesale_render(currency)
     variation.price_wholesale_render(currency)
   end
-  
+
   def retail_prices # -> Dollars
     p = variation.price_retail_raw
     return {
