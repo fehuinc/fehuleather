@@ -91,8 +91,6 @@ GEM
     get_process_mem (0.2.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    google_currency (3.4.0)
-      money (~> 6.7)
     heapy (0.1.2)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -122,6 +120,8 @@ GEM
       money (~> 6.7)
     money (6.9.0)
       i18n (>= 0.6.4, < 0.9)
+    money-oxr (0.3.0)
+      money (~> 6.6)
     money-rails (1.7.0)
       activesupport (>= 3.0)
       monetize (~> 1.4.0)
@@ -243,9 +243,9 @@ DEPENDENCIES
   derailed
   dotenv-rails
   exception_notification
-  google_currency
   jquery-fileupload-rails
   jquery-rails
+  money-oxr
   money-rails
   pg
   postmark-rails
@@ -264,7 +264,7 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 RUBY VERSION
-   ruby 2.4.1p111
+   ruby 2.5.0p0
 
 BUNDLED WITH
-   1.14.6
+   1.16.1

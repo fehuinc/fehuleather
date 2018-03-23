@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "2.4.1"
+ruby "2.5.0"
 
 # FRAMEWORK
 gem "rails", "~> 5.0.0"
@@ -31,7 +31,7 @@ gem "jquery-fileupload-rails"
 
 # MISC
 gem "money-rails"
-gem "google_currency"
+gem "money-oxr"
 
 group :development, :test do
   gem "byebug"

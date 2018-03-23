@@ -1,18 +1,16 @@
 # encoding : utf-8
-require 'money/bank/google_currency'
-
-Money::Bank::GoogleCurrency.ttl_in_seconds = 60 * 60 * 24 * 7 * 2
+require 'money_oxr/bank'
 
 MoneyRails.configure do |config|
 
   # To set the default currency
   #
   config.default_currency = :cad
-  
+
   # Set default bank object
   #
   # Example:
-  config.default_bank = Money::Bank::GoogleCurrency.new
+  config.default_bank = MoneyOXR::Bank.new app_id: ENV.fetch("OXR_ID")
 
   # Add exchange rates to current money bank object.
   # (The conversion rate refers to one direction only)
@@ -60,7 +58,7 @@ MoneyRails.configure do |config|
   #   :thousands_separator => ".",
   #   :decimal_mark        => ","
   # }
-  
+
   # Specify a rounding mode
   # Any one of:
   #
@@ -75,7 +73,7 @@ MoneyRails.configure do |config|
   # set to BigDecimal::ROUND_HALF_EVEN by default
   #
   # config.rounding_mode = BigDecimal::ROUND_HALF_UP
-  
+
   # Set default money format globally.
   # Default value is nil meaning "ignore this option".
   # Example:
