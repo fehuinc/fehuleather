@@ -1,7 +1,7 @@
 class Build < ApplicationRecord
   belongs_to :variation
-  has_one :product, through: :variation
   belongs_to :size
+  has_one :product, through: :variation
   has_many :order_items
 
   validates :variation, :size, { presence: true }
