@@ -1,20 +1,20 @@
 class WholesaleOrder < ApplicationRecord
   belongs_to :merchant
   belongs_to :address, optional: true
-  has_many :items, as: :order, class_name: OrderItem, dependent: :destroy
+  has_many :items, as: :order, class_name: "OrderItem", dependent: :destroy
 
   def to_param
     uuid.parameterize
   end
-  
+
   def subtotal(currency)
     items.map { |i| i.build.price_wholesale_render(currency) * i.quantity }.reduce(0, :+)
   end
-  
+
   def item_for_build(build)
     items.where(build_id: build.id).first
   end
-  
+
   def create_item_for_build(build, currency)
     item = items.new(
       build_id: build.id,
@@ -27,7 +27,7 @@ class WholesaleOrder < ApplicationRecord
     item.save!
     item
   end
-  
+
   def update_item_from_build(build, quantity, currency)
     if quantity > 0
       item = item_for_build(build) || create_item_for_build(build, currency)
