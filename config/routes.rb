@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get "payment" => "static#payment"
     get "order-complete/:id" => "retail_orders#order_complete", as: "order_complete"
     resources :orders, only: [:create, :show], controller: "retail_orders"
-    
+
     # Static
     get "about" => "static#about"
     get "events" => "static#events"
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get "stink" => "static#stink"
     post "stink" => "static#stink_in"
     delete "stink" => "static#stink_out"
-    
+
     # Tips
     get "tips/double-wrap-belt" => redirect("tips/double-wrap-belt.pdf")
 
@@ -34,12 +34,12 @@ Rails.application.routes.draw do
     get "/products/*ignore" => redirect("/")
     get "/collections/*ignore" => redirect("/")
 
-    
+
     # Wholesale
     if FeatureFlags.check :wholesale
       get "logout" => "merchant#logout", as: "logout_merchant"
     end
-    
+
     # Wholesale — public
     scope constraints: lambda { |request| request.session[:merchant_id].nil? || Merchant.find_by_id(request.session[:merchant_id]).nil? } do
       if FeatureFlags.check :wholesale
@@ -50,18 +50,18 @@ Rails.application.routes.draw do
       get "merchant" => "merchant#login"
       get "merchant/*ignore" => "merchant#login"
     end
-    
+
     # Wholesale — private
     if FeatureFlags.check :wholesale
       scope constraints: lambda { |request| !request.session[:merchant_id].nil? && !Merchant.find_by_id(request.session[:merchant_id]).nil? } do
         get "merchant" => "merchant#index"
         post "merchant" => "merchant#index"
         patch "merchant" => "merchant#update"
-        
+
         namespace :merchant do
           resources :addresses, except: [:index, :show]
         end
-        
+
         resource :wholesale, only: [:new, :edit] do
           get "product/:id" => "wholesales#edit_product", as: "product"
           patch "update_order/:build_id" => "wholesales#update_order"
@@ -73,17 +73,17 @@ Rails.application.routes.draw do
         end
       end
     end
-    
+
     # Admin
     scope constraints: lambda { |request| request.session[:stinker] == ENV.fetch("STINKNAME") } do
       namespace :admin do
         put "builds/:id" => "builds#ajax_update"
-        
+
         get "totem" => "totem_rows#index", as: "totem"
         resources :totem_rows, except: [:index] do
           resources :totem_items, shallow: true
         end
-        
+
         resources :products, except: [:show] do
           resources :variations, only: [:new, :create]
           resources :sizes, only: [:new, :create]
@@ -99,7 +99,7 @@ Rails.application.routes.draw do
         get "wholesale" => "wholesale#index", as: "wholesale"
       end
     end
-    
+
     get "*slug" => "static#not_found"
   end
 end
