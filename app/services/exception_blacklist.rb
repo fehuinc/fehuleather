@@ -2,10 +2,10 @@ class ExceptionBlacklist
   def self.path_on_404_blacklist(path)
     # We are currently in a stable state — no need to receive 404 reports
     return true
-    
+
     # Noisy subsystems
     return true if path.start_with? "/assets/application-"
-    
+
     # Nonsense requests
     return true if path.start_with? "/.well-known"
     return true if path.start_with? "/admin"
@@ -23,6 +23,7 @@ class ExceptionBlacklist
     return true if path.start_with? "/wordpress"
     return true if path.start_with? "/wp-"
     return true if path.start_with? "/z3/"
+    return true if path.include? ".asp"
     return true if path.include? ".php"
     return true if path.include? ".sql"
     return true if path.include? ".zip"
@@ -30,7 +31,7 @@ class ExceptionBlacklist
     return true if path.include? ".tgz"
     return true if path.include? ".bz2"
     return true if path.include? "fckeditor"
-    
+
     return false
   end
 end
