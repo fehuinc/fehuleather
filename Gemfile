@@ -12,8 +12,10 @@ gem "bootsnap", require: false
 gem "puma"
 # gem "rack-cache"
 gem "rack-cors", :require => "rack/cors"
-gem "rack-mini-profiler" # Must come after DB
 gem "rack-timeout"
+
+# LOGGING
+gem "lograge"
 
 # ASSETS & UI
 gem "autoprefixer-rails"
