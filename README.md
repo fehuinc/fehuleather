@@ -9,7 +9,7 @@ Wholesale: sips -Z 200 *.jpg
 ### Erase & Rebuild DB
 ```bash
 # Dev
-pg_ctl restart -m fast && rails db:drop db:create db:migrate db:seed
+rails db:drop db:create db:migrate db:seed
 
 # Staging
 heroku pg:reset DATABASE --remote staging --confirm fehu-staging
