@@ -4,10 +4,16 @@ Rails.application.configure do
   # Configure CORS
   config.middleware.insert_before 0, Rack::Cors do
     allow do
-      origins "*"
+      origins ["https://www.fehuleather.com", "https://fehu-staging.herokuapp.com", "http://www.frails.test"]
       resource "*", :headers => :any, :methods => [:get, :head, :options]
     end
   end
+
+  # Configure Web Console
+  config.web_console.whitelisted_ips = '192.168.1.0/16'
+
+  # Set Time Zone
+  config.time_zone = "Mountain Time (US & Canada)"
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -26,7 +32,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => 'public, max-age=172800'
+      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -39,10 +45,12 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  # Ivan added:
+  # Send email with postmark
+  config.action_mailer.delivery_method = :postmark
+  config.action_mailer.postmark_settings = { :api_key => ENV['POSTMARK_API_KEY'] }
+
   # Specify what domain to use for mailer URLs and assets (like images)
-  config.action_mailer.default_url_options = { host: ENV.fetch("DOMAIN") }
-  config.action_mailer.asset_host = ENV.fetch("DOMAIN")
+  config.action_mailer.asset_host = ENV.fetch("ASSET_HOST")
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -66,16 +74,20 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  # Use an evented file watcher to asynchronously detect changes in source code,
+  # routes, locales, etc. This feature depends on the listen gem.
+  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker # disabled because the listen gem seems to suck on OSX
+
   # Don't add color codes to the dev log
   config.colorize_logging = false
 
   # Configure Bullet
-  config.after_initialize do
-    Bullet.enable = ENV["BULLET"] == "true"
-    Bullet.add_footer = true     # bottom left
-    Bullet.alert = false         # pop up a JavaScript alert in the browser
-    Bullet.bullet_logger = false # log to the Bullet log file (/log/bullet.log)
-    Bullet.console = true        # console.log
-    Bullet.rails_logger = false  # add warnings directly to the Rails log
-  end
+  # config.after_initialize do
+  #   Bullet.enable = ENV["BULLET"] == "true"
+  #   Bullet.add_footer = true     # bottom left
+  #   Bullet.alert = false         # pop up a JavaScript alert in the browser
+  #   Bullet.bullet_logger = false # log to the Bullet log file (/log/bullet.log)
+  #   Bullet.console = true        # console.log
+  #   Bullet.rails_logger = false  # add warnings directly to the Rails log
+  # end
 end
