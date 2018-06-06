@@ -5,25 +5,29 @@
     max-width: none;
     min-width: 768px;
     padding: 0;
-  
+
     .split {
       display: flex;
       justify-content: center;
-      
+
       & > * {
         flex: 0 0 47vw;
       }
     }
-    
+
     .nav {
       display: block;
       width: 100%;
       margin-bottom: 1em;
       padding: 1em 0;
       z-index: 1000;
-      
+
       div {
         display: inline-block;
+      }
+
+      a.back.button {
+        margin-top: 0;
       }
     }
   }
