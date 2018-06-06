@@ -3,14 +3,14 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta charset="utf-8">
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0<%= ", maximum-scale=1.0, user-scalable=no" if controller_name == "totem" && action_name == "index" %>">
-  
+
   <title><%= head_title(yield(:title)) %></title>
-  
+
   <meta name="description" content="<%= head_description(yield(:description)) %>">
   <meta name="keywords" content="fehu,leather,leather cuff,leather bracelet,leather belt,wrap cuff,handmade">
-  
+
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -25,7 +25,7 @@
 
   <link rel="apple-touch-icon" href="<%=image_path "favicon.png"%>">
   <link rel="shortcut icon" href="<%=image_path "favicon.png"%>">
-  
+
   <meta property="og:site_name" content="Fehu">
   <meta property="og:title" content="Unique leather cuffs and other cute stuffs.">
   <meta property="og:description" content="Vegetable tanned leather, dyed with plants, cut and sewn by hand in Calgary, Canada.">
@@ -42,27 +42,17 @@
 </head>
 
 <body class="<%=body_class%>" id="<%=body_id%>">
-  
+
   <modal-cover></modal-cover>
   <%= render "partials/flash" %>
   <%= render "partials/header" %>
   <%= render "partials/merchant_header" if merchant? %>
   <%= render "partials/admin_header" if admin? %>
-  
-  <!--[if gt IE 9]><!-->
+
   <main>
     <%= yield %>
   </main>
 
-  <div class="modernizr">
-    <%= render "partials/ie" %>
-  </div>
-  <!--<![endif]-->
-  
-  <!--[if lte IE 9]>
-    <%= render "partials/ie" %>
-  <![endif]-->
-  
   <%= render "partials/footer" %>
   <% if Rails.env == "production" %>
     <script>
