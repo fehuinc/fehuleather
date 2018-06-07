@@ -2,7 +2,7 @@
 
 <section>
   <h3>You're about to order <%= link_to "#{@items_count} item".pluralize(@items_count), edit_wholesale_path %>.</h3>
-  
+
   <div class="little-preview">
     <% @order.items.each do |item| %>
       <% item.quantity.times do %>
@@ -17,24 +17,27 @@
 <section ng-cloak>
   <h2>Where should we ship it to?</h2>
   <div class="addresses">
-    <% @merchant.addresses.each do |address| %>
-      <div class="address" ng-click="shipTo = <%=address.id%>; email = '<%=address.email%>'" ng-class="{selected:shipTo == <%=address.id%>}">
-        <div class="info">
-          <%= address.name %><br>
-          <%= address.line1 %><br>
-          <% if address.line2.present? %>
-            <%= address.line2 %><br>
-          <% end %>
-          <%= address.city %>, <%= address.region %><br>
-          <%= address.code %> <%= address.country %>
+    <% if @merchant.addresses.length > 0 %>
+      <div ng-init="shipTo = <%=@merchant.addresses.first.id%>"></div>
+      <% @merchant.addresses.each do |address| %>
+        <div class="address" ng-click="shipTo = <%=address.id%>; email = '<%=address.email%>'" ng-class="{selected:shipTo == <%=address.id%>}">
+          <div class="info">
+            <%= address.name %><br>
+            <%= address.line1 %><br>
+            <% if address.line2.present? %>
+              <%= address.line2 %><br>
+            <% end %>
+            <%= address.city %>, <%= address.region %><br>
+            <%= address.code %> <%= address.country %>
+          </div>
+          <div class="edit">
+            <%= link_to "Edit", edit_merchant_address_path(address) %>
+          </div>
         </div>
-        <div class="edit">
-          <%= link_to "Edit", edit_merchant_address_path(address) %>
-        </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
-  
+
   <div class="perspective center">
     <%= link_to "New Address", new_merchant_address_path, class: "button" %>
   </div>
@@ -51,82 +54,10 @@
   </label>
 </section>
 
-<section ng-cloak ng-show="shipTo">
-  
-  <div class="payment">
-    <div class="radios">
-      <h4>How would you like to pay?</h4>
-      <div>
-        <label><input type="radio" ng-model="order.paymentMethod" value="creditCard">Credit Card</label>
-        <label><input type="radio" ng-model="order.paymentMethod" value="eTransfer">e-Transfer</label>
-        <label><input type="radio" ng-model="order.paymentMethod" value="cheque">Cheque</label>
-        <label><input type="radio" ng-model="order.paymentMethod" value="other">Other</label>
-      </div>
-    </div>
-    
-    <div class="radios" ng-show="order.paymentMethod == 'creditCard'">
-      <h4>When would you like to pay?</h4>
-      <div>
-        <label><input type="radio" ng-model="order.paymentTime" value="now">I will pay now</label>
-        <label><input type="radio" ng-model="order.paymentTime" value="beforeShip">Send me an invoice</label>
-        <label><input type="radio" ng-model="order.paymentTime" value="net30">I'd like to request Net 30</label>
-        <label><input type="radio" ng-model="order.paymentTime" value="other">Other</label>
-      </div>
-    </div>
-  </div>
-  
-  <div class="additionalInfo">
-    <div class="paymentMethodText" ng-show="order.paymentMethod == 'other'">
-      <label>
-        Please specify how you'd like to pay.
-        <input type="text" ng-model="order.paymentMethodText">
-      </label>
-    </div>
-    
-    <div ng-show="order.paymentMethod == 'creditCard' && order.paymentTime == 'other'">
-      <label>
-        Please specify when you'd like to pay.
-        <input type="text" ng-model="order.paymentTimeText">
-      </label>
-    </div>
-
-    <div ng-show="order.paymentMethod == 'eTransfer'">
-      Please send an e-Transfer to <em>freyja@fehuleather.com</em> with <em>cufflove</em> as the password.
-      We'll ship the order after the payment goes through.
-    </div>
-    
-    <div ng-show="order.paymentMethod != 'eTransfer' && order.paymentMethod != 'other'">
-      <div ng-show="(order.paymentMethod == 'cheque' && order.chequeNet30) || (order.paymentMethod == 'creditCard' && order.paymentTime == 'net30') ">
-        We'll get in touch with you shortly to decide if you qualify.
-      </div>
-      
-      <div ng-show="order.paymentMethod == 'cheque' && !order.chequeNet30">
-        We will wait until we receive the cheque before shipping your order.
-      </div>
-
-      <div ng-show="order.paymentMethod == 'cheque'">
-        <label><input type="checkbox" ng-model="order.chequeNet30"> Request Net 30</label>
-      </div>
-    </div>
-  </div>
-  
-  <div class="submit center" ng-hide="order.paymentMethod == null">
-    <div ng-show="order.paymentMethod == 'creditCard' && order.paymentTime == 'now'">
-      <%= form_tag submit_cc_wholesale_path, class: "stripe inbl perspective" do |f| %>
-        <input type="hidden" name="subtotal" value="<%= @subtotal %>">
-        <input type="hidden" name="description" value="<%= "#{@items_count} Wholesale Item".pluralize(@items_count) %>">
-        <input type="hidden" name="shippingAddressId" value="{{shipTo | json}}">
-        <input type="hidden" name="orderInfo" value="{{order | json}}">
-        <script src="https://checkout.stripe.com/checkout.js"></script>
-        <button>Pay With Credit Card</button>
-      <% end %>
-    </div>
-    <div ng-hide="order.paymentMethod == 'creditCard' && (order.paymentTime == null || order.paymentTime == 'now')">
-      <%= form_tag submit_wholesale_path, class: "inbl perspective" do |f| %>
-        <input type="hidden" name="shippingAddressId" value="{{shipTo | json}}">
-        <input type="hidden" name="orderInfo" value="{{order | json}}">
-        <input type="submit" value="Submit Order">
-      <% end %>
-    </div>
-  </div>
+<section ng-cloak ng-show="shipTo" class="submit center">
+  <%= form_tag submit_wholesale_path, class: "inbl perspective" do |f| %>
+    <input type="hidden" name="shippingAddressId" value="{{shipTo | json}}">
+    <input type="hidden" name="orderInfo" value="{{order | json}}">
+    <input type="submit" value="Submit Order">
+  <% end %>
 </section>

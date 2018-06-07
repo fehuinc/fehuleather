@@ -1,6 +1,6 @@
 <h1>Past Orders</h1>
 
-<section>
+<section class="center">
   <% if @merchant.orders.count == 0 %>
     <h3 class="center">
       None yet. Would you like to
@@ -12,30 +12,13 @@
     </h3>
   <% end %>
 
-  <% @orders_by_date.each do |date, orders| %>
-    <h3><%= date %></h3>
-    <% orders.each do |order| %>
-      <div class="order <%= order.class.to_s %>">
-        <div class="type"><%= order.class.to_s.slice(0) %></div>
-        <div class="name"><%= order.address.name %></div>
-        <div class="email"><%= order.address.email %></div>
-        <div class="line1"><%= order.address.line1 %></div>
-        <% if order.address.line2.present? %>
-          <div class="line2"><%= order.address.line2 %></div>
-        <% end %>
-        <div class="region"><%= order.address.region %></div>
-        <div class="code"><%= order.address.code %></div>
-        <div class="country"><%= order.address.country %></div>
-        <table class="items">
-          <% order.items.each do |item| %>
-          <tr class="item">
-            <td class="quantity"><%= item.quantity %></div>
-            <td class="build"><%= item.build_name %></div>
-            <td class="product"><%= item.product_name %></div>
-          </tr>
-          <% end %>
-        </table>
-      </div>
-    <% end %>
+  <% @orders.each do |order| %>
+    <div>
+      <b><%= pluralize order.items.count, "Item" %></b>
+      ordered on <b><%= order.submitted.strftime("%B %d, %Y") %></b>
+      for <b>$<%= PrintMoney.cents_to_dollars(order.subtotal("CAD")) %></b><!-- TODO: Add currency -->
+      •
+      <%= link_to "View Invoice", show_wholesale_path(order) %>
+    </div>
   <% end %>
 </section>

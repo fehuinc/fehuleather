@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  rescue_from Exception, with: :server_error if Rails.env == "production"
+  rescue_from Exception, with: :server_error
   before_action :block_robots if ENV.fetch("NO_ROBOTS") == "true"
   before_action :set_xsrf_token_cookie
 
@@ -34,23 +34,37 @@ private
       flash[:notice] = "Your session has expired. Please try again."
       redirect_to root_path
     when Rack::Timeout::RequestTimeoutException
-      # Don't send an email, to avoid Ivan getting 3000 emails all at once.. again.
-      @server_error = true
-      render "static/server_error", status: 504 unless performed?
+      generic_error(exception, false, 504)
     else
-      ExceptionNotifier.notify_exception(exception, env: request.env)
-      render "static/server_error", status: 500
+      generic_error(exception, true, 500)
     end
   end
+
+
+  def generic_error(exception, notify, status)
+    ExceptionHandler.notify_exception(exception, env: request.env) if notify
+    if Rails.env.production?
+      @server_error = true
+      unless performed?
+        respond_to do |format|
+          format.html { render "static/server_error", status: status }
+          format.all  { head status }
+        end
+      end
+    else
+      raise exception
+    end
+  end
+
 
   def block_robots
     response.headers["X-Robots-Tag"] = "noindex"
   end
 
   def skip_bullet
-    Bullet.enable = false if Rails.env == "development"
+    # Bullet.enable = false if Rails.env == "development"
     yield
   ensure
-    Bullet.enable = true if Rails.env == "development" and ENV["BULLET"] == "true"
+    # Bullet.enable = true if Rails.env == "development" and ENV["BULLET"] == "true"
   end
 end

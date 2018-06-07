@@ -42,11 +42,11 @@ group :development, :test do
 end
 
 group :development do
-  gem "bullet"
-  gem "derailed"
-  gem "stackprof"
-  gem "table_print"
-  gem "web-console", "~> 2.0" # Access an IRB console on exception pages or by using <%= console %> in views
+  # gem "bullet"
+  # gem "derailed"
+  # gem "stackprof"
+  # gem "table_print"
+  gem "web-console" # Access an IRB console on exception pages or by using <%= console %> in views
 end
 
 group :test do

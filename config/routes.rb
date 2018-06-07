@@ -57,7 +57,6 @@ Rails.application.routes.draw do
           patch "update_order/:build_id" => "wholesales#update_order"
           get "checkout" => "wholesales#checkout"
           post "submit" => "wholesales#submit"
-          post "submit-cc" => "wholesales#submit_cc"
           get "order/:id" => "wholesales#show", as: "show"
           get "orders" => "wholesales#index"
         end

@@ -5,7 +5,7 @@
   .little-preview {
     display: flex;
     flex-flow: row wrap;
-    
+
     div {
       flex: 1 1 40px;
       min-width: 30px;
@@ -15,10 +15,10 @@
       }
     }
   }
-  
+
   .addresses {
     margin: 2em 0;
-    
+
     .address {
       display: inline-block;
       margin: 1em;
@@ -29,31 +29,31 @@
       cursor: pointer;
       transition: transform .6s cubic-bezier(0.5, 2, 0.5, 2), background-color .6s, box-shadow .6s;
       -webkit-font-smoothing: subpixel-antialiased;
-      
+
       &:hover, &:focus {
         background-color: #fafafa;
         transform: scale(1.05) translate3d(0, -3px, 5px);
         box-shadow: -2px 5px 8px rgba(black, .2);
       }
-      
+
       &:active {
         transition: transform .4s cubic-bezier(0.3, -.5, 0.7, 1.5), background-color .4s, box-shadow .4s;
         box-shadow: 0px 0px 8px rgba(black, 0);
         transform: rotateX(30deg) scale(.95, 1.1);
       }
-      
+
       &.selected {
         border-color: hsl(155, 50%, 70%);
       }
-      
+
       .info {
         pointer-events: none;
       }
-      
+
       .edit {
         margin-top: .5em;
         text-align: right;
-        
+
         a {
           margin-right: -.5em;
           padding: .3em .5em;
@@ -63,7 +63,7 @@
             border-radius: 5px;
             background: hsla(155, 50%, 70%, .3);
           }
-          
+
           &:active {
             background: hsla(155, 50%, 70%, .6);
           }
@@ -71,47 +71,47 @@
       }
     }
   }
-  
+
   .preferedDate {
     display: block;
   }
-  
+
   .notes {
     display: block;
     margin: 1em 0 0;
-    
+
     textarea {
       width: 100%;
     }
   }
-  
+
   .payment {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    
+
     .paymentMethodText, .paymentTimeText {
       margin-top: 1em;
     }
-    
+
     .radios {
       flex: 1 0 50%;
-      
+
       h4 {
         margin: 0 0 .5em;
       }
-      
+
       label {
         display: block;
         margin: 0 0;
       }
     }
   }
-  
+
   .additionalInfo {
     margin-top: 1em;
   }
-  
+
   .submit {
     margin-top: 2em;
   }
