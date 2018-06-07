@@ -9,7 +9,7 @@
       <textPath xlink:href="#svg-circle"><%= @product.name %></textPath>
     </text>
   </svg>
-  
+
   <div class="info">
     <div class="overview">
       <%= @product.description_wholesale.html_safe %>
@@ -24,7 +24,7 @@
         <%= link_to "< All Products", edit_wholesale_path, class: "back button" %>
       </div>
     </div>
-    
+
     <h1>Add to Your Order</h1>
     <% @product.variations.select(&:show_wholesale).each do |variation| %>
       <div class="variation">
@@ -45,11 +45,12 @@
                 <div class="pill perspective">
                   <input type="number"
                          ng-model="editorBuild.displayQuantity"
-                         ng-change="setQuantity(editorBuild.displayQuantity)"
-                         ng-init="setQuantity(<%= current_order_quantity(@order, build) %>)">
-                  <div class="button" ng-click="changeQuantity(-1)">-</div>
-                  <div class="button" ng-click="changeQuantity(1)">+</div>
-                  <div class="button five" ng-click="changeQuantity(5)">+5</div>
+                         ng-change="changeQuantity()"
+                         ng-blur="blurQuantity()"
+                         ng-init="initQuantity(<%= current_order_quantity(@order, build) %>)">
+                  <div class="button" ng-click="adjustQuantity(-1)">-</div>
+                  <div class="button" ng-click="adjustQuantity(1)">+</div>
+                  <div class="button five" ng-click="adjustQuantity(5)">+5</div>
                 </div>
               </div>
               <span ng-init="editorBuild.build_id=<%= build.id %>"></span>
@@ -65,6 +66,6 @@
       </div>
     <% end %>
   </div>
-  
+
   <%= render "wholesales/wholesale_preview" %>
 </div>
