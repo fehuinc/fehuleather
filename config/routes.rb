@@ -25,16 +25,6 @@ Rails.application.routes.draw do
     # Tips
     get "tips/double-wrap-belt" => redirect("tips/double-wrap-belt.pdf")
 
-    # Legacy routes
-    get "/pages/story" => redirect("/about")
-    get "/pages/events" => redirect("/events")
-    get "/pages/locations" => redirect("/locations")
-    get "/pages/press-kit" => redirect("/press")
-    get "/pages/wholesale" => redirect("/merchant")
-    get "/products/*ignore" => redirect("/")
-    get "/collections/*ignore" => redirect("/")
-
-
     # Wholesale
     if FeatureFlags.check :wholesale
       get "logout" => "merchant#logout", as: "logout_merchant"
