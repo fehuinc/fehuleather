@@ -42,7 +42,7 @@ $ ()->
           # Can we loop around without hitting our original index?
           else if originalIndex > 1
             getSorting(rowA, rowB, sortOrder, reverse, 1, originalIndex)
-          # Bail — we're hitting duplicates
+          # Bail — we're hitting duplicates
           else
             0
 

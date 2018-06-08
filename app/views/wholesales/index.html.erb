@@ -18,6 +18,8 @@
       ordered on <b><%= order.submitted.strftime("%B %d, %Y") %></b>
       for <b>$<%= PrintMoney.cents_to_dollars(order.subtotal("CAD")) %></b><!-- TODO: Add currency -->
       •
+      Paid
+      •
       <%= link_to "View Invoice", show_wholesale_path(order) %>
     </div>
   <% end %>

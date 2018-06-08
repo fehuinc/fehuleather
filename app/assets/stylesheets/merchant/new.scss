@@ -1,9 +1,19 @@
-.merchant#new {
+.merchant#check_password,
+.merchant#check_password_post,
+.merchant#create_password,
+.merchant#create_password_post,
+.merchant#details,
+.merchant#details_post {
   main {
     max-width: 32rem;
-    
+
     label {
       width: 100%;
+    }
+
+    .perspective {
+      max-width: 8em;
+      margin: 0 auto;
     }
   }
 }

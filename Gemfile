@@ -4,7 +4,7 @@ ruby "2.5.0"
 # FRAMEWORK
 gem "rails", "~> 5.2.0"
 
-# DB — Must come before SERVER
+# DB — Must come before SERVER
 gem "pg"
 
 # SERVER
@@ -13,6 +13,9 @@ gem "puma"
 # gem "rack-cache"
 gem "rack-cors", :require => "rack/cors"
 gem "rack-timeout"
+
+# AUTH
+gem "bcrypt"
 
 # LOGGING
 gem "lograge"

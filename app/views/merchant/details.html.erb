@@ -3,20 +3,10 @@
 
 <h1 class="page-title">Create Your Account</h1>
 
-<%= form_for @merchant, url: new_merchant_path do |f| %>
-  
-  <h4><%= @merchant.email %></h4>
-  
-  <p>It looks like this is your first time ordering from us here.</p>
-  
-  <hr>
-  
-  <p><i>If you've ordered from our site before, you probably used a different email address, or made a typo. Easy fix — <%= link_to "go back", merchant_path %>.</i></p>
-  
-  <hr>
-  
-  <p>There are just three more things we'd like to know before we let you browse our wholesale listing.</p>
-  
+<%= form_for @merchant, url: merchant_details_path, method: "post" do |f| %>
+
+  <p>There are just four more things we'd like to know before we let you browse our wholesale listing.</p>
+
   <%= render 'partials/form_errors', model: @merchant %>
 
   <div>
@@ -26,7 +16,7 @@
       <%= f.text_field :your_name, placeholder: "eg: Tyr Annosaurus" %>
     </label>
   </div>
-  
+
   <div>
     <label>
       Store Name
@@ -34,7 +24,7 @@
       <%= f.text_field :store_name, placeholder: "eg: Tiny Arms Apparel" %>
     </label>
   </div>
-  
+
   <div>
     <label>
       Phone Number
@@ -42,11 +32,20 @@
       <%= f.text_field :phone_number, placeholder: "eg: (006) 500-0000" %>
     </label>
   </div>
-  
+
+
+  <div>
+    <label>
+      Tax ID Number
+      <div class="info-prompt" ng-cloak ng-click="showTaxIdNumberPopup = !showTaxIdNumberPopup">?</div>
+      <%= f.text_field :phone_number, placeholder: "eg: (006) 500-0000" %>
+    </label>
+  </div>
+
   <hr>
-  
+
   <%= f.hidden_field(:email) %>
-    
+
   <div class="perspective">
     <%= f.submit "Continue", data: { disable_with: 'Saving' } %>
   </div>
@@ -66,4 +65,9 @@
 <div class="info-popup" ng-cloak ng-show="showOwnerPhonePopup">
   We will try to reach you by email. If that fails, we'll try this number.
   <div class="close" ng-click="showOwnerPhonePopup = false">Close</div>
+</div>
+
+<div class="info-popup" ng-cloak ng-show="showTaxIdNumberPopup">
+  We will try to reach you by email. If that fails, we'll try this number.
+  <div class="close" ng-click="showTaxIdNumberPopup = false">Close</div>
 </div>

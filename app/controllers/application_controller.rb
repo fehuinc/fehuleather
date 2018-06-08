@@ -7,36 +7,34 @@ class ApplicationController < ActionController::Base
 private
 
 
-  def require_merchant
-    redirect_to :wholesale unless session[:merchant_email].present?
+  def block_robots
+    response.headers["X-Robots-Tag"] = "noindex"
   end
 
 
-  # Extracted from: https://github.com/jsanders/angular_rails_csrf/blob/master/lib/angular_rails_csrf/concern.rb
-  # See also: http://stackoverflow.com/questions/7600347/rails-api-design-without-disabling-csrf-protection
-  def set_xsrf_token_cookie
-    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
-  end
-
-  def verified_request?
-    if respond_to?(:valid_authenticity_token?, true)
-      super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
-    else
-      super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
-    end
-  end
+  # SERVER ERRORS #################################################################################
 
 
   def server_error(exception)
     case exception
     when ActionController::InvalidAuthenticityToken
-      reset_session
-      flash[:notice] = "Your session has expired. Please try again."
-      redirect_to root_path
+      invalidauthenticitytoken_error(exception)
     when Rack::Timeout::RequestTimeoutException
       generic_error(exception, false, 504)
     else
       generic_error(exception, true, 500)
+    end
+  end
+
+
+  def invalidauthenticitytoken_error(exception)
+    reset_session
+    return if performed?
+    if request.xhr?
+      render json: {error: "InvalidAuthenticityToken"} unless performed?
+    else
+      flash[:notice] = "Your session has expired. Please try again."
+      redirect_to root_path
     end
   end
 
@@ -57,14 +55,21 @@ private
   end
 
 
-  def block_robots
-    response.headers["X-Robots-Tag"] = "noindex"
+  # ANGULAR CSRF ##################################################################################
+
+
+  # Extracted from: https://github.com/jsanders/angular_rails_csrf/blob/master/lib/angular_rails_csrf/concern.rb
+  # See also: http://stackoverflow.com/questions/7600347/rails-api-design-without-disabling-csrf-protection
+  def set_xsrf_token_cookie
+    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
 
-  def skip_bullet
-    # Bullet.enable = false if Rails.env == "development"
-    yield
-  ensure
-    # Bullet.enable = true if Rails.env == "development" and ENV["BULLET"] == "true"
+  def verified_request?
+    if respond_to?(:valid_authenticity_token?, true)
+      super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
+    else
+      super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
+    end
   end
+
 end

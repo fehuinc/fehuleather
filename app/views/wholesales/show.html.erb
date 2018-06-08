@@ -1,31 +1,80 @@
-<h1><%= time_ago_in_words(@order.created_at) %> ago, it started.</h1>
-<p>A troupe of forest creatures emerge from the earth and from the bark of trees, quietly chanting an unusual incantation, The Rhyme Of The Order ID:</p>
-<p class="center">
-  <em>
-    <%= rhyme_uuid @order.uuid %><br>
-    <%= @order.uuid %>
-  </em>
-</p>
-<p>They collect seeds and nuts and twigs and berries for a potion. When the potion is ready, they pluck the following secret ingredient<%= @many ? "s" : "" %> from the mystical Fehu tree:</p>
-<ul>
-<% @order.items.each do |item| %>
-  <li><%= item.quantity == 1 ? "a" : "#{item.quantity} of the" %> <%= item.build_name %> <%= item.product_name %></li>
-<% end %>
-</ul>
-<p>Dipped into the potion, the ingredient<%= @many ? "s come" : " comes" %> alive just for a moment, and bundle<%= @many ? " themselves" : "s itself" %> up into a square cardboard cocoon. Between the ringed branches of the Fehu tree, a portal opens, connecting the world of the forest to the inside of a <%= @order.address.country == "Canada" ? "Canada Post" : "USPS" %> delivery van. Into this portal, the forest creatures toss the cardboard cocoon with a fling of their little leggy limbs.</p>
+<h3 class="center">Wholesale Order Invoice</h3>
 
-<p>About <%= @order.address.country == "Canada" ? "ten days" : "three weeks" %> hence, <%= @order.address.name %> will hear a knock at this door:</p>
+<section>
+  <p>
+    <h4>Shipping Address</h4>
+    <%= @order.address.line1 %><br>
+    <% if @order.address.line2.present? %>
+      <%= @order.address.line2 %><br>
+    <% end %>
+    <%= @order.address.region %>
+    <%= @order.address.code %><br>
+    <%= @order.address.country %>
+  </p>
+</section>
 
-<p>
-  <%= @order.address.line1 %><br>
-  <% if @order.address.line2.present? %>
-    <%= @order.address.line2 %><br>
+<section>
+  <table>
+    <tr>
+      <th>Product</th>
+      <th>Variation</th>
+      <th>Quantity</th>
+      <th></th>
+    </tr>
+    <% @order.items.each do |item| %>
+      <tr>
+        <td><%= item.product_name %></td>
+        <td><%= item.build_name %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.price %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>Subtotal</td>
+      <td></td>
+      <td></td>
+      <td><%= PrintMoney.cents_to_dollars(@order.subtotal("CAD")) %><!-- TODO: Currency --></td>
+    </tr>
+    <tr>
+      <td>GST</td>
+      <td></td>
+      <td></td>
+      <td><%= PrintMoney.cents_to_dollars((0.05 * @order.subtotal("CAD")).round) %><!-- TODO: Currency --></td>
+    </tr>
+    <tr>
+      <td><b>Total</b></td>
+      <td></td>
+      <td></td>
+      <td><b><%= PrintMoney.cents_to_dollars((1.05 * @order.subtotal("CAD")).round) %><!-- TODO: Currency --></b></td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <%= form_tag pay_wholesale_path, class: "stripe" do |f| %>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <div class="perspective">
+      Payment is due prior to shipping.
+      You may
+      <button>Pay with Card</button>,
+      send an e-Transfer to freyja@fehuleather.com with the password "cufflove",
+      or mail a cheque.
+    </div>
   <% end %>
-  <%= @order.address.region %>
-  <%= @order.address.code %><br>
-  <%= @order.address.country %>
-</p>
+</section>
 
-<hr>
+<section>
+  <%= form_tag share_wholesale_path do %>
+    <h3>Share this invoice.</h3>
 
-<p>Sometimes the delivery van runs out of aethanol, or gets ambushed by sun spiders. If you suspect such a thing has happened, please write down your deepest fears, and slip them into the mail slot marked <em>ivan@fehuleather.com</em>. Monsters (and Ivan) will take heed, and offer help in a hurry.</p>
+    <%= label_tag :email do %>
+      <%= hidden_field_tag :order_id, @order.id %>
+      Recipient's Email
+      <%= email_field_tag :email %>
+    <% end %>
+
+    <div class="share perspective">
+      <%= submit_tag "Send", class: "save", data: { disable_with: 'Sending' } %>
+    </div>
+  <% end %>
+</section>

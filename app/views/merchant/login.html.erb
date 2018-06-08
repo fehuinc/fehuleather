@@ -3,35 +3,23 @@
 
 <h1 class="page-title">Bring Some Fehu Into Your Store</h1>
 
-<% if feature_flag :wholesale %>
+<p>In just a moment, you'll be able to browse our product listing and put together a purchase order. But first, we have a few formalities.</p>
 
-  <p>In just a moment, you'll be able to browse our product listing and put together a purchase order. But first, we have a few formalities.</p>
-
-  <%= form_for @merchant, url: merchant_path, method: "post" do |f| %>
-    <div>
-      <label>
-        Please enter your primary email address.
-        <div class="info-prompt" toggler-toggle="popup">?</div>
-        <%= f.email_field :email, autofocus: true, placeholder: "eg: secret-identity@example.com" %>
-      </label>
-    </div>
-    <%= render 'partials/form_errors', model: @merchant %>
-    <div class="perspective">
-      <%= f.submit "Continue", data: { disable_with: "Saving" } %>
-    </div>
-  <% end %>
-
-  <div class="info-popup" toggler-target="popup">
-    We'll store your account info under this email address. We'll also use it as the main contact address for your account.
-    <div class="close" toggler-hide="popup">Close</div>
+<%= form_for @merchant, url: merchant_path, method: "post" do |f| %>
+  <div>
+    <label>
+      Please enter your primary email address.
+      <div class="info-prompt" toggler-toggle="popup">?</div>
+      <%= f.email_field :email, autofocus: true, placeholder: "eg: secret-identity@example.com" %>
+    </label>
   </div>
-
-<% else %>
-  
-  <div class="center">
-    <p>Head on over to <a href="https://www.etsy.com/wholesale/vendor/3061653/linesheet" rel="nofollow">Etsy Wholesale</a><br>to see our linesheet and place an order.</p>
-    <br>
-    <p>Don't want to sign up for Etsy?<br>Send us an email instead:<br><em>ivan@fehuleather.com</em></p>
+  <%= render 'partials/form_errors', model: @merchant %>
+  <div class="perspective">
+    <%= f.submit "Continue", data: { disable_with: "Saving" } %>
   </div>
-  
 <% end %>
+
+<div class="info-popup" toggler-target="popup">
+  We'll store your account info under this email address. We'll also use it as the main contact address for your account.
+  <div class="close" toggler-hide="popup">Close</div>
+</div>

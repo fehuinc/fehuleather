@@ -1,8 +1,9 @@
 class WholesalesController < ApplicationController
+  include MerchantAuth
 
   def index
     @merchant = Merchant.find(session[:merchant_id])
-    @orders = @merchant.orders.order(created_at: :desc)
+    @orders = @merchant.orders.where.not(submitted: nil).order(created_at: :desc)
   end
 
   def new
@@ -48,16 +49,27 @@ class WholesalesController < ApplicationController
 
   def submit
     merchant = Merchant.find(session[:merchant_id])
-    order = setup_order merchant
-    # By now, we're assuming the order is successful. We can now persist new stuff to the DB.
-    complete_order order, merchant
+    order = merchant.current_order
+    order.orderInfo = wholesale_order_params[:orderInfo] # From Angular
+    order.address = Address.find wholesale_order_params[:shippingAddressId] # From Angular
+    order.submitted = Time.now
+    order.save!
+    merchant.current_order = nil
+    merchant.save!
+    OrderMailer.admin_wholesale_order(order).deliver_now
     redirect_to show_wholesale_path order
   end
 
 
-  def submit_cc
+  def show
+    @order = WholesaleOrder.find_by_uuid(params[:id])
+    @many = @order.items.count > 1 || @order.items.first.quantity > 1
+  end
+
+
+  def pay
     merchant = Merchant.find(session[:merchant_id])
-    order = setup_order merchant
+    # order = setup_order merchant
     token = wholesale_order_params[:token] # From JS
     amount = order.subtotal("CAD").to_i # cents TODO: Add currency
     description = wholesale_order_params[:description] # From HTML
@@ -73,8 +85,12 @@ class WholesalesController < ApplicationController
     order.payment_id = charge.id
     order.paid = Time.now
 
-    # By now, we're assuming the order is successful. We can now persist new stuff to the DB.
-    complete_order order, merchant
+    order.save!
+    order.reload
+
+    merchant.current_order = nil
+    merchant.save!
+
     redirect_to show_wholesale_path(order)
 
   rescue Stripe::CardError => e
@@ -83,9 +99,11 @@ class WholesalesController < ApplicationController
   end
 
 
-  def show
-    @order = WholesaleOrder.find_by_uuid(params[:id])
-    @many = @order.items.count > 1 || @order.items.first.quantity > 1
+  def share
+    email = params[:email]
+    order = WholesaleOrder.find(params[:order_id])
+    OrderMailer.customer_wholesale_order(email, order).deliver_now
+    redirect_to show_wholesale_path(order), success: "Success"
   end
 
 
@@ -96,28 +114,4 @@ private
     params.permit(:token, :shippingAddressId, :orderInfo, :currency, :description)
   end
 
-
-  def setup_order merchant
-    order = merchant.current_order
-    order.orderInfo = wholesale_order_params[:orderInfo] # From Angular
-    order.address = Address.find wholesale_order_params[:shippingAddressId] # From Angular
-    order
-  end
-
-
-  def complete_order order, merchant
-    order.submitted = Time.now
-
-    order.items.each do |item|
-      item.build.stock -= item.quantity
-    end
-
-    order.save!
-    order.reload
-
-    merchant.current_order = nil
-    merchant.save!
-
-    OrderMailer.admin_wholesale_order(order).deliver_now
-  end
 end

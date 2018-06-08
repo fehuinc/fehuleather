@@ -37,7 +37,7 @@ IMAGEPATH               | /product-images/                     | https://d8bjlz0
 MAINTENANCE_PAGE_URL    |                                      | https://d8bjlz07mgiyc.cloudfront.net/rails/static/maintenance.html | https://d8bjlz07mgiyc.cloudfront.net/rails/static/maintenance.html
 MINI_PROFILER           | false                                | (unused)                                                           | (unused)
 NO_ROBOTS               | false                                | true                                                               | false
-POSTMARK_API_KEY        | (Postmark secret)                    | (Postmark secret)                                                  | (Postmark secret)
+POSTMARK_API_KEY        | (Postmark secret)                    | (Postmark secret)                                                  | (Postmark secret)
 RACK_TIMEOUT            | 5                                    | 5                                                                  | 27
 RAILS_ENV               | development                          | (Set by Heroku)                                                    | (Set by Heroku)
 RAILS_LOG_TO_STDOUT     |                                      | (Set by Heroku)                                                    | (Set by Heroku)

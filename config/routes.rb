@@ -17,7 +17,8 @@ Rails.application.routes.draw do
     get "press" => "static#press"
     get "catalog" => "static#catalog"
     get "robots.txt" => "static#robots"
-    # Static — Admin
+
+    # Static — Admin
     get "stink" => "static#stink"
     post "stink" => "static#stink_in"
     delete "stink" => "static#stink_out"
@@ -26,40 +27,44 @@ Rails.application.routes.draw do
     get "tips/double-wrap-belt" => redirect("tips/double-wrap-belt.pdf")
 
     # Wholesale
-    if FeatureFlags.check :wholesale
-      get "logout" => "merchant#logout", as: "logout_merchant"
-    end
+    get "logout" => "merchant#logout", as: "logout_merchant"
 
-    # Wholesale — public
+    # Wholesale — public
     scope constraints: lambda { |request| request.session[:merchant_id].nil? || Merchant.find_by_id(request.session[:merchant_id]).nil? } do
-      if FeatureFlags.check :wholesale
-        get "merchant/new" => "merchant#new", as: "new_merchant"
-        post "merchant/new" => "merchant#create", as: nil
-        post "merchant" => "merchant#login"
-      end
       get "merchant" => "merchant#login"
+      post "merchant" => "merchant#login_post"
+
+      get "merchant/check-password" => "merchant#check_password"
+      post "merchant/check-password" => "merchant#check_password_post"
+
+      get "merchant/create-password" => "merchant#create_password"
+      post "merchant/create-password" => "merchant#create_password_post"
+
+      get "merchant/details" => "merchant#details"
+      post "merchant/details" => "merchant#details_post"
+
       get "merchant/*ignore" => "merchant#login"
     end
 
-    # Wholesale — private
-    if FeatureFlags.check :wholesale
-      scope constraints: lambda { |request| !request.session[:merchant_id].nil? && !Merchant.find_by_id(request.session[:merchant_id]).nil? } do
-        get "merchant" => "merchant#index"
-        post "merchant" => "merchant#index"
-        patch "merchant" => "merchant#update"
+    # Wholesale — private
+    scope constraints: lambda { |request| !request.session[:merchant_id].nil? && !Merchant.find_by_id(request.session[:merchant_id]).nil? } do
+      get "merchant" => "merchant#index"
+      post "merchant" => "merchant#index"
+      patch "merchant" => "merchant#update"
 
-        namespace :merchant do
-          resources :addresses, except: [:index, :show]
-        end
+      namespace :merchant do
+        resources :addresses, except: [:index, :show]
+      end
 
-        resource :wholesale, only: [:new, :edit] do
-          get "product/:id" => "wholesales#edit_product", as: "product"
-          patch "update_order/:build_id" => "wholesales#update_order"
-          get "checkout" => "wholesales#checkout"
-          post "submit" => "wholesales#submit"
-          get "order/:id" => "wholesales#show", as: "show"
-          get "orders" => "wholesales#index"
-        end
+      resource :wholesale, only: [:new, :edit] do
+        get "product/:id" => "wholesales#edit_product", as: "product"
+        patch "update_order/:build_id" => "wholesales#update_order"
+        get "checkout" => "wholesales#checkout"
+        post "submit" => "wholesales#submit"
+        post "pay" => "wholesales#pay"
+        get "orders" => "wholesales#index"
+        get "order/:id" => "wholesales#show", as: "show"
+        post "order/:id/share" => "wholesales#share", as: "share"
       end
     end
 

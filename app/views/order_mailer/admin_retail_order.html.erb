@@ -10,7 +10,7 @@
 <ul>
 <% @order.items.each do |item| %>
   <li>
-    <%= item.quantity %> • <%= item.build_name %> <%= item.product_name %> • <%= item.build.stock %> left in stock
+    <%= item.quantity %> • <%= item.build_name %> <%= item.product_name %> • <%= item.build.stock %> left in stock
   </li>
 <% end %>
 </ul>
