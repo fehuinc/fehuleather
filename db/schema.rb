@@ -78,8 +78,11 @@ ActiveRecord::Schema.define(version: 2) do
     t.text "secret_code"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "password_digest"
-    t.string "tax_id_number"
+    t.string "password_digest", null: false
+    t.string "tax_id_number", null: false
+    t.string "password_reset_token"
+    t.string "password_reset_sent_at"
+    t.string "password_reset_expires_at"
     t.index ["email"], name: "index_merchants_on_email", unique: true
     t.index ["store_name"], name: "index_merchants_on_store_name", unique: true
   end

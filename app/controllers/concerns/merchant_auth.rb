@@ -72,12 +72,13 @@ module MerchantAuth
   def set_authenticated_merchant(merchant)
     if merchant
       session[:merchant_id] = merchant.id
-      session[:merchant_email] = merchant.email # Make future login easier
+      session[:merchant_email] = merchant.email
       resume_authenticated_merchant(merchant)
       merchant
     else
-      @current_merchant = nil
       reset_session
+      session[:merchant_email] = @current_merchant&.email
+      @current_merchant = nil
       nil
     end
   end

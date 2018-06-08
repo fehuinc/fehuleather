@@ -5,7 +5,10 @@
 .merchant#create_password,
 .merchant#create_password_post,
 .merchant#details,
-.merchant#details_post {
+.merchant#details_post,
+.merchant#send_password_reset,
+.merchant#reset_password,
+.merchant#reset_password_patch {
   main {
     max-width: 32rem;
 

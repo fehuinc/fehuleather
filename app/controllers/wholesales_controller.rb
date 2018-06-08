@@ -56,7 +56,7 @@ class WholesalesController < ApplicationController
     order.save!
     merchant.current_order = nil
     merchant.save!
-    OrderMailer.admin_wholesale_order(order).deliver_now
+    Mails.admin_wholesale_order(order).deliver_now
     redirect_to show_wholesale_path order
   end
 
@@ -102,7 +102,7 @@ class WholesalesController < ApplicationController
   def share
     email = params[:email]
     order = WholesaleOrder.find(params[:order_id])
-    OrderMailer.customer_wholesale_order(email, order).deliver_now
+    Mails.customer_wholesale_order(email, order).deliver_now
     redirect_to show_wholesale_path(order), success: "Success"
   end
 

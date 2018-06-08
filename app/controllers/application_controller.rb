@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   rescue_from Exception, with: :server_error
   before_action :block_robots if ENV.fetch("NO_ROBOTS") == "true"
   before_action :set_xsrf_token_cookie
+  add_flash_types :success, :error
 
 private
 

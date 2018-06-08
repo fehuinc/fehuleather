@@ -26,9 +26,6 @@ Rails.application.routes.draw do
     # Tips
     get "tips/double-wrap-belt" => redirect("tips/double-wrap-belt.pdf")
 
-    # Wholesale
-    get "logout" => "merchant#logout", as: "logout_merchant"
-
     # Wholesale — public
     scope constraints: lambda { |request| request.session[:merchant_id].nil? || Merchant.find_by_id(request.session[:merchant_id]).nil? } do
       get "merchant" => "merchant#login"
@@ -43,7 +40,11 @@ Rails.application.routes.draw do
       get "merchant/details" => "merchant#details"
       post "merchant/details" => "merchant#details_post"
 
-      get "merchant/*ignore" => "merchant#login"
+      get "merchant/send-password-reset" => "merchant#send_password_reset"
+      get "merchant/password-reset-sent" => "merchant#password_reset_sent"
+
+      get "merchant/reset-password/:token" => "merchant#reset_password", as: :merchant_reset_password
+      patch "merchant/reset-password/:token" => "merchant#reset_password_patch"
     end
 
     # Wholesale — private
@@ -67,6 +68,10 @@ Rails.application.routes.draw do
         post "order/:id/share" => "wholesales#share", as: "share"
       end
     end
+
+    # Wholesale — both
+    get "merchant/logout" => "merchant#logout", as: "logout_merchant"
+    get "merchant/*ignore" => "merchant#login"
 
     # Admin
     scope constraints: lambda { |request| request.session[:stinker] == ENV.fetch("STINKNAME") } do

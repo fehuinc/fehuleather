@@ -19,11 +19,11 @@
 <section>
   <%= form_for @merchant, url: merchant_path do |f| %>
     <p>Need to update your contact info?</p>
-    
+
     <%= render 'partials/form_errors', model: @merchant %>
-    
+
     <div class="fields">
-    
+
       <div class="field">
         <label>
           Your Name
@@ -31,7 +31,7 @@
           <%= f.text_field :your_name, placeholder: "eg: Tyr Annosaurus" %>
         </label>
       </div>
-      
+
       <div class="field">
         <label>
           Store Name
@@ -47,7 +47,7 @@
           <%= f.email_field :email, placeholder: "eg: tyran@example.com" %>
         </label>
       </div>
-        
+
       <div class="field">
         <label>
           Phone Number
@@ -55,11 +55,19 @@
           <%= f.text_field :phone_number, placeholder: "eg: (006) 500-0000" %>
         </label>
       </div>
-      
+
+      <div class="field">
+        <label>
+          Tax ID Number
+          <div class="info-prompt" toggler-toggle="TaxID">?</div>
+          <%= f.text_field :tax_id_number %>
+        </label>
+      </div>
+
     </div>
-        
+
     <hr>
-    
+
     <div class="perspective">
       <%= f.submit "Save", class: "save", data: { disable_with: "Saving" } %>
     </div>
@@ -78,6 +86,11 @@
 
   <div class="info-popup" toggler-target="OwnerPhone">
     We will try to reach you by email. If that fails, we'll try this number.
+    <div class="close" toggler-hide="OwnerPhone">Close</div>
+  </div>
+
+  <div class="info-popup" toggler-target="TaxID">
+    We need your tax ID number to verify that you're a business.
     <div class="close" toggler-hide="OwnerPhone">Close</div>
   </div>
 

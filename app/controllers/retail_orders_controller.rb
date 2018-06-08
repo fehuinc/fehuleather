@@ -81,8 +81,8 @@ class RetailOrdersController < ApplicationController
     order.save!
     order.reload
     
-    OrderMailer.customer_retail_order(order).deliver_now
-    OrderMailer.admin_retail_order(order).deliver_now
+    Mails.customer_retail_order(order).deliver_now
+    Mails.admin_retail_order(order).deliver_now
     
     redirect_to order_complete_path(order)
   

@@ -103,6 +103,67 @@ class MerchantController < ApplicationController
   end
 
 
+  def send_password_reset
+    @merchant = Merchant.find_by_email_insensitive(session[:merchant_email].strip)
+
+    if @merchant.nil?
+      redirect_to merchant_path
+
+    elsif PasswordResetEmail.send(@merchant, request.base_url)
+      redirect_to :root, success: "Password Reset instructions have been sent to your email."
+
+    else
+      @merchant.errors.add(:base, "Please wait 15 minutes before trying to reset your password again")
+      render :check_password
+    end
+  end
+
+
+  def reset_password
+    deauthenticate if logged_in?
+    @token = params[:token]
+    @merchant = Merchant.load_from_reset_password_token(@token)
+    if @merchant.blank?
+      redirect_to merchant_path, notice: "That password reset is no longer valid."
+    end
+  end
+
+
+  def reset_password_patch
+    deauthenticate if logged_in?
+    @token = params[:token]
+    @merchant = Merchant.load_from_reset_password_token(@token)
+    password = merchant_params[:password]
+    confirmation = merchant_params[:password_confirmation]
+
+    # Note: We need to manually validate here, since password validations are currently only executed on create
+    # Note (2018-01): The above might not be true anymore
+    if @merchant.nil?
+      redirect_to merchant_path, notice: "That password reset is no longer valid"
+
+    elsif password.blank?
+      @merchant.errors.add(:password, "cannot be blank")
+      render :reset_password
+
+    elsif password != confirmation
+      @merchant.errors.add(:password, "must be entered correctly both times")
+      render :reset_password
+
+    elsif password.length < 8
+      @merchant.errors.add(:password, "is too short (minimum is 8 characters)")
+      render :reset_password
+
+    # This also clears the temporary token
+    elsif @merchant.consume_password_reset(password)
+      set_authenticated_merchant(@merchant)
+      redirect_to merchant_path, success: 'Saved'
+
+    else
+      render :reset_password
+    end
+  end
+
+
   # LOGGED IN #####################################################################################
   # session[:merchant_email] is set
   # session[:merchant_id] is set
@@ -138,7 +199,7 @@ class MerchantController < ApplicationController
 private
 
   def merchant_params
-    params.require(:merchant).permit(:id, :email, :password, :password_confirmation, :phone_number, :store_name, :your_name, :tax_id_number)
+    params.require(:merchant).permit(:id, :email, :password, :password_confirmation, :phone_number, :store_name, :tax_id_number, :your_name)
   end
 
 end

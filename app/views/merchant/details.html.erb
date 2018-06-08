@@ -38,7 +38,7 @@
     <label>
       Tax ID Number
       <div class="info-prompt" ng-cloak ng-click="showTaxIdNumberPopup = !showTaxIdNumberPopup">?</div>
-      <%= f.text_field :phone_number, placeholder: "eg: (006) 500-0000" %>
+      <%= f.text_field :tax_id_number %>
     </label>
   </div>
 
@@ -68,6 +68,6 @@
 </div>
 
 <div class="info-popup" ng-cloak ng-show="showTaxIdNumberPopup">
-  We will try to reach you by email. If that fails, we'll try this number.
+  We need your tax ID number to verify that you're a business.
   <div class="close" ng-click="showTaxIdNumberPopup = false">Close</div>
 </div>
