@@ -1,3 +1,5 @@
+.merchant#login,
+.merchant#login_post,
 .merchant#check_password,
 .merchant#check_password_post,
 .merchant#create_password,
@@ -9,6 +11,10 @@
 
     label {
       width: 100%;
+
+      input {
+        margin-top: .2em;
+      }
     }
 
     .perspective {

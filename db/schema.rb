@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "password_digest"
+    t.string "tax_id_number"
     t.index ["email"], name: "index_merchants_on_email", unique: true
     t.index ["store_name"], name: "index_merchants_on_store_name", unique: true
   end
