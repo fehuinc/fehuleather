@@ -2,7 +2,6 @@ if Rails.env.development? || ENV.fetch("DOMAIN") == "https://fehu-staging.heroku
 
   class DevEmailInterceptor
     def self.delivering_email(message)
-      message.subject += " [to: " + message.to + "]"
       message.to = ["ivanreese@gmail.com"]
     end
   end
