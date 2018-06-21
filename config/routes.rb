@@ -69,6 +69,7 @@ Rails.application.routes.draw do
     end
 
     # Wholesale — both
+    get "wholesale/policies" => "wholesales#policies", as: :wholesale_policies
     get "merchant/logout" => "merchant#logout", as: "logout_merchant"
     get "merchant/*ignore" => "merchant#login"
     get "order/:id/invoice" => "wholesales#invoice", as: :wholesale_order_invoice

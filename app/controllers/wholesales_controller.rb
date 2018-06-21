@@ -1,6 +1,6 @@
 class WholesalesController < ApplicationController
   include MerchantAuth
-  prepend_before_action :check_authentication, except: [:invoice, :pay]
+  prepend_before_action :check_authentication, except: [:invoice, :pay, :policies]
 
   def index
     @merchant = Merchant.find(session[:merchant_id])
