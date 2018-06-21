@@ -20,27 +20,64 @@
       <table class="items">
         <% order.items.each do |item| %>
         <tr class="item">
-          <td class="quantity"><%= item.quantity %></div>
-          <td class="build"><%= item.build_name %></div>
-          <td class="product"><%= item.product_name %></div>
-          <td>
+          <td class="quantity"><%= item.quantity %></td>
+          <td class="build"><%= item.build_name %></td>
+          <td class="product"><%= item.product_name %></td>
+          <!-- <td>
             <label>
               <input type="checkbox" name="<%=item.id%>">
               Ready To Go
             </label>
-          </td>
+          </td> -->
         </tr>
         <% end %>
       </table>
-      <div>
-        <label>
-          Tracking Number
-          <input type="text">
-        </label>
-        <div class="perspective">
-          <input type="submit" value="Mark As Shipped">
-        </div>
-      </div>
+
+      <hr>
+
+      <% if order.wholesale? %>
+        <% if order.accepted.present? %>
+          <h3>Accepted on <%= order.accepted.strftime("%B %d, %Y") %></h3>
+        <% else %>
+          <div>
+            <div class="perspective">
+              <%= link_to "Accept Order", admin_order_mark_accepted_path(order.id), method: :patch, class: "button" %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if order.accepted.present? %>
+          <hr>
+          <% if order.paid.present? %>
+            <h3>Paid on <%= order.paid.strftime("%B %d, %Y") %></h3>
+          <% else %>
+            <h3>Not yet paid.</h3>
+            <div class="perspective">
+              <%= link_to "Mark as Paid", admin_order_mark_paid_path(order.id), method: :patch, class: "button" %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% if order.paid.present? || order.accepted.present? %>
+        <hr>
+
+        <% if order.shipped.present? %>
+          <h3>Shipped on <%= order.shipped.strftime("%B %d, %Y") %> with tracking number <%= order.tracking_number %></h3>
+        <% else %>
+          <%= form_for order, url: admin_order_mark_shipped_path(order.id), method: :patch do |f| %>
+            <%= f.hidden_field_tag :wholesale, order.wholesale?.to_s %>
+            <div>
+              <%= f.label :tracking_number, "Tracking Number" %>
+              <%= f.text_field :tracking_number %>
+            </div>
+            <div class="perspective">
+              <%= f.submit "Mark as Shipped", class: "save", data: { disable_with: "Marking..." } %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+
     </div>
   <% end %>
 <% end %>

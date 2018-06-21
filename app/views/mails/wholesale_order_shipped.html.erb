@@ -1,0 +1,25 @@
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<p>Hello,</p>
+
+<p>Your wholesale order from Fehu has been shipped.</p>
+
+<% if @order.tracking_number.present? %>
+  <p>The tracking number is <b><%= @order.tracking_number %></b></p>
+<% end %>
+
+<p><%= link_to "Click here", wholesale_order_invoice_url(@order.uuid) %> to view the order summary.</p>
+
+<p>If you have any questions, just reply to this email.</p>
+
+<p>Friendly regards,</p>
+
+<p>
+  Freyja Ulveland<br>
+  Fehu Inc.
+</p>
+
+</body>

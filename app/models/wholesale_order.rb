@@ -40,4 +40,16 @@ class WholesaleOrder < ApplicationRecord
       0 # We now have 0 quantity
     end
   end
+
+  def wholesale?
+    true
+  end
+
+  def retail?
+    false
+  end
+
+  def description
+    "Wholesale Order of #{items.count} Item".pluralize(items.count)
+  end
 end

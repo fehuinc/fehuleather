@@ -79,10 +79,10 @@ ActiveRecord::Schema.define(version: 2) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "password_digest", null: false
-    t.string "tax_id_number", null: false
     t.string "password_reset_token"
     t.string "password_reset_sent_at"
     t.string "password_reset_expires_at"
+    t.string "tax_id_number", null: false
     t.index ["email"], name: "index_merchants_on_email", unique: true
     t.index ["store_name"], name: "index_merchants_on_store_name", unique: true
   end
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 2) do
     t.text "payment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text "tracking_number"
   end
 
   create_table "sizes", id: :serial, force: :cascade do |t|
@@ -182,6 +183,8 @@ ActiveRecord::Schema.define(version: 2) do
     t.datetime "shipped"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "accepted"
+    t.text "tracking_number"
     t.index ["merchant_id"], name: "index_wholesale_orders_on_merchant_id"
   end
 

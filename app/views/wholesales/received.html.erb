@@ -1,0 +1,57 @@
+<h2 class="center">Your Order Has Been Placed</h2>
+
+<p>Thank you! We'll review the order, and then email you an invoice in a day or two.</p>
+
+<hr>
+
+<h3>Order Summary</h3>
+
+<section>
+  <p>
+    <h4>Shipping Address</h4>
+    <%= @order.address.line1 %><br>
+    <% if @order.address.line2.present? %>
+      <%= @order.address.line2 %><br>
+    <% end %>
+    <%= @order.address.region %>
+    <%= @order.address.code %><br>
+    <%= @order.address.country %>
+  </p>
+</section>
+
+<section>
+  <table>
+    <tr>
+      <th>Product</th>
+      <th>Variation</th>
+      <th>Quantity</th>
+      <th></th>
+    </tr>
+    <% @order.items.each do |item| %>
+      <tr>
+        <td><%= item.product_name %></td>
+        <td><%= item.build_name %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.price %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>Subtotal</td>
+      <td></td>
+      <td></td>
+      <td><%= PrintMoney.cents_to_dollars(@order.subtotal("CAD")) %><!-- TODO: Currency --></td>
+    </tr>
+    <tr>
+      <td>GST</td>
+      <td></td>
+      <td></td>
+      <td><%= PrintMoney.cents_to_dollars((0.05 * @order.subtotal("CAD")).round) %><!-- TODO: Currency --></td>
+    </tr>
+    <tr>
+      <td><b>Total</b></td>
+      <td></td>
+      <td></td>
+      <td><b><%= PrintMoney.cents_to_dollars((1.05 * @order.subtotal("CAD")).round) %><!-- TODO: Currency --></b></td>
+    </tr>
+  </table>
+</section>

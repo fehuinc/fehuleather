@@ -50,31 +50,23 @@
   </table>
 </section>
 
-<section>
-  <%= form_tag pay_wholesale_path, class: "stripe" do |f| %>
-    <script src="https://checkout.stripe.com/checkout.js"></script>
-    <div class="perspective">
-      Payment is due prior to shipping.
-      You may
-      <button>Pay with Card</button>,
-      send an e-Transfer to freyja@fehuleather.com with the password "cufflove",
-      or mail a cheque.
-    </div>
-  <% end %>
-</section>
+<section class="payment">
+  <% if @order.paid.present? %>
+    <h3>Paid on <%= @order.paid.strftime("%B %d, %Y") %></h3>
+  <% else %>
+    <%= form_tag wholesale_pay_invoice_path(@order.uuid), class: "stripe" do |f| %>
+      <input type="hidden" name="email" value="<%=merchant.email%>">
+      <input type="hidden" name="subtotal" value="<%=@order.subtotal("CAD")%>">
+      <input type="hidden" name="description" value="<%=@order.description%>">
 
-<section>
-  <%= form_tag share_wholesale_path do %>
-    <h3>Share this invoice.</h3>
-
-    <%= label_tag :email do %>
-      <%= hidden_field_tag :order_id, @order.id %>
-      Recipient's Email
-      <%= email_field_tag :email %>
+      <script src="https://checkout.stripe.com/checkout.js"></script>
+      <div class="perspective">
+        Payment is due prior to shipping.
+        You may
+        <button>Pay with Card</button>,
+        send an e-Transfer to freyja@fehuleather.com with the password "cufflove",
+        or mail a cheque.
+      </div>
     <% end %>
-
-    <div class="share perspective">
-      <%= submit_tag "Send", class: "save", data: { disable_with: 'Sending' } %>
-    </div>
   <% end %>
 </section>

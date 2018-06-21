@@ -1,5 +1,6 @@
 class MerchantController < ApplicationController
   include MerchantAuth
+  prepend_before_action :check_authentication
 
   def login
     # The only way we arrive at this action is if session[:merchant_id] is nil

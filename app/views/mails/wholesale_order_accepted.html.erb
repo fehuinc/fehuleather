@@ -1,0 +1,25 @@
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<p>Hello,</p>
+
+<p>
+  Your wholesale order from Fehu has been accepted.
+</p>
+
+<p><%= link_to "Click here", wholesale_order_invoice_url(@order.uuid) %> to view the invoice.</p>
+
+<p>Feel free to forward this invoice link to whomever should be paying it, or capturing it for their records.</p>
+
+<p>If you have any questions, just reply to this email.</p>
+
+<p>Sweet regards,</p>
+
+<p>
+  Freyja Ulveland<br>
+  Fehu Inc.
+</p>
+
+</body>

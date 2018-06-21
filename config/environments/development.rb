@@ -1,14 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # Configure CORS
-  config.middleware.insert_before 0, Rack::Cors do
-    allow do
-      origins ["https://www.fehuleather.com", "https://fehu-staging.herokuapp.com", "http://www.frails.test"]
-      resource "*", :headers => :any, :methods => [:get, :head, :options]
-    end
-  end
-
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -66,6 +58,18 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker # disabled because the listen gem seems to suck on OSX
+
+  # CUSTOMIZED
+
+  # Configure CORS
+  config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins ["https://www.fehuleather.com", "https://fehu-staging.herokuapp.com", "http://www.frails.test"]
+      resource "*", :headers => :any, :methods => [:get, :head, :options]
+    end
+  end
+
+  config.action_mailer.default_url_options = {host: ENV.fetch("DOMAIN")}
 
   # Configure Bullet
   # config.after_initialize do

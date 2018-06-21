@@ -1,10 +1,12 @@
 class WholesalesController < ApplicationController
   include MerchantAuth
+  prepend_before_action :check_authentication, except: [:invoice, :pay]
 
   def index
     @merchant = Merchant.find(session[:merchant_id])
     @orders = @merchant.orders.where.not(submitted: nil).order(created_at: :desc)
   end
+
 
   def new
     merchant = Merchant.find(session[:merchant_id])
@@ -57,20 +59,24 @@ class WholesalesController < ApplicationController
     merchant.current_order = nil
     merchant.save!
     Mails.admin_wholesale_order(order).deliver_now
-    redirect_to show_wholesale_path order
+    redirect_to received_wholesale_path order
   end
 
 
-  def show
+  def received
     @order = WholesaleOrder.find_by_uuid(params[:id])
-    @many = @order.items.count > 1 || @order.items.first.quantity > 1
+  end
+
+
+  def invoice
+    @order = WholesaleOrder.find_by_uuid(params[:id])
   end
 
 
   def pay
     merchant = Merchant.find(session[:merchant_id])
-    # order = setup_order merchant
     token = wholesale_order_params[:token] # From JS
+    order = WholesaleOrder.find_by_uuid(wholesale_order_params[:id])
     amount = order.subtotal("CAD").to_i # cents TODO: Add currency
     description = wholesale_order_params[:description] # From HTML
     currency = wholesale_order_params[:currency] # From Angular
@@ -91,19 +97,12 @@ class WholesalesController < ApplicationController
     merchant.current_order = nil
     merchant.save!
 
-    redirect_to show_wholesale_path(order)
+    Mails.admin_wholesale_order_paid(order).deliver_now
+
+    redirect_to wholesale_order_invoice_path(order)
 
   rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to wholesale_checkout_path
-  end
-
-
-  def share
-    email = params[:email]
-    order = WholesaleOrder.find(params[:order_id])
-    Mails.customer_wholesale_order(email, order).deliver_now
-    redirect_to show_wholesale_path(order), success: "Success"
+    redirect_to wholesale_order_invoice_path, error: e.message
   end
 
 
@@ -111,7 +110,7 @@ private
 
 
   def wholesale_order_params
-    params.permit(:token, :shippingAddressId, :orderInfo, :currency, :description)
+    params.permit(:token, :shippingAddressId, :orderInfo, :currency, :description, :id)
   end
 
 end

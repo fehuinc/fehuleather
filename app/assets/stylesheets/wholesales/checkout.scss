@@ -85,29 +85,6 @@
     }
   }
 
-  .payment {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-
-    .paymentMethodText, .paymentTimeText {
-      margin-top: 1em;
-    }
-
-    .radios {
-      flex: 1 0 50%;
-
-      h4 {
-        margin: 0 0 .5em;
-      }
-
-      label {
-        display: block;
-        margin: 0 0;
-      }
-    }
-  }
-
   .additionalInfo {
     margin-top: 1em;
   }

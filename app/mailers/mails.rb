@@ -10,7 +10,7 @@ class Mails < ActionMailer::Base
 
   def admin_retail_order(order)
     @order = order
-    mail to: "ivan@fehuleather.com", subject: "A Retail Stink!"
+    mail to: "ivan@fehuleather.com,freyja@fehuleather.com", subject: "New Retail Order!"
   end
 
   def customer_wholesale_order(email, order)
@@ -20,7 +20,12 @@ class Mails < ActionMailer::Base
 
   def admin_wholesale_order(order)
     @order = order
-    mail to: "ivan@fehuleather.com", subject: "A Retail Stink!"
+    mail to: "ivan@fehuleather.com,freyja@fehuleather.com", subject: "New Wholesale Order!"
+  end
+
+  def wholesale_order_accepted(order)
+    @order = order
+    mail to: order.merchant.email, subject: "Your Wholesale Order Invoice from Fehu"
   end
 
 

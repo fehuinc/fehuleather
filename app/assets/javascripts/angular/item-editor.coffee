@@ -34,7 +34,7 @@ angular.module "ItemEditor", []
       $scope.editorBuild.displayQuantity = $scope.editorBuild.quantity = quantity
 
     $scope.updateQuantity = (quantity)->
-      return if !quantity? or isNaN quantity
+      return if !quantity? or isNaN(quantity)
       $scope.editorBuild.quantity = Math.max 0, quantity
       animate()
       WholesaleOrder.update $scope.editorBuild

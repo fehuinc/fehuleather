@@ -1,15 +1,17 @@
 # Fehu
-
 Stinks. On Rails.
 
 ### Sizes:
+```
 Totem: sips -Z 800 *.jpg
 Wholesale: sips -Z 200 *.jpg
+```
 
 ### Erase & Rebuild DB
 ```bash
 # Dev
-rails db:drop db:create db:migrate db:seed
+powder stop # Then enter password
+rails db:drop db:create db:migrate db:seed && powder start
 
 # Staging
 heroku pg:reset DATABASE --remote staging --confirm fehu-staging

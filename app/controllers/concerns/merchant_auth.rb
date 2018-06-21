@@ -1,10 +1,6 @@
 module MerchantAuth
   extend ActiveSupport::Concern
 
-  included do
-    prepend_before_action :check_authentication
-  end
-
   # FILTERS & SUCH ################################################################################
 
 

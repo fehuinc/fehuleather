@@ -1,14 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # Configure CORS
-  config.middleware.insert_before 0, Rack::Cors do
-    allow do
-      origins ["https://www.fehuleather.com", "https://fehu-staging.herokuapp.com", "http://www.frails.dev"]
-      resource "*", :headers => :any, :methods => [:get, :head, :options]
-    end
-  end
-
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -95,6 +87,18 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # CUSTOMIZED
+
+  # Configure CORS
+  config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins ["https://www.fehuleather.com", "https://fehu-staging.herokuapp.com", "http://www.frails.dev"]
+      resource "*", :headers => :any, :methods => [:get, :head, :options]
+    end
+  end
+
+  config.action_mailer.default_url_options = {host: ENV.fetch("DOMAIN")}
 
   # Configure Exception Notifications
   Rails.application.config.middleware.use ExceptionNotification::Rack,

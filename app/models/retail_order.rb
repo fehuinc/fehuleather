@@ -5,4 +5,12 @@ class RetailOrder < ApplicationRecord
   def to_param
     uuid.parameterize
   end
+
+  def wholesale?
+    false
+  end
+
+  def retail?
+    true
+  end
 end

@@ -58,20 +58,21 @@ Rails.application.routes.draw do
       end
 
       resource :wholesale, only: [:new, :edit] do
+        root to: redirect("/merchant")
         get "product/:id" => "wholesales#edit_product", as: "product"
         patch "update_order/:build_id" => "wholesales#update_order"
         get "checkout" => "wholesales#checkout"
         post "submit" => "wholesales#submit"
-        post "pay" => "wholesales#pay"
+        get "order/:id/received" => "wholesales#received", as: "received"
         get "orders" => "wholesales#index"
-        get "order/:id" => "wholesales#show", as: "show"
-        post "order/:id/share" => "wholesales#share", as: "share"
       end
     end
 
     # Wholesale — both
     get "merchant/logout" => "merchant#logout", as: "logout_merchant"
     get "merchant/*ignore" => "merchant#login"
+    get "order/:id/invoice" => "wholesales#invoice", as: :wholesale_order_invoice
+    post "order/:id/pay" => "wholesales#pay", as: :wholesale_pay_invoice
 
     # Admin
     scope constraints: lambda { |request| request.session[:stinker] == ENV.fetch("STINKNAME") } do
@@ -87,14 +88,21 @@ Rails.application.routes.draw do
           resources :variations, only: [:new, :create]
           resources :sizes, only: [:new, :create]
         end
+
         resources :variations, only: [:edit, :update, :destroy] do
           resources :builds, only: [:new, :create]
         end
+
         resources :builds, only: [:edit, :update, :destroy]
         resources :sizes, only: [:edit, :update, :destroy]
         resources :events, except: [:show]
         resources :locations, except: [:show]
-        resources :orders, except: [:show]
+
+        resources :orders, only: [:index]
+        patch "orders/:id/mark-accepted" => "orders#accept", as: :order_mark_accepted
+        patch "orders/:id/mark-paid" => "orders#paid", as: :order_mark_paid
+        patch "orders/:id/mark-shipped" => "orders#ship", as: :order_mark_shipped
+
         get "wholesale" => "wholesale#index", as: "wholesale"
       end
     end
