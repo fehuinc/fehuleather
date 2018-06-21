@@ -14,15 +14,20 @@
     <h3 class="appear" ng-hide="true">Loading...</h3>
     <h3 class="appear" ng-hide="previewItemsCount > 0">Nothing yet...</h3>
     <div class="items" ng-cloak ng-controller="PreviewCtrl">
-      <a class="item" ng-repeat="item in sortedPreviewItems" ng-href="/wholesale/product/{{item.product_id}}">
-        <img class="preview" ng-src="{{item.image}}">
-        <span class="details">
-          <span class="name">{{item.build_name}}</span>
-          <span class="price">
-            {{ item.quantity }} for ${{ item.quantity * item.prices["CAD"] }}
+      <div ng-repeat="item in sortedPreviewItems">
+        <a class="item" ng-href="/wholesale/product/{{item.product_id}}">
+          <img class="preview" ng-src="{{item.image}}">
+          <span class="details">
+            <span class="name">{{item.build_name}}</span>
+            <span class="price">
+              {{ item.quantity }} for ${{ item.quantity * item.prices["CAD"] }}
+            </span>
           </span>
-        </span>
-      </a>
+        </a>
+        <a class="remove" ng-click="remove(item)">
+          Remove
+        </a>
+      </div>
       <h3 class="appear" ng-show="updatingItems">Updating...</h3>
     </div>
   </div>
