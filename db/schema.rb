@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2) do
     t.string "password_reset_sent_at"
     t.string "password_reset_expires_at"
     t.string "tax_id_number", null: false
+    t.string "currency", default: "CAD", null: false
     t.index ["email"], name: "index_merchants_on_email", unique: true
     t.index ["store_name"], name: "index_merchants_on_store_name", unique: true
   end

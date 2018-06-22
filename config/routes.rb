@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     scope constraints: lambda { |request| request.session[:merchant_id].nil? || Merchant.find_by_id(request.session[:merchant_id]).nil? } do
       get "merchant" => "merchant#login"
       post "merchant" => "merchant#login_post"
+      get "merchant/*ignore" => redirect("merchant")
 
       get "merchant/check-password" => "merchant#check_password"
       post "merchant/check-password" => "merchant#check_password_post"
@@ -52,6 +53,7 @@ Rails.application.routes.draw do
       get "merchant" => "merchant#index"
       post "merchant" => "merchant#index"
       patch "merchant" => "merchant#update"
+      get "merchant/*ignore" => redirect("merchant")
 
       namespace :merchant do
         resources :addresses, except: [:index, :show]
@@ -71,7 +73,6 @@ Rails.application.routes.draw do
     # Wholesale — both
     get "wholesale/policies" => "wholesales#policies", as: :wholesale_policies
     get "merchant/logout" => "merchant#logout", as: "logout_merchant"
-    get "merchant/*ignore" => "merchant#login"
     get "order/:id/invoice" => "wholesales#invoice", as: :wholesale_order_invoice
     post "order/:id/pay" => "wholesales#pay", as: :wholesale_pay_invoice
 

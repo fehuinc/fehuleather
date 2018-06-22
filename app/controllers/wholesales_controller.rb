@@ -53,7 +53,7 @@ class WholesalesController < ApplicationController
     merchant = Merchant.find(session[:merchant_id])
     order = merchant.current_order
     order.orderInfo = wholesale_order_params[:orderInfo] # From Angular
-    order.address = Address.find wholesale_order_params[:shippingAddressId] # From Angular
+    order.address = merchant.addresses.find wholesale_order_params[:shippingAddressId] # From Angular
     order.submitted = Time.now
     order.save!
     merchant.current_order = nil

@@ -5,7 +5,7 @@
 
 <%= form_for @merchant, url: merchant_details_path, method: "post" do |f| %>
 
-  <p>There are just four more things we'd like to know before we let you browse our wholesale listing.</p>
+  <p>There are just a few more things we'd like to know before we let you browse our wholesale listing.</p>
 
   <%= render 'partials/form_errors', model: @merchant %>
 
@@ -33,12 +33,18 @@
     </label>
   </div>
 
-
   <div>
     <label>
       Tax ID Number
       <div class="info-prompt" ng-cloak ng-click="showTaxIdNumberPopup = !showTaxIdNumberPopup">?</div>
       <%= f.text_field :tax_id_number %>
+    </label>
+  </div>
+
+  <div>
+    <label>
+      Currency
+      <%= f.select :currency, ["CAD", "USD"] %>
     </label>
   </div>
 

@@ -6,12 +6,12 @@ $blue: hsl(200, 50%, 95%);
   main {
     max-width: 50rem;
   }
-  
+
   .actions {
     display: flex;
     justify-content: center;
     max-width: none;
-    
+
     a {
       display: inline-block;
       margin: 0 .5em;
@@ -19,30 +19,31 @@ $blue: hsl(200, 50%, 95%);
       border: 1px solid $blue;
       background: $yellow;
       text-decoration: none;
-      
+
       &:hover {
         color: $dark;
         text-decoration: underline;
       }
     }
   }
-  
+
   form {
     .fields {
       display: flex;
       flex-flow: row wrap;
       justify-content: space-between;
-      
+      align-items: flex-end;
+
       .field {
         flex: 0 1 48%;
         margin: .5em 0;
-        
+
         label {
           width: 100%;
         }
       }
     }
-    
+
     .perspective {
       max-width: 8em;
       margin: 0 auto;

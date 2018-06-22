@@ -89,11 +89,13 @@ class MerchantController < ApplicationController
 
   def check_password
     @merchant = Merchant.find_by_email_insensitive(session[:merchant_email])
+    return redirect_to merchant_path, error: "Unknown merchant account. Please log-in again." if @merchant.nil?
   end
 
 
   def check_password_post
     @merchant = Merchant.find_by_email_insensitive(session[:merchant_email])
+    return redirect_to merchant_path, error: "Unknown merchant account. Please log-in again." if @merchant.nil?
 
     if authenticate(session[:merchant_email], merchant_params[:password])
       redirect_to merchant_path
@@ -200,7 +202,7 @@ class MerchantController < ApplicationController
 private
 
   def merchant_params
-    params.require(:merchant).permit(:id, :email, :password, :password_confirmation, :phone_number, :store_name, :tax_id_number, :your_name)
+    params.require(:merchant).permit(:currency, :email, :password, :password_confirmation, :phone_number, :store_name, :tax_id_number, :your_name)
   end
 
 end
