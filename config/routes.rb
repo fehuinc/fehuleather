@@ -26,11 +26,16 @@ Rails.application.routes.draw do
     # Tips
     get "tips/double-wrap-belt" => redirect("tips/double-wrap-belt.pdf")
 
+    # Wholesale — both
+    get "wholesale/policies" => "wholesales#policies", as: :wholesale_policies
+    get "merchant/logout" => "merchant#logout", as: "logout_merchant"
+    get "order/:id/invoice" => "wholesales#invoice", as: :wholesale_order_invoice
+    post "order/:id/pay" => "wholesales#pay", as: :wholesale_pay_invoice
+
     # Wholesale — public
     scope constraints: lambda { |request| request.session[:merchant_id].nil? || Merchant.find_by_id(request.session[:merchant_id]).nil? } do
       get "merchant" => "merchant#login"
       post "merchant" => "merchant#login_post"
-      get "merchant/*ignore" => redirect("merchant")
 
       get "merchant/check-password" => "merchant#check_password"
       post "merchant/check-password" => "merchant#check_password_post"
@@ -46,6 +51,8 @@ Rails.application.routes.draw do
 
       get "merchant/reset-password/:token" => "merchant#reset_password", as: :merchant_reset_password
       patch "merchant/reset-password/:token" => "merchant#reset_password_patch"
+
+      get "merchant/*ignore" => redirect("merchant")
     end
 
     # Wholesale — private
@@ -53,7 +60,6 @@ Rails.application.routes.draw do
       get "merchant" => "merchant#index"
       post "merchant" => "merchant#index"
       patch "merchant" => "merchant#update"
-      get "merchant/*ignore" => redirect("merchant")
 
       namespace :merchant do
         resources :addresses, except: [:index, :show]
@@ -68,13 +74,9 @@ Rails.application.routes.draw do
         get "order/:id/received" => "wholesales#received", as: "received"
         get "orders" => "wholesales#index"
       end
-    end
 
-    # Wholesale — both
-    get "wholesale/policies" => "wholesales#policies", as: :wholesale_policies
-    get "merchant/logout" => "merchant#logout", as: "logout_merchant"
-    get "order/:id/invoice" => "wholesales#invoice", as: :wholesale_order_invoice
-    post "order/:id/pay" => "wholesales#pay", as: :wholesale_pay_invoice
+      get "merchant/*ignore" => redirect("merchant")
+    end
 
     # Admin
     scope constraints: lambda { |request| request.session[:stinker] == ENV.fetch("STINKNAME") } do

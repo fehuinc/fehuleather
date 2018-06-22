@@ -1,7 +1,7 @@
 <h1>It's Checkout Time</h1>
 
 <section>
-  <h3>You're about to order <%= link_to "#{@items_count} item".pluralize(@items_count), edit_wholesale_path %>.</h3>
+  <h3>You're about to order <%= link_to "#{@items_count} item".pluralize(@items_count), edit_wholesale_path %> for $<%=@subtotal%> <%= @merchant.currency %></h3>
 
   <div class="little-preview">
     <% @order.items.each do |item| %>
@@ -60,4 +60,7 @@
     <input type="hidden" name="orderInfo" value="{{order | json}}">
     <input type="submit" value="Submit Order">
   <% end %>
+  <br>
+  <br>
+  <p>We will review the order, then email you an invoice.</p>
 </section>

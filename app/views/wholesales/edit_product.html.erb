@@ -33,7 +33,7 @@
             <%= variation.name %>
           </span>
           <span class="price">
-            $<%= variation.price_wholesale_render("CAD")/100 %>
+            $<%= (variation.price_wholesale_render(@merchant.currency)/100.0).round %>
           </span>
         </div>
         <%= image_tag variation.wholesale_image, class: "variation-image" if variation.wholesale_image %>

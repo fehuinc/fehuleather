@@ -20,7 +20,7 @@
           <span class="details">
             <span class="name">{{item.build_name}}</span>
             <span class="price">
-              {{ item.quantity }} for ${{ item.quantity * item.prices["CAD"] }}
+              {{ item.quantity }} for ${{ item.quantity * item.prices["<%= @merchant.currency %>"] }}
             </span>
           </span>
         </a>

@@ -18,7 +18,7 @@
         <td>
           <b><%= pluralize order.items.count, "Item" %></b>
           ordered on <b><%= order.submitted.strftime("%B %d, %Y") %></b>
-          for <b>$<%= PrintMoney.cents_to_dollars(order.subtotal("CAD")) %></b><!-- TODO: Add currency -->
+          for <b>$<%= PrintMoney.cents_to_dollars(order.subtotal(@merchant.currency)) %></b>
         </td>
         <td><%= order.paid.present? ? "Paid on #{order.paid.strftime("%B %d, %Y")}" : "Not Paid" %></td>
         <td><%= link_to "View Invoice", wholesale_order_invoice_path(order) %></td>

@@ -33,19 +33,19 @@
       <td>Subtotal</td>
       <td></td>
       <td></td>
-      <td><%= PrintMoney.cents_to_dollars(@order.subtotal("CAD")) %><!-- TODO: Currency --></td>
+      <td><%= PrintMoney.cents_to_dollars(@order.subtotal(@merchant.currency)) %>
     </tr>
     <tr>
       <td>GST</td>
       <td></td>
       <td></td>
-      <td><%= PrintMoney.cents_to_dollars((0.05 * @order.subtotal("CAD")).round) %><!-- TODO: Currency --></td>
+      <td><%= PrintMoney.cents_to_dollars((0.05 * @order.subtotal(@merchant.currency)).round) %></td>
     </tr>
     <tr>
       <td><b>Total</b></td>
       <td></td>
       <td></td>
-      <td><b><%= PrintMoney.cents_to_dollars((1.05 * @order.subtotal("CAD")).round) %><!-- TODO: Currency --></b></td>
+      <td><b><%= PrintMoney.cents_to_dollars((1.05 * @order.subtotal(@merchant.currency)).round) %></b></td>
     </tr>
   </table>
 </section>
@@ -56,7 +56,8 @@
   <% else %>
     <%= form_tag wholesale_pay_invoice_path(@order.uuid), class: "stripe" do |f| %>
       <input type="hidden" name="email" value="<%=merchant.email%>">
-      <input type="hidden" name="subtotal" value="<%=@order.subtotal("CAD")%>">
+      <input type="hidden" name="subtotal" value="<%=@order.subtotal(merchant.currency)%>">
+      <input type="hidden" name="currency" value="<%=@merchant.currency%>">
       <input type="hidden" name="description" value="<%=@order.description%>">
 
       <script src="https://checkout.stripe.com/checkout.js"></script>

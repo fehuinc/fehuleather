@@ -39,19 +39,19 @@
       <td>Subtotal</td>
       <td></td>
       <td></td>
-      <td><%= PrintMoney.cents_to_dollars(@order.subtotal("CAD")) %><!-- TODO: Currency --></td>
+      <td><%= PrintMoney.cents_to_dollars(@order.subtotal(@merchant.currency)) %></td>
     </tr>
     <tr>
       <td>GST</td>
       <td></td>
       <td></td>
-      <td><%= PrintMoney.cents_to_dollars((0.05 * @order.subtotal("CAD")).round) %><!-- TODO: Currency --></td>
+      <td><%= PrintMoney.cents_to_dollars((0.05 * @order.subtotal(@merchant.currency)).round) %></td>
     </tr>
     <tr>
       <td><b>Total</b></td>
       <td></td>
       <td></td>
-      <td><b><%= PrintMoney.cents_to_dollars((1.05 * @order.subtotal("CAD")).round) %><!-- TODO: Currency --></b></td>
+      <td><b><%= PrintMoney.cents_to_dollars((1.05 * @order.subtotal(@merchant.currency)).round) %></b></td>
     </tr>
   </table>
 </section>

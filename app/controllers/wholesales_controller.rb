@@ -9,10 +9,10 @@ class WholesalesController < ApplicationController
 
 
   def new
-    merchant = Merchant.find(session[:merchant_id])
-    if merchant.current_order.nil?
-      merchant.current_order = merchant.orders.create!
-      merchant.save!
+    @merchant = Merchant.find(session[:merchant_id])
+    if @merchant.current_order.nil?
+      @merchant.current_order = @merchant.orders.create!
+      @merchant.save!
     end
     redirect_to edit_wholesale_path
   end
@@ -32,10 +32,10 @@ class WholesalesController < ApplicationController
 
 
   def update_order
-    merchant = Merchant.find session[:merchant_id]
-    order = merchant.current_order
+    @merchant = Merchant.find(session[:merchant_id])
+    order = @merchant.current_order
     build = Build.find params[:build_id]
-    currency = nil # Temporarily disabled
+    currency = @merchant.currency
     result = order.update_item_from_build build, params[:quantity], currency
     render json: result
   end
@@ -44,7 +44,7 @@ class WholesalesController < ApplicationController
   def checkout
     @merchant = Merchant.includes(current_order: [items: [build: [:variation]]]).find session[:merchant_id]
     @order = @merchant.current_order
-    @subtotal = @order.subtotal("CAD").to_i # TODO: Add currency
+    @subtotal = @order.subtotal(@merchant.currency).to_i
     @items_count = @order.items.map(&:quantity).reduce(&:+)
   end
 
@@ -64,22 +64,24 @@ class WholesalesController < ApplicationController
 
 
   def received
-    @order = WholesaleOrder.find_by_uuid(params[:id])
+    @merchant = Merchant.find(session[:merchant_id])
+    @order = @merchant.orders.find_by_uuid(params[:id])
   end
 
 
   def invoice
     @order = WholesaleOrder.find_by_uuid(params[:id])
+    @merchant = @order.merchant
   end
 
 
   def pay
-    merchant = Merchant.find(session[:merchant_id])
     token = wholesale_order_params[:token] # From JS
     order = WholesaleOrder.find_by_uuid(wholesale_order_params[:id])
-    amount = order.subtotal("CAD").to_i # cents TODO: Add currency
+    merchant = order.merchant
+    currency = merchant.currency
+    amount = order.subtotal(currency).to_i # cents
     description = wholesale_order_params[:description] # From HTML
-    currency = wholesale_order_params[:currency] # From Angular
 
     charge = Stripe::Charge.create(
       source: token,
@@ -110,7 +112,7 @@ private
 
 
   def wholesale_order_params
-    params.permit(:token, :shippingAddressId, :orderInfo, :currency, :description, :id)
+    params.permit(:token, :shippingAddressId, :orderInfo, :description, :id)
   end
 
 end
